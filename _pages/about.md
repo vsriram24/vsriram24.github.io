@@ -20,6 +20,6 @@ My general research skills and interests include:
 
 My thesis work focuses on the integration of genomic and phenotypic data from electronic health record (EHR)-linked biobanks, applying network theory and graph-based machine learning methods to evaluate the genetic basis of disease complications and comorbidities. For a full list of my publications, refer [here](https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en).
 
-I previously received B.Sc.'s in Statistics and Computer Science from [Duke University](https://duke.edu), and I am also on track to complete a M.Sc. in Statistics from the [Wharton School of Business](https://www.wharton.upenn.edu). I am passionate about mentorship and outreach, and I have volunteered for a variety of organization and schools as a teacher in science education.
+I previously received B.Sc.'s in Statistics and Computer Science from [Duke University](https://duke.edu), and I am also on track to complete a M.Sc. in Statistics from the [Wharton School of Business](https://www.wharton.upenn.edu). I am passionate about mentorship and outreach, and I have volunteered for a variety of organizations as a teacher in science education.
 
 Feel free to contact me at [viveksrm@pennmedicine.upenn.edu](mailto:viveksrm@pennmedicine.upenn.edu) for any consulting and collaboration questions.
