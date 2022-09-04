@@ -18,8 +18,8 @@ My general research skills and interests include:
 * data visualization
 * human disease genomics
 
-My thesis work focuses on the integration of genomic and phenotypic data from electronic health record (EHR)-linked biobanks, applying network theory and graph-based machine learning methods to evaluate the genetic basis of disease complications and comorbidities. For a full list of my publications, refer [here](https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en).
+My thesis work focuses on the integration of genomic and phenotypic data from electronic health record (EHR)-linked biobanks, applying network theory and graph-based machine learning methods to evaluate the genetic basis of disease complications and comorbidities. For a full list of my publications, refer [here](https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en), and for a copy of my LinkedIn profile, refer [here](https://www.linkedin.com/in/vivek-sriram/) 
 
-I previously received B.Sc.'s in Statistics and Computer Science from [Duke University](https://duke.edu), and I am also on track to complete a M.Sc. in Statistics from the [Wharton School of Business](https://www.wharton.upenn.edu). I am passionate about mentorship and outreach, and I have volunteered for a variety of organizations as a teacher in science education.
+In summer 2022, I worked as a PhD Researcher for [Microsoft Research's Health Futures Group](https://www.microsoft.com/en-us/research/lab/microsoft-health-futures/). I previously received a Master's degree in Statistics from the [Wharton School of Business](https://www.wharton.upenn.edu) as well as Bachelor's degrees in Statistics and Computer Science from [Duke University](https://duke.edu). I am passionate about mentorship and outreach, and I have volunteered for a variety of organizations as a teacher in science education.
 
 Feel free to contact me at [viveksrm@pennmedicine.upenn.edu](mailto:viveksrm@pennmedicine.upenn.edu) for any consulting and collaboration questions.
