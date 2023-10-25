@@ -22,7 +22,7 @@ My general research skills and interests include:
 
 I hold a Ph.D. in Biomedical Informatics and Computational Genomics from the [University of Pennsylvania](https://www.upenn.edu) [Perelman School of Medicine](https://www.med.upenn.edu). My doctoral work focused on the integration of genomic and phenotypic data from electronic health record (EHR)-linked biobanks, applying network theory and graph-based machine learning methods to evaluate the genetic basis of disease complications and comorbidities. 
 
-Additionally, I hold a Master's degree in Statistics from the [Wharton School of Business](https://www.wharton.upenn.edu) as well as Bachelor's degrees in Statistics and Computer Science from [Duke University](https://duke.edu). I am very interested in facilitating and simplifying the process of medical discovery across the landscape of biomedical research. I am also passionate about mentorship and outreach, and I have volunteered for a variety of organizations as a teacher in science education.
+Additionally, I hold a Master's degree in Statistics and Data Science from the [Wharton School of Business](https://www.wharton.upenn.edu) as well as Bachelor's degrees in Statistics and Computer Science from [Duke University](https://duke.edu). I am very interested in facilitating and simplifying the process of medical discovery across the landscape of biomedical research. I am also passionate about mentorship and outreach, and I have volunteered for a variety of organizations as a teacher in science education.
 
 To see a full list of my publications, refer [here](https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en), and to connect with me via LinkedIn, click [here](https://www.linkedin.com/in/vivek-sriram/) 
 
