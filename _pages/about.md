@@ -22,7 +22,7 @@ My general research skills and interests include:
 * data visualization
 * human-centered design
 
-I am always open to speaking, teaching, collaboration, consulting, and outreach opportunities. Feel free to contact me at [vivek.sriram@gmail.com](mailto:vivek.sriram@gmail.com) for any consulting and collaboration questions.
+I am always open to speaking, teaching, collaboration, consulting, and outreach opportunities. You can send questions or requests to me at [vivek.sriram@gmail.com](mailto:vivek.sriram@gmail.com).
 
 To see a full list of my publications, refer [here](https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en), and to connect with me via LinkedIn, click [here](https://www.linkedin.com/in/vivek-sriram/) 
 
