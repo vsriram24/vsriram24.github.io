@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://viveksriram.com/index.html</loc>
-    <lastmod>2024-05-14T22:30:03.634Z</lastmod>
+    <lastmod>2024-05-15T04:11:41.725Z</lastmod>
   </url>
   <url>
     <loc>https://viveksriram.com/about.html</loc>
@@ -10,10 +10,18 @@
   </url>
   <url>
     <loc>https://viveksriram.com/blog.html</loc>
-    <lastmod>2024-05-14T23:08:35.349Z</lastmod>
+    <lastmod>2024-05-15T04:22:17.135Z</lastmod>
   </url>
   <url>
     <loc>https://viveksriram.com/publications.html</loc>
     <lastmod>2024-05-14T23:29:20.368Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/blog.html</loc>
+    <lastmod>2024-05-15T04:22:17.135Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/index.html</loc>
+    <lastmod>2024-05-15T04:11:41.725Z</lastmod>
   </url>
 </urlset>

@@ -4,7 +4,8 @@ project:
 
 website:
   title: "Home"
-  site-url: "https://viveksriram.com"
+  site-url: "https://vsriram24.github.io"
+  description: "Vivek Sriram's personal website"
   navbar:
     theme: lumen
     background: "#99bb8a"
@@ -13,6 +14,8 @@ website:
       - about.qmd
       - blog.qmd
       - publications.qmd
+      - icon: rss
+        href: blog.xml
   page-footer:
     left: |
       Powered by [Quarto](https://quarto.org)
