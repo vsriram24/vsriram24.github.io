@@ -14,7 +14,7 @@ Hello world, and welcome to my official blog! I've had numerous thoughts swirlin
 
 ![](daslGoals.png){height="500px"}
 
-Thus hopes for this blog are to (a) build a community, (b) share my knowledge, and (c) learn alongside my readers. I aim to write weekly (if not more frequent) posts on a variety of subjects, including:
+My hopes for this blog are to (a) build a community, (b) share my knowledge, and (c) learn alongside my readers. I aim to write weekly (if not more frequent) posts on a variety of subjects, including:
 
 - my personal story
 - advice to others in my field
@@ -26,4 +26,4 @@ I have no expectations that my content will be perfect, but then again, learning
 
 Given my background and expertise, my general focus will be on the world of biomedical data science and health technology, but the sky is the limit for the topics we may cover! 
 
-Thanks for tuning in - I'm delighted to have you along for the ride!
+Thanks for tuning in - I'm delighted to have you along for the ride...
