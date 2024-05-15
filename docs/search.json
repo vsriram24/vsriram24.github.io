@@ -18,7 +18,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "No matching items"
+    "text": "Hello world!\n\n\n\n\n\n\nPersonal\n\n\n\nThe start of a new chapter\n\n\n\n\n\nMay 14, 2024\n\n\nVivek Sriram\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "publications.html",
@@ -26,5 +26,12 @@
     "title": "Publications",
     "section": "",
     "text": "Sriram V§, Nam Y§, Shivakumar M, Verma A, Jung S-H, Lee SM*, Kim D*. A Network-Based Analysis of Disease Complication Associations for Obstetric Disorders in the UK Biobank. Journal of Personalized Medicine. 2021; 11(12):1382. https://doi.org/10.3390/jpm11121382\nNam Y§, Jung S-H§, Verma A, Sriram V, Wong H-H, Yun J-S, Kim D*. netCRS: Network-based comorbidity risk score for prediction of myocardial infarction using biobank-scaled PheWAS data. Pacific Symposium on Biocomputing 2022. https://doi.org/10.1142/9789811250477_0030\nSriram V§, Shivakumar M§, Jung S-H, Nam Y, Bang L, Verma A, Lee S, Choe EK, Kim D, NETMAGE: A human disease phenotype map generator for the network-based visualization of phenome-wide association study results, GigaScience, Volume 11, 2022, giac002, https://doi.org/10.1093/gigascience/giac002\nLee S§, Nam Y§, Choi ES, Jung YM, Sriram V, Leiby J, Koo JN, Oh IH, Kim BJ, Kim SM, Kim SY, Kim GM, Joo SK, Shin S, Norwitz E, Park CW, Jun JK, Kim W, Kim D*, Park JS*. Development of early prediction model for pregnancy-associated hypertension with graph-based semi-supervised learning. Scientific Reports, 12(1), 15793, 2022. https://doi.org/10.1038/s41598-022-15391-4\nNam Y§, Jung SH§, Yun JS, Verma A, Sriram V, Shin H, Won H*, Kim D*. Discovering comorbid diseases using an inter-disease interactivity network based on biobank-scale PheWAS data. Bioinformatics 39(1), 2023. https://doi.org/10.1093/bioinformatics/btac822\nWoerner J§, Sriram V§, Nam Y, Verma A, Kim D*. Uncovering genetic associations in the human diseasome using an endophenotype-augmented disease network. Bioinformatics 40(3), 2024. https://doi.org/10.1093/bioinformatics/btae126.\nSriram V, Conard AM, Rosenberg I, Kim D, Hall AK*. Accelerating precision medicine: a proposed framework for large-scale multiomic data integrity, interoperability, analysis, and collaboration in biomedical discovery. medRXiv. https://doi.org/10.1101/2024.03.15.24304358. Preprint.\nNam Y§, Sriram V§, Shivakumar M, Verma A, Yun JS, Kim D*. An enhanced disease network with robust cross-phenotype relationships via variant frequency-inverse phenotype frequency. Preprint.\nSriram V, Woerner J, Ahn YY*, Kim D*. The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank. Preprint."
+  },
+  {
+    "objectID": "posts/240514_hello-world/index.html",
+    "href": "posts/240514_hello-world/index.html",
+    "title": "Hello world!",
+    "section": "",
+    "text": "Hello world, and welcome to my official blog! I’ve had numerous thoughts swirling around in my head over the past several years, but have had trouble formally committing to bringing them out into the world… however, encouragement from colleagues and recent reading (i.e. Dorie Clark’s The Long Game) have convinced me to finally bring my virtual pen to paper. In particular, I found myself tremendously inspired by the Fred Hutch DaSL Culture and Work Style document and the mantra of “ship as soon as you can.” The following graphic does a great job at reminding us how to avoid the pit of perfectionism!\n\nThus hopes for this blog are to (a) build a community, (b) share my knowledge, and (c) learn alongside my readers. I aim to write weekly (if not more frequent) posts on a variety of subjects, including:\n\nmy personal story\nadvice to others in my field\ntechnical tutorials\nsubject matter overviews, and\nmiscellaneous detours\n\nI have no expectations that my content will be perfect, but then again, learning from mistakes is one of the best parts of life :)\nGiven my background and expertise, my general focus will be on the world of biomedical data science and health technology, but the sky is the limit for the topics we may cover!\nThanks for tuning in - I’m delighted to have you along for the ride!"
   }
 ]

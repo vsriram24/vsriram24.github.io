@@ -10,6 +10,38 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.4.553</generator>
-<lastBuildDate>Wed, 15 May 2024 04:26:35 GMT</lastBuildDate>
+<lastBuildDate>Tue, 14 May 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Hello world!</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/240514_hello-world/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Hello world, and welcome to my official blog! I’ve had numerous thoughts swirling around in my head over the past several years, but have had trouble formally committing to bringing them out into the world… however, encouragement from colleagues and recent reading (i.e.&nbsp;Dorie Clark’s <a href="https://dorieclark.com/longgame/">The Long Game</a>) have convinced me to finally bring my virtual pen to paper. In particular, I found myself tremendously inspired by the Fred Hutch <a href="https://hutchdatascience.org/news/dasl-culture/">DaSL Culture and Work Style</a> document and the mantra of “ship as soon as you can.” The following graphic does a great job at reminding us how to avoid the pit of perfectionism!</p>
+<p><img src="https://vsriram24.github.io/posts/240514_hello-world/daslGoals.png" height="500"></p>
+<p>Thus hopes for this blog are to (a) build a community, (b) share my knowledge, and (c) learn alongside my readers. I aim to write weekly (if not more frequent) posts on a variety of subjects, including:</p>
+<ul>
+<li>my personal story</li>
+<li>advice to others in my field</li>
+<li>technical tutorials</li>
+<li>subject matter overviews, and</li>
+<li>miscellaneous detours</li>
+</ul>
+<p>I have no expectations that my content will be perfect, but then again, learning from mistakes is one of the best parts of life :)</p>
+<p>Given my background and expertise, my general focus will be on the world of biomedical data science and health technology, but the sky is the limit for the topics we may cover!</p>
+<p>Thanks for tuning in - I’m delighted to have you along for the ride!</p>
+
+
+
+ ]]></description>
+  <category>Personal</category>
+  <guid>https://vsriram24.github.io/posts/240514_hello-world/</guid>
+  <pubDate>Tue, 14 May 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/240514_hello-world/zolaSaysHi.png" medium="image" type="image/png" height="192" width="144"/>
+</item>
 </channel>
 </rss>
