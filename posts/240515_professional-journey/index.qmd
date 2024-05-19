@@ -7,7 +7,7 @@ date-modified: "5/15/2024"
 image: lifeIsAHighway.png
 categories:
   - Personal
-draft: false
+draft: true
 ---
 
 For my first "real" post, I figured it would be a helpful exercise to go through my professional journey and track how I ended up where I currently am. This description is meant to be more of an overview, and I intend to provide more details on individual portions of it in the future.
