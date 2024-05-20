@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Home"
+  favicon: vivek_cropped.JPG
   site-url: "https://vsriram24.github.io"
   description: "Vivek Sriram's personal website"
   navbar:

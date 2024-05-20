@@ -31,9 +31,9 @@ My general research skills and interests include:
 
 -   deep learning and generative AI
 
--   cloud-based genomics
-
 -   data visualization
+
+-   network science
 
 -   human-centered design
 
