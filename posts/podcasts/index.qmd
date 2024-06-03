@@ -1,0 +1,27 @@
+---
+title: "My favorite podcasts"
+description: ""
+author: "Vivek Sriram"
+date: "5/27/2024"
+date-modified: "5/27/2024"
+image: IMG_7480.jpg
+categories:
+  - Tutorials
+draft: true
+---
+
+-   The AI in Health Podcast
+
+-   Ground Truths
+
+-   The Happiness Lab
+
+-   The Data Chief
+
+-   Not So Standard Deviations
+
+-   Factually
+
+-   Casual Inference
+
+-   The Pulse by Wharton Digital Health
