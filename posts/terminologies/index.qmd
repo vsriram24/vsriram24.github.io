@@ -158,7 +158,7 @@ I see health technology and biotechnology as synonymous fields to one another, w
 
 # Conclusions
 
--   Data science, data analytics, and informatics can be thought of as complementary terms to one another. On the whole, these terms can pretty much be used interchangeably. However, the real nuance is that data science is focused primarily on the development of models and algorithms, data analytics is focused on data tabulation and visualization, and informatics is focused on the appplication of data analysis to external sub-domains.
+-   Data science, data analytics, and informatics can be thought of as complementary terms to one another. On the whole, these terms can pretty much be used interchangeably. However, the real nuance is that data science is focused primarily on the development of models and algorithms, data analytics is focused on data tabulation and visualization, and informatics is focused on the application of data analysis to external sub-domains.
 
 -   Computational Biology and Biomedical Informatics are fairly interchangeable - however, I like to think that computational biology prioritizes the impact of the biological question, while biomedical informatics prioritizes the computational systems needed to analyze large-scale biomedical data.
 

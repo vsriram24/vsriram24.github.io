@@ -1,0 +1,47 @@
+---
+title: "My doctoral research: the background"
+description: "Context is everything"
+author: "Vivek Sriram"
+date: "6/10/2024"
+date-modified: "6/10/2024"
+image: zolaStairs.jpeg
+categories:
+  - Personal
+draft: false
+---
+
+In the next few posts, I will be providing an overview of my PhD in [Biomedical Informatics and Computational Genomics](https://www.med.upenn.edu/gcb/) that I completed under the mentorship of Dr. [Dokyoon Kim](https://www.biomedinfolab.com) at the University of Pennsylvania Perelman School of Medicine. You can listen to a full presentation of my thesis defense [here](https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d), and you can read the full text of my dissertation [here](https://repository.upenn.edu/entities/publication/d7441349-baa0-407e-b556-ec96c6930db8). Note that all figures featured in this blog post were created using [BioRender.com](https://www.biorender.com). Today's post will focus on the background context that motivated my research. Without further ado, let's get started!
+
+![](benfranklin.jpeg)
+
+------------------------------------------------------------------------
+
+Human biology is a complicated field. Millions of cells, cellular components, molecules, and chemicals interact with one another moment by moment to keep us alive each and every day. And while biologists and clinicians have defined a variety of classifications and [ontologies](https://guides.lib.umich.edu/ontology/ontologies) to organize and understand these systems, the intricacies of the field continue to require extensive research and investment. Achieving a better understanding of human biology necessitates a unified language.
+
+At the core of human biology and its defined ontologies lies the field of *genetics*. [Genetics](https://en.wikipedia.org/wiki/Genetics) refers to the study of heritable traits (also known as [phenotypes](https://www.genome.gov/genetics-glossary/Phenotype)). If we define genetics as the language of biology, then the vocabulary of genetics would be the [gene](https://en.wikipedia.org/wiki/Gene) - a unit of heritable information that influences how we develop and operate. Extending the analogy further, the letters of genetics would be the [nucleotide](https://en.wikipedia.org/wiki/Nucleotide), a set of four molecules whose arrangements define different genes. Indeed, differences in individual nucleotides, also known as single-nucleotide variants/polymorphisms or "SNVs/[SNPs](https://en.wikipedia.org/wiki/Single-nucleotide_polymorphism)", are responsible for genetic variation across individuals and can lead to differing phenotypic outcomes. Genetic variation is a significant component of the diversity of life.
+
+Given the complex interactions that occur across biomolecules in our bodies, it becomes apparent that networks of interacting genes drive our ability to live. Human diseases can be thought of as disruptions to these networks. The field of [medicine](https://en.wikipedia.org/wiki/Medicine) aims to prevent, alleviate, and cure disease through the maintenance of health and the development of novel therapeutics.
+
+Unfortunately, for the most part, medicine today still operates from a "good enough" perspective - many patients are treated with the same medications without regard for or understanding of differences in their individual backgrounds or health profiles. Indeed, much more can be done to enhance the accuracy and efficacy of treatment.
+
+The field of [precision medicine](https://health.ucdavis.edu/precision-medicine/what-is-precision-medicine.html#:~:text=Precision%20medicine%20is%20the%20intersection,change%20and%20interact%20over%20time.) uses large-scale multimodal/[multiomic](https://www.illumina.com/techniques/multiomics.html#:~:text=Multiomics%20(multiple%20'omics)%20provides,and%20their%20mechanism%20of%20action.) data to individualize patient care and gain a comprehensive understanding of human health. The goal of precision medicine is to achieve more accurate and precise disease prediction, prevention, treatment, and therapeutics. The field of genomics, involving the study of genetics from a "big data" lens, offers a significant opportunity to advance precision medicine research.
+
+[Genomics](https://www.genomicseducation.hee.nhs.uk/education/core-concepts/what-is-genomics/#:~:text=Put%20simply%2C%20genomics%20is%20the,is%20made%20up%20of%20DNA.) refers to the study of an individual's entire set of genes (a.k.a. their genome). We can work with genomic data from large-scale biomedical data, including both electronic health records (EHRs) and patient biobanks. [EHRs](https://www.healthit.gov/faq/what-electronic-health-record-ehr), also known as electronic medical records (EMRs), refer to large clinical databases of patient medical history and clinical data. [Biobanks](https://allofus.nih.gov/funding-and-program-partners/biobank), on the other hand, refer to biomedical databases with large quantities of patient biological samples, often including access to their genetic information. Combining these two data sources into a merged [EHR-linked biobank](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7983809/) provides an extra level of power in the study of genomics and medicine. EHR-linked biobanks offer the ability to identify and evaluate statistically significant genetic contributors to human disease. For instance, a genome-wide or phenome-wide association study ([GWAS](https://www.nature.com/articles/s43586-021-00056-9)/[PheWAS](https://pubmed.ncbi.nlm.nih.gov/34982132/)) applied to an EHR-linked biobank can identify associations between a variety of diseases and SNPs.
+
+Many research efforts in the field of [precision medicine have used the results of PheWASs](https://pubmed.ncbi.nlm.nih.gov/27147087/) to identify genetic contributors to diseases. With such discoveries, patient genetic profiles can be built into diagnosis/treatment pipelines, allowing for the personalization of patient care.
+
+Notably, so far, most precision medicine research efforts that have made their way into the clinic have focused on one disease at a time. However, complex diseases rarely impact patients one-at-a-time. Shared SNPs and genes can contribute to the onset of multiple diseases in a single patient over time. These disease "[multimorbidities](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7613517/#:~:text=Multimorbidity%20refers%20to%20the%20presence,as%20frailty%20or%20chronic%20pain)" can lead to increase healthcare costs, health burdens, and risk of death. Thus, it becomes clear that we must evaluate the genetics of not only individual diseases but also cross-phenotype associations if we wish to gain a deeper understanding of overall patient health.
+
+Given the significance of cross-phenotype associations, the field of "[network medicine](https://www.nature.com/articles/nrg2918)" offers a helpful framework to investigate the associations between diseases. Thus, the objective of my dissertation was to apply a "network medicine" approach to investigate genetic contributors to disease multimorbidities:
+
+![Fig 1. An overview of the process of using PheWAS results from an EHR-linked biobank for network medicine](overview.png)
+
+I broke this objective down into three chapters:
+
+1.  **Creation**: construct and analyze a network of diseases derived from an EHR-linked biobank for the evaluation of genetic similarity between phenotypes
+2.  **Comparison**. generate and compare different disease networks generated from different populations and from genetic components.
+3.  **Translation**. extend the conclusions drawn from disease network analysis and comparison to downstream precision medicine applications.
+
+![Fig 2. The three sub-chapters of my PhD dissertation](chapters.png)
+
+In the coming week(s), I will go in-depth into the published manuscripts and preprints that correspond to these chapters, as well as my overall takeaways from my PhD research! Till next time\~

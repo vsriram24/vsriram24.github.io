@@ -2,10 +2,11 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/phd-context/index.html",
       "/posts/terminologies/index.html",
       "/posts/sasc-workshop2/index.html",
-      "/posts/240515_professional-journey/index.html",
-      "/posts/240514_hello-world/index.html"
+      "/posts/professional-journey/index.html",
+      "/posts/hello-world/index.html"
     ]
   }
 ]

@@ -10,7 +10,57 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.4.553</generator>
-<lastBuildDate>Mon, 03 Jun 2024 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 10 Jun 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>My doctoral research: the background</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/phd-context/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In the next few posts, I will be providing an overview of my PhD in <a href="https://www.med.upenn.edu/gcb/">Biomedical Informatics and Computational Genomics</a> that I completed under the mentorship of Dr.&nbsp;<a href="https://www.biomedinfolab.com">Dokyoon Kim</a> at the University of Pennsylvania Perelman School of Medicine. You can listen to a full presentation of my thesis defense <a href="https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d">here</a>, and you can read the full text of my dissertation <a href="https://repository.upenn.edu/entities/publication/d7441349-baa0-407e-b556-ec96c6930db8">here</a>. Note that all figures featured in this blog post were created using <a href="https://www.biorender.com">BioRender.com</a>. Today’s post will focus on the background context that motivated my research. Without further ado, let’s get started!</p>
+<p><img src="https://vsriram24.github.io/posts/phd-context/benfranklin.jpeg" class="img-fluid"></p>
+<hr>
+<p>Human biology is a complicated field. Millions of cells, cellular components, molecules, and chemicals interact with one another moment by moment to keep us alive each and every day. And while biologists and clinicians have defined a variety of classifications and <a href="https://guides.lib.umich.edu/ontology/ontologies">ontologies</a> to organize and understand these systems, the intricacies of the field continue to require extensive research and investment. Achieving a better understanding of human biology necessitates a unified language.</p>
+<p>At the core of human biology and its defined ontologies lies the field of <em>genetics</em>. <a href="https://en.wikipedia.org/wiki/Genetics">Genetics</a> refers to the study of heritable traits (also known as <a href="https://www.genome.gov/genetics-glossary/Phenotype">phenotypes</a>). If we define genetics as the language of biology, then the vocabulary of genetics would be the <a href="https://en.wikipedia.org/wiki/Gene">gene</a> - a unit of heritable information that influences how we develop and operate. Extending the analogy further, the letters of genetics would be the <a href="https://en.wikipedia.org/wiki/Nucleotide">nucleotide</a>, a set of four molecules whose arrangements define different genes. Indeed, differences in individual nucleotides, also known as single-nucleotide variants/polymorphisms or “SNVs/<a href="https://en.wikipedia.org/wiki/Single-nucleotide_polymorphism">SNPs</a>”, are responsible for genetic variation across individuals and can lead to differing phenotypic outcomes. Genetic variation is a significant component of the diversity of life.</p>
+<p>Given the complex interactions that occur across biomolecules in our bodies, it becomes apparent that networks of interacting genes drive our ability to live. Human diseases can be thought of as disruptions to these networks. The field of <a href="https://en.wikipedia.org/wiki/Medicine">medicine</a> aims to prevent, alleviate, and cure disease through the maintenance of health and the development of novel therapeutics.</p>
+<p>Unfortunately, for the most part, medicine today still operates from a “good enough” perspective - many patients are treated with the same medications without regard for or understanding of differences in their individual backgrounds or health profiles. Indeed, much more can be done to enhance the accuracy and efficacy of treatment.</p>
+<p>The field of <a href="https://health.ucdavis.edu/precision-medicine/what-is-precision-medicine.html#:~:text=Precision%20medicine%20is%20the%20intersection,change%20and%20interact%20over%20time.">precision medicine</a> uses large-scale multimodal/<a href="https://www.illumina.com/techniques/multiomics.html#:~:text=Multiomics%20(multiple%20'omics)%20provides,and%20their%20mechanism%20of%20action.">multiomic</a> data to individualize patient care and gain a comprehensive understanding of human health. The goal of precision medicine is to achieve more accurate and precise disease prediction, prevention, treatment, and therapeutics. The field of genomics, involving the study of genetics from a “big data” lens, offers a significant opportunity to advance precision medicine research.</p>
+<p><a href="https://www.genomicseducation.hee.nhs.uk/education/core-concepts/what-is-genomics/#:~:text=Put%20simply%2C%20genomics%20is%20the,is%20made%20up%20of%20DNA.">Genomics</a> refers to the study of an individual’s entire set of genes (a.k.a. their genome). We can work with genomic data from large-scale biomedical data, including both electronic health records (EHRs) and patient biobanks. <a href="https://www.healthit.gov/faq/what-electronic-health-record-ehr">EHRs</a>, also known as electronic medical records (EMRs), refer to large clinical databases of patient medical history and clinical data. <a href="https://allofus.nih.gov/funding-and-program-partners/biobank">Biobanks</a>, on the other hand, refer to biomedical databases with large quantities of patient biological samples, often including access to their genetic information. Combining these two data sources into a merged <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7983809/">EHR-linked biobank</a> provides an extra level of power in the study of genomics and medicine. EHR-linked biobanks offer the ability to identify and evaluate statistically significant genetic contributors to human disease. For instance, a genome-wide or phenome-wide association study (<a href="https://www.nature.com/articles/s43586-021-00056-9">GWAS</a>/<a href="https://pubmed.ncbi.nlm.nih.gov/34982132/">PheWAS</a>) applied to an EHR-linked biobank can identify associations between a variety of diseases and SNPs.</p>
+<p>Many research efforts in the field of <a href="https://pubmed.ncbi.nlm.nih.gov/27147087/">precision medicine have used the results of PheWASs</a> to identify genetic contributors to diseases. With such discoveries, patient genetic profiles can be built into diagnosis/treatment pipelines, allowing for the personalization of patient care.</p>
+<p>Notably, so far, most precision medicine research efforts that have made their way into the clinic have focused on one disease at a time. However, complex diseases rarely impact patients one-at-a-time. Shared SNPs and genes can contribute to the onset of multiple diseases in a single patient over time. These disease “<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7613517/#:~:text=Multimorbidity%20refers%20to%20the%20presence,as%20frailty%20or%20chronic%20pain">multimorbidities</a>” can lead to increase healthcare costs, health burdens, and risk of death. Thus, it becomes clear that we must evaluate the genetics of not only individual diseases but also cross-phenotype associations if we wish to gain a deeper understanding of overall patient health.</p>
+<p>Given the significance of cross-phenotype associations, the field of “<a href="https://www.nature.com/articles/nrg2918">network medicine</a>” offers a helpful framework to investigate the associations between diseases. Thus, the objective of my dissertation was to apply a “network medicine” approach to investigate genetic contributors to disease multimorbidities:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-context/overview.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 1. An overview of the process of using PheWAS results from an EHR-linked biobank for network medicine</figcaption>
+</figure>
+</div>
+<p>I broke this objective down into three chapters:</p>
+<ol type="1">
+<li><strong>Creation</strong>: construct and analyze a network of diseases derived from an EHR-linked biobank for the evaluation of genetic similarity between phenotypes</li>
+<li><strong>Comparison</strong>. generate and compare different disease networks generated from different populations and from genetic components.</li>
+<li><strong>Translation</strong>. extend the conclusions drawn from disease network analysis and comparison to downstream precision medicine applications.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-context/chapters.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 2. The three sub-chapters of my PhD dissertation</figcaption>
+</figure>
+</div>
+<p>In the coming week(s), I will go in-depth into the published manuscripts and preprints that correspond to these chapters, as well as my overall takeaways from my PhD research! Till next time~</p>
+
+
+
+ ]]></description>
+  <category>Personal</category>
+  <guid>https://vsriram24.github.io/posts/phd-context/</guid>
+  <pubDate>Mon, 10 Jun 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/phd-context/zolaStairs.jpeg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Biomedical Data Science sub-disciplines (v0)</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -21,7 +71,7 @@
 
 
 
-<p>Welcome back to another week of [VS]Codes! In today’s post, I will be summarizing my personal definitions and interpretations of the various subdisciplines in biomedical data science. Given my prior background and experience in this subject area, I figured that writing this post would be an easy task! However, referencing the literature further made me realize that the boundaries across the subfields of health technology are fairly nebulous. Different departments, organizations, and individuals all have their own opinions of what their work involves. Dr.&nbsp;<a href="https://www.ohsu.edu/people/william-r-hersh-md">Bill Hersh</a> from Oregon Health and Science University has a great paper (all the way back from 2009!) on the need to converge on consistent terminology in the field of biomedical informatics: you can give it a read <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-9-24">here</a>.</p>
+<p>Welcome back to another week of <em>[VS]Codes</em>! In today’s post, I will be summarizing my personal definitions and interpretations of the various subdisciplines in biomedical data science. Given my prior background and experience in this subject area, I figured that writing this post would be an easy task! However, referencing the literature further made me realize that the boundaries across the subfields of health technology are fairly nebulous. Different departments, organizations, and individuals all have their own opinions of what their work involves. Dr.&nbsp;<a href="https://www.ohsu.edu/people/william-r-hersh-md">Bill Hersh</a> from Oregon Health and Science University has a great paper (all the way back from 2009!) on the need to converge on consistent terminology in the field of biomedical informatics: you can give it a read <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-9-24">here</a>.</p>
 <p>Given the lack of clarity in the subfields of biomedical data science, my goal today will be to provide my personal interpretation of the breakdown of relevant fields, informed by some of the definitions I’ve collated from external references. This description is absolutely meant to be a first draft of sorts (hence the v0 in the title)… I aim to refine these terms further based on additional input down the road.</p>
 <section id="my-priors" class="level1">
 <h1>My Priors</h1>
@@ -117,7 +167,7 @@
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
 <ul>
-<li><p>Data science, data analytics, and informatics can be thought of as complementary terms to one another. On the whole, these terms can pretty much be used interchangeably. However, the real nuance is that data science is focused primarily on the development of models and algorithms, data analytics is focused on data tabulation and visualization, and informatics is focused on the appplication of data analysis to external sub-domains.</p></li>
+<li><p>Data science, data analytics, and informatics can be thought of as complementary terms to one another. On the whole, these terms can pretty much be used interchangeably. However, the real nuance is that data science is focused primarily on the development of models and algorithms, data analytics is focused on data tabulation and visualization, and informatics is focused on the application of data analysis to external sub-domains.</p></li>
 <li><p>Computational Biology and Biomedical Informatics are fairly interchangeable - however, I like to think that computational biology prioritizes the impact of the biological question, while biomedical informatics prioritizes the computational systems needed to analyze large-scale biomedical data.</p></li>
 <li><p>Health tech and biotech are parallel industries that both involve information technology and biomedicine, with an emphasis on human healthcare in the former and biological systems in the latter.</p></li>
 </ul>
@@ -168,7 +218,7 @@
  ]]></description>
   <category>Overviews</category>
   <guid>https://vsriram24.github.io/posts/terminologies/</guid>
-  <pubDate>Mon, 03 Jun 2024 06:00:00 GMT</pubDate>
+  <pubDate>Mon, 03 Jun 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/terminologies/IMG_6833.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -3309,13 +3359,13 @@ font-style: inherit;">select</span>(id, gene_short_name, term, q_value, estimate
  ]]></description>
   <category>Tutorials</category>
   <guid>https://vsriram24.github.io/posts/sasc-workshop2/</guid>
-  <pubDate>Mon, 27 May 2024 06:00:00 GMT</pubDate>
+  <pubDate>Mon, 27 May 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/sasc-workshop2/IMG_7480.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>My professional journey</title>
   <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/240515_professional-journey/</link>
+  <link>https://vsriram24.github.io/posts/professional-journey/</link>
   <description><![CDATA[ 
 
 
@@ -3323,7 +3373,7 @@ font-style: inherit;">select</span>(id, gene_short_name, term, q_value, estimate
 
 
 <p>For my first “real” post, I figured it would be a helpful exercise to go through my professional journey and track how I ended up where I currently am. This description is meant to be more of an overview, and I intend to provide more details on individual portions of it in the future.</p>
-<p><img src="https://vsriram24.github.io/posts/240515_professional-journey/IMG_8386.JPG" height="500"></p>
+<p><img src="https://vsriram24.github.io/posts/professional-journey/IMG_8386.JPG" height="500"></p>
 <p>Having grown up in the Silicon Valley, I always had a front-row seat to the power and potential of technology to improve people’s lives. All of the biggest tech companies had their headquarters within driving distance from my home, and every day, I could see how they had impacted not only myself but also everyone around me: computers, cellphones, social media, education, automobiles, entertainment… everything was shaped by <a href="https://en.wikipedia.org/wiki/Information_technology">information technology</a>. Both of my parents were in the software industry too, and seeing the productive, fulfilling jobs that they were able to have made me certain that I wanted to involve technology in my future career. Learning how to code from my mother in high school made me feel like I was being imparted with some special kind of magic - entering the world of software engineering truly felt right at my fingertips.</p>
 <p>At the same time, growing up in the Silicon Valley felt like growing up in a bubble. I yearned to explore the link between information technology and its downstream applications beyond my baseline understanding of how to write code. So, I sought out more. In high school, I took a breadth of science classes, and I found myself inspired by the concept of “<a href="https://en.wikipedia.org/wiki/Interdisciplinarity">interdisciplinarity</a>”. Instead of being drawn to “information technology,” I was drawn closer and closer to the world of “<a href="https://en.wikipedia.org/wiki/Information_science">information science</a>” and its applications to multiple disciplines, including biology and medicine. My drive for interdisciplinary experiences and my desire to explore a world of technological applications outside of the Bay Area led me to <a href="https://duke.edu">Duke University</a> for my undergraduate education - in fact, one of the mantras of the university was “<a href="https://interdisciplinary.duke.edu">creative thinking across intellectual boundaries</a>”. At Duke, I completed double majors in Computer Science and Statistics. Duke’s affiliated medical campus also gave me chances to explore interdisciplinary applications in the world of <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2814957/#:~:text=Biomedical%20informatics%20is%20the%20application,to%20problems%20of%20biomedical%20interest.">biomedical informatics</a>, and I pursued multiple research opportunities, including an <a href="https://dukestatsci.github.io/thesis-sp19-sriram-microbiome/index.html">Honor’s thesis</a> for my Statistics degree under the supervision of Dr.&nbsp;<a href="http://www2.stat.duke.edu/~lm186/">Li Ma</a>. I also completed a minor in Computational Biology, taking classes such as <a href="https://courses.cs.duke.edu/spring24/compsci260/">Computational Genomics</a> with Dr.&nbsp;<a href="https://users.cs.duke.edu/~amink/">Alexander Hartemink</a> and <a href="https://donaldlab.cs.duke.edu/Teaching/Seminar18/">Computational Structural Biology</a> with Dr.&nbsp;<a href="https://users.cs.duke.edu/~brd/">Bruce Donald</a>. Lastly, I was lucky to have great summer internship mentors (including Li-Yuan Chern at <a href="https://www.pharmacyclics.com">Pharmacyclics</a> and Drs. <a href="https://wangz10.github.io">Zichen Wang</a> and <a href="https://labs.icahn.mssm.edu/maayanlab/">Avi Ma’ayan</a> at the <a href="https://icahn.mssm.edu/?pk_vid=76db1b7fb968016e171579141885538b">Icahn School of Medicine</a>), who kept me motivated and inspired to stick to my path and pursue an advanced interdisciplinary career.</p>
 <p>By the end of my undergrad, I knew that I wasn’t going to enter the traditional computer science recruitment cycle for software engineering roles - I instead applied to doctoral programs in biomedical informatics and computational biology that would allow me to build my knowledge base further and prepare me to become a leader in impactful projects that made a clear benefit in people’s lives. I was lucky to earn an admission with the <a href="https://www.med.upenn.edu/gcb/">Genomics and Computational Biology</a> program at the <a href="https://en.wikipedia.org/wiki/Perelman_School_of_Medicine_at_the_University_of_Pennsylvania">University of Pennsylvania Perelman School of Medicine</a>. Again, great mentors from my classes and research rotations (including Drs. <a href="https://researchers.cedars-sinai.edu/Ryan.Urbanowicz">Ryan Urbanowicz</a> and <a href="https://ritchielab.org/people/marylyn-ritchie">Marylyn Ritchie</a> to name a few) helped advance my training and made me a better researcher and scientist day by day. I am most indebted to my PhD advisor, Dr.&nbsp;<a href="https://www.dbei.med.upenn.edu/bio/dokyoon-kim-phd">Dokyoon Kim</a>, for his support and mentorship throughout my PhD and subsequent post-doctoral position. With his leadership style and work ethic, he was a true role model for me throughout my graduate degree. I also fell in love with the combination of technical research and scientific storytelling that came out of my <a href="https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d">dissertation</a> (to be discussed in a later post). During my PhD, I was able to complete a Master’s degree in Statistics and Data Science from the <a href="https://statistics.wharton.upenn.edu">Wharton School of Business</a> under the supervision of Dr.&nbsp;<a href="https://statistics.wharton.upenn.edu/profile/ayz/">Anderson Zhang</a>, as well as a summer internship as a User Experience Researcher in Health AI/ML under the supervision of Dr.&nbsp;<a href="https://www.microsoft.com/en-us/research/people/amhal/">Mandi Hall</a> with the <a href="https://www.microsoft.com/en-us/research/lab/microsoft-health-futures/">Health Futures</a> team at Microsoft Research. All of these opportunities helped me to refine a set of motivators for my long-term career:</p>
@@ -3339,14 +3389,14 @@ font-style: inherit;">select</span>(id, gene_short_name, term, q_value, estimate
 
  ]]></description>
   <category>Personal</category>
-  <guid>https://vsriram24.github.io/posts/240515_professional-journey/</guid>
-  <pubDate>Wed, 15 May 2024 06:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/240515_professional-journey/lifeIsAHighway.png" medium="image" type="image/png" height="192" width="144"/>
+  <guid>https://vsriram24.github.io/posts/professional-journey/</guid>
+  <pubDate>Wed, 15 May 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/professional-journey/lifeIsAHighway.png" medium="image" type="image/png" height="192" width="144"/>
 </item>
 <item>
   <title>Hello world!</title>
   <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/240514_hello-world/</link>
+  <link>https://vsriram24.github.io/posts/hello-world/</link>
   <description><![CDATA[ 
 
 
@@ -3354,7 +3404,7 @@ font-style: inherit;">select</span>(id, gene_short_name, term, q_value, estimate
 
 
 <p>Hello world, and welcome to my official blog! I’ve had numerous thoughts swirling around in my head over the past several years, but have had trouble formally committing to bringing them out into the world… however, encouragement from colleagues and recent reading (i.e.&nbsp;Dorie Clark’s <a href="https://dorieclark.com/longgame/">The Long Game</a>) have convinced me to finally bring my virtual pen to paper. In particular, I found myself tremendously inspired by the Fred Hutch <a href="https://hutchdatascience.org/news/dasl-culture/">DaSL Culture and Work Style</a> document and the mantra of “ship as soon as you can.” The following graphic does a great job at reminding us how to avoid the pit of perfectionism!</p>
-<p><img src="https://vsriram24.github.io/posts/240514_hello-world/daslGoals.png" height="500"></p>
+<p><img src="https://vsriram24.github.io/posts/hello-world/daslGoals.png" height="500"></p>
 <p>My hopes for this blog are to (a) build a community, (b) share my knowledge, and (c) learn alongside my readers. I aim to write weekly (if not more frequent) posts on a variety of subjects, including:</p>
 <ul>
 <li>my personal story</li>
@@ -3371,9 +3421,9 @@ font-style: inherit;">select</span>(id, gene_short_name, term, q_value, estimate
 
  ]]></description>
   <category>Personal</category>
-  <guid>https://vsriram24.github.io/posts/240514_hello-world/</guid>
-  <pubDate>Tue, 14 May 2024 06:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/240514_hello-world/zolaSaysHi.png" medium="image" type="image/png" height="192" width="144"/>
+  <guid>https://vsriram24.github.io/posts/hello-world/</guid>
+  <pubDate>Tue, 14 May 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/hello-world/zolaSaysHi.png" medium="image" type="image/png" height="192" width="144"/>
 </item>
 </channel>
 </rss>
