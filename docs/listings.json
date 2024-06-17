@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/phd-papers/index.html",
       "/posts/phd-context/index.html",
       "/posts/terminologies/index.html",
       "/posts/sasc-workshop2/index.html",

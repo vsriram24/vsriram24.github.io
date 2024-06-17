@@ -10,7 +10,189 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.4.553</generator>
-<lastBuildDate>Mon, 10 Jun 2024 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 17 Jun 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>My doctoral research: the content</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/phd-papers/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In last week’s post, I provided an overview of the context for my PhD research in <a href="https://www.med.upenn.edu/gcb/">Biomedical Informatics and Computational Genomics</a> that I completed under the mentorship of Dr.&nbsp;<a href="https://www.biomedinfolab.com">Dokyoon Kim</a> at the University of Pennsylvania Perelman School of Medicine. Today’s post will focus on some of the actual content that came out of my research. You can listen to a full presentation of my thesis defense <a href="https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d">here</a>, and you can read the full text of my dissertation <a href="https://repository.upenn.edu/entities/publication/d7441349-baa0-407e-b556-ec96c6930db8">here</a>. Note that all figures featured in this blog post were created using <a href="https://www.biorender.com">BioRender.com</a>.</p>
+<p><img src="https://vsriram24.github.io/posts/phd-papers/washington.jpeg" class="img-fluid"></p>
+<hr>
+<p>As discussed last week, the objective of my dissertation was to apply a <a href="https://www.nature.com/articles/nrg2918">network medicine</a> approach to investigate genetic contributors to disease multimorbidities.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/overview.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 1. An overview of the process of using PheWAS results from an EHR-linked biobank for network medicine</figcaption>
+</figure>
+</div>
+<p>I broke this objective down into three chapters:</p>
+<ol type="1">
+<li><strong>Creation</strong>: construct and analyze a network of diseases derived from an EHR-linked biobank for the evaluation of genetic similarity between phenotypes</li>
+<li><strong>Comparison</strong>. generate and compare different disease networks generated from different populations and from genetic components.</li>
+<li><strong>Translation</strong>. extend the conclusions drawn from disease network analysis and comparison to downstream precision medicine applications.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/chapters.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 2. The three sub-chapters of my PhD dissertation</figcaption>
+</figure>
+</div>
+<p>In today’s post, I will provide an example manuscript from each of these chapters to provide more insight into some of the work that I did.</p>
+<p><strong>Chapter 1. Creation</strong></p>
+<p><strong>Example manuscript -</strong> <em>NETMAGE: A human disease phenotype map generator for the network-based visualization of phenome-wide association study results</em></p>
+<ul>
+<li><p>Disease-disease networks (DDNs), graphs where nodes represent diseases and edges represent associations between diseases, can provide an intuitive way of understanding the relationships between diseases.</p></li>
+<li><p>Using summary statistics from a phenome-wide association study (<a href="https://academic.oup.com/bioinformatics/article/26/9/1205/201211">PheWAS</a>), we can generate a corresponding DDN where edges represent shared genetic variants (e.g.&nbsp;SNPs) between diseases.</p></li>
+<li><p>Such a network can help us analyze genetic associations across the “<a href="https://academic.oup.com/bfg/article/11/6/533/236949">diseasome</a>,” the landscape of all human diseases, and identify potential genetic influences for disease <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7613517/#:~:text=Multimorbidity%20refers%20to%20the%20presence,such%20as%20diabetes%20or%20schizophrenia">multimorbidities</a>.</p></li>
+<li><p>To improve the ease of network-based analysis of shared genetic components across diseases, we developed the humaN disEase phenoType MAp GEnerator (NETMAGE), a web-based tool that produces interactive DDN visualizations from PheWAS summary statistics. You can try out the tool we developed at the following link: <a href="https://hdpm.biomedinfolab.com/netmage/" class="uri">https://hdpm.biomedinfolab.com/netmage/</a></p>
+<ul>
+<li>Users can search their generated maps by various attributes and select nodes to view related diseases, associated variants, and various network statistics.</li>
+</ul></li>
+<li><p>As a test case, we used NETMAGE to construct an example network from <a href="https://www.leelabsg.org/resources">UK BioBank (UKBB) PheWAS summary statistic data</a>. You can explore this network at the following link: <a href="https://hdpm.biomedinfolab.com/ddn/ukbb" class="uri">https://hdpm.biomedinfolab.com/ddn/ukbb</a></p>
+<ul>
+<li>Our map correctly displayed previously identified disease comorbidities from the UKBB and identified concentrations of hub diseases in the endocrine/metabolic and circulatory disease categories.</li>
+</ul></li>
+<li><p>By examining the associations between diseases in our map, we can identify potential genetic explanations for the relationships between diseases and better understand the underlying architecture of the human diseasome.</p></li>
+<li><p>You can read the published manuscript for this project <a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giac002/6528770?login=false">here</a>.</p></li>
+</ul>
+<p><strong>Chapter 2. Comparison</strong></p>
+<p><strong>Example manuscript -</strong> <em>The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank</em></p>
+<ul>
+<li><p>Given that many individual diseases exhibit sex-specific differences in their genetic influences (also known as “genotype-by-sex” or “<a href="https://pubmed.ncbi.nlm.nih.gov/8314069/">GxS</a>” effects), we aimed to determine whether disease multimorbidities are also influenced by GxS interactions.</p></li>
+<li><p>Through the comparison of sex-stratified DDNs, we investigated differences across the sexes in patterns of shared genetic architecture between diseases.</p></li>
+<li><p>Using <a href="https://datashare.ed.ac.uk/handle/10283/3908">sex-stratified phenome-wide association study summary data from the UK Biobank</a>, we built male- and female-specific DDNs for 103 different diseases.</p></li>
+<li><p>We compared our networks using the network comparison methods highlighted in figure 3:</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/gxsOverview.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 3. Overview of network comparison methods for comparing sex-stratified DDNs</figcaption>
+</figure>
+</div>
+<ul>
+<li>Comparing the two graphs reveals that the diseasomes of males and females are similar to one another in terms of network topology.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/gxsNetworkStats.png" class="img-fluid figure-img"></p>
+<figcaption>Table 1. Network statistics for our two sex-stratified DDNs</figcaption>
+</figure>
+</div>
+<ul>
+<li>Some diseases, however, seem to exhibit sex-specific influence in cross-phenotype associations. For instance, autoimmune and inflammatory disorders including multiple sclerosis and osteoarthritis are centrally involved only in the female-specific DDN, while cardiometabolic diseases and skin cancer are more prominent only in the male-specific DDN.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/gxsCentralDiseases.png" class="img-fluid figure-img"></p>
+<figcaption>Table 2. Most central diseases in our sex-stratified DDNs, based on centrality measures including degree, weighted degree, and betweenness centrality.</figcaption>
+</figure>
+</div>
+<ul>
+<li>Notably, discrepancies in embedding distances and clustering patterns across the networks imply a more expansive genetic influence on multimorbidity risk for females than males.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/gxsEdgeSets.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 4. Heatmaps of edge sets across disease categories for our two sex-stratified DDNs. Brighter colors indicate more edges shared between disease categories.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>In summary, our analysis affirms the presence of GxS interactions in cross-phenotype associations, emphasizing the continued need for investigation of the role of sex in disease onset and its importance in biomedical discovery and precision medicine research.</p></li>
+<li><p>This manuscript is currently under review for publication.</p></li>
+</ul>
+<p><strong>Chapter 3. Translation</strong></p>
+<p><strong>Example chapter -</strong> <em>An enhanced disease network with robust cross-phenotype relationships via variant frequency-inverse phenotype frequency.</em></p>
+<ul>
+<li>DDNs constructed from PheWAS data offer a unique ability to observe and evaluate associations between diseases from large-scale biomedical data.</li>
+<li>These publications all follow a similar approach when constructing a DDN:
+<ul>
+<li>(a) a single statistical significance level (p-value) is selected to determine associations between diseases and SNPs.</li>
+<li>(b) the links between diseases and SNPs are compressed into links between diseases to generate the DDN</li>
+<li>(c) a similarity metric such as <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> is used to determine how similar two diseases are based on the number of shared associated SNPs</li>
+</ul></li>
+<li>This process for constructing DDN seems straightforward, but it has the following limitations (see Figure 5):
+<ul>
+<li>(a) the entire structure of the DDN can vary depending on the selection of significance level threshold in the PheWAS-driven complex relationship.</li>
+<li>(b) the effect of individual SNPs on the interactions across more than 2 diseases is masked</li>
+<li>(c) the chosen similarity metric can mask the exact amount of similarity between diseases</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/nlpOverview.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 5. Overview of current approaches for constructing a DDN and their limitations.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>To address the discussed limitations of previous approaches to developing DDNs, we proposed a new method inspired by natural language processing to generate networks from PheWAS data</p></li>
+<li><p>Taking inspiration from the NLP method “term frequency - inverse document frequency” (<a href="https://en.wikipedia.org/wiki/Tf–idf#:~:text=The%20tf–idf%20is%20the,document%20or%20a%20web%20page.">TF-IDF</a>), we propose a new method we call “variant frequency - inverse phenotype frequency” (VF-IPF), which will weight the contributions of SNPs to disease associations. The outcome of this method presents itself as follows:</p>
+<ul>
+<li><p>If a SNP is significant for only a few diseases, it is upweighted.</p></li>
+<li><p>If a SNP is significant for many diseases, it is downweighted (similar to searching for the word “the” in a manuscript)</p></li>
+<li><p>If a SNP is not significant for diseases, it is downweighted.</p></li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/nlpSteps.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 6. An overview of the VF-IPF algorithm</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>To test how the proposed method affects the way we represent cross-phenotype associations, we constructed an enhanced disease-disease network (eDDN) using UK biobank PheWAS summary statistics and tested the eDDN with three downstream tasks (see Figure 7), including:</p>
+<ol type="1">
+<li><p>co-occurrence disease prediction when index disease of interest is given,</p></li>
+<li><p>novel disease connection prediction, and</p></li>
+<li><p>therapeutic drug prediction based on disease similarity.</p></li>
+</ol></li>
+</ul>
+<p><img src="https://vsriram24.github.io/posts/phd-papers/nlp_ab.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/nlp_c.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 7. Downstream tasks for the eDDN</figcaption>
+</figure>
+</div>
+<ul>
+<li>Comparing our eDDN’s effectivness at predicting known disease comorbidities compared to other DDNs, we see that our eDDN has the highest <a href="https://www.analyticsvidhya.com/blog/2020/06/auc-roc-curve-machine-learning/#:~:text=The%20Area%20Under%20the%20Curve,the%20positive%20and%20negative%20classes.">AUC</a> (i.e.&nbsp;it has the best performance).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/nlp_auc.png" class="img-fluid figure-img" width="437"></p>
+<figcaption>Fig 8. The eDDN can predict disease comorbidities better than standard DDNs</figcaption>
+</figure>
+</div>
+<ul>
+<li>Furthermore, we see the utility of the eDDN in evaluating potential options for <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9945820/#:~:text=Drug%20repurposing%20is%20the%20technique,serendipitous%20process%20that%20happens%20unexpectedly.">drug repurposing</a> in the treatment of rheumatoid arthritis.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/phd-papers/nlp_ra.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 9. The eDDN can help with drug repurposing applications, suggesting alternative pre-existing treatments for rheumatoid arthritis.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>In summary, we find that our proposed eDDN more effectively captures genetic associations between diseases from PheWAS data compared to previous approaches.</p></li>
+<li><p>This manuscript is currently under review for publication.</p></li>
+</ul>
+<hr>
+<p>Today’s post was meant to give a sample of some of my work during my PhD. To read more about my currently published manuscripts, you can refer to my Google Scholar profile <a href="https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&amp;hl=en">here</a>.</p>
+<p>In next week’s post, I will conclude this series on my PhD work with my personal takeaways from my program as well as tips for current, incoming, and aspiring PhD students, including selecting a program, selecting a thesis advisor, picking projects, and more! Until then~</p>
+
+
+
+ ]]></description>
+  <category>Personal</category>
+  <guid>https://vsriram24.github.io/posts/phd-papers/</guid>
+  <pubDate>Mon, 17 Jun 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/phd-papers/zolaRunning.PNG" medium="image"/>
+</item>
 <item>
   <title>My doctoral research: the background</title>
   <dc:creator>Vivek Sriram</dc:creator>
