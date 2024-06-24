@@ -1,0 +1,774 @@
+---
+title: "Intro to Neural Networks and Backpropagation"
+description: "Andrej Karpathy's video 1"
+author: "Vivek Sriram"
+date: "7/1/2024"
+date-modified: "7/1/2024"
+image: zolaRunning.PNG
+categories:
+  - Tutorials
+draft: true
+jupyter: python3
+---
+
+This is a walkthrough of Andrej Karpathy's video "The spelled out intro to neural networks and backpropagation". See https://www.youtube.com/watch?v=VMj-3S1tku0.
+
+Neural networks are defined as ... Back propagation is defined as ...
+
+This code example is a direct copy of the code walked through in the video, streamlined a bit for interpretation. I would highly recommend following along with this tutorial. I hope to work through his other tutorials in the future as well.
+
+```{{r}}
+library(reticulate)
+use_python('/opt/anaconda3/bin/python')
+```
+
+```{python}
+# Import required packages
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+import random
+```
+
+# Background
+
+```{python}
+# e.g. scalar value function that takes scalar input and returns scalar output
+def f(x):
+    return 3*x**2 - 4*x + 5
+
+# e.g. single value
+f(3.0)
+
+# e.g. range of values
+xs = np.arange(-5, 5, 0.25)
+ys = f(xs)
+ys
+```
+
+```{python}
+plt.plot(xs, ys)
+```
+
+What is the derivative of f at different points of x? Let's calculate f'(3) numerically using the fundamental law of calculus:
+
+```{python}
+h = 0.0000000001
+x = 3.0
+
+(f(x+h) - f(x))/h
+```
+
+If our h is too small, we'll get a floating point error. With some trial and error, we can see f'(3) = 14
+
+Let's make a function that is a little more complicated
+
+```{python}
+a = 2.0
+b = -3.0
+c = 10.0
+d1 = a*b + c
+```
+
+```{python}
+h = 0.0000001
+
+#derivative wrt a
+a += h
+
+d2 = a*b + c
+
+print('d1', d1)
+print('d2', d2)
+print('slope', (d2-d1)/h)
+```
+
+```{python}
+#derivative wrt b
+b += h
+a = 2.0
+
+d2 = a*b + c
+
+print('d1', d1)
+print('d2', d2)
+print('slope', (d2-d1)/h)
+```
+
+# The 'Value' Class
+
+Let's define a class "Value" to store the individual values in a function
+
+```{python}
+class Value:
+    def __init__(self, data, _children=(), _op='', label=''):
+        self.data = data
+        self.grad = 0.0
+        self._backward = lambda: None #default: nothing
+        self._prev = set(_children)
+        self._op = _op
+        self.label = label
+
+    # Nicer looking way to see what the value actually is instead of an object
+    def __repr__(self):
+        return f"Value(data={self.data})"
+
+    def __add__(self, other):
+        other = other if isinstance(other, Value) else Value(other)
+        out = Value(self.data + other.data, (self, other), '+')
+        def _backward():
+            self.grad += out.grad
+            other.grad += out.grad
+        out._backward = _backward
+        return out
+
+    def __radd__(self, other): # other * self
+        return self + other
+        
+    def __mul__(self, other):
+        other = other if isinstance(other, Value) else Value(other)
+        out = Value(self.data * other.data, (self, other), '*')
+        def _backward():
+            self.grad += other.data * out.grad
+            other.grad += self.data * out.grad
+        out._backward = _backward
+        return out
+
+    def __rmul__(self, other): # other * self
+        return self * other
+
+    def tanh(self):
+        x = self.data
+        t = (math.exp(2*x)-1)/(math.exp(2*x)+1)
+        out = Value(t, (self, ), 'tanh')
+        def _backward():
+            self.grad +=  (1 - t**2) * out.grad
+        out._backward = _backward
+        return out
+
+    def exp(self):
+        x = self.data
+        out = Value(math.exp(x), (self, ), 'exp')
+
+        def _backward():
+            self.grad += out.data * out.grad
+        out._backward = _backward
+
+        return out
+
+    def __pow__(self, other):
+        assert isinstance(other, (int, float)), "only supporting int/float powers for now"
+        out = Value(self.data**other, (self,), f'**{other}')
+
+        def _backward():
+            self.grad += other * (self.data**(other-1)) * out.grad
+        out._backward = _backward
+
+        return out
+    
+    def __truediv__(self, other): #self / other
+        return self * other**-1
+
+    def __neg__(self): # -self
+        return self * -1
+
+    def __sub__(self, other): # self - other
+        return self + (-other)
+
+    def backward(self):
+        topo = []
+        visited = set()
+        def build_topo(v):
+            if v not in visited:
+                visited.add(v)
+                for child in v._prev:
+                    build_topo(child)
+                topo.append(v)
+        
+        build_topo(self)
+        
+        # call _backward() in the right topological order
+        self.grad = 1.0
+        for node in reversed(topo):
+            node._backward()
+
+```
+
+```{python}
+a = Value(2.0)
+b = Value(4.0)
+a-b
+```
+
+Now let's define an example function L = (a*b + c)*f
+
+```{python}
+a = Value(2.0, label='a')
+b = Value(-3.0, label='b')
+c = Value(10.0, label='c')
+e = a*b; e.label = 'e'
+d = e + c; d.label = 'd'
+f = Value(-2.0, label = 'f')
+L = d * f; L.label = 'L'
+L
+```
+
+```{python}
+d._prev
+d._op
+```
+
+We can also define a function 'draw_dot' to be able to visualize the components of our function. Here, we build out a graph using the GraphViz API. We then iterate over all nodes and create the corresponding nodes and edges (including values and operations as different node types).
+
+```{python}
+from graphviz import Digraph
+
+def trace(root):
+    # builds a set of all nodes and edges in a graph
+    nodes, edges = set(), set()
+    def build(v):
+        if v not in nodes:
+            nodes.add(v)
+            for child in v._prev:
+                edges.add((child, v))
+                build(child)
+    build(root)
+    return nodes, edges
+
+def draw_dot(root):
+    dot = Digraph(format='svg', graph_attr={'rankdir': 'LR'}) #LR = left to right
+
+    nodes, edges = trace(root)
+    for n in nodes:
+        uid = str(id(n))
+        # for any value in the graph, create a rectangular ('record') node for it
+        dot.node(name = uid, label = "{ %s | data %.4f | grad %.4f }" % (n.label, n.data, n.grad), shape = 'record')
+        if n._op:
+            # if this value is a result of some operation, create an op node for it
+            dot.node(name = uid + n._op, label = n._op)
+            # and connect this node to it
+            dot.edge(uid + n._op, uid)
+
+    for n1, n2 in edges:
+        # connect n1 to the op node of n2
+        dot.edge(str(id(n1)), str(id(n2)) + n2._op)
+
+    return dot
+```
+
+```{python}
+draw_dot(L)
+```
+
+# Manual backpropagation example
+
+Time for backpropagation. We'll start from L and work backwards, taking the derivative wrt L at each value
+
+This exercise is equivalent to determining the derivative of a loss function L wrt the weights of a neural network
+
+```{python}
+# Let's calculate gradient of L wrt A manually
+# (f(x+h) - f(x))/h
+def lol():
+    h = 0.001
+    
+    a = Value(2.0, label='a')
+    b = Value(-3.0, label='b')
+    c = Value(10.0, label='c')
+    e = a*b; e.label = 'e'
+    d = e + c; d.label = 'd'
+    f = Value(-2.0, label = 'f')
+    L = d * f; L.label = 'L'
+    L1 = L.data
+
+    a = Value(2.0 + h, label='a')
+    b = Value(-3.0, label='b')
+    c = Value(10.0, label='c')
+    e = a*b; e.label = 'e'
+    d = e + c; d.label = 'd'
+    f = Value(-2.0, label = 'f')
+    L = d * f; L.label = 'L'
+    L2 = L.data
+
+    print((L2-L1)/h)
+```
+
+```{python}
+#dL/da
+lol()
+```
+
+```{python}
+#We know dL/dL = 1
+L.grad = 1
+```
+
+```{python}
+#L = d*f
+#So dL/df = d
+#and dL/dd = f
+
+f.grad = 4.0 # this is just the value of d
+d.grad = -2.0 # this is just the value of f
+```
+
+```{python}
+# what is dL/dc?
+# We can use dL/dd and dd/dc and apply the chain rule
+# dL / dc = (dL/dd) * (dd/dc) = -2*1 = -2
+# dL/de is the same, -2
+c.grad = -2.0 # this is just the value of d
+e.grad = -2.0 # this is just the value of f
+```
+
+```{python}
+# dL/da = dL/de * de/da = -2*b = -2*-3 = 6
+# dL/db = dL/de * de/db = -2*a = -2*2 = -4
+a.grad = 6.0 # this is just the value of d
+b.grad = -4.0 # this is just the value of f
+```
+
+```{python}
+draw_dot(L)
+```
+
+**Backpropagation is just the recursive application of the chain rule backwards through the computational graph**.
+
+```{python}
+# Let's nudge our data in the positive direction of the gradient to increase L
+a.data += 0.01*a.grad
+b.data += 0.01*b.grad
+c.data += 0.01*c.grad
+f.data += 0.01*f.grad
+
+e = a*b
+d = e+c
+L = d*f
+
+print(L.data)
+```
+
+# Now let's manually backpropagate through a neuron
+
+```{python}
+# Example of a neuron
+from IPython.display import Image
+Image(filename='/Users/vsriram/Desktop/Unknown.jpeg') 
+```
+
+Let's make use of the tanh activation function to limit our output to a range of -1 to 1.
+
+```{python}
+#Squashing/activation function - tan(h)
+plt.plot(np.arange(-5,5,0.2), np.tanh(np.arange(-5,5,0.2)));
+plt.grid();
+```
+
+Let's define a new function o = tanh(x1w1 + x2w2 +b)
+
+```{python}
+# inputs x1, x2
+x1 = Value(2.0, label = 'x1')
+x2 = Value(0.0, label = 'x2')
+
+# weights w1, w2
+w1 = Value(-3.0, label = 'w1')
+w2 = Value(1.0, label = 'w2')
+
+# bias of the neuron
+b = Value (6.881373587019542, label = 'b')
+
+#x1*w1 + x2*w2 + b
+x1w1 = x1*w1; x1w1.label = 'x1*w1'
+x2w2 = x2*w2; x2w2.label = 'x2*w2'
+
+x1w1x2w2 = x1w1 + x2w2;
+x1w1x2w2.label = 'x1*w1 + x2*w2'
+
+# n is our cell body activation without the activation function
+n = x1w1x2w2 + b;
+n.label = 'n'
+```
+
+```{python}
+# Apply activation function (defined in Value class earlier)
+o = n.tanh(); o.label = 'o'
+```
+
+```{python}
+draw_dot(o)
+```
+
+We care most about the derivative of o wrt to the weights w1 and w2. In a normal neural network, we would have a lot of neurons as well (not just the one here)
+
+```{python}
+o.grad = 1.0
+
+# o = tanh(n)
+# do/dn = 1-tanh^2(n) = 1 - o^2
+n.grad = 1-o.data**2
+
+# do/db = do/dn * dn/db = (1-o^2)*1 = 1-o^2
+# d(x1w1x2w2)/db = do/dn * dn/d(x1w1x2w2) = (1-o^2)*1 = 1-o^2
+x1w1x2w2.grad = 1-o.data**2
+b.grad = 1-o.data**2
+
+# same logic of back-propagation wrt '+'
+x1w1.grad = 1-o.data**2
+x2w2.grad = 1-o.data**2
+
+#do/dx2 = w2 * do/d(x2w2)
+x2.grad = w2.data * x2w2.grad
+#do/dw2 = x2 * do/d/(x2w2)
+w2.grad = x2.data * x2w2.grad
+
+# same logic as for x2/w2
+x1.grad = w1.data * x1w1.grad
+w1.grad = x1.data * x1w1.grad
+```
+
+```{python}
+draw_dot(o)
+```
+
+So, if we want this neuron's output to increase, then we should increase w1. w2 doesn't matter because its gradient is 0.
+
+# Automating backpropagation
+
+Let's stop doing this back-propagation manually! Take a look at the logic for \_backward in the Value class.
+
+```{python}
+o.grad = 1.0
+
+o._backward()
+n._backward()
+b._backward()
+x1w1x2w2._backward()
+x2w2._backward()
+x1w1._backward()
+```
+
+```{python}
+draw_dot(o)
+```
+
+Let's also stop calling \_backward manually. We never want to call \_backward on a node before we've called \_backward on its children. Let's apply a topological sort to our data.
+
+```{python}
+topo = []
+visited = set()
+def build_topo(v):
+    if v not in visited:
+        visited.add(v)
+        for child in v._prev:
+            build_topo(child)
+        topo.append(v)
+
+build_topo(o)
+
+for node in reversed(topo):
+    node._backward()
+    
+draw_dot(o)
+```
+
+Great, this works! Now let's incorporate this backward function into our Value class.
+
+```{python}
+o.backward()
+draw_dot(o)
+```
+
+Woohoo! it works!
+
+We still have a bad bug... for example, b = a + a. The value of b will be correct, but the gradient db/da won't. db/da should be b = 2a = 2, but based on our current logic, it will come out to 1.
+
+This will be an issue any time we use a variable more than once in our function. We can fix this by accumulating gradients (use += instead of =)
+
+```{python}
+a = Value(3.0, label = 'a')
+b = a+a; b.label = 'b'
+b.backward()
+draw_dot(b)
+```
+
+Everything works now! Yay!
+
+# Breaking up tanh into its individual components
+
+See the new exp and div functions defined in Value
+
+```{python}
+# inputs x1, x2
+x1 = Value(2.0, label = 'x1')
+x2 = Value(0.0, label = 'x2')
+
+# weights w1, w2
+w1 = Value(-3.0, label = 'w1')
+w2 = Value(1.0, label = 'w2')
+
+# bias of the neuron
+b = Value (6.881373587019542, label = 'b')
+
+#x1*w1 + x2*w2 + b
+x1w1 = x1*w1; x1w1.label = 'x1*w1'
+x2w2 = x2*w2; x2w2.label = 'x2*w2'
+
+x1w1x2w2 = x1w1 + x2w2;
+x1w1x2w2.label = 'x1*w1 + x2*w2'
+
+# n is our cell body activation without the activation function
+n = x1w1x2w2 + b;
+n.label = 'n'
+
+# Apply activation function (defined in Value class earlier)
+e = (2*n).exp()
+o = (e-1)/(e+1)
+o.label = 'o'
+o.backward()
+```
+
+```{python}
+draw_dot(o)
+```
+
+Our forward and backward passes are correct! Note that the level at which you perform your individual operations is entirely up to you (e.g. tanh vs. its individual components).
+
+All that matters is that you have input and output and that you can do forward/backward passing of your operations.
+
+# Backpropagation with PyTorch
+
+In PyTorch, everything is based around tensors rather than scalars
+
+```{python}
+import torch
+
+# Cast to double to get 64bit precision
+x1 = torch.Tensor([2.0]).double()
+# by default, pytorch will say leaf nodes don't have gradients to improve efficiency
+x1.requires_grad = True
+
+x2 = torch.Tensor([0.0]).double()
+x2.requires_grad = True
+
+w1 = torch.Tensor([-3.0]).double()
+w1.requires_grad = True
+
+w2 = torch.Tensor([1.0]).double()
+w2.requires_grad = True
+
+b = torch.Tensor([6.8813735870195432]).double()
+b.requires_grad = True
+
+n = x1*w1 + x2*w2 + b
+o = torch.tanh(n)
+
+# PyTorch tensors have data and grad elements
+print(o.data.item())
+# PyTorch has a backward function too
+o.backward()
+
+print('---')
+print('x2', x2.grad.item())
+print('w2', w2.grad.item())
+print('x1', x1.grad.item())
+print('w1', w1.grad.item())
+```
+
+Everything in PyTorch is much more efficient. We can do all these operations in parallel with much larger tensors (not just scalar values)
+
+Let's implement a simple neural network
+
+```{python}
+class Neuron:
+    def __init__(self, nin):
+        self.w = [Value(random.uniform(-1,1)) for _ in range(nin)]
+        self.b = Value(random.uniform(-1,1))
+        
+    # Python goes to __call__ when you use the class as a function
+    def __call__(self, x):
+        # w.x + b
+        # start with self.b, add the dot product of w and x
+        act = sum((wi*xi for wi,xi in zip(self.w, x)), self.b)
+        out = act.tanh()
+        return out
+
+    def parameters(self):
+        return self.w + [self.b]
+```
+
+Here's an example of a neural network
+
+```{python}
+Image(filename='/Users/vsriram/Desktop/Unknown-1.jpeg') 
+```
+
+We've defined a neuron class. Let's define a Layer class as well
+
+```{python}
+class Layer:
+    # nout is the size of hte output of the layer
+    def __init__(self, nin, nout):
+        self.neurons = [Neuron(nin) for _ in range(nout)]
+
+    def __call__(self, x):
+        outs = [n(x) for n in self.neurons]
+        return outs[0] if len(outs) == 1 else outs
+
+    def parameters(self):
+        params = []
+        for neuron in self.neurons:
+            ps = neuron.parameters()
+            params.extend(ps)
+        return params
+        
+        # Same as:
+        # return [p for neuron in self.neurons for p in neuron.parameters()]
+```
+
+Now let's make a multilayer perceptron (MLP)
+
+```{python}
+class MLP:
+    # nouts is the list of layer sizes we want
+    def __init__(self, nin, nouts):
+        sz = [nin] + nouts
+        self.layers = [Layer(sz[i], sz[i+1]) for i in range(len(nouts))]
+
+    def __call__(self, x):
+        for layer in self.layers:
+            x = layer(x)
+        return x
+
+    def parameters(self):
+        return [p for layer in self.layers for p in layer.parameters()]
+```
+
+```{python}
+x = [2.0, 3.0, -1.0]
+n = MLP(3, [4, 4, 1])
+n(x)
+```
+
+```{python}
+draw_dot(n(x))
+```
+
+Wow, PyTorch let's us get crazy with the functions we define. Obviously we're never going to manually backpropagate such an example... let's have PyTorch do it for us
+
+```{python}
+# Example data
+xs = [
+    [2.0, 3.0, -1.0],
+    [3.0, -1.0, 0.5],
+    [0.5, 1.0, 1.0],
+    [1.0, 1.0, -1.0]
+]
+
+ys = [1.0, -1.0, -1.0, 1.0] #desired targets
+
+# Apply our MLP to predict y from x
+ypred = [n(x) for x in xs]
+ypred
+```
+
+```{python}
+# loss will measure how good our neural net is
+# let's do mean squared error
+loss = sum((yout - ygt)**2 for ygt, yout in zip(ys, ypred))
+loss
+```
+
+```{python}
+loss.backward()
+```
+
+```{python}
+# If this gradient is positive, then decreasing this weight will decrease our loss
+# If this is negative, then increasing this weight will decrease our loss
+n.layers[0].neurons[0].w[0].grad
+```
+
+```{python}
+n.layers[0].neurons[0].w[0].data
+```
+
+```{python}
+# for every parameter in our neural net, let's change the weights slightly to reduce the loss
+# increase for negative grad, decrease for positive grad
+for p in n.parameters():
+    p.data += -0.01*p.grad
+```
+
+Loss should have gone down a bit now. Let's recalculate it.
+
+```{python}
+ypred = [n(x) for x in xs]
+loss = sum((yout - ygt)**2 for ygt, yout in zip(ys, ypred))
+loss
+```
+
+```{python}
+# Propoagate
+loss.backward()
+```
+
+Now all we have to do is iterate this process.
+
+```{python}
+ypred
+```
+
+Nice, we're able to train our data better. Let's formalize this in a loop
+
+```{python}
+# Reset the neural net
+x = [2.0, 3.0, -1.0]
+n = MLP(3, [4, 4, 1])
+n(x)
+```
+
+```{python}
+# Initialize input data and desired targets
+xs = [
+    [2.0, 3.0, -1.0],
+    [3.0, -1.0, 0.5],
+    [0.5, 1.0, 1.0],
+    [1.0, 1.0, -1.0]
+]
+
+ys = [1.0, -1.0, -1.0, 1.0]
+```
+
+```{python}
+for k in range(20):
+    # forward pass
+    ypred = [n(x) for x in xs]
+    loss = sum((yout - ygt)**2 for ygt, yout in zip(ys, ypred))
+
+    # backward pass
+    for p in n.parameters():
+        p.grad = 0.0
+    loss.backward()
+
+    # update
+    # "stochastic gradient descent"
+    for p in n.parameters():
+        p.data += -0.05 * p.grad
+
+    print(k, loss.data)
+```
+
+```{python}
+ypred
+```
+
+# Summary
+
+Neural nets are simple mathematical expressions that take input data and weights. Forward pass of data followed by loss function. Try to minimize loss to get the output of the function to hit desired targets. Use back propagation from loss to get the gradients of the weights. Tune the weights against the gradient (gradient descent)
+
+Simulating a blob of neural tissue that can handle all sorts of interesting problems. GPT uses massive amounts of text from the internet and then predicts the next words in a sentence 100s of billions of parameters
+
+loss function and gradient descents may be slightly different ReLU instead of tanh. all are roughly equivalent non-linearities
+
+Next up you can look at Andrej Karpathy's micrograd example
