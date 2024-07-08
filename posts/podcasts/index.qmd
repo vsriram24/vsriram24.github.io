@@ -1,27 +1,74 @@
 ---
-title: "My favorite podcasts"
+title: "My podcast recommendations"
 description: ""
 author: "Vivek Sriram"
-date: "5/27/2024"
-date-modified: "5/27/2024"
+date: "7/8/2024"
+date-modified: "7/8/2024"
 image: IMG_7480.jpg
 categories:
-  - Tutorials
+  - Personal
 draft: true
 ---
 
--   The AI in Health Podcast
+Welcome back to another edition of \[VS\]Codes. After a hiatus last week for the 4th of July holiday, this week's post is on the lighter side - I'll be covering a list of my top podcasts, including content in the biomedical informatics and digital health space, statistics and data science, and a couple of miscellaneous features as well. Without further ado, let's get started!
 
--   Ground Truths
+**Biomedicine / Health AI**
 
--   The Happiness Lab
+1.  ***The AI Health Podcast***
 
--   The Data Chief
+-   Hosted by Pranav Rajpurkar and Adriel Saporta
 
--   Not So Standard Deviations
+-   The AI Health Podcast was my first foray into the realm of podcasts covering technical topics - it felt hard for me to keep up with the plethora of advances that were simultaneously occurring in the medical field with the expanded use of AI. Pranav and Adriel do a great job of synthesizing complex topics across the field of medical AI, explaining both the biomedical context as well as the impact of the methodologies being developed. I appreciate how each episode is separated into a section covering the context of the topic followed by an interview with an expert. The experts interviewed also come from a variety of backgrounds in both academia and industry, offering diverse perspectives.
 
--   Factually
+2.  **Ground Truths**
 
--   Casual Inference
+-   Hosted by Eric Topol
+-   Dr. Eric Topol is a giant in cardiovascular medicine, and he has been a keen proponent of expanding the applications of AI to medicine. In this podcast, he interviews experts on a variety of topics in biomedicine and health science. I appreciate how discussions reflect the inverse of my usual approach to
 
--   The Pulse by Wharton Digital Health
+3.  The Pulse
+
+-   Hosted by Wharton Digital Health
+-   The Pulse is a great way to gain a broad perspective of the field of health technology from a commercial perspective - the companies and interviews vary tremendously from episode to episode, and I found these episodes particularly helpful while I was in my PhD and looking to learn more about opportunities in the health technology space in industry. Given that the series comes from the Wharton School, there is a focus in some episodes on the business / MBA side of health tech, but much of the content is still relevant to broad audiences looking to learn more about the landscape of the field.
+
+**Data Science / Statistics**
+
+4.  The Data Chief
+
+- How does one become a Chief Data Officer? What does it take to manage the data infrastructure of an organization? How does one continue to support a culture of innovation and progress from such a  
+
+5.  Casual Inference
+
+-   Hosted by Lucy D'agostino McGowan and Ellie Murray
+
+-   
+
+6.  Build a Career in Data Science
+
+-   Hosted by Jacqueline Nolis and Emily Robinson
+
+-   This podcast serves as an accompaniment to Nolis and Robinson's book "Build a Career in Data Science". 
+
+
+7.  Not So Standard Deviations
+
+-   Hosted by Roger Peng and Hilary Parker
+
+-   As I transitioned from the biomedical focus of my dissertation research to broader data science applications, I wanted to find a podcast that could expose me to the gamut of statistics and data science. Not So Standard Deviations fits this bill quite well, including discussions of topics in the data science and tech while making time for fun side-paths and detours.
+
+
+
+**Miscellaneous**
+
+8.  The Happiness Lab
+
+-   Hosted by Laurie Santos
+
+-   Dr. Laurie Santos is a professor in ___ at Yale and has spent her career studying ____. In this podcast, she considers a variety of questions in the happiness space using a science-based approach, interviewing 
+
+
+
+9.  Factually!
+
+-   Hosted by Adam Conover
+
+-   I first learned about Adam Conover from watching his comedic television show "Adam Ruins Everything," where he

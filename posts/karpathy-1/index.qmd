@@ -1,21 +1,31 @@
 ---
-title: "Intro to Neural Networks and Backpropagation"
-description: "Andrej Karpathy's video 1"
+title: "A Python introduction to neural networks and backpropagation"
+description: "Andrej Karpathy's 'Neural Networks: Zero to Hero' video #1"
 author: "Vivek Sriram"
-date: "7/1/2024"
-date-modified: "7/1/2024"
-image: zolaRunning.PNG
+date: "7/8/2024"
+date-modified: "7/8/2024"
+image: zolaFish.jpeg
 categories:
   - Tutorials
-draft: true
+draft: false
 jupyter: python3
 ---
 
-This is a walkthrough of Andrej Karpathy's video "The spelled out intro to neural networks and backpropagation". See https://www.youtube.com/watch?v=VMj-3S1tku0.
+This is a walkthrough of Andrej Karpathy's video "[The spelled-out intro to neural networks and backpropagation: building micrograd](https://www.youtube.com/watch?v=VMj-3S1tku0)". This video is the first in his YouTube series, "[Neural Networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ)."
 
-Neural networks are defined as ... Back propagation is defined as ...
+![A screen-grab of Andrej's video](karpathyVideo.png)
 
-This code example is a direct copy of the code walked through in the video, streamlined a bit for interpretation. I would highly recommend following along with this tutorial. I hope to work through his other tutorials in the future as well.
+[Neural networks](https://aws.amazon.com/what-is/neural-network/#:~:text=A%20neural%20network%20is%20a,that%20resembles%20the%20human%20brain.) are mathematical models used to represent nodes and the signals they send to one another through their links. Neural networks replicate the structure of the brain, where interconnected neurons send messages to each other through electric signals across the synpases that bridge them together. While individual nodes can perform only simple operations, many nodes connected together in a network can perform complex computational tasks.
+
+The general structure of a neural network for machine learning includes three types of nodes, grouped into different "layers" within the neural network. The first set of nodes are the input nodes, corresponding to input (or training data). The second set of nodes refer to intermediate (hidden) nodes. The final type of node is the output node, corresponding to the result of processing the input data through the hidden nodes. This output layer typically comes in the form of a loss function, characterizing the difference between the output of the model and the expected output. The goal of optimizing a neural network is to minimize this output loss to best match the behavior of the input data.
+
+![The basic format of a neural network](nn.jpeg)
+
+Backpropagation is an algorithm for supervised learning of neural networks using [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent). This method will calculate the gradient of each intermediate node in the network with respect to the loss function, allowing us to iteratively tune their weights to minimize the overall loss.
+
+In his video tutorial, Andrej shows how to construct a neural network from scratch and perform backpropagation on it to optimize the weights of the network. The code presented in this example is a direct copy of the code walked through in the video, streamlined a bit for interpretation. Writing this blog post helped me solidify my understanding of the material (and also helped me practice writing Python code in Quarto :) ). I would highly recommend following along with this tutorial and further videos for a hands-on, ground-up exploration of neural networks and language models! I aim to work through his other tutorials in the future as well.
+
+With background out of the way, let's get started\~
 
 ```{{r}}
 library(reticulate)
@@ -30,7 +40,11 @@ import matplotlib.pyplot as plt
 import random
 ```
 
-# Background
+# Defining functions and manually calculating derivatives
+
+We can start by thinking about a simple mathematical expression to give us some intuition behind the workings of individual neurons.
+
+Let's define a scalar value function *f(*x*)* that takes scalar input and returns scalar output. We can apply this function to a single value or a range of values.
 
 ```{python}
 # e.g. scalar value function that takes scalar input and returns scalar output
@@ -46,11 +60,17 @@ ys = f(xs)
 ys
 ```
 
+We can plot the output of our function to see the association between our input and output as well.
+
 ```{python}
 plt.plot(xs, ys)
 ```
 
-What is the derivative of f at different points of x? Let's calculate f'(3) numerically using the fundamental law of calculus:
+Determining the derivative of *f* would let us identify inflection points in our data. Let's calculate the derivative of *f* at 3 (i.e. *f'(*3)) numerically using the fundamental law of calculus:
+
+$$
+\lim_{h\to\infty} \frac{f(x+h)-f(x)}{h}
+$$
 
 ```{python}
 h = 0.0000000001
@@ -59,9 +79,11 @@ x = 3.0
 (f(x+h) - f(x))/h
 ```
 
-If our h is too small, we'll get a floating point error. With some trial and error, we can see f'(3) = 14
+Note that if our *h* is too small for Python, we will end up with a floating point error. With some trial and error for different values of *h*, we can see *f'*(3) = 14
 
-Let's make a function that is a little more complicated
+Now let's make a function that is a little more complicated: $$
+d(a, b, c) = a*b + c
+$$
 
 ```{python}
 a = 2.0
@@ -69,6 +91,8 @@ b = -3.0
 c = 10.0
 d1 = a*b + c
 ```
+
+Again, we can calculate the derivative of ***d***. This time, since we have three inputs, we have to pick a variable with respect to which we calculate the derivative. Let's numerically calculate the derivative of ***d*** with respect to *a*.
 
 ```{python}
 h = 0.0000001
@@ -83,6 +107,8 @@ print('d2', d2)
 print('slope', (d2-d1)/h)
 ```
 
+We can do the same with respect to *b* as well.
+
 ```{python}
 #derivative wrt b
 b += h
@@ -95,9 +121,11 @@ print('d2', d2)
 print('slope', (d2-d1)/h)
 ```
 
+We now have some intuition for how functions and derivatives work.
+
 # The 'Value' Class
 
-Let's define a class "Value" to store the individual values in a function
+Let's define a class "Value" to store the individual values that come together to make a function / mathematical expression. Each 'Value' can be thought of as a node in a neural network.
 
 ```{python}
 class Value:
@@ -194,13 +222,19 @@ class Value:
 
 ```
 
+We can see how to perform mathematical operations using our `Value` class:
+
 ```{python}
 a = Value(2.0)
 b = Value(4.0)
 a-b
 ```
 
-Now let's define an example function L = (a*b + c)*f
+Now let's define an example function ***L*** that makes use of our `Value` class:
+
+$$
+L(a, b, c, f) = (a*b + c)*f
+$$
 
 ```{python}
 a = Value(2.0, label='a')
@@ -213,12 +247,14 @@ L = d * f; L.label = 'L'
 L
 ```
 
+Based on the code in our `Value` class, we are able to see for each node which nodes came before it and what the operation was to generate the current node.
+
 ```{python}
 d._prev
 d._op
 ```
 
-We can also define a function 'draw_dot' to be able to visualize the components of our function. Here, we build out a graph using the GraphViz API. We then iterate over all nodes and create the corresponding nodes and edges (including values and operations as different node types).
+We can also define a function 'draw_dot' to be able to visualize the components of our function. Here, we build out a graph using the GraphViz API. We then iterate over all nodes and create corresponding nodes and edges (including values and operations as different node types in our network).
 
 ```{python}
 from graphviz import Digraph
@@ -262,12 +298,12 @@ draw_dot(L)
 
 # Manual backpropagation example
 
-Time for backpropagation. We'll start from L and work backwards, taking the derivative wrt L at each value
+With our basic function ***L*** now represented as a network of values and operations, let's perform manual backpropagation.
 
-This exercise is equivalent to determining the derivative of a loss function L wrt the weights of a neural network
+We'll start from ***L*** and work backwards, taking the derivative with respect to ***L*** at each intermediate value. This exercise is equivalent to determining the derivative of an output ***L*** with respect to the internal weights of a neural network.
 
 ```{python}
-# Let's calculate gradient of L wrt A manually
+# Let's calculate gradient of L wrt a manually using the fundamental theorem of calculus
 # (f(x+h) - f(x))/h
 def lol():
     h = 0.001
@@ -297,6 +333,8 @@ def lol():
 #dL/da
 lol()
 ```
+
+We can go through this entire network structure and set the gradients for each node with respect to ***L***.
 
 ```{python}
 #We know dL/dL = 1
@@ -332,31 +370,15 @@ b.grad = -4.0 # this is just the value of f
 draw_dot(L)
 ```
 
-**Backpropagation is just the recursive application of the chain rule backwards through the computational graph**.
+Here is our key takeaway from this example:
 
-```{python}
-# Let's nudge our data in the positive direction of the gradient to increase L
-a.data += 0.01*a.grad
-b.data += 0.01*b.grad
-c.data += 0.01*c.grad
-f.data += 0.01*f.grad
+**Backpropagation is just the recursive application of the [chain rule](https://en.wikipedia.org/wiki/Chain_rule) backwards through the computational graph** **of your neural network.**
 
-e = a*b
-d = e+c
-L = d*f
+# Introducing an activation function.
 
-print(L.data)
-```
+In our previous example, we had an output ***L*** that could take on any value. Now let's make use of the hyperbolic tangent ($tanh$) activation function to limit our output to a range of -1 to 1.
 
-# Now let's manually backpropagate through a neuron
-
-```{python}
-# Example of a neuron
-from IPython.display import Image
-Image(filename='/Users/vsriram/Desktop/Unknown.jpeg') 
-```
-
-Let's make use of the tanh activation function to limit our output to a range of -1 to 1.
+$Tanh$ looks as follows:
 
 ```{python}
 #Squashing/activation function - tan(h)
@@ -364,7 +386,7 @@ plt.plot(np.arange(-5,5,0.2), np.tanh(np.arange(-5,5,0.2)));
 plt.grid();
 ```
 
-Let's define a new function o = tanh(x1w1 + x2w2 +b)
+Let's define a new function $o = tanh(x1*w1 + x2*w2 + b)$
 
 ```{python}
 # inputs x1, x2
@@ -375,7 +397,7 @@ x2 = Value(0.0, label = 'x2')
 w1 = Value(-3.0, label = 'w1')
 w2 = Value(1.0, label = 'w2')
 
-# bias of the neuron
+# bias of the neuron (crazy bias makes clean output in this example)
 b = Value (6.881373587019542, label = 'b')
 
 #x1*w1 + x2*w2 + b
@@ -388,18 +410,18 @@ x1w1x2w2.label = 'x1*w1 + x2*w2'
 # n is our cell body activation without the activation function
 n = x1w1x2w2 + b;
 n.label = 'n'
-```
 
-```{python}
 # Apply activation function (defined in Value class earlier)
 o = n.tanh(); o.label = 'o'
 ```
+
+Here is the network that represents the function we just defined:
 
 ```{python}
 draw_dot(o)
 ```
 
-We care most about the derivative of o wrt to the weights w1 and w2. In a normal neural network, we would have a lot of neurons as well (not just the one here)
+We care most about the derivative of ***o*** with respect to the weights *w1* and *w2*. In a normal neural network, we would have many more input and intermediate nodes (not just the two as in this example). We will calculate the gradients for this network by hand.
 
 ```{python}
 o.grad = 1.0
@@ -431,11 +453,11 @@ w1.grad = x1.data * x1w1.grad
 draw_dot(o)
 ```
 
-So, if we want this neuron's output to increase, then we should increase w1. w2 doesn't matter because its gradient is 0.
+So, because *w1*'s gradient is positive, if we want this neuron's output to increase, then we should increase *w1*. *w2* doesn't affect the output of this function because its gradient is 0.
 
 # Automating backpropagation
 
-Let's stop doing this back-propagation manually! Take a look at the logic for \_backward in the Value class.
+Let's stop doing this back-propagation manually! Take a look at the logic for `_backward` and `backward`in the `Value` class to see how we handle this (we apply a topological sort to our data in the `backward` function). We also ensure that we never call `_backward` on a node before we've called it on its children. Lastly, we make sure that we accumulate gradients in the `backward` function.
 
 ```{python}
 o.grad = 1.0
@@ -452,38 +474,10 @@ x1w1._backward()
 draw_dot(o)
 ```
 
-Let's also stop calling \_backward manually. We never want to call \_backward on a node before we've called \_backward on its children. Let's apply a topological sort to our data.
-
-```{python}
-topo = []
-visited = set()
-def build_topo(v):
-    if v not in visited:
-        visited.add(v)
-        for child in v._prev:
-            build_topo(child)
-        topo.append(v)
-
-build_topo(o)
-
-for node in reversed(topo):
-    node._backward()
-    
-draw_dot(o)
-```
-
-Great, this works! Now let's incorporate this backward function into our Value class.
-
 ```{python}
 o.backward()
 draw_dot(o)
 ```
-
-Woohoo! it works!
-
-We still have a bad bug... for example, b = a + a. The value of b will be correct, but the gradient db/da won't. db/da should be b = 2a = 2, but based on our current logic, it will come out to 1.
-
-This will be an issue any time we use a variable more than once in our function. We can fix this by accumulating gradients (use += instead of =)
 
 ```{python}
 a = Value(3.0, label = 'a')
@@ -492,11 +486,11 @@ b.backward()
 draw_dot(b)
 ```
 
-Everything works now! Yay!
+Everything works! Yay!
 
-# Breaking up tanh into its individual components
+# Breaking up *`tanh`* into its individual components
 
-See the new exp and div functions defined in Value
+Instead of using a $tanh$ function in our `Value` class, we can break it up into exponent and division functions to see an example of a more complicated network.
 
 ```{python}
 # inputs x1, x2
@@ -532,13 +526,11 @@ o.backward()
 draw_dot(o)
 ```
 
-Our forward and backward passes are correct! Note that the level at which you perform your individual operations is entirely up to you (e.g. tanh vs. its individual components).
-
-All that matters is that you have input and output and that you can do forward/backward passing of your operations.
+As we can see, even after breaking our `tanh` function into its individual components, our forward and backward passes are still correct! Note that the level at which you perform your individual operations is entirely up to you (e.g. `tanh` vs. its individual components). All that matters is that you have input and output and that you can do forward/backward passing of your operations.
 
 # Backpropagation with PyTorch
 
-In PyTorch, everything is based around tensors rather than scalars
+Now that we've developed backpropagation manually, let's see how it can be performed in [PyTorch](https://pytorch.org/docs/stable/index.html). With PyTorch, everything is based around [tensors](https://en.wikipedia.org/wiki/Tensor#:~:text=In%20mathematics%2C%20a%20tensor%20is,scalars%2C%20and%20even%20other%20tensors.) rather than scalars.
 
 ```{python}
 import torch
@@ -575,9 +567,17 @@ print('x1', x1.grad.item())
 print('w1', w1.grad.item())
 ```
 
-Everything in PyTorch is much more efficient. We can do all these operations in parallel with much larger tensors (not just scalar values)
+PyTorch makes all of our calculations much more efficient. We can do all of these operations in parallel with very large tensors and not just scalar values.
 
-Let's implement a simple neural network
+# A simple neural network
+
+We've had enough fun with "neural network adjacent" mathematical expressions and their corresponding computational topologies.
+
+Let's implement a simple neural network. We will base this off of a [multilayer perceptron](https://www.datacamp.com/tutorial/multilayer-perceptrons-in-machine-learning#) (MLP). We can define a `Neuron` class, `Layer` class, and `MLP` class for our network.
+
+A typical neural network neuron looks like the following:
+
+![A typical neuron in a neural network](neuron.jpeg)
 
 ```{python}
 class Neuron:
@@ -597,17 +597,9 @@ class Neuron:
         return self.w + [self.b]
 ```
 
-Here's an example of a neural network
-
-```{python}
-Image(filename='/Users/vsriram/Desktop/Unknown-1.jpeg') 
-```
-
-We've defined a neuron class. Let's define a Layer class as well
-
 ```{python}
 class Layer:
-    # nout is the size of hte output of the layer
+    # nout is the size of the output of the layer
     def __init__(self, nin, nout):
         self.neurons = [Neuron(nin) for _ in range(nout)]
 
@@ -626,8 +618,6 @@ class Layer:
         # return [p for neuron in self.neurons for p in neuron.parameters()]
 ```
 
-Now let's make a multilayer perceptron (MLP)
-
 ```{python}
 class MLP:
     # nouts is the list of layer sizes we want
@@ -644,6 +634,8 @@ class MLP:
         return [p for layer in self.layers for p in layer.parameters()]
 ```
 
+Based upon our defined classes, let's initialize our MLP.
+
 ```{python}
 x = [2.0, 3.0, -1.0]
 n = MLP(3, [4, 4, 1])
@@ -654,7 +646,9 @@ n(x)
 draw_dot(n(x))
 ```
 
-Wow, PyTorch let's us get crazy with the functions we define. Obviously we're never going to manually backpropagate such an example... let's have PyTorch do it for us
+Wow, our function is much crazier than our initial examples! Obviously we're never going to manually backpropagate such an example... let's have PyTorch do it for us.
+
+We start by defining some sample input data and our desired targets. We then use our baseline MLP to calculate model outputs from the input data.
 
 ```{python}
 # Example data
@@ -672,6 +666,8 @@ ypred = [n(x) for x in xs]
 ypred
 ```
 
+We can compare our model outputs to the expected outputs using a loss function such as [mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error) (MSE).
+
 ```{python}
 # loss will measure how good our neural net is
 # let's do mean squared error
@@ -679,9 +675,13 @@ loss = sum((yout - ygt)**2 for ygt, yout in zip(ys, ypred))
 loss
 ```
 
+Now let's backpropagate (automatically this time)!
+
 ```{python}
 loss.backward()
 ```
+
+If the gradient of a weight is positive, then decreasing the weight will decrease the overall loss. Similarly, if the gradient is negative, then increasing the weight will decrease the loss.
 
 ```{python}
 # If this gradient is positive, then decreasing this weight will decrease our loss
@@ -693,6 +693,8 @@ n.layers[0].neurons[0].w[0].grad
 n.layers[0].neurons[0].w[0].data
 ```
 
+For every parameter in our neural network, let's change the weights slightly to reduce the overall loss. We increase the weight for negative gradients and decrease the weight for positive gradients.
+
 ```{python}
 # for every parameter in our neural net, let's change the weights slightly to reduce the loss
 # increase for negative grad, decrease for positive grad
@@ -700,7 +702,7 @@ for p in n.parameters():
     p.data += -0.01*p.grad
 ```
 
-Loss should have gone down a bit now. Let's recalculate it.
+Our overall loss should have gone down a bit now. Let's recalculate it.
 
 ```{python}
 ypred = [n(x) for x in xs]
@@ -709,17 +711,15 @@ loss
 ```
 
 ```{python}
-# Propoagate
+# Propagate
 loss.backward()
 ```
-
-Now all we have to do is iterate this process.
 
 ```{python}
 ypred
 ```
 
-Nice, we're able to train our data better. Let's formalize this in a loop
+Nice, we're able to train our data better now. Let's formalize this process of updating gradients in a loop. This is the same thing as "[stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent)".
 
 ```{python}
 # Reset the neural net
@@ -741,6 +741,7 @@ ys = [1.0, -1.0, -1.0, 1.0]
 ```
 
 ```{python}
+# 20 iterations
 for k in range(20):
     # forward pass
     ypred = [n(x) for x in xs]
@@ -763,12 +764,14 @@ for k in range(20):
 ypred
 ```
 
-# Summary
+Ta-da! We now understand the intuition behind developing simple neural networks and performing backpropagation to improve their predictive performance!
 
-Neural nets are simple mathematical expressions that take input data and weights. Forward pass of data followed by loss function. Try to minimize loss to get the output of the function to hit desired targets. Use back propagation from loss to get the gradients of the weights. Tune the weights against the gradient (gradient descent)
+# Takeaways and summary
 
-Simulating a blob of neural tissue that can handle all sorts of interesting problems. GPT uses massive amounts of text from the internet and then predicts the next words in a sentence 100s of billions of parameters
+Neural nets are simple mathematical expressions that take input data and weights. Working with neural networks involves a forward pass of input data followed by the application of a loss function.
 
-loss function and gradient descents may be slightly different ReLU instead of tanh. all are roughly equivalent non-linearities
+The goal of a neural network for machine learning is to minimize the output loss to get the model to better predict desired targets. Backpropagation can be applied from the loss function to determine the gradients of the intermediate weights of the network. We can then tune the weights of these nodes against the gradient (i.e. gradient descent) to improve the predictive performance of the model.
 
-Next up you can look at Andrej Karpathy's micrograd example
+Simulating a blob of neural tissue in this manner can handle all sorts of interesting problems. Generative Pre-trained Transformers (GPTs) uses massive amounts of text from the internet and then predict the next words in a sentence based on context. These are really just fancy neural networks with hundreds of billions of parameters. Different models may use different loss functions and different methods for gradient descent, but the underlying concepts are all consistent.
+
+This concludes my walkthrough of Andrej's first neural networks video tutorial. Until next time, \[VS\]Coders!

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Vivek Sriram">
-<meta name="dcterms.date" content="2024-07-01">
-<meta name="description" content="Andrej Karpathy’s video 1">
+<meta name="dcterms.date" content="2024-07-08">
+<meta name="description" content="Andrej Karpathy’s ‘Neural Networks: Zero to Hero’ video #1">
 
-<title>Home - Intro to Neural Networks and Backpropagation</title>
+<title>Home - A Python introduction to neural networks and backpropagation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -153,10 +182,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Intro to Neural Networks and Backpropagation</h1>
+      <h1 class="title">A Python introduction to neural networks and backpropagation</h1>
                   <div>
         <div class="description">
-          Andrej Karpathy’s video 1
+          Andrej Karpathy’s ‘Neural Networks: Zero to Hero’ video #1
         </div>
       </div>
                           <div class="quarto-categories">
@@ -178,14 +207,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 1, 2024</p>
+        <p class="date">July 8, 2024</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">July 1, 2024</p>
+        <p class="date-modified">July 8, 2024</p>
       </div>
     </div>
       
@@ -200,14 +229,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#defining-functions-and-manually-calculating-derivatives" id="toc-defining-functions-and-manually-calculating-derivatives" class="nav-link active" data-scroll-target="#defining-functions-and-manually-calculating-derivatives">Defining functions and manually calculating derivatives</a></li>
   <li><a href="#the-value-class" id="toc-the-value-class" class="nav-link" data-scroll-target="#the-value-class">The ‘Value’ Class</a></li>
   <li><a href="#manual-backpropagation-example" id="toc-manual-backpropagation-example" class="nav-link" data-scroll-target="#manual-backpropagation-example">Manual backpropagation example</a></li>
-  <li><a href="#now-lets-manually-backpropagate-through-a-neuron" id="toc-now-lets-manually-backpropagate-through-a-neuron" class="nav-link" data-scroll-target="#now-lets-manually-backpropagate-through-a-neuron">Now let’s manually backpropagate through a neuron</a></li>
+  <li><a href="#introducing-an-activation-function." id="toc-introducing-an-activation-function." class="nav-link" data-scroll-target="#introducing-an-activation-function.">Introducing an activation function.</a></li>
   <li><a href="#automating-backpropagation" id="toc-automating-backpropagation" class="nav-link" data-scroll-target="#automating-backpropagation">Automating backpropagation</a></li>
-  <li><a href="#breaking-up-tanh-into-its-individual-components" id="toc-breaking-up-tanh-into-its-individual-components" class="nav-link" data-scroll-target="#breaking-up-tanh-into-its-individual-components">Breaking up tanh into its individual components</a></li>
+  <li><a href="#breaking-up-tanh-into-its-individual-components" id="toc-breaking-up-tanh-into-its-individual-components" class="nav-link" data-scroll-target="#breaking-up-tanh-into-its-individual-components">Breaking up <em><code>tanh</code></em> into its individual components</a></li>
   <li><a href="#backpropagation-with-pytorch" id="toc-backpropagation-with-pytorch" class="nav-link" data-scroll-target="#backpropagation-with-pytorch">Backpropagation with PyTorch</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#a-simple-neural-network" id="toc-a-simple-neural-network" class="nav-link" data-scroll-target="#a-simple-neural-network">A simple neural network</a></li>
+  <li><a href="#takeaways-and-summary" id="toc-takeaways-and-summary" class="nav-link" data-scroll-target="#takeaways-and-summary">Takeaways and summary</a></li>
   </ul>
 </nav>
     </div>
@@ -218,23 +248,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>This is a walkthrough of Andrej Karpathy’s video “The spelled out intro to neural networks and backpropagation”. See https://www.youtube.com/watch?v=VMj-3S1tku0.</p>
-<p>Neural networks are defined as … Back propagation is defined as …</p>
-<p>This code example is a direct copy of the code walked through in the video, streamlined a bit for interpretation. I would highly recommend following along with this tutorial. I hope to work through his other tutorials in the future as well.</p>
+<p>This is a walkthrough of Andrej Karpathy’s video “<a href="https://www.youtube.com/watch?v=VMj-3S1tku0">The spelled-out intro to neural networks and backpropagation: building micrograd</a>”. This video is the first in his YouTube series, “<a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ">Neural Networks: Zero to Hero</a>.”</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="karpathyVideo.png" class="img-fluid figure-img"></p>
+<figcaption>A screen-grab of Andrej’s video</figcaption>
+</figure>
+</div>
+<p><a href="https://aws.amazon.com/what-is/neural-network/#:~:text=A%20neural%20network%20is%20a,that%20resembles%20the%20human%20brain.">Neural networks</a> are mathematical models used to represent nodes and the signals they send to one another through their links. Neural networks replicate the structure of the brain, where interconnected neurons send messages to each other through electric signals across the synpases that bridge them together. While individual nodes can perform only simple operations, many nodes connected together in a network can perform complex computational tasks.</p>
+<p>The general structure of a neural network for machine learning includes three types of nodes, grouped into different “layers” within the neural network. The first set of nodes are the input nodes, corresponding to input (or training data). The second set of nodes refer to intermediate (hidden) nodes. The final type of node is the output node, corresponding to the result of processing the input data through the hidden nodes. This output layer typically comes in the form of a loss function, characterizing the difference between the output of the model and the expected output. The goal of optimizing a neural network is to minimize this output loss to best match the behavior of the input data.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="nn.jpeg" class="img-fluid figure-img"></p>
+<figcaption>The basic format of a neural network</figcaption>
+</figure>
+</div>
+<p>Backpropagation is an algorithm for supervised learning of neural networks using <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a>. This method will calculate the gradient of each intermediate node in the network with respect to the loss function, allowing us to iteratively tune their weights to minimize the overall loss.</p>
+<p>In his video tutorial, Andrej shows how to construct a neural network from scratch and perform backpropagation on it to optimize the weights of the network. The code presented in this example is a direct copy of the code walked through in the video, streamlined a bit for interpretation. Writing this blog post helped me solidify my understanding of the material (and also helped me practice writing Python code in Quarto :) ). I would highly recommend following along with this tutorial and further videos for a hands-on, ground-up exploration of neural networks and language models! I aim to work through his other tutorials in the future as well.</p>
+<p>With background out of the way, let’s get started~</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">library(reticulate)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">use_python('/opt/anaconda3/bin/python')</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="4fa82bf1" class="cell" data-execution_count="1">
+<div id="876ff6ad" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import required packages</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="background" class="level1">
-<h1>Background</h1>
-<div id="d931227b" class="cell" data-execution_count="2">
+<section id="defining-functions-and-manually-calculating-derivatives" class="level1">
+<h1>Defining functions and manually calculating derivatives</h1>
+<p>We can start by thinking about a simple mathematical expression to give us some intuition behind the workings of individual neurons.</p>
+<p>Let’s define a scalar value function <em>f(</em>x<em>)</em> that takes scalar input and returns scalar output. We can apply this function to a single value or a range of values.</p>
+<div id="546a8d98" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g. scalar value function that takes scalar input and returns scalar output</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">5</span></span>
@@ -246,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.25</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> f(xs)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>array([100.    ,  91.6875,  83.75  ,  76.1875,  69.    ,  62.1875,
         55.75  ,  49.6875,  44.    ,  38.6875,  33.75  ,  29.1875,
         25.    ,  21.1875,  17.75  ,  14.6875,  12.    ,   9.6875,
@@ -256,7 +303,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         37.    ,  42.1875,  47.75  ,  53.6875])</code></pre>
 </div>
 </div>
-<div id="f2524210" class="cell" data-execution_count="3">
+<p>We can plot the output of our function to see the association between our input and output as well.</p>
+<div id="08eb2ee0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.plot(xs, ys)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -266,25 +314,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>What is the derivative of f at different points of x? Let’s calculate f’(3) numerically using the fundamental law of calculus:</p>
-<div id="e5fb5166" class="cell" data-execution_count="4">
+<p>Determining the derivative of <em>f</em> would let us identify inflection points in our data. Let’s calculate the derivative of <em>f</em> at 3 (i.e.&nbsp;<em>f’(</em>3)) numerically using the fundamental law of calculus:</p>
+<p><span class="math display">\[
+\lim_{h\to\infty} \frac{f(x+h)-f(x)}{h}
+\]</span></p>
+<div id="4e7b59a9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">0.0000000001</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">3.0</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>(f(x<span class="op">+</span>h) <span class="op">-</span> f(x))<span class="op">/</span>h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>14.000001158365194</code></pre>
 </div>
 </div>
-<p>If our h is too small, we’ll get a floating point error. With some trial and error, we can see f’(3) = 14</p>
-<p>Let’s make a function that is a little more complicated</p>
-<div id="a796b84a" class="cell" data-execution_count="5">
+<p>Note that if our <em>h</em> is too small for Python, we will end up with a floating point error. With some trial and error for different values of <em>h</em>, we can see <em>f’</em>(3) = 14</p>
+<p>Now let’s make a function that is a little more complicated: <span class="math display">\[
+d(a, b, c) = a*b + c
+\]</span></p>
+<div id="160ef1ba" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">2.0</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">3.0</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">10.0</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> a<span class="op">*</span>b <span class="op">+</span> c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d28ec3cc" class="cell" data-execution_count="6">
+<p>Again, we can calculate the derivative of <strong><em>d</em></strong>. This time, since we have three inputs, we have to pick a variable with respect to which we calculate the derivative. Let’s numerically calculate the derivative of <strong><em>d</em></strong> with respect to <em>a</em>.</p>
+<div id="3cbeff89" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="fl">0.0000001</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#derivative wrt a</span></span>
@@ -301,7 +355,8 @@ d2 3.9999997
 slope -2.9999999995311555</code></pre>
 </div>
 </div>
-<div id="6f810db2" class="cell" data-execution_count="7">
+<p>We can do the same with respect to <em>b</em> as well.</p>
+<div id="6d673f91" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#derivative wrt b</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">+=</span> h</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">2.0</span></span>
@@ -317,11 +372,12 @@ d2 4.0000002
 slope 1.9999999967268423</code></pre>
 </div>
 </div>
+<p>We now have some intuition for how functions and derivatives work.</p>
 </section>
 <section id="the-value-class" class="level1">
 <h1>The ‘Value’ Class</h1>
-<p>Let’s define a class “Value” to store the individual values in a function</p>
-<div id="13bc66a9" class="cell" data-execution_count="8">
+<p>Let’s define a class “Value” to store the individual values that come together to make a function / mathematical expression. Each ‘Value’ can be thought of as a node in a neural network.</p>
+<div id="98e2aaf3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Value:</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data, _children<span class="op">=</span>(), _op<span class="op">=</span><span class="st">''</span>, label<span class="op">=</span><span class="st">''</span>):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data <span class="op">=</span> data</span>
@@ -414,16 +470,20 @@ slope 1.9999999967268423</code></pre>
 <span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> node <span class="kw">in</span> <span class="bu">reversed</span>(topo):</span>
 <span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>            node._backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0f83a043" class="cell" data-execution_count="9">
+<p>We can see how to perform mathematical operations using our <code>Value</code> class:</p>
+<div id="b71aa313" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> Value(<span class="fl">2.0</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Value(<span class="fl">4.0</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>a<span class="op">-</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>Value(data=-2.0)</code></pre>
 </div>
 </div>
-<p>Now let’s define an example function L = (a<em>b + c)</em>f</p>
-<div id="da7fc2d5" class="cell" data-execution_count="10">
+<p>Now let’s define an example function <strong><em>L</em></strong> that makes use of our <code>Value</code> class:</p>
+<p><span class="math display">\[
+L(a, b, c, f) = (a*b + c)*f
+\]</span></p>
+<div id="df1bfc2e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> Value(<span class="fl">2.0</span>, label<span class="op">=</span><span class="st">'a'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Value(<span class="op">-</span><span class="fl">3.0</span>, label<span class="op">=</span><span class="st">'b'</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> Value(<span class="fl">10.0</span>, label<span class="op">=</span><span class="st">'c'</span>)</span>
@@ -432,19 +492,20 @@ slope 1.9999999967268423</code></pre>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> Value(<span class="op">-</span><span class="fl">2.0</span>, label <span class="op">=</span> <span class="st">'f'</span>)</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> d <span class="op">*</span> f<span class="op">;</span> L.label <span class="op">=</span> <span class="st">'L'</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>L</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="60">
 <pre><code>Value(data=-8.0)</code></pre>
 </div>
 </div>
-<div id="d499d453" class="cell" data-execution_count="11">
+<p>Based on the code in our <code>Value</code> class, we are able to see for each node which nodes came before it and what the operation was to generate the current node.</p>
+<div id="1d50d242" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>d._prev</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>d._op</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="61">
 <pre><code>'+'</code></pre>
 </div>
 </div>
-<p>We can also define a function ‘draw_dot’ to be able to visualize the components of our function. Here, we build out a graph using the GraphViz API. We then iterate over all nodes and create the corresponding nodes and edges (including values and operations as different node types).</p>
-<div id="2cc55084" class="cell" data-execution_count="12">
+<p>We can also define a function ‘draw_dot’ to be able to visualize the components of our function. Here, we build out a graph using the GraphViz API. We then iterate over all nodes and create corresponding nodes and edges (including values and operations as different node types in our network).</p>
+<div id="50d4d7c6" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> graphviz <span class="im">import</span> Digraph</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace(root):</span>
@@ -479,9 +540,9 @@ slope 1.9999999967268423</code></pre>
 <span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e01a1b9f" class="cell" data-execution_count="13">
+<div id="cac24515" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>draw_dot(L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="63">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-14-output-1.svg" class="img-fluid figure-img"></p>
@@ -492,10 +553,10 @@ slope 1.9999999967268423</code></pre>
 </section>
 <section id="manual-backpropagation-example" class="level1">
 <h1>Manual backpropagation example</h1>
-<p>Time for backpropagation. We’ll start from L and work backwards, taking the derivative wrt L at each value</p>
-<p>This exercise is equivalent to determining the derivative of a loss function L wrt the weights of a neural network</p>
-<div id="f398a580" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's calculate gradient of L wrt A manually</span></span>
+<p>With our basic function <strong><em>L</em></strong> now represented as a network of values and operations, let’s perform manual backpropagation.</p>
+<p>We’ll start from <strong><em>L</em></strong> and work backwards, taking the derivative with respect to <strong><em>L</em></strong> at each intermediate value. This exercise is equivalent to determining the derivative of an output <strong><em>L</em></strong> with respect to the internal weights of a neural network.</p>
+<div id="735327fb" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's calculate gradient of L wrt a manually using the fundamental theorem of calculus</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (f(x+h) - f(x))/h</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lol():</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> <span class="fl">0.001</span></span>
@@ -520,18 +581,19 @@ slope 1.9999999967268423</code></pre>
 <span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>((L2<span class="op">-</span>L1)<span class="op">/</span>h)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e60f113d" class="cell" data-execution_count="15">
+<div id="76339a31" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dL/da</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>lol()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>6.000000000000227</code></pre>
 </div>
 </div>
-<div id="3d3666c5" class="cell" data-execution_count="16">
+<p>We can go through this entire network structure and set the gradients for each node with respect to <strong><em>L</em></strong>.</p>
+<div id="91405de2" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#We know dL/dL = 1</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>L.grad <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="074e454c" class="cell" data-execution_count="17">
+<div id="76ba40af" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#L = d*f</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#So dL/df = d</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#and dL/dd = f</span></span>
@@ -539,7 +601,7 @@ slope 1.9999999967268423</code></pre>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>f.grad <span class="op">=</span> <span class="fl">4.0</span> <span class="co"># this is just the value of d</span></span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>d.grad <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span> <span class="co"># this is just the value of f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="085cb935" class="cell" data-execution_count="18">
+<div id="6b9a5c55" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what is dL/dc?</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use dL/dd and dd/dc and apply the chain rule</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dL / dc = (dL/dd) * (dd/dc) = -2*1 = -2</span></span>
@@ -547,15 +609,15 @@ slope 1.9999999967268423</code></pre>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>c.grad <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span> <span class="co"># this is just the value of d</span></span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>e.grad <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span> <span class="co"># this is just the value of f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6e4b58e4" class="cell" data-execution_count="19">
+<div id="d76ee1ae" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dL/da = dL/de * de/da = -2*b = -2*-3 = 6</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dL/db = dL/de * de/db = -2*a = -2*2 = -4</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>a.grad <span class="op">=</span> <span class="fl">6.0</span> <span class="co"># this is just the value of d</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>b.grad <span class="op">=</span> <span class="op">-</span><span class="fl">4.0</span> <span class="co"># this is just the value of f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="31f8fc73" class="cell" data-execution_count="20">
+<div id="e332d802" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>draw_dot(L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="70">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-21-output-1.svg" class="img-fluid figure-img"></p>
@@ -563,118 +625,128 @@ slope 1.9999999967268423</code></pre>
 </div>
 </div>
 </div>
-<p><strong>Backpropagation is just the recursive application of the chain rule backwards through the computational graph</strong>.</p>
-<div id="2e5ca7da" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's nudge our data in the positive direction of the gradient to increase L</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>a.data <span class="op">+=</span> <span class="fl">0.01</span><span class="op">*</span>a.grad</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>b.data <span class="op">+=</span> <span class="fl">0.01</span><span class="op">*</span>b.grad</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>c.data <span class="op">+=</span> <span class="fl">0.01</span><span class="op">*</span>c.grad</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>f.data <span class="op">+=</span> <span class="fl">0.01</span><span class="op">*</span>f.grad</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> a<span class="op">*</span>b</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> e<span class="op">+</span>c</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> d<span class="op">*</span>f</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(L.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>-7.286496</code></pre>
-</div>
-</div>
+<p>Here is our key takeaway from this example:</p>
+<p><strong>Backpropagation is just the recursive application of the <a href="https://en.wikipedia.org/wiki/Chain_rule">chain rule</a> backwards through the computational graph</strong> <strong>of your neural network.</strong></p>
 </section>
-<section id="now-lets-manually-backpropagate-through-a-neuron" class="level1">
-<h1>Now let’s manually backpropagate through a neuron</h1>
-<div id="680b65c4" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of a neuron</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>Image(filename<span class="op">=</span><span class="st">'/Users/vsriram/Desktop/Unknown.jpeg'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-23-output-1.jpeg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Let’s make use of the tanh activation function to limit our output to a range of -1 to 1.</p>
-<div id="38ce610a" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Squashing/activation function - tan(h)</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.2</span>), np.tanh(np.arange(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.2</span>)))<span class="op">;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>plt.grid()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="introducing-an-activation-function." class="level1">
+<h1>Introducing an activation function.</h1>
+<p>In our previous example, we had an output <strong><em>L</em></strong> that could take on any value. Now let’s make use of the hyperbolic tangent (<span class="math inline">\(tanh\)</span>) activation function to limit our output to a range of -1 to 1.</p>
+<p><span class="math inline">\(Tanh\)</span> looks as follows:</p>
+<div id="534e5218" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Squashing/activation function - tan(h)</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.2</span>), np.tanh(np.arange(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.2</span>)))<span class="op">;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.grid()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-24-output-1.png" width="590" height="411" class="figure-img"></p>
+<p><img src="index_files/figure-html/cell-22-output-1.png" width="590" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Let’s define a new function o = tanh(x1w1 + x2w2 +b)</p>
-<div id="269bddd7" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inputs x1, x2</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> Value(<span class="fl">2.0</span>, label <span class="op">=</span> <span class="st">'x1'</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> Value(<span class="fl">0.0</span>, label <span class="op">=</span> <span class="st">'x2'</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># weights w1, w2</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> Value(<span class="op">-</span><span class="fl">3.0</span>, label <span class="op">=</span> <span class="st">'w1'</span>)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> Value(<span class="fl">1.0</span>, label <span class="op">=</span> <span class="st">'w2'</span>)</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># bias of the neuron</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Value (<span class="fl">6.881373587019542</span>, label <span class="op">=</span> <span class="st">'b'</span>)</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">#x1*w1 + x2*w2 + b</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>x1w1 <span class="op">=</span> x1<span class="op">*</span>w1<span class="op">;</span> x1w1.label <span class="op">=</span> <span class="st">'x1*w1'</span></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>x2w2 <span class="op">=</span> x2<span class="op">*</span>w2<span class="op">;</span> x2w2.label <span class="op">=</span> <span class="st">'x2*w2'</span></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>x1w1x2w2 <span class="op">=</span> x1w1 <span class="op">+</span> x2w2<span class="op">;</span></span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>x1w1x2w2.label <span class="op">=</span> <span class="st">'x1*w1 + x2*w2'</span></span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co"># n is our cell body activation without the activation function</span></span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> x1w1x2w2 <span class="op">+</span> b<span class="op">;</span></span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>n.label <span class="op">=</span> <span class="st">'n'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s define a new function <span class="math inline">\(o = tanh(x1*w1 + x2*w2 + b)\)</span></p>
+<div id="5bf3d1e3" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inputs x1, x2</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> Value(<span class="fl">2.0</span>, label <span class="op">=</span> <span class="st">'x1'</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> Value(<span class="fl">0.0</span>, label <span class="op">=</span> <span class="st">'x2'</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># weights w1, w2</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> Value(<span class="op">-</span><span class="fl">3.0</span>, label <span class="op">=</span> <span class="st">'w1'</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> Value(<span class="fl">1.0</span>, label <span class="op">=</span> <span class="st">'w2'</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># bias of the neuron (crazy bias makes clean output in this example)</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Value (<span class="fl">6.881373587019542</span>, label <span class="op">=</span> <span class="st">'b'</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co">#x1*w1 + x2*w2 + b</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>x1w1 <span class="op">=</span> x1<span class="op">*</span>w1<span class="op">;</span> x1w1.label <span class="op">=</span> <span class="st">'x1*w1'</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>x2w2 <span class="op">=</span> x2<span class="op">*</span>w2<span class="op">;</span> x2w2.label <span class="op">=</span> <span class="st">'x2*w2'</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>x1w1x2w2 <span class="op">=</span> x1w1 <span class="op">+</span> x2w2<span class="op">;</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>x1w1x2w2.label <span class="op">=</span> <span class="st">'x1*w1 + x2*w2'</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co"># n is our cell body activation without the activation function</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> x1w1x2w2 <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>n.label <span class="op">=</span> <span class="st">'n'</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply activation function (defined in Value class earlier)</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> n.tanh()<span class="op">;</span> o.label <span class="op">=</span> <span class="st">'o'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="109d7c3e" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply activation function (defined in Value class earlier)</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> n.tanh()<span class="op">;</span> o.label <span class="op">=</span> <span class="st">'o'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="3d30170b" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<p>Here is the network that represents the function we just defined:</p>
+<div id="3abff129" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="73">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-27-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-24-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>We care most about the derivative of o wrt to the weights w1 and w2. In a normal neural network, we would have a lot of neurons as well (not just the one here)</p>
-<div id="53341e31" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>o.grad <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># o = tanh(n)</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># do/dn = 1-tanh^2(n) = 1 - o^2</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>n.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># do/db = do/dn * dn/db = (1-o^2)*1 = 1-o^2</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># d(x1w1x2w2)/db = do/dn * dn/d(x1w1x2w2) = (1-o^2)*1 = 1-o^2</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>x1w1x2w2.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>b.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># same logic of back-propagation wrt '+'</span></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>x1w1.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>x2w2.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co">#do/dx2 = w2 * do/d(x2w2)</span></span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>x2.grad <span class="op">=</span> w2.data <span class="op">*</span> x2w2.grad</span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="co">#do/dw2 = x2 * do/d/(x2w2)</span></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>w2.grad <span class="op">=</span> x2.data <span class="op">*</span> x2w2.grad</span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="co"># same logic as for x2/w2</span></span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>x1.grad <span class="op">=</span> w1.data <span class="op">*</span> x1w1.grad</span>
-<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>w1.grad <span class="op">=</span> x1.data <span class="op">*</span> x1w1.grad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We care most about the derivative of <strong><em>o</em></strong> with respect to the weights <em>w1</em> and <em>w2</em>. In a normal neural network, we would have many more input and intermediate nodes (not just the two as in this example). We will calculate the gradients for this network by hand.</p>
+<div id="48bc68cc" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>o.grad <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># o = tanh(n)</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># do/dn = 1-tanh^2(n) = 1 - o^2</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>n.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># do/db = do/dn * dn/db = (1-o^2)*1 = 1-o^2</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># d(x1w1x2w2)/db = do/dn * dn/d(x1w1x2w2) = (1-o^2)*1 = 1-o^2</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>x1w1x2w2.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>b.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co"># same logic of back-propagation wrt '+'</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>x1w1.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>x2w2.grad <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>o.data<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co">#do/dx2 = w2 * do/d(x2w2)</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>x2.grad <span class="op">=</span> w2.data <span class="op">*</span> x2w2.grad</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="co">#do/dw2 = x2 * do/d/(x2w2)</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>w2.grad <span class="op">=</span> x2.data <span class="op">*</span> x2w2.grad</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="co"># same logic as for x2/w2</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>x1.grad <span class="op">=</span> w1.data <span class="op">*</span> x1w1.grad</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>w1.grad <span class="op">=</span> x1.data <span class="op">*</span> x1w1.grad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2f8da5c3" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div id="1592598a" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="75">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-26-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So, because <em>w1</em>’s gradient is positive, if we want this neuron’s output to increase, then we should increase <em>w1</em>. <em>w2</em> doesn’t affect the output of this function because its gradient is 0.</p>
+</section>
+<section id="automating-backpropagation" class="level1">
+<h1>Automating backpropagation</h1>
+<p>Let’s stop doing this back-propagation manually! Take a look at the logic for <code>_backward</code> and <code>backward</code>in the <code>Value</code> class to see how we handle this (we apply a topological sort to our data in the <code>backward</code> function). We also ensure that we never call <code>_backward</code> on a node before we’ve called it on its children. Lastly, we make sure that we accumulate gradients in the <code>backward</code> function.</p>
+<div id="294c1be4" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>o.grad <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>o._backward()</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>n._backward()</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>b._backward()</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>x1w1x2w2._backward()</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>x2w2._backward()</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>x1w1._backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="467bd0af" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="77">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-28-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="81c6991a" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>o.backward()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-29-output-1.svg" class="img-fluid figure-img"></p>
@@ -682,49 +754,56 @@ slope 1.9999999967268423</code></pre>
 </div>
 </div>
 </div>
-<p>So, if we want this neuron’s output to increase, then we should increase w1. w2 doesn’t matter because its gradient is 0.</p>
-</section>
-<section id="automating-backpropagation" class="level1">
-<h1>Automating backpropagation</h1>
-<p>Let’s stop doing this back-propagation manually! Take a look at the logic for _backward in the Value class.</p>
-<div id="68c92cd6" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>o.grad <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>o._backward()</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>n._backward()</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>b._backward()</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>x1w1x2w2._backward()</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>x2w2._backward()</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>x1w1._backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cb999ef1" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div id="e499838f" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> Value(<span class="fl">3.0</span>, label <span class="op">=</span> <span class="st">'a'</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a<span class="op">+</span>a<span class="op">;</span> b.label <span class="op">=</span> <span class="st">'b'</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>b.backward()</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>draw_dot(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="79">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-31-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-30-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Let’s also stop calling _backward manually. We never want to call _backward on a node before we’ve called _backward on its children. Let’s apply a topological sort to our data.</p>
-<div id="2244d130" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>topo <span class="op">=</span> []</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>visited <span class="op">=</span> <span class="bu">set</span>()</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_topo(v):</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> v <span class="kw">not</span> <span class="kw">in</span> visited:</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>        visited.add(v)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> child <span class="kw">in</span> v._prev:</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>            build_topo(child)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>        topo.append(v)</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>build_topo(o)</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> node <span class="kw">in</span> <span class="bu">reversed</span>(topo):</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    node._backward()</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<p>Everything works! Yay!</p>
+</section>
+<section id="breaking-up-tanh-into-its-individual-components" class="level1">
+<h1>Breaking up <em><code>tanh</code></em> into its individual components</h1>
+<p>Instead of using a <span class="math inline">\(tanh\)</span> function in our <code>Value</code> class, we can break it up into exponent and division functions to see an example of a more complicated network.</p>
+<div id="dc4811c0" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inputs x1, x2</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> Value(<span class="fl">2.0</span>, label <span class="op">=</span> <span class="st">'x1'</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> Value(<span class="fl">0.0</span>, label <span class="op">=</span> <span class="st">'x2'</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># weights w1, w2</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> Value(<span class="op">-</span><span class="fl">3.0</span>, label <span class="op">=</span> <span class="st">'w1'</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> Value(<span class="fl">1.0</span>, label <span class="op">=</span> <span class="st">'w2'</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co"># bias of the neuron</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Value (<span class="fl">6.881373587019542</span>, label <span class="op">=</span> <span class="st">'b'</span>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co">#x1*w1 + x2*w2 + b</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>x1w1 <span class="op">=</span> x1<span class="op">*</span>w1<span class="op">;</span> x1w1.label <span class="op">=</span> <span class="st">'x1*w1'</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>x2w2 <span class="op">=</span> x2<span class="op">*</span>w2<span class="op">;</span> x2w2.label <span class="op">=</span> <span class="st">'x2*w2'</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>x1w1x2w2 <span class="op">=</span> x1w1 <span class="op">+</span> x2w2<span class="op">;</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>x1w1x2w2.label <span class="op">=</span> <span class="st">'x1*w1 + x2*w2'</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="co"># n is our cell body activation without the activation function</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> x1w1x2w2 <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>n.label <span class="op">=</span> <span class="st">'n'</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply activation function (defined in Value class earlier)</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> (<span class="dv">2</span><span class="op">*</span>n).exp()</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> (e<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(e<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>o.label <span class="op">=</span> <span class="st">'o'</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>o.backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ba764d8f" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-32-output-1.svg" class="img-fluid figure-img"></p>
@@ -732,117 +811,44 @@ slope 1.9999999967268423</code></pre>
 </div>
 </div>
 </div>
-<p>Great, this works! Now let’s incorporate this backward function into our Value class.</p>
-<div id="9bf718b2" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>o.backward()</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-33-output-1.svg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Woohoo! it works!</p>
-<p>We still have a bad bug… for example, b = a + a. The value of b will be correct, but the gradient db/da won’t. db/da should be b = 2a = 2, but based on our current logic, it will come out to 1.</p>
-<p>This will be an issue any time we use a variable more than once in our function. We can fix this by accumulating gradients (use += instead of =)</p>
-<div id="2d4082bb" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> Value(<span class="fl">3.0</span>, label <span class="op">=</span> <span class="st">'a'</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a<span class="op">+</span>a<span class="op">;</span> b.label <span class="op">=</span> <span class="st">'b'</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>b.backward()</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>draw_dot(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-34-output-1.svg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Everything works now! Yay!</p>
-</section>
-<section id="breaking-up-tanh-into-its-individual-components" class="level1">
-<h1>Breaking up tanh into its individual components</h1>
-<p>See the new exp and div functions defined in Value</p>
-<div id="2ac44ad0" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inputs x1, x2</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> Value(<span class="fl">2.0</span>, label <span class="op">=</span> <span class="st">'x1'</span>)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> Value(<span class="fl">0.0</span>, label <span class="op">=</span> <span class="st">'x2'</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># weights w1, w2</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> Value(<span class="op">-</span><span class="fl">3.0</span>, label <span class="op">=</span> <span class="st">'w1'</span>)</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> Value(<span class="fl">1.0</span>, label <span class="op">=</span> <span class="st">'w2'</span>)</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># bias of the neuron</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Value (<span class="fl">6.881373587019542</span>, label <span class="op">=</span> <span class="st">'b'</span>)</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co">#x1*w1 + x2*w2 + b</span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>x1w1 <span class="op">=</span> x1<span class="op">*</span>w1<span class="op">;</span> x1w1.label <span class="op">=</span> <span class="st">'x1*w1'</span></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>x2w2 <span class="op">=</span> x2<span class="op">*</span>w2<span class="op">;</span> x2w2.label <span class="op">=</span> <span class="st">'x2*w2'</span></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>x1w1x2w2 <span class="op">=</span> x1w1 <span class="op">+</span> x2w2<span class="op">;</span></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>x1w1x2w2.label <span class="op">=</span> <span class="st">'x1*w1 + x2*w2'</span></span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co"># n is our cell body activation without the activation function</span></span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> x1w1x2w2 <span class="op">+</span> b<span class="op">;</span></span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>n.label <span class="op">=</span> <span class="st">'n'</span></span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply activation function (defined in Value class earlier)</span></span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> (<span class="dv">2</span><span class="op">*</span>n).exp()</span>
-<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> (e<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(e<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>o.label <span class="op">=</span> <span class="st">'o'</span></span>
-<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>o.backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="eb9a0f54" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>draw_dot(o)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-36-output-1.svg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Our forward and backward passes are correct! Note that the level at which you perform your individual operations is entirely up to you (e.g.&nbsp;tanh vs.&nbsp;its individual components).</p>
-<p>All that matters is that you have input and output and that you can do forward/backward passing of your operations.</p>
+<p>As we can see, even after breaking our <code>tanh</code> function into its individual components, our forward and backward passes are still correct! Note that the level at which you perform your individual operations is entirely up to you (e.g.&nbsp;<code>tanh</code> vs.&nbsp;its individual components). All that matters is that you have input and output and that you can do forward/backward passing of your operations.</p>
 </section>
 <section id="backpropagation-with-pytorch" class="level1">
 <h1>Backpropagation with PyTorch</h1>
-<p>In PyTorch, everything is based around tensors rather than scalars</p>
-<div id="403b9749" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cast to double to get 64bit precision</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> torch.Tensor([<span class="fl">2.0</span>]).double()</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># by default, pytorch will say leaf nodes don't have gradients to improve efficiency</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>x1.requires_grad <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> torch.Tensor([<span class="fl">0.0</span>]).double()</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>x2.requires_grad <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> torch.Tensor([<span class="op">-</span><span class="fl">3.0</span>]).double()</span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>w1.requires_grad <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> torch.Tensor([<span class="fl">1.0</span>]).double()</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>w2.requires_grad <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> torch.Tensor([<span class="fl">6.8813735870195432</span>]).double()</span>
-<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>b.requires_grad <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> x1<span class="op">*</span>w1 <span class="op">+</span> x2<span class="op">*</span>w2 <span class="op">+</span> b</span>
-<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> torch.tanh(n)</span>
-<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a><span class="co"># PyTorch tensors have data and grad elements</span></span>
-<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(o.data.item())</span>
-<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a><span class="co"># PyTorch has a backward function too</span></span>
-<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>o.backward()</span>
-<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'---'</span>)</span>
-<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2'</span>, x2.grad.item())</span>
-<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'w2'</span>, w2.grad.item())</span>
-<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1'</span>, x1.grad.item())</span>
-<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'w1'</span>, w1.grad.item())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that we’ve developed backpropagation manually, let’s see how it can be performed in <a href="https://pytorch.org/docs/stable/index.html">PyTorch</a>. With PyTorch, everything is based around <a href="https://en.wikipedia.org/wiki/Tensor#:~:text=In%20mathematics%2C%20a%20tensor%20is,scalars%2C%20and%20even%20other%20tensors.">tensors</a> rather than scalars.</p>
+<div id="e7e2de18" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cast to double to get 64bit precision</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> torch.Tensor([<span class="fl">2.0</span>]).double()</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># by default, pytorch will say leaf nodes don't have gradients to improve efficiency</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>x1.requires_grad <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> torch.Tensor([<span class="fl">0.0</span>]).double()</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>x2.requires_grad <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> torch.Tensor([<span class="op">-</span><span class="fl">3.0</span>]).double()</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>w1.requires_grad <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> torch.Tensor([<span class="fl">1.0</span>]).double()</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>w2.requires_grad <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> torch.Tensor([<span class="fl">6.8813735870195432</span>]).double()</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>b.requires_grad <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> x1<span class="op">*</span>w1 <span class="op">+</span> x2<span class="op">*</span>w2 <span class="op">+</span> b</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>o <span class="op">=</span> torch.tanh(n)</span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a><span class="co"># PyTorch tensors have data and grad elements</span></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(o.data.item())</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="co"># PyTorch has a backward function too</span></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>o.backward()</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'---'</span>)</span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2'</span>, x2.grad.item())</span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'w2'</span>, w2.grad.item())</span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1'</span>, x1.grad.item())</span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'w1'</span>, w1.grad.item())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.7071066904050358
 ---
@@ -852,245 +858,250 @@ x1 -1.5000003851533106
 w1 1.0000002567688737</code></pre>
 </div>
 </div>
-<p>Everything in PyTorch is much more efficient. We can do all these operations in parallel with much larger tensors (not just scalar values)</p>
-<p>Let’s implement a simple neural network</p>
-<div id="c020f340" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Neuron:</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nin):</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.w <span class="op">=</span> [Value(random.uniform(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(nin)]</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> Value(random.uniform(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Python goes to __call__ when you use the class as a function</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x):</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># w.x + b</span></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># start with self.b, add the dot product of w and x</span></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>        act <span class="op">=</span> <span class="bu">sum</span>((wi<span class="op">*</span>xi <span class="cf">for</span> wi,xi <span class="kw">in</span> <span class="bu">zip</span>(<span class="va">self</span>.w, x)), <span class="va">self</span>.b)</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> act.tanh()</span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parameters(<span class="va">self</span>):</span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.w <span class="op">+</span> [<span class="va">self</span>.b]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Here’s an example of a neural network</p>
-<div id="83e3640f" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>Image(filename<span class="op">=</span><span class="st">'/Users/vsriram/Desktop/Unknown-1.jpeg'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-39-output-1.jpeg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We’ve defined a neuron class. Let’s define a Layer class as well</p>
-<div id="2069c42d" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Layer:</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># nout is the size of hte output of the layer</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nin, nout):</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.neurons <span class="op">=</span> [Neuron(nin) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(nout)]</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x):</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>        outs <span class="op">=</span> [n(x) <span class="cf">for</span> n <span class="kw">in</span> <span class="va">self</span>.neurons]</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> outs[<span class="dv">0</span>] <span class="cf">if</span> <span class="bu">len</span>(outs) <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> outs</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parameters(<span class="va">self</span>):</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> []</span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> neuron <span class="kw">in</span> <span class="va">self</span>.neurons:</span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>            ps <span class="op">=</span> neuron.parameters()</span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>            params.extend(ps)</span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> params</span>
-<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Same as:</span></span>
-<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return [p for neuron in self.neurons for p in neuron.parameters()]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now let’s make a multilayer perceptron (MLP)</p>
-<div id="4125a92b" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MLP:</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># nouts is the list of layer sizes we want</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nin, nouts):</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>        sz <span class="op">=</span> [nin] <span class="op">+</span> nouts</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layers <span class="op">=</span> [Layer(sz[i], sz[i<span class="op">+</span><span class="dv">1</span>]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(nouts))]</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x):</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> layer <span class="kw">in</span> <span class="va">self</span>.layers:</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> layer(x)</span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parameters(<span class="va">self</span>):</span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [p <span class="cf">for</span> layer <span class="kw">in</span> <span class="va">self</span>.layers <span class="cf">for</span> p <span class="kw">in</span> layer.parameters()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="a09b6925" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> MLP(<span class="dv">3</span>, [<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>])</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>n(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
-<pre><code>Value(data=-0.25516954739652975)</code></pre>
-</div>
-</div>
-<div id="de45efd4" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>draw_dot(n(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-43-output-1.svg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Wow, PyTorch let’s us get crazy with the functions we define. Obviously we’re never going to manually backpropagate such an example… let’s have PyTorch do it for us</p>
-<div id="11dab176" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> [</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>],</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">0.5</span>],</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>],</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.0</span>] <span class="co">#desired targets</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply our MLP to predict y from x</span></span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>ypred <span class="op">=</span> [n(x) <span class="cf">for</span> x <span class="kw">in</span> xs]</span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>ypred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
-<pre><code>[Value(data=-0.25516954739652975),
- Value(data=-0.81054039168371),
- Value(data=-0.7652314530173903),
- Value(data=-0.3124544476665725)]</code></pre>
-</div>
-</div>
-<div id="7968e3f3" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loss will measure how good our neural net is</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># let's do mean squared error</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> <span class="bu">sum</span>((yout <span class="op">-</span> ygt)<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> ygt, yout <span class="kw">in</span> <span class="bu">zip</span>(ys, ypred))</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
-<pre><code>Value(data=3.3889984837470655)</code></pre>
-</div>
-</div>
-<div id="1d2abcd7" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="06b634e5" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If this gradient is positive, then decreasing this weight will decrease our loss</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If this is negative, then increasing this weight will decrease our loss</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>n.layers[<span class="dv">0</span>].neurons[<span class="dv">0</span>].w[<span class="dv">0</span>].grad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
-<pre><code>0.1437930514421516</code></pre>
-</div>
-</div>
-<div id="31da93ba" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>n.layers[<span class="dv">0</span>].neurons[<span class="dv">0</span>].w[<span class="dv">0</span>].data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
-<pre><code>-0.38946425793232886</code></pre>
-</div>
-</div>
-<div id="adfa3cd7" class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for every parameter in our neural net, let's change the weights slightly to reduce the loss</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># increase for negative grad, decrease for positive grad</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> n.parameters():</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    p.data <span class="op">+=</span> <span class="op">-</span><span class="fl">0.01</span><span class="op">*</span>p.grad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Loss should have gone down a bit now. Let’s recalculate it.</p>
-<div id="f344338f" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>ypred <span class="op">=</span> [n(x) <span class="cf">for</span> x <span class="kw">in</span> xs]</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> <span class="bu">sum</span>((yout <span class="op">-</span> ygt)<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> ygt, yout <span class="kw">in</span> <span class="bu">zip</span>(ys, ypred))</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
-<pre><code>Value(data=1.6796372850100796)</code></pre>
-</div>
-</div>
-<div id="e8b5e1ea" class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Propoagate</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now all we have to do is iterate this process.</p>
-<div id="17e68102" class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>ypred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
-<pre><code>[Value(data=0.22218472314987042),
- Value(data=-0.750643101375195),
- Value(data=-0.6794995972642768),
- Value(data=0.04619639911400329)]</code></pre>
-</div>
-</div>
-<p>Nice, we’re able to train our data better. Let’s formalize this in a loop</p>
-<div id="e4d3389e" class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset the neural net</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> MLP(<span class="dv">3</span>, [<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>])</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>n(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
-<pre><code>Value(data=0.5792580324085981)</code></pre>
-</div>
-</div>
-<div id="87155989" class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize input data and desired targets</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> [</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>],</span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">0.5</span>],</span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>],</span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
-<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="597e4ba4" class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># forward pass</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    ypred <span class="op">=</span> [n(x) <span class="cf">for</span> x <span class="kw">in</span> xs]</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> <span class="bu">sum</span>((yout <span class="op">-</span> ygt)<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> ygt, yout <span class="kw">in</span> <span class="bu">zip</span>(ys, ypred))</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># backward pass</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> n.parameters():</span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>        p.grad <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># update</span></span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "stochastic gradient descent"</span></span>
-<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> n.parameters():</span>
-<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>        p.data <span class="op">+=</span> <span class="op">-</span><span class="fl">0.05</span> <span class="op">*</span> p.grad</span>
-<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(k, loss.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0 2.0286072292313904
-1 0.8451651695643778
-2 0.46218211141747023
-3 0.31100377728971784
-4 0.2317839911854902
-5 0.1835010988150704
-6 0.1511933565491248
-7 0.1281563627032515
-8 0.11095418436629649
-9 0.09765076448303228
-10 0.08707514652868029
-11 0.07847907694324446
-12 0.07136289694986098
-13 0.06538069923552094
-14 0.06028569815351427
-15 0.05589727455063839
-16 0.052080306240688254
-17 0.048731765248791165
-18 0.045771773151437094
-19 0.04313747949518701</code></pre>
-</div>
-</div>
-<div id="a9039149" class="cell" data-execution_count="55">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>ypred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
-<pre><code>[Value(data=0.9168735976751606),
- Value(data=-0.8965320247954542),
- Value(data=-0.8757826734991045),
- Value(data=0.8995414780331833)]</code></pre>
-</div>
-</div>
+<p>PyTorch makes all of our calculations much more efficient. We can do all of these operations in parallel with very large tensors and not just scalar values.</p>
 </section>
-<section id="summary" class="level1">
-<h1>Summary</h1>
-<p>Neural nets are simple mathematical expressions that take input data and weights. Forward pass of data followed by loss function. Try to minimize loss to get the output of the function to hit desired targets. Use back propagation from loss to get the gradients of the weights. Tune the weights against the gradient (gradient descent)</p>
-<p>Simulating a blob of neural tissue that can handle all sorts of interesting problems. GPT uses massive amounts of text from the internet and then predicts the next words in a sentence 100s of billions of parameters</p>
-<p>loss function and gradient descents may be slightly different ReLU instead of tanh. all are roughly equivalent non-linearities</p>
-<p>Next up you can look at Andrej Karpathy’s micrograd example</p>
+<section id="a-simple-neural-network" class="level1">
+<h1>A simple neural network</h1>
+<p>We’ve had enough fun with “neural network adjacent” mathematical expressions and their corresponding computational topologies.</p>
+<p>Let’s implement a simple neural network. We will base this off of a <a href="https://www.datacamp.com/tutorial/multilayer-perceptrons-in-machine-learning#">multilayer perceptron</a> (MLP). We can define a <code>Neuron</code> class, <code>Layer</code> class, and <code>MLP</code> class for our network.</p>
+<p>A typical neural network neuron looks like the following:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="neuron.jpeg" class="img-fluid figure-img"></p>
+<figcaption>A typical neuron in a neural network</figcaption>
+</figure>
+</div>
+<div id="ad06d062" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Neuron:</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nin):</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.w <span class="op">=</span> [Value(random.uniform(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(nin)]</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> Value(random.uniform(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Python goes to __call__ when you use the class as a function</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x):</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># w.x + b</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># start with self.b, add the dot product of w and x</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>        act <span class="op">=</span> <span class="bu">sum</span>((wi<span class="op">*</span>xi <span class="cf">for</span> wi,xi <span class="kw">in</span> <span class="bu">zip</span>(<span class="va">self</span>.w, x)), <span class="va">self</span>.b)</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>        out <span class="op">=</span> act.tanh()</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> out</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parameters(<span class="va">self</span>):</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.w <span class="op">+</span> [<span class="va">self</span>.b]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="737765b7" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Layer:</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># nout is the size of the output of the layer</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nin, nout):</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.neurons <span class="op">=</span> [Neuron(nin) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(nout)]</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x):</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>        outs <span class="op">=</span> [n(x) <span class="cf">for</span> n <span class="kw">in</span> <span class="va">self</span>.neurons]</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> outs[<span class="dv">0</span>] <span class="cf">if</span> <span class="bu">len</span>(outs) <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> outs</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parameters(<span class="va">self</span>):</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> []</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> neuron <span class="kw">in</span> <span class="va">self</span>.neurons:</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>            ps <span class="op">=</span> neuron.parameters()</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>            params.extend(ps)</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> params</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Same as:</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># return [p for neuron in self.neurons for p in neuron.parameters()]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cdfc4e65" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MLP:</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># nouts is the list of layer sizes we want</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nin, nouts):</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>        sz <span class="op">=</span> [nin] <span class="op">+</span> nouts</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layers <span class="op">=</span> [Layer(sz[i], sz[i<span class="op">+</span><span class="dv">1</span>]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(nouts))]</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x):</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> layer <span class="kw">in</span> <span class="va">self</span>.layers:</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> layer(x)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parameters(<span class="va">self</span>):</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [p <span class="cf">for</span> layer <span class="kw">in</span> <span class="va">self</span>.layers <span class="cf">for</span> p <span class="kw">in</span> layer.parameters()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Based upon our defined classes, let’s initialize our MLP.</p>
+<div id="82dcb60d" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> MLP(<span class="dv">3</span>, [<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>])</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>n(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="86">
+<pre><code>Value(data=0.4944649312890593)</code></pre>
+</div>
+</div>
+<div id="2b3565cf" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>draw_dot(n(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="87">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-38-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Wow, our function is much crazier than our initial examples! Obviously we’re never going to manually backpropagate such an example… let’s have PyTorch do it for us.</p>
+<p>We start by defining some sample input data and our desired targets. We then use our baseline MLP to calculate model outputs from the input data.</p>
+<div id="6338fd84" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> [</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>],</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">0.5</span>],</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.0</span>] <span class="co">#desired targets</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply our MLP to predict y from x</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>ypred <span class="op">=</span> [n(x) <span class="cf">for</span> x <span class="kw">in</span> xs]</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>ypred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="88">
+<pre><code>[Value(data=0.4944649312890593),
+ Value(data=0.40977958134154474),
+ Value(data=-0.4050151100259451),
+ Value(data=0.3923524132012742)]</code></pre>
+</div>
+</div>
+<p>We can compare our model outputs to the expected outputs using a loss function such as <a href="https://en.wikipedia.org/wiki/Mean_squared_error">mean squared error</a> (MSE).</p>
+<div id="2e72e23d" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loss will measure how good our neural net is</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># let's do mean squared error</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> <span class="bu">sum</span>((yout <span class="op">-</span> ygt)<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> ygt, yout <span class="kw">in</span> <span class="bu">zip</span>(ys, ypred))</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="89">
+<pre><code>Value(data=2.96628678270387)</code></pre>
+</div>
+</div>
+<p>Now let’s backpropagate (automatically this time)!</p>
+<div id="b7597e28" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If the gradient of a weight is positive, then decreasing the weight will decrease the overall loss. Similarly, if the gradient is negative, then increasing the weight will decrease the loss.</p>
+<div id="b2893698" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If this gradient is positive, then decreasing this weight will decrease our loss</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If this is negative, then increasing this weight will decrease our loss</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>n.layers[<span class="dv">0</span>].neurons[<span class="dv">0</span>].w[<span class="dv">0</span>].grad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="91">
+<pre><code>-1.2640701291368466</code></pre>
+</div>
+</div>
+<div id="d2aa9743" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>n.layers[<span class="dv">0</span>].neurons[<span class="dv">0</span>].w[<span class="dv">0</span>].data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="92">
+<pre><code>-0.9567063145203327</code></pre>
+</div>
+</div>
+<p>For every parameter in our neural network, let’s change the weights slightly to reduce the overall loss. We increase the weight for negative gradients and decrease the weight for positive gradients.</p>
+<div id="824f7e5b" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for every parameter in our neural net, let's change the weights slightly to reduce the loss</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="co"># increase for negative grad, decrease for positive grad</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> n.parameters():</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    p.data <span class="op">+=</span> <span class="op">-</span><span class="fl">0.01</span><span class="op">*</span>p.grad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our overall loss should have gone down a bit now. Let’s recalculate it.</p>
+<div id="3d7062af" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>ypred <span class="op">=</span> [n(x) <span class="cf">for</span> x <span class="kw">in</span> xs]</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> <span class="bu">sum</span>((yout <span class="op">-</span> ygt)<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> ygt, yout <span class="kw">in</span> <span class="bu">zip</span>(ys, ypred))</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="94">
+<pre><code>Value(data=2.6726876872891854)</code></pre>
+</div>
+</div>
+<div id="930f41d5" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Propagate</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f8f35ae1" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>ypred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="96">
+<pre><code>[Value(data=0.4993403271200778),
+ Value(data=0.3198034181833698),
+ Value(data=-0.45493607758790167),
+ Value(data=0.38108818311718595)]</code></pre>
+</div>
+</div>
+<p>Nice, we’re able to train our data better now. Let’s formalize this process of updating gradients in a loop. This is the same thing as “<a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">stochastic gradient descent</a>”.</p>
+<div id="c63eae39" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset the neural net</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> MLP(<span class="dv">3</span>, [<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>])</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>n(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="97">
+<pre><code>Value(data=0.34934876482956906)</code></pre>
+</div>
+</div>
+<div id="b0fea047" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize input data and desired targets</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> [</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>],</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">0.5</span>],</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5110a8e8" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 20 iterations</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># forward pass</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    ypred <span class="op">=</span> [n(x) <span class="cf">for</span> x <span class="kw">in</span> xs]</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> <span class="bu">sum</span>((yout <span class="op">-</span> ygt)<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> ygt, yout <span class="kw">in</span> <span class="bu">zip</span>(ys, ypred))</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># backward pass</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> n.parameters():</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>        p.grad <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># update</span></span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "stochastic gradient descent"</span></span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> n.parameters():</span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>        p.data <span class="op">+=</span> <span class="op">-</span><span class="fl">0.05</span> <span class="op">*</span> p.grad</span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(k, loss.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 8.493929671336291
+1 6.992068662805386
+2 5.769077247651545
+3 4.4735019295768295
+4 3.989548688723282
+5 3.7147609186944743
+6 3.405667943207894
+7 2.8620742530053116
+8 1.7745806845463523
+9 0.7698861574003086
+10 0.4457449169022083
+11 0.30780024751796564
+12 0.23273878356815986
+13 0.18590290331973824
+14 0.15408948967655905
+15 0.13116783996889828
+16 0.11392081179247492
+17 0.10050481438071963
+18 0.08979065153648244
+19 0.08104964070586138</code></pre>
+</div>
+</div>
+<div id="f66f6a1b" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>ypred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="100">
+<pre><code>[Value(data=0.9034116586940597),
+ Value(data=-0.9567970932148172),
+ Value(data=-0.8069423147548922),
+ Value(data=0.8194935678632469)]</code></pre>
+</div>
+</div>
+<p>Ta-da! We now understand the intuition behind developing simple neural networks and performing backpropagation to improve their predictive performance!</p>
+</section>
+<section id="takeaways-and-summary" class="level1">
+<h1>Takeaways and summary</h1>
+<p>Neural nets are simple mathematical expressions that take input data and weights. Working with neural networks involves a forward pass of input data followed by the application of a loss function.</p>
+<p>The goal of a neural network for machine learning is to minimize the output loss to get the model to better predict desired targets. Backpropagation can be applied from the loss function to determine the gradients of the intermediate weights of the network. We can then tune the weights of these nodes against the gradient (i.e.&nbsp;gradient descent) to improve the predictive performance of the model.</p>
+<p>Simulating a blob of neural tissue in this manner can handle all sorts of interesting problems. Generative Pre-trained Transformers (GPTs) uses massive amounts of text from the internet and then predict the next words in a sentence based on context. These are really just fancy neural networks with hundreds of billions of parameters. Different models may use different loss functions and different methods for gradient descent, but the underlying concepts are all consistent.</p>
+<p>This concludes my walkthrough of Andrej’s first neural networks video tutorial. Until next time, [VS]Coders!</p>
 
 
 </section>
