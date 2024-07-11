@@ -34,7 +34,7 @@ Welcome back to another edition of \[VS\]Codes. After a hiatus last week for the
 
 4.  The Data Chief
 
-- How does one become a Chief Data Officer? What does it take to manage the data infrastructure of an organization? How does one continue to support a culture of innovation and progress from such a  
+-   How does one become a Chief Data Officer? What does it take to manage the data infrastructure of an organization? How does one continue to support a culture of innovation and progress from such a
 
 5.  Casual Inference
 
@@ -46,8 +46,7 @@ Welcome back to another edition of \[VS\]Codes. After a hiatus last week for the
 
 -   Hosted by Jacqueline Nolis and Emily Robinson
 
--   This podcast serves as an accompaniment to Nolis and Robinson's book "Build a Career in Data Science". 
-
+-   This podcast serves as an accompaniment to Nolis and Robinson's book "Build a Career in Data Science".
 
 7.  Not So Standard Deviations
 
@@ -55,17 +54,13 @@ Welcome back to another edition of \[VS\]Codes. After a hiatus last week for the
 
 -   As I transitioned from the biomedical focus of my dissertation research to broader data science applications, I wanted to find a podcast that could expose me to the gamut of statistics and data science. Not So Standard Deviations fits this bill quite well, including discussions of topics in the data science and tech while making time for fun side-paths and detours.
 
-
-
 **Miscellaneous**
 
 8.  The Happiness Lab
 
 -   Hosted by Laurie Santos
 
--   Dr. Laurie Santos is a professor in ___ at Yale and has spent her career studying ____. In this podcast, she considers a variety of questions in the happiness space using a science-based approach, interviewing 
-
-
+-   Dr. Laurie Santos is a professor in \_\_\_ at Yale and has spent her career studying \_\_\_\_. In this podcast, she considers a variety of questions in the happiness space using a science-based approach, interviewing
 
 9.  Factually!
 

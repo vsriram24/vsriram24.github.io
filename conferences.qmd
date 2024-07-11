@@ -1,0 +1,24 @@
+---
+title: "Presentations and Talks"
+---
+
+-   **Talks**
+
+    -   2023 - Public Thesis Defense, University of Pennsylvania Genomics and Computational Biology Graduate Group
+        -   "Dissecting the genetic architecture of disease multimorbidities through the graph-based analysis of EHR-linked biobanks"
+        -   Link to recording [here](https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d)
+    -   2023 – Invited Speaker, University of Pennsylvania Institution for Biomedical Informatics Annual Retreat
+        -   "From network medicine to precision medicine: AI methods for the investigation of genetic contributors to disease multimorbidities"
+
+-   **Presentations**
+
+    -   2023 – Poster Presenter, American Society for Human Genetics Annual Conference
+        -   "The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank"
+    -   2022 – Poster Presenter (Reviewer's Choice), American Society for Human Genetics Annual Conference
+        -   "A genetic correlation disease-disease network (gcDDN) for the improved identification of novel phenotype relationships"
+    -   2021 – Poster Presenter, Mid-Atlantic Bioinformatics Conference
+        -   "Polygenic Score Pipeline (PiPn): a Toolkit for Automated Polygenic Score Analysis using the PGS Catalog"
+    -   2021 – Poster Presenter, American Society for Human Genetics Annual Conference
+        -   "The identification of comorbidity risk via disease-disease network: an application to pre-eclamptic women in the UK Biobank"
+    -   2020 – Poster Presenter, American Society for Human Genetics Annual Conference
+        -   "NETMAGE: a human disease phenotype map generator for the visualization of phenome-wide association study results"

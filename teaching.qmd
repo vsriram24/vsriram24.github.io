@@ -1,0 +1,28 @@
+---
+title: "Teaching and Mentorship"
+---
+
+**Teaching**
+
+-   Teaching Assistant – “[Introduction to R](https://hutchdatascience.org/Intro_to_R/)”, 2024 to Present
+    -   [Fred Hutchinson Cancer Center Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
+-   Guest Lecturer – “[Databases and Data Integration](https://catalog.upenn.edu/courses/bmin/)”, 2024 to Present
+    -   University of Pennsylvania Department of Biostatistics, Epidemiology, and Informatics, Philadelphia, PA
+-   Volunteer teacher and instructor, 2019 to 2023
+    -   [Science Education Academy](https://scienceeducationacademy.com) outreach program, Philadelphia, PA
+-   Graduate Teaching Assistant – “[Databases and Data Integration](https://catalog.upenn.edu/courses/bmin/)”, 2022 to 2023
+    -   University of Pennsylvania Department of Biostatistics, Epidemiology, and Informatics, Philadelphia, PA
+-   Graduate Tutor – “[Machine Learning](https://alliance.seas.upenn.edu/~cis520/wiki/)”, 2022
+    -   University of Pennsylvania Department of Computer and Information Science, Philadelphia, PA
+-   Graduate Mentor and Lecturer for “[Summer Computational Biology Preview](https://sites.google.com/view/gcb-scbp)”, Summer 2021
+    -   University of Pennsylvania Genomics and Computational Biology Graduate Group, Philadelphia, PA
+-   Graduate Teaching Assistant for [Python Bootcamp](https://github.com/PennGCB/python_bootcamp_2020), Summer 2020
+    -   University of Pennsylvania Genomics and Computational Biology Graduate Group, Philadelphia, PA
+-   Undergraduate Teaching Assistant – “[Intro to Computational Genomics](https://courses.cs.duke.edu/fall18/compsci260/)”, 2017 to 2018
+    -   Duke University Department of Computer Science, Durham, NC
+
+**Mentorship**
+
+-   Rotation Advisor for Alexis Garófalo, UPenn GCB PhD Student (2022)
+-   Rotation Advisor for [Jakob Woerner](https://scholar.google.com/citations?user=VWvZhigAAAAJ&hl=en), UPenn GCB PhD Student (2021)
+-   Rotation Advisor for [Anni Moore](https://github.com/mooreann), UPenn GCB PhD Student (2021)
