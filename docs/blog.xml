@@ -10,7 +10,58 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.4.555</generator>
-<lastBuildDate>Mon, 08 Jul 2024 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 15 Jul 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>My podcast recommendations</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/podcasts/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Welcome back to another edition of <em>[VS]Codes</em>! In this week’s post, I’ll be summarizing a list of my top podcasts, including content that covers the biomedical informatics and digital health space, statistics and data science, and a couple of miscellaneous topics as well. Without further ado, let’s get started!</p>
+<p><img src="https://vsriram24.github.io/posts/podcasts/mountain.jpg" class="img-fluid" width="500"></p>
+<hr>
+<p><strong><em>Biomedicine / Health AI</em></strong></p>
+<ol type="1">
+<li><p><a href="https://www.linkedin.com/company/the-ai-health-podcast/"><strong>The AI Health Podcast</strong></a>, hosted by <a href="https://dbmi.hms.harvard.edu/people/pranav-rajpurkar">Pranav Rajpurkar</a> and <a href="https://asaporta.github.io">Adriel Saporta</a></p>
+<p>“The AI Health Podcast” was my first foray into the realm of podcasts covering technical topics - with the demands of my doctoral research and my limited time, I was finding it challenging to keep up with the plethora of advances that were concurrently occurring in medicine with the expanded use of AI. Pranav and Adriel do a great job of synthesizing complex topics across the field of health AI, explaining both the biomedical context as well as the impact of the methodologies being developed. I appreciate how each episode is separated into a section covering the context of the topic followed by an interview with an expert. The experts interviewed also come from a variety of backgrounds in both academia and industry, offering diverse perspectives on artificial intelligence and biomedicine.</p></li>
+<li><p><a href="https://erictopol.substack.com"><strong>Ground Truths</strong></a>, hosted by <a href="https://en.wikipedia.org/wiki/Eric_Topol">Eric Topol</a></p>
+<p>Eric Topol is a giant in the field cardiovascular medicine, At the same time, he is a keen proponent of expanding the applications of AI to medicine. In this podcast, he interviews leading experts on a variety of topics in biomedicine and health science. I appreciate how the pace of his discussions synthesizes complex areas into very digestible conversations, and I don’t think any other host has the same ability as Eric to bring such esteemed guests to the table so easily!</p></li>
+<li><p><a href="https://medium.com/wharton-pulse-podcast"><strong>The Pulse</strong></a>, hosted by <a href="https://whartondigitalhealthclub.org">Wharton Digital Health</a></p>
+<p>I learned about “The Pulse” from other Wharton students while I was at the University of Pennsylvania. This podcast is a great way to gain a broad perspective of the field of health technology from a commercial perspective - the companies and interviews vary tremendously from episode to episode, and I found these episodes particularly helpful while I was in academia and looking to learn more about opportunities in the health technology space in industry. Given that the series comes from the Wharton School, there is a focus in some episodes on the business / MBA side of health tech, but much of the content is still relevant to broad audiences looking to learn more about the landscape of the field.</p></li>
+</ol>
+<p><strong><em>Data Science / Statistics</em></strong></p>
+<ol start="4" type="1">
+<li><p><a href="https://www.thoughtspot.com/data-chief/podcast"><strong>The Data Chief</strong></a>, hosted by <a href="https://www.thoughtspot.com/author/cindi-howson">Cindi Howson</a></p>
+<p>How does one become a “Chief Data Officer”? What does it take to manage the data infrastructure of an organization? How does one continue to support a culture of innovation and progress from such a high-level position? “The Data Chief” answers these questions and more through interviews with leaders across a variety of industries. I appreciate how this podcast exposes listeners to the importance of well-maintained data ecosystems across practically any application area one can think of.</p></li>
+<li><p><a href="https://casualinfer.libsyn.com"><strong>Casual Inference</strong></a>, hosted by <a href="https://www.lucymcgowan.com">Lucy D’Agostino McGowan</a> and <a href="https://www.bu.edu/sph/profile/eleanor-murray/">Ellie Murray</a></p>
+<p>A play on the field of “causal inference,” this podcast covers a variety of topics in epidemiology, statistics, data science, causal inference, and public health. I am a big fan of the hosts’ mantra of “keeping it casual” by requiring guests to explain their subject matter expertise as simply as they can!</p></li>
+<li><p><a href="https://podcast.bestbook.cool"><strong>Build a Career in Data Science</strong></a>, hosted by <a href="https://jnolis.com">Jacqueline Nolis</a> and <a href="https://hookedondata.org/about">Emily Robinson</a></p>
+<p>This podcast serves as an accompaniment to Jacqueline and Emily’s amazing book “Build a Career in Data Science,” but there is absolutely no need to have read the book to follow along! Jacqueline and Emily spend each episode on a chapter from their book, covering practical advice for how to succeed in the data science industry. Topics include how to interview for a data science job, how to communicate with stakeholders, how to pick the right position for you, and more!</p></li>
+<li><p><a href="https://nssdeviations.com"><strong>Not So Standard Deviations</strong></a>, hosted by <a href="https://rdpeng.org">Roger Peng</a> and <a href="https://hilaryparker.com">Hilary Parker</a></p>
+<p>As I transitioned from the biomedical focus of my dissertation research to broader data science applications, I wanted to find a podcast that could expose me to the gamut of statistics, machine learning, data science. “Not So Standard Deviations” fits this bill to a tee, including discussions of topics in both data science and tech while making time for fun tangents and detours depending on the news of the day.</p></li>
+</ol>
+<p><strong><em>Miscellaneous</em></strong></p>
+<ol start="8" type="1">
+<li><p><a href="https://www.pushkin.fm/podcasts/the-happiness-lab-with-dr-laurie-santos"><strong>The Happiness Lab</strong></a>, hosted by <a href="https://www.drlauriesantos.com">Laurie Santos</a></p>
+<p>Laurie Santos is a professor of psychology at Yale and has spent her career studying the evolutionary origins of human cognition and the science of happiness. In this podcast, she considers a variety of questions in the happiness space using a science-based approach, interviewing a plethora of guests across the field of human cognition. I’ve found the way I think about how I approach each of my days has notably shifted since finding this podcast!</p></li>
+<li><p><a href="https://headgum.com/factually-with-adam-conover"><strong>“Factually!”</strong></a>, hosted by <a href="https://www.adamconover.net">Adam Conover</a></p>
+<p>I first learned about Adam Conover from watching his television show “Adam Ruins Everything,” where he reveals hidden truths about a variety of topics that are commonly misunderstood by the public using a comedic lens. “Factually!” continues this tradition of irreverently diving deeper through interviews with experts that cover every topic imaginable, whether it be the ethics of artificial intelligence or “your houseplants can think!”</p></li>
+</ol>
+<hr>
+<p>This concludes my blog post for today. Until next week!</p>
+
+
+
+ ]]></description>
+  <category>Personal</category>
+  <guid>https://vsriram24.github.io/posts/podcasts/</guid>
+  <pubDate>Mon, 15 Jul 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/podcasts/zolaStaring.jpeg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>A Python introduction to neural networks and backpropagation</title>
   <dc:creator>Vivek Sriram</dc:creator>

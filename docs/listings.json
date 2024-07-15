@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/podcasts/index.html",
       "/posts/karpathy-1/index.html",
       "/posts/phd-takeaways/index.html",
       "/posts/phd-papers/index.html",

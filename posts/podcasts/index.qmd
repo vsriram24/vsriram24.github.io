@@ -1,69 +1,63 @@
 ---
 title: "My podcast recommendations"
-description: ""
+description: "Listen up!"
 author: "Vivek Sriram"
-date: "7/8/2024"
-date-modified: "7/8/2024"
-image: IMG_7480.jpg
+date: "7/15/2024"
+date-modified: "7/15/2024"
+image: zolaStaring.jpeg
 categories:
   - Personal
-draft: true
+draft: false
 ---
 
-Welcome back to another edition of \[VS\]Codes. After a hiatus last week for the 4th of July holiday, this week's post is on the lighter side - I'll be covering a list of my top podcasts, including content in the biomedical informatics and digital health space, statistics and data science, and a couple of miscellaneous features as well. Without further ado, let's get started!
+Welcome back to another edition of *\[VS\]Codes*! In this week's post, I'll be summarizing a list of my top podcasts, including content that covers the biomedical informatics and digital health space, statistics and data science, and a couple of miscellaneous topics as well. Without further ado, let's get started!
 
-**Biomedicine / Health AI**
+![](mountain.jpg){width=500}
 
-1.  ***The AI Health Podcast***
+------------------------------------------------------------------------
 
--   Hosted by Pranav Rajpurkar and Adriel Saporta
+***Biomedicine / Health AI***
 
--   The AI Health Podcast was my first foray into the realm of podcasts covering technical topics - it felt hard for me to keep up with the plethora of advances that were simultaneously occurring in the medical field with the expanded use of AI. Pranav and Adriel do a great job of synthesizing complex topics across the field of medical AI, explaining both the biomedical context as well as the impact of the methodologies being developed. I appreciate how each episode is separated into a section covering the context of the topic followed by an interview with an expert. The experts interviewed also come from a variety of backgrounds in both academia and industry, offering diverse perspectives.
+1.  [**The AI Health Podcast**](https://www.linkedin.com/company/the-ai-health-podcast/), hosted by [Pranav Rajpurkar](https://dbmi.hms.harvard.edu/people/pranav-rajpurkar) and [Adriel Saporta](https://asaporta.github.io)
 
-2.  **Ground Truths**
+    "The AI Health Podcast" was my first foray into the realm of podcasts covering technical topics - with the demands of my doctoral research and my limited time, I was finding it challenging to keep up with the plethora of advances that were concurrently occurring in medicine with the expanded use of AI. Pranav and Adriel do a great job of synthesizing complex topics across the field of health AI, explaining both the biomedical context as well as the impact of the methodologies being developed. I appreciate how each episode is separated into a section covering the context of the topic followed by an interview with an expert. The experts interviewed also come from a variety of backgrounds in both academia and industry, offering diverse perspectives on artificial intelligence and biomedicine.
 
--   Hosted by Eric Topol
--   Dr. Eric Topol is a giant in cardiovascular medicine, and he has been a keen proponent of expanding the applications of AI to medicine. In this podcast, he interviews experts on a variety of topics in biomedicine and health science. I appreciate how discussions reflect the inverse of my usual approach to
+2.  [**Ground Truths**](https://erictopol.substack.com), hosted by [Eric Topol](https://en.wikipedia.org/wiki/Eric_Topol)
 
-3.  The Pulse
+    Eric Topol is a giant in the field cardiovascular medicine, At the same time, he is a keen proponent of expanding the applications of AI to medicine. In this podcast, he interviews leading experts on a variety of topics in biomedicine and health science. I appreciate how the pace of his discussions synthesizes complex areas into very digestible conversations, and I don't think any other host has the same ability as Eric to bring such esteemed guests to the table so easily!
 
--   Hosted by Wharton Digital Health
--   The Pulse is a great way to gain a broad perspective of the field of health technology from a commercial perspective - the companies and interviews vary tremendously from episode to episode, and I found these episodes particularly helpful while I was in my PhD and looking to learn more about opportunities in the health technology space in industry. Given that the series comes from the Wharton School, there is a focus in some episodes on the business / MBA side of health tech, but much of the content is still relevant to broad audiences looking to learn more about the landscape of the field.
+3.  [**The Pulse**](https://medium.com/wharton-pulse-podcast), hosted by [Wharton Digital Health](https://whartondigitalhealthclub.org)
 
-**Data Science / Statistics**
+    I learned about "The Pulse" from other Wharton students while I was at the University of Pennsylvania. This podcast is a great way to gain a broad perspective of the field of health technology from a commercial perspective - the companies and interviews vary tremendously from episode to episode, and I found these episodes particularly helpful while I was in academia and looking to learn more about opportunities in the health technology space in industry. Given that the series comes from the Wharton School, there is a focus in some episodes on the business / MBA side of health tech, but much of the content is still relevant to broad audiences looking to learn more about the landscape of the field.
 
-4.  The Data Chief
+***Data Science / Statistics***
 
--   How does one become a Chief Data Officer? What does it take to manage the data infrastructure of an organization? How does one continue to support a culture of innovation and progress from such a
+4.  [**The Data Chief**](https://www.thoughtspot.com/data-chief/podcast), hosted by [Cindi Howson](https://www.thoughtspot.com/author/cindi-howson)
 
-5.  Casual Inference
+    How does one become a "Chief Data Officer"? What does it take to manage the data infrastructure of an organization? How does one continue to support a culture of innovation and progress from such a high-level position? "The Data Chief" answers these questions and more through interviews with leaders across a variety of industries. I appreciate how this podcast exposes listeners to the importance of well-maintained data ecosystems across practically any application area one can think of.
 
--   Hosted by Lucy D'agostino McGowan and Ellie Murray
+5.  [**Casual Inference**](https://casualinfer.libsyn.com), hosted by [Lucy D'Agostino McGowan](https://www.lucymcgowan.com) and [Ellie Murray](https://www.bu.edu/sph/profile/eleanor-murray/)
 
--   
+    A play on the field of "causal inference," this podcast covers a variety of topics in epidemiology, statistics, data science, causal inference, and public health. I am a big fan of the hosts' mantra of "keeping it casual" by requiring guests to explain their subject matter expertise as simply as they can!
 
-6.  Build a Career in Data Science
+6.  [**Build a Career in Data Science**](https://podcast.bestbook.cool), hosted by [Jacqueline Nolis](https://jnolis.com) and [Emily Robinson](https://hookedondata.org/about)
 
--   Hosted by Jacqueline Nolis and Emily Robinson
+    This podcast serves as an accompaniment to Jacqueline and Emily's amazing book "Build a Career in Data Science," but there is absolutely no need to have read the book to follow along! Jacqueline and Emily spend each episode on a chapter from their book, covering practical advice for how to succeed in the data science industry. Topics include how to interview for a data science job, how to communicate with stakeholders, how to pick the right position for you, and more!
 
--   This podcast serves as an accompaniment to Nolis and Robinson's book "Build a Career in Data Science".
+7.  [**Not So Standard Deviations**](https://nssdeviations.com), hosted by [Roger Peng](https://rdpeng.org) and [Hilary Parker](https://hilaryparker.com)
 
-7.  Not So Standard Deviations
+    As I transitioned from the biomedical focus of my dissertation research to broader data science applications, I wanted to find a podcast that could expose me to the gamut of statistics, machine learning, data science. "Not So Standard Deviations" fits this bill to a tee, including discussions of topics in both data science and tech while making time for fun tangents and detours depending on the news of the day.
 
--   Hosted by Roger Peng and Hilary Parker
+***Miscellaneous***
 
--   As I transitioned from the biomedical focus of my dissertation research to broader data science applications, I wanted to find a podcast that could expose me to the gamut of statistics and data science. Not So Standard Deviations fits this bill quite well, including discussions of topics in the data science and tech while making time for fun side-paths and detours.
+8.  [**The Happiness Lab**](https://www.pushkin.fm/podcasts/the-happiness-lab-with-dr-laurie-santos), hosted by [Laurie Santos](https://www.drlauriesantos.com)
 
-**Miscellaneous**
+    Laurie Santos is a professor of psychology at Yale and has spent her career studying the evolutionary origins of human cognition and the science of happiness. In this podcast, she considers a variety of questions in the happiness space using a science-based approach, interviewing a plethora of guests across the field of human cognition. I've found the way I think about how I approach each of my days has notably shifted since finding this podcast!
 
-8.  The Happiness Lab
+9.  [**"Factually!"**](https://headgum.com/factually-with-adam-conover), hosted by [Adam Conover](https://www.adamconover.net)
 
--   Hosted by Laurie Santos
+    I first learned about Adam Conover from watching his television show "Adam Ruins Everything," where he reveals hidden truths about a variety of topics that are commonly misunderstood by the public using a comedic lens. "Factually!" continues this tradition of irreverently diving deeper through interviews with experts that cover every topic imaginable, whether it be the ethics of artificial intelligence or "your houseplants can think!"
 
--   Dr. Laurie Santos is a professor in \_\_\_ at Yale and has spent her career studying \_\_\_\_. In this podcast, she considers a variety of questions in the happiness space using a science-based approach, interviewing
+----------------------------------------------------------------------------------------
 
-9.  Factually!
-
--   Hosted by Adam Conover
-
--   I first learned about Adam Conover from watching his comedic television show "Adam Ruins Everything," where he
+This concludes my blog post for today. Until next week!
