@@ -14,9 +14,9 @@ title: "Teaching and Mentorship"
     -   University of Pennsylvania Department of Biostatistics, Epidemiology, and Informatics, Philadelphia, PA
 -   Graduate Tutor – “[Machine Learning](https://alliance.seas.upenn.edu/~cis520/wiki/)”, 2022
     -   University of Pennsylvania Department of Computer and Information Science, Philadelphia, PA
--   Graduate Mentor and Lecturer for “[Summer Computational Biology Preview](https://sites.google.com/view/gcb-scbp)”, Summer 2021
+-   Graduate Mentor and Lecturer - “[Summer Computational Biology Preview](https://sites.google.com/view/gcb-scbp)”, Summer 2021
     -   University of Pennsylvania Genomics and Computational Biology Graduate Group, Philadelphia, PA
--   Graduate Teaching Assistant for [Python Bootcamp](https://github.com/PennGCB/python_bootcamp_2020), Summer 2020
+-   Graduate Teaching Assistant - [Python Bootcamp](https://github.com/PennGCB/python_bootcamp_2020), Summer 2020
     -   University of Pennsylvania Genomics and Computational Biology Graduate Group, Philadelphia, PA
 -   Undergraduate Teaching Assistant – “[Intro to Computational Genomics](https://courses.cs.duke.edu/fall18/compsci260/)”, 2017 to 2018
     -   Duke University Department of Computer Science, Durham, NC

@@ -1,226 +1,194 @@
 ---
-title: "Cascadia conf"
-description: ""
+title: "Cascadia R Conference 2024"
+description: "A few talk summaries and my personal takeaways"
 author: "Vivek Sriram"
-date: "7/8/2024"
-date-modified: "7/8/2024"
-image: zolaStaring.jpeg
+date: "7/22/2024"
+date-modified: "7/22/2024"
+image: lakesideChats.jpg
 categories:
-  - Personal
-draft: true
+  - Conferences
+draft: false
 ---
 
-Welcome back to another week of \[VS\]Codes! A few weeks ago, I had the opportunity to attend Cascadia Conf 2024, a local R-focused conference for the data science community of the Pacific Northwest. It was a great experience getting to see so many different applications of data science across a variety of industries, and I enjoyed the experience of getting to connect with other data sciences in the PNW area. Here is a summary of the talks I attended from that day.
+Welcome back to another week of *\[VS\]Codes*! A few weeks ago, I had the opportunity to attend [Cascadia R Conference 2024](https://cascadiarconf.com), a local R conference for the data science community of the Pacific Northwest. It was a great experience getting to see so many different applications of data science across a variety of industries, and I very much enjoyed the experience of connecting with other data scientists from the surrounding PNW area. This blog post will summarize content from some of the talks that I attended that day as well as my personal overall takeaways from the conference.
 
-## Keynote
+![](cascadia.jpg)
 
-"Why is everybody talking about Generative AI" - Deepsha Menghani
+------------------------------------------------------------------------
 
-Gen AI: a type of AI that can create new content based on patterns it has learned from existing data
+### Keynote: "Why is everybody talking about Generative AI?," by [Deepsha Menghani](https://deepshamenghani.quarto.pub/dmenghani/) from Microsoft
 
-Human intervention - reinforcing what is okay and what isn't
+Generative Artificial Intelligence (GenAI) is a type of artificial intelligence that can create new content based on the patterns it has learned from existing day. GenAI can be trained through human intervention - a human can reinforce what behavior is correct and what isn't. GenAI can be very powerful when you make it work *for you*.
 
-e.g. Cascadia Agent Bot - gave LLM the data from the Cascadia agenda
+We can break GenAI use cases into three different scenarios:
 
-Gen AI becomes powerful when you make it work for you
+1.  Direct
+2.  Customized
+3.  Commercial
 
-Matrix of Gen AI scenarios: Direct - prompt to response customized - prompt to data to response commercial - prompt to deccision making to data to actions to outcome to feedback back to decision making
+In a direct scenario, a prompt leads directly to a response.
 
-e.g. finance Direct - financial literacy Customized - budget and tax optimization Commercial - fraud detection
+In a customized scenario, a prompt will lead to data, which will then lead to a response.
 
-e.g. healthcare Direct - health routien development Customized - fitness/health data summarization Commercial - medical image processing
+Lastly, in a commercial scenario, a prompt will lead to decision making, leading to data, then to actions, then to an outcome, then to feedback, and back to decision making. This will be an iterative process.
 
-e.g. education Direct - conceptual understanding Customized - personalized study plan (e.g. story about chickens vs 3-1=2) Commercial - reasoning and content generation (e.g. khanmigo bot for Khan academy) - safe space to go back and forth while learning something - teacher mode: suggesting how to teach
+With this framework of GenAI scenarios, we can see how GenAI might operate across different fields.
 
-e.g. you direct - code assistance/copilot - turn commenting into code (GitHub Copilot / chattr) - synthetic data generation Customized - readme/documentation generator - returning consistent readme structure/doocumentation Commercial - Shiny application support bot - feed documentation into bot that will be at the bottom of your web app. helps users when they want to use your dashboard
+| Field      | Direct                                                                                   | Customized                                                                              | Commercial                                                                                                                                                          |
+|-----------------|-----------------|-----------------|-----------------------|
+| Finance    | Financial literacy                                                                       | Budget and tax optimization                                                             | Fraud detection                                                                                                                                                     |
+| Healthcare | Developing a general health routine                                                      | Personalized fitness / health data summaries                                            | Medical image processing                                                                                                                                            |
+| Education  | General conceptual explanations                                                          | Personalized study plans                                                                | Reasoning and content generation (e.g. Khanmigo bot - a safe space to converse while learning)                                                                      |
+| You!       | Code assistance / copilot (e.g. turning comments into code or synthetic data generation) | README / documentation generation. Return a consistent README / documentation structure | Shiny application support bot. Feed documentation into a bot that sits at the bottom of your web app. This bot can help users when they want to use your dashboard. |
 
-The Good - knowledge accessibility, personalization, creativity, efficiency
+: GenAI scenarios for different fields
 
-The Bad - garbage in/out, privacy, dependency, hallucination, misinformation
+GenAI has many pros and cons to consider:
 
-The Ugly - bias, resource intesinve, cost, ethical dilemma, evolving regulations
+| The Good                | The Bad                  | The Ugly             |
+|-------------------------|--------------------------|----------------------|
+| Knowledge accessibility | Garbage in = garbage out | Bias                 |
+| Personalization         | Data Privacy             | Resource Intensive   |
+| Creativity              | Dependencies             | Cost                 |
+| Efficiency              | Hallucinations           | Ethics               |
+|                         | Misinformation           | Evolving Regulations |
 
-It's more and more important to have good, comprehensive documentation (i.e. training data).
+: "The Good, The Bad, and The Ugly" of GenAI
 
-When you have a hammer, everything looks like a nail. - Don't think gen AI is the only tool think about the impact you want!
+GenAI can be incredibly useful in commercial settings if you train it on an application that you've developed so that it can help users navigate the application. However, this means it's more important than ever before to have good, comprehensive documentation, because this will be the training data for your GenAI model!
 
-Questions - how to pick the right LLM? Go with accessbility, cost, data privacy - how to evaluate output? Evaluation is such an evolving field. Different models can check for different things (e.g. no swear words). Human evaluation also - what is impact on jobs of ppl like us? ppl who use AI to advance their work will do better. Up-leveling from nitty-gritty to strategy. Some jobs you will be able to advance using AI. Other jobs may not be useful. Employers should train their employees in terms of how they can use it in their jobs
+A caveat to using GenAI - when you have a hammer, everything looks like a nail! Don't fall into the trap of thinking that GenAI is the only tool you can use... remember to think about the impact that you want!
 
-## R Workflows in Azure Machine Learning for Athletic Data Analysis - Emmily Kraschel
+*Questions:*
 
-sportsworking fast - data collection is live, daily, weekly, and longer - storage - basic analysis and reporting - decision making
+-   How do you pick the right LLM for your purposes?
 
-conflicts with the slow work of data science - data cleaning - in-depth reports and aggregation - advanced analysis - connecting the dots
+    -   Go with accessibility, cost, data privacy
 
-conflicting needs: - changing data, constant additions, too many versions - bottlenecks and stopping points - lack of controlled experiments
+-   How do you evaluate the output of an LLM?
 
-old framework: - automated reports via dashboard. good for fast, bad for slow... - what do we put on the dashboard? new metrics? - no central source for raw instrument data - variety of IDs from different instrument interfaces - data in different versions, different places, different files - CSV creation and pull was slow, too many CSVs...
+    -   Evaluation is such an evolving field. Different models can check for different things (e.g. no swear words). Human evaluation also
 
-new framework goals: - improve outcomes (more complete, valid, actionable data) - - lower barriers to more complex data science and analytics - aggregate data in a single place, unify player IDs - more compute power -- ability to collaborate and compute easier - fewer bottlenecks - duplication, updates, incomplete data, etc.
+-   What is the impact on jobs of data scientists?
 
-Azure ML - analysis in jupyter notebooks - configurable compute - running job pipelines - loading and storing data - data security
+    -   People who use AI to advance their work will do better. There will be an up-leveling from nitty-gritty work to strategic oversight. Some jobs will become more impactful through the introduction of AI. Other jobs may not find AI to be useful. Employers should train their employees in terms of how they can best apply AI in their jobs.
 
-still have automated dashboard for day-to-day - better for slow work, ability to step back from constant stream of data - able to pull from all instrument APIs - easier data merging - easier to maintain most recent version of data, quicker due to higher computing power - centralized data storage
+### "R Workflows in Azure Machine Learning for Athletic Data Analysis," by [Emily Kraschel](https://github.com/ekrasch) from the University of Oregon
 
-e.g. - hamstring injury predictability - discrete time survival models - differences across genders - jump height by rate of force development (squatting and jumping) by gender
+When working with data related to sports, you need to work fast. Data collection is live, and will need to be evaluated over a variety of timescales, from daily to weekly to even longer. Sports analytics work requires efficient storage, as well as a combination of basic analysis and reporting as well as more complicated decision making.
 
-## Fair ML - Simon Couch
+This fast space of sports analytics stands in high contrast to the slow work of data science, which generally involves extensive data cleaning, the development of in-depth reports and aggregation, and advanced data analysis.
 
--   <https://github.com/simonpcouch/cascadia-24>
--   predicted vs actual vase weight - it's a bad model, but not an UNFAIR model
--   same dist for home values. This is a bad model, and we'd say it's unfair b/c we're taxing unfairly
+The conflicting needs of data science and sports analytics are thus as follows: - data are changing constantly. There are many new versions of the data and many additions to existing data - data science in general comes with numerous bottlenecks and stopping points - sports data is inherently observational, resulting in an inability to perform controlled experimentation
 
-Fairness is not just about statistical behavior - fairness is about our beliefs
+The old framework implemented by the team at the University of Oregon focused on automated reports generated from a data analysis dashboard. This process was good for a fast pace of work, but hindered slower, more complicated analysis. It was challenging to take a step back and decide on new metrics that could be incorporated into the dashboard. There was no central source for raw data, resulting in a variety of athlete IDs coming from different instrument interfaces. Furthermore, with the lack of centrality in the infrastructure of the system, data would exist in different versions, different places, and different file formats. The team was left with a clunky system if they tried to pull data out of the dashboard to perform further, more in-depth analysis.
 
-tidymodels, rsample, recipes, parsnip, Tune, yardstick - software to support fair ML
+Thus, the goals of the new framework were as follows: - improve competition outcomes through the generation of more complete, valid, actionable data - lower the barriers to more complex data science and analytics - aggregate the data in a centralized location and unify athlete IDs across instrumentation sources - enhance compute power and the ability to collaborate - reduce bottlenecks in data analysis (e.g. duplication, updates, incomplete data, etc.)
 
-Defining fairness... - this is really hard! Translation of values into mathematical measures
+With these goals in mind, the team decided to migrate their data infrastructure to the cloud with Azure ML. Services that they have begun to take advantage of include: - analysis in Jupyter notebooks - configurable compute - services for pipeline development and implementation - improved data storage and loading - enhanced data security
 
-Proposal: the most "performant" model is the most fair model - by R\^2 / RSME - apply a statistcal technique called 'calibration' to get errors independently and identically distribution - error percentage matters too...
+The team still has an automated dashboard for day-to-day analysis. However, the new platform improves their ability to perform slow work, letting them step back from the constant stream of data. Now they can pull data easily across all instrument APIs into a centralized storage point. They are able to merge data more easily, maintain the most recent version of a given dataset, and perform compute more quickly.
 
-New proposal: similar percentage error is most fair - more "fair" but "worse" model performance
+With this new cloud-based infrastructure, the team is able to perform a variety of more complicated analysis in R, including developing prediction models for hamstring injuries through the application of discrete time survival models, or evaluating differences in jump height by rate of force development across genders.
 
-Definitions of fairness are not mathematically or morally compatible in general - Mitchell et al 2021
+### "[Fair Machine Learning](https://github.com/simonpcouch/cascadia-24)," by [Simon Couch](https://www.simonpcouch.com) from Posit PBC
 
-The whole system - how will predictions be used at the end of the day? - metrics evaluate the model, but the model is just one part of a larger system
+What does it mean for a model to be good vs. a model to be fair? A good model will produce a high value of sensitivity, specificity, or accuracy, all depending on the metric that you choose. Fairness, on the other hand, is not just about statistical behavior. Fairness is about our beliefs. We can think of fairness as the translation of values into mathematical measures.
 
-the hard parts - articulating what fairness means to your (or stakeholders) in a problem context - choosing a mathematical measure of fairness that speask to that meaning - situating the resulting measure in the whole system
+In general, definitions of fairness are not mathematically or morally compatible (see [Mitchel et al. 2021](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-042720-125902)). Metrics such as *R^2^* and *AUC* are useful for evaluating a model, but at the end of the day, a model is just a single part of a larger system. It is important to think about how model predictions will be used at the end of the day.
 
-Choose tools that help you think about the hard parts
+The hard part of this process is articulating what fairness means to you (or your stakeholders) in the context of a problem. Then, you need to choose a mathematical measure of fairness that speaks to that meaning - this should situate the resulting measure in the context of the entire system.
 
-tmwr.org tidymodels.org
+Choose tools that help you think about the hard parts of fair ML. The {tidymodels} set of packages, including {rsample}, {recipes}, {parsnip}, {tune}, and {yardstick}, are a great set of software options to support fair machine learning. You can refer to the textbook [Tidy Modeling with R](tmwr.org) or [tidymodels.org](tidymodels.org) for more information on how to use these tools.
 
-Questions: - structured way to get stakeholders involved? model cards - couple paragraphs of the context for how the data arose and the techniques used to model the data. can be done with the vetiver package
+*Questions:*
 
-## How to make a Thousand Plots Look Good: Data Viz Tips for Parameterized Reporting
+-   What is a structured way to get stakeholders involved?
 
-<https://cascadia2024.rfortherestofus.com/#/title-slide>
+    -   Model cards are a great option. These are just a couple of paragraphs that provide context for how the data were initially generated and various techniques used to model the data. Model cards can be generated using the {vetiver} package.
 
--   R for the Rest of Us: teaching how to use R, consulting services as well
+### "[How to make a Thousand Plots Look Good: Data Viz Tips for Parameterized Reporting](https://cascadia2024.rfortherestofus.com/#/title-slide)," by [David Keyes](https://rfortherestofus.com/about) from R for the Rest of Us
 
-Parameterized Reporting: make a single doc in markdown/Quarto and make multiple reports at once e.g. data visualization templates for housing/demographics across different towns/counties/countries.
+Parameterized reporting refers to process of creating a single document in markdown/Quarto and using it to make multiple reports at once. For instance, one can work with a single report for the visualization of housing and demographics data, and then expand this report to view data for a variety of towns, counties, and countries.
 
-How to think about data viz in the context of parameterized reporting?
+How can we think about intuitive data visualization in the context of parameterized reporting? Here are some rules to consider:
 
 1.  There is no magic package
+
 2.  Consider the outer limits of your data
 
 -   e.g. scale of income
 
-3.  Minimze text and position it carefully
+3.  Minimize text and position it carefully
+
 4.  Don't label everything
 
--   ggrepel: repel overlapping labels in ggplot
--   shadowtext: background color to text
+-   {ggrepel}: repel overlapping labels in ggplot
+-   {shadowtext}: add background color to text
 
 5.  Hide small values
+
 6.  Don't put text where it could be obscured
 
--   add text elements as multiple layers, include elemnt for text position
+-   Add text elements as multiple layers. Make sure to include a separate element for text position
 
-7.  Highlight strategically
+7.  Highlight items strategically
 
--   color, size, shadow, outline, opacity
--   ggfx
+-   Make use of color, size, shadow, outline, and opacity
+-   Consider the R package {ggfx}
 
-Packages are helpers, but you are the one who has to do the thinking
+Here's the ultimate takeaway: there are a countless number of R packages that can help you achieve your goals in modularizing your applications, but at the end of the day, you are the one who has to do the thinking!
 
-## Cartographic Tricks and Techniques in R
+### "Cartographic Tricks and Techniques in R," by [Justin Sherrill](https://econw.com/staff/justin-sherrill/) from ECONorthwest
 
-Justin Sherrill
+Cartography refers to the generation of maps for geographic locations. However, in a more figurative sense, cartography is an exercise in story-telling. Through the information that you convey in your cartographic visualizations, you are choosing the story that you tell. Writing a good story is about making decisions - you need to make the right sacrifices in the information that you choose to exclude.
 
-ECOnorthwest - consulting service - data visualization, housing and demographic analysis
+What are the key principles of "good" cartography? 1. Visual hierarchy (the arrangement of elements that guide the viewer's eye through the content in the right order) 2. Legibility 3. Figure-ground (the ability to differentiate between an object and its background) 4. Balance
 
-Keep it in {ggplot2}! One of the strongest dataviz tools in existence. Sometimes {sf}
+[Jacques Bertin](https://en.wikipedia.org/wiki/Jacques_Bertin) and [William Bunge](https://en.wikipedia.org/wiki/William_Bunge) were two renowned geographers from the 20th century who consistently followed the principles of good cartography. You can refer to a lot of their work to get inspiration for developing cartographic visualizations. [Timo Grossenbacher](https://timogrossenbacher.ch) is a modern-day geographer and data scientist who has used R to develop some beautiful cartographic illustrations. [Here](https://timogrossenbacher.ch/bivariate-maps-with-ggplot2-and-sf/) is a great example of a bivariate thematic map he generated of Switzerland's regional income inequality.
 
-What is "good" cartography? - visual hierarchy, legibility, figure-ground, balance
+As Timo demonstrates, you can do pretty much all of the data visualization you want to do with {ggplot2}. {ggplot2} is one of the strongest data visualization tools in existence.
 
-writing a good story is about making decisions, i.e. making the right sacrifices
+Here is a set of great packages to apply for geospatial data visualization in R and {ggplot2}:
 
-Jacques Bertin, William Bunge, Timo Grossenbacher - great cartographers - <https://timogrossenbacher.ch/bivariate-maps-with-ggplot2-and-sf/> - <https://geo.wa.gov>
+1\. {ggspatial}: includes the north arrow / scale bar
 
-{ggspatial} - including north arrow / scale bar
+2\. {mapboxapi}: can show roads, bodies of water, and more.
 
-{mapboxapi} - can show roads, bodies of water, etc.
+3\. {patchwork}: can do map insets to show larger context of your zoomed in map - can also use {ggmagnify}
 
-position your legend inside the map, especially if you have a lot of white space
+4\. {ggrepel}: label placement to avoid overlapping labels
 
-{patchwork} - can do map insets to show larger context of your zoomed in map - can also use {ggmagnify}
+5\. {st_inscribed_circle}: label an unusually shaped polygon
 
-{ggrepel} - label placement
+6\. {ggforce}: label a subset of points in a nice style
 
-{st_inscribed_circle} - label an unusually shaped polygon
+7\. {ggfx}: fun effects for {ggplot2}
 
-{ggforce} - label a subset of points in a nice style
+8\. {ggdensity}: show density patterns
 
-{ggfx} - fun effects
+9\. {rmapshaper}: simplify geometries of shapes
 
-{ggdensity} - show patterns
+10\. {smoothr}: round the corners for shapes
 
-{rmapshaper} - simplify geometries of shapes
+11\. {ggarrow}: make pretty arrows
 
-{smoothr} - rounded corners for shapes
+12\. {ggstar}: pch symbols
 
-{ggarrow} - nice loking arrows {ggstar} - pch symbols {ggsvg} - use SVGs as points in your plot
+13\. {ggsvg}: use SVGs as points in your plot
 
-Question: dealing with large data? - {mapview} to look at things beforehand - {rmapshaper} can reduce draw time and simplify runtime - chunk things into smaller groups
+These packages are all very easy to implement and can turn your basic cartographic maps into true works of art! If you're interested in playing around with cartographic visualizations, you can get access to open-source geospatial data for the state of Washington from the [Washington Geospatial Open Data Portal](https://geo.wa.gov).
 
-## Dont repeat yourself: templatize Shiny apps with Modules
+### Personal Takeaways
 
-Erica Bishop
+I had a lot of fun attending Cascadia R Conference 2024, and I look forward to being back in 2025! Here are some personal takeaways I got from the conference.
 
-Environmental data science with GSI Environmental
+-   The R community is extremely creative and fun! This conference felt very different from some of the technical biomedical informatics conferences I've attended in the past, many of which were focused purely on scientific advancements. At this conference, there were so many talks that demonstrated all sorts of random things you could do with the language of R, and these wacky detours were both encouraged and celebrated!
 
-Why build a template? - balance customization needs with out-of-the-box tools - maintainable as a small team - easy for other R-coders to use without extra training - minimize overhead cost and time
+-   There is a growing focus on R for production-level ventures, including parameterization and modularization. Many data scientists are interested in scaling R for industrial applications and integrating it with other languages.
 
-bslib theming
+-   While we are currently in a hype cycle for the field of generative AI and large language models, there is still plenty of other interesting work to be accomplished in the field of data science. It's important to not get carried away by the fear of missing out (FOMO)! Focus on the goals of your work and find the right tools for the job (i.e. problem-first instead of tooling-first solutions)
 
-Modularity is the most important pre-requisite - instead of having your UI and server together, have each function as its own function
+------------------------------------------------------------------------
 
-Rhino is our framework of choice because it handles: - apps that scale up - modular structure - consistency across every app - version control (with renv)
-
-Consistent coding practices matter: - reactive variable naming conventions - clean code structure -file naming to follow the rhino structure.
-
-Bottom line: a tamplate is a lightweight workflow for saving time and improving collaboration on R Shiny app development
-
-## High-level, module-based Shiny apps with 'Teal'
-
--   Dror Berel, statistical consultant
-
-unnecessary data wrangling - join subject-level with non-subject level data, causing redundancy - unnecessary pre-calculated metrics for all possible combos of covariates/groups
-
-not using functions, modules
-
-scope creep: too many ad-hoc patches to handle edge cases
-
-Shiny Module: a pair of UI and server functions
-
-Check out Bioconductor, Pharmaverse
-
-## Mat Bayly
-
-quantitative biologist mjbayly.com
-
-Why worry about organizational structures and systems in R?
-
-github.com/essatech/CEMPRA
-
-Separation of concerns: - R package -- biology and core data processing - R Shiny app -- user activity, reactive objects, and app templating
-
-'roxygen2' tags for function/documentation
-
-<https://r-pkgs.com>
-
-Folder with r functions, inst, tests, description
-
-Mohsen Soltanifar - ClinChoice / Northeastern
-
-## Jackie Nolless
-
-I had a dream that I could write code and share it with others
-
-Maybe you want to host: - shiny dashboard plumber API where engineers can pass data to without editing code themselves - arbitrary script that runs on a fixed schedule
-
-this is all different from "i want colleagues to run my R scripts"
-
-Making your code run somewhere else
+This concludes my summary of my experience at Cascadia R Conference 2024! I'd like to give a huge thank you to the [organizers](https://cascadiarconf.com/about/) of this conference for all of their hard work and for bringing the PNW data science community together in such a wonderful event. The next conference I will be attending will be [posit::conf(2024)](https://posit.co/conference/), and I look forward to summarizing my experiences there in another blog post. Until next week, \[VS\]Coders!
