@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/cascadia-conf-24/index.html",
       "/posts/podcasts/index.html",
       "/posts/karpathy-1/index.html",
       "/posts/phd-takeaways/index.html",
