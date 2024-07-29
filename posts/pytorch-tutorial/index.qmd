@@ -15,9 +15,9 @@ In today's blog post, we'll go through the ["Introduction to PyTorch](https://py
 
 ![A screen-grab of the PyTorch introductory documentation](pytorch.png)
 
-This tutorial is designed to walk through every component you would need to start developing models in PyTorch. With that, many of the elements show you how to complete certain steps in multiple ways... In this walkthrough, I will be selecting a subset of elements from these components and streamlining the steps of data processing and model training to showcase exactly how one would use these tools for an example dataset. 
+This tutorial is designed to walk through every component you would need to start developing models in PyTorch. With that, many of the elements show you how to complete certain steps in multiple ways... In this walkthrough, I will be selecting a subset of elements from these components and streamlining the steps of data processing and model training to showcase exactly how one would use these tools for an example dataset.
 
-In a future blog post, I will take the foundation developed through this walkthrough and explore a modifiedd data analysis workflow, with a more complicated neural network and additional hyperparameter training for a different set of data.
+In a future blog post, I will take the foundation developed through this walkthrough and explore a modified data analysis workflow, with a more complicated neural network and additional hyperparameter training for a different set of data.
 
 With background out of the way, let's get started\~
 
@@ -28,9 +28,7 @@ use_python('/opt/anaconda3/bin/python')
 
 Most machine learning workflows involve uploading data, creating models, optimizing model parameters, and performing predictions on input data. This tutorial introduces you to a complete ML workflow implemented in PyTorch.
 
-In PyTorch, we use tensors to encode the inputs and outputs of a model, as well as the model’s parameters. Tensors are a specialized data structure that are very similar to arrays and matrices. 
-
-
+In PyTorch, we use tensors to encode the inputs and outputs of a model, as well as the model’s parameters. Tensors are a specialized data structure that are very similar to arrays and matrices.
 
 ```{python}
 # Import required packages
@@ -77,7 +75,7 @@ PyTorch offers domain-specific libraries such as `TorchText`, `TorchVision`, and
 
 Each PyTorch `Dataset` stores a set of samples and their corresponding labels. Data do not always come in the final processed form that is required for training ML algorithms. We use *transforms* to perform some manipulation of the data and make it suitable for training. Every TorchVision `Dataset` includes 2 arguments: `transform` to modify the samples and `target_transform` to modify the labels.
 
-The FashionMNIST features are in PIL Image format. For training, we need the features as normalized tensors, and the labels as one-hot encoded tensors. To make this transformation, we use the `ToTensor()` function. `ToTensor()` converts a PIL image or NumPy `ndarray` into a `FloatTensor` and scales the image’s pixel intensity values in the range [0., 1.] 
+The FashionMNIST features are in PIL Image format. For training, we need the features as normalized tensors, and the labels as one-hot encoded tensors. To make this transformation, we use the `ToTensor()` function. `ToTensor()` converts a PIL image or NumPy `ndarray` into a `FloatTensor` and scales the image’s pixel intensity values in the range \[0., 1.\]
 
 ```{python}
 # Download training data from open datasets.
@@ -160,7 +158,6 @@ plt.show()
 print(f"Label: {label}")
 ```
 
-
 ## Modeling
 
 ### Defining a neural network
@@ -215,10 +212,7 @@ Now that we have our data and our model, it’s time to train, validate and test
 
 Hyperparameters are adjustable parameters that let you control the model optimization process. Different hyperparameter values can impact model training and convergence rates.
 
-We define the following hyperparameters for training:
-- Number of Epochs - the number times to iterate over the dataset
-- Batch Size - the number of data samples propagated through the network before the parameters are updated
-- Learning Rate - how much to update models parameters at each batch/epoch. Smaller values yield slow learning speed, while large values may result in unpredictable behavior during training.
+We define the following hyperparameters for training: - Number of Epochs - the number times to iterate over the dataset - Batch Size - the number of data samples propagated through the network before the parameters are updated - Learning Rate - how much to update models parameters at each batch/epoch. Smaller values yield slow learning speed, while large values may result in unpredictable behavior during training.
 
 ```{python}
 learning_rate = 1e-3
@@ -232,9 +226,7 @@ To train our model, we need a loss function as well as an optimizer.
 
 Once we set our hyperparameters, we can then train and optimize our model with an optimization loop. Each iteration of the optimization loop is called an epoch.
 
-Each epoch consists of two main parts:
-- The Train Loop - iterate over the training dataset and try to converge to optimal parameters.
-- The Validation/Test Loop - iterate over the test dataset to check if model performance is improving.
+Each epoch consists of two main parts: - The Train Loop - iterate over the training dataset and try to converge to optimal parameters. - The Validation/Test Loop - iterate over the test dataset to check if model performance is improving.
 
 The loss function measures the degree of dissimilarity between an obtained result and the target value, and it is the loss function that we want to minimize during training. To calculate the loss we make a prediction using the inputs of our given data sample and compare it against the true data label value.
 
@@ -255,10 +247,7 @@ We initialize the optimizer by registering the model’s parameters that need to
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 ```
 
-Inside the training loop, optimization happens in three steps:
-- Call `optimizer.zero_grad()` to reset the gradients of model parameters. Gradients by default add up; to prevent double-counting, we explicitly zero them at each iteration.
-- Backpropagate the prediction loss with a call to `loss.backward()`. PyTorch deposits the gradients of the loss w.r.t. each parameter.
-- Once we have our gradients, we call `optimizer.step()` to adjust the parameters by the gradients collected in the backward pass.
+Inside the training loop, optimization happens in three steps: - Call `optimizer.zero_grad()` to reset the gradients of model parameters. Gradients by default add up; to prevent double-counting, we explicitly zero them at each iteration. - Backpropagate the prediction loss with a call to `loss.backward()`. PyTorch deposits the gradients of the loss w.r.t. each parameter. - Once we have our gradients, we call `optimizer.step()` to adjust the parameters by the gradients collected in the backward pass.
 
 #### Full Implementation
 
