@@ -11,7 +11,7 @@ draft: false
 jupyter: python3
 ---
 
-In today's blog post, we'll go through the ["Introduction to PyTorch](https://pytorch.org/tutorials/beginner/basics/intro.html)" tutorial available from the PyTorch's online [learning community](https://pytorch.org/tutorials/index.html).
+In today's blog post, we'll go through the ["Introduction to PyTorch](https://pytorch.org/tutorials/beginner/basics/intro.html)" tutorial available from PyTorch's online [learning community](https://pytorch.org/tutorials/index.html).
 
 ![A screen-grab of the PyTorch introductory documentation](pytorch.png)
 

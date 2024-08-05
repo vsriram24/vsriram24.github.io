@@ -1,0 +1,35 @@
+---
+title: "Obliteride 2024"
+description: "Putting cancer behind us"
+author: "Vivek Sriram"
+date: "8/5/2024"
+date-modified: "8/5/2024"
+image: zolaTongue.jpg
+categories:
+  - Miscellaneous
+draft: false
+---
+
+Welcome back to another week of *\[VS\]Codes*! I currently have some longer tutorials and overviews cooking in the background, which I will be sharing in the coming weeks. In the meantime, I'd like to use this week's post to share some information about an upcoming fundraising event in which I will be participating.
+
+------------------------------------------------------------------------
+
+This coming weekend, I will be taking part in a 25-mile bike ride as a part of [Fred Hutch Obliteride](https://www.obliteride.org). Obliteride is an annual event that raises money for cancer research at Fred Hutch. Since 2013, more than 27,000 participants and volunteers, along with sponsors and over 104,000 Obliteride donors, have raised more than \$48 million for breakthrough work at Fred Hutch.
+
+![](images/12907812_web1_M-Riders-finish.jpg)
+
+Here are a few examples of work that was supported at Fred Hutch by Obliteride in just the past year:
+
+-   Research and clinical advances for a variety of cancers and disease areas, including breast, colon, head and neck, and prostate cancers.
+
+-   Partnerships to increase health equity and reduce disparities in labs, clinics, classrooms, and more.
+
+-   Advances in patient care, including diagnostics, surgery, and follow-up.
+
+**My participation in Obliteride 2024 is focused on amplifying the impact of data science across Fred Hutch.** My team (the [Fred Hutch Data Science Lab](https://hutchdatascience.org)) focuses on getting both data and tools into the hands of researchers at Fred Hutch through the creation of centralized data resources and advanced models and workflows for simplified data analysis, as well as the development of comprehensive training resources and communities of practice across a variety of subjects in biomedical data science.
+
+This year, with the support of our donors, **we aim to accelerate the next discoveries that the Fred Hutch will make via expanded data access, advanced technology, and artificial intelligence**. Any donations toward my profile or that of my team's will directly facilitate the research conducted by groups at Fred Hutch who strive to advance their work by engaging with our data science and AI services.
+
+My team and I are a part of Obliteride because we want to help Fred Hutch overcome cancer once and for all. Please consider sponsoring me [here](https://secure.fredhutch.org/site/TR/?px=2167539&fr_id=2070&pg=personal&success=true) - every donation helps!
+
+Until next week, \[VS\]Coders!
