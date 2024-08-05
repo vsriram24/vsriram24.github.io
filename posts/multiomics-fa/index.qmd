@@ -8,6 +8,8 @@ image: IMG_7480.jpg
 categories:
   - Tutorials
 draft: true
+execute:
+  eval: false
 ---
 
 In this week's blog, I'll be summarizing a tutorial and case study developed by Alex Gurbych from blackthorn.ai on factor analysis for multi-omics data. You can review the original tutorial here: https://levelup.gitconnected.com/multi-omics-analysis-3857956a7a3d. My blog post will simply be summarizing and streamlining the content presented. With context out of the way, let's get started!
@@ -42,14 +44,10 @@ Now, import the CLL dataset. Data is stored as a list of matrices with features 
 
 ```{r}
 utils::data( "CLL_data" )       
-lapply( CLL_data, dim )
+lapply(CLL_data, dim)
 ```
 
-Let’s visualize the number of rows (features) and the number of columns (samples) we have + absent values.
 
-```{r}
-plot_data_overview( MOFAobject )
-```
 
 In the above figure, D tells us the dimensionality of each data modality. (the number of features). N stands for the number of samples. Missing data are represented by grey bars.
 
@@ -57,16 +55,23 @@ In the above figure, D tells us the dimensionality of each data modality. (the n
 
 First, create a model object. It is not trained at the moment.
 
-```{r}
-MOFAobject <- create_mofa( CLL_data )
+```{r,include=FALSE}
+MOFAobject <- create_mofa(CLL_data)
+```
+
+Let’s visualize the number of rows (features) and the number of columns (samples) we have + absent values.
+
+```{r,include=FALSE}
+plot_data_overview( MOFAobject )
 ```
 
 Second, set required options. Read more about data options here; model options here; about training options here.
 
-```{r}
-data_opts <- get_default_data_options( MOFAobject )
-model_opts <- get_default_model_options( MOFAobject ) model_opts$num_factors <- 15
-train_opts <- get_default_training_options( MOFAobject )
+```{r,include=FALSE}
+data_opts <- get_default_data_options(MOFAobject)
+model_opts <- get_default_model_options(MOFAobject) 
+model_opts$num_factors <- 15
+train_opts <- get_default_training_options(MOFAobject)
 train_opts$seed <- 1
 train_opts$save_interrupted <- TRUE
 train_opts$convergence_mode <- "slow"
@@ -75,15 +80,14 @@ train_opts$convergence_mode <- "slow"
 Finally, prepare the model and train it.
 
 
-```{r}
+```{r,include=FALSE}
 MOFAobject <- prepare_mofa( MOFAobject,
                             training_options = train_opts,
                             model_options = model_opts,
                             data_options = data_opts )
-MOFAobject <- run_mofa( MOFAobject, 
-              outfile="/Users/ogurb/Downloads/MOFA2_CLL.hdf5" )
+MOFAobject <- run_mofa( MOFAobject)
 
-saveRDS( MOFAobject, "MOFA2_CLL.hdf5" )
+#saveRDS( MOFAobject, "MOFA2_CLL.hdf5" )
 ```
 
 # 5. Postprocessing
@@ -98,7 +102,7 @@ Metadata are stored in a data.frame. Important columns:
 
 You can load the full metadata from the Bioconductor package `BloodCancerMultiOmics2017` as `data("patmeta")` object.
 
-```{r}
+```{r,include=FALSE}
 # Load sample metadata
 CLL_metadata <- fread( "ftp://ftp.ebi.ac.uk/pub/databases/mofa/cll_vignette/sample_metadata.txt" )
 # Add sample metadata to the model
@@ -109,7 +113,7 @@ samples_metadata( MOFAobject ) <- CLL_metadata
 
 To have a good model, reduced dimensions (or factors) must not be correlated. If you observe significant interdependence between factors, you probably used too many factors or the normalization was not adequate.
 
-```{r}
+```{r,include=FALSE}
 plot_factor_cor( MOFAobject )
 ```
 
@@ -122,7 +126,7 @@ Factors show no significant correlation
 
 The explained variance summarises the sources of variation from the observed factors.
 
-```{r}
+```{r,include=FALSE}
 plot_variance_explained( MOFAobject, 
                          max_r2=15 )
 ```
@@ -143,7 +147,7 @@ Higher percentages of the variance indicate a stronger association. It also mean
 
 Let’s compute explained variation per data modality:
 
-```{r}
+```{r,include=FALSE}
 plot_variance_explained( MOFAobject,
                          plot_total = T )[[2]]
 ```
@@ -160,7 +164,7 @@ Drug reaction (~53%) and mRNA profile (~42%) capture the most variability amongs
 
 Let’s compute the interconnection of the sample metadata (Gender, survival outcome (Died TRUE/FALSE), and Age) and Factor vals:
 
-```{r}
+```{r,include=FALSE}
 correlate_factors_with_covariates( MOFAobject, 
                       covariates = c("Gender","Died","Age"), 
                       plot = "log_pval" )
@@ -176,7 +180,7 @@ We will go back to associations with clinical data at the end of the story.
 ## 8.1. Factor Values
 A Factor is a linear combination of initial features and represents a source of data variability. On the image below, Factor values are located around the zero axis as the data is mandatory centered prior to the Factor analysis. Points with positive and negative signs represent contrasting phenotypes. A larger absolute value correlates with a more expressed biological effect.
 
-```{r}
+```{r,include=FALSE}
 plot_factor( MOFAobject,
              color_by = "Factor1",
              factors=1)
@@ -188,7 +192,7 @@ Feature weights are the grades of the interconnection of each feature with each 
 ## 8.3 Factor1 Somatic Mutations
 Explained Variance demonstrated that Factor1 represents variance across all omics. The somatic mutation data are very sparse and any DNA edit will have consequences to all subsequent omics layers.
 
-```{r}
+```{r,include=FALSE}
 plot_weights( MOFAobject,
               view = "Mutations",
               factor=1,
@@ -202,7 +206,7 @@ Immunoglobulin Heavy Chain Variable (IGHV) region gene mutation clearly stands o
 Let’s create a plot to display features with the corresponding weight sign on the right:
 
 
-```{r}
+```{r,include=FALSE}
 plot_top_weights( MOFAobject,
                   view = "Mutations",
                   nfeatures = 15,
@@ -213,7 +217,7 @@ plot_top_weights( MOFAobject,
 
 IGHV has a positive weight. Samples with positive Factor1 values have IGHV mutation whereas samples with negative Factor1 values do not have the IGHV mutation. To confirm this, let’s plot the Factor values and color the IGHV mutation status.
 
-```{r}
+```{r,include=FALSE}
 plot_factor( MOFAobject,
              dodge = TRUE,
              add_violin = TRUE,
@@ -224,7 +228,7 @@ plot_factor( MOFAobject,
 ## 8.4 Factor1 mRNA Expression
 From the variance explained plot we know that Factor1 drives variation across all data modalities. Let’s visualize the mRNA expression changes that are associated with Factor1:
 
-```{R}
+```{r,include=FALSE}
 plot_weights( MOFAobject,
               nfeatures = 10,
               view = "mRNA",
@@ -240,7 +244,7 @@ Let’s verify the last assumption.
 ## 8.5. Factor1 Molecular Signatures Clustering
 Let's make a heat map of Factor1 values (x-axis) versus gene expression values (y-axis). Samples are colored by IGHV status — is the mutation present (red) or not (blue).
 
-```{r}
+```{r,include=FALSE}
 plot_data_heatmap( MOFAobject,
                    scale = "row",
                    cluster_cols = FALSE,

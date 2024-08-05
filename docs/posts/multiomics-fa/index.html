@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Vivek Sriram">
-<meta name="dcterms.date" content="2024-08-05">
-<meta name="description" content="Putting cancer behind us">
+<meta name="dcterms.date" content="2024-05-27">
+<meta name="description" content="Tutorial by Alexx Gurbych from blackthorn.ai">
 
-<title>Home - Obliteride 2024</title>
+<title>Home - Multi-Omics Data Factor Analysis - AI in Precision Medicine</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -127,14 +161,14 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Obliteride 2024</h1>
+      <h1 class="title">Multi-Omics Data Factor Analysis - AI in Precision Medicine</h1>
                   <div>
         <div class="description">
-          Putting cancer behind us
+          Tutorial by Alexx Gurbych from blackthorn.ai
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Miscellaneous</div>
+                <div class="quarto-category">Tutorials</div>
               </div>
                   </div>
   </div>
@@ -152,14 +186,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 5, 2024</p>
+        <p class="date">May 27, 2024</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">August 5, 2024</p>
+        <p class="date-modified">May 27, 2024</p>
       </div>
     </div>
       
@@ -170,7 +204,36 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">2. Dataset description</a></li>
+  <li><a href="#model-training" id="toc-model-training" class="nav-link" data-scroll-target="#model-training">4. Model training</a></li>
+  <li><a href="#postprocessing" id="toc-postprocessing" class="nav-link" data-scroll-target="#postprocessing">5. Postprocessing</a>
+  <ul class="collapse">
+  <li><a href="#add-sample-metadata" id="toc-add-sample-metadata" class="nav-link" data-scroll-target="#add-sample-metadata">5.1. Add sample metadata</a></li>
+  <li><a href="#factors-correlation-analysis" id="toc-factors-correlation-analysis" class="nav-link" data-scroll-target="#factors-correlation-analysis">5.2 Factors Correlation Analysis</a></li>
+  </ul></li>
+  <li><a href="#variance-breakdown" id="toc-variance-breakdown" class="nav-link" data-scroll-target="#variance-breakdown">6. Variance Breakdown</a>
+  <ul class="collapse">
+  <li><a href="#explained-variance-decomposition-by-factor" id="toc-explained-variance-decomposition-by-factor" class="nav-link" data-scroll-target="#explained-variance-decomposition-by-factor">6.1 Explained variance decomposition by factor</a></li>
+  <li><a href="#explained-variance-per-omics" id="toc-explained-variance-per-omics" class="nav-link" data-scroll-target="#explained-variance-per-omics">6.2 Explained Variance per Omics</a></li>
+  </ul></li>
+  <li><a href="#factor-association-analysis" id="toc-factor-association-analysis" class="nav-link" data-scroll-target="#factor-association-analysis">7. Factor Association Analysis</a>
+  <ul class="collapse">
+  <li><a href="#factor-values" id="toc-factor-values" class="nav-link" data-scroll-target="#factor-values">8.1. Factor Values</a></li>
+  <li><a href="#feature-weights" id="toc-feature-weights" class="nav-link" data-scroll-target="#feature-weights">8.2 Feature Weights</a></li>
+  <li><a href="#factor1-somatic-mutations" id="toc-factor1-somatic-mutations" class="nav-link" data-scroll-target="#factor1-somatic-mutations">8.3 Factor1 Somatic Mutations</a></li>
+  <li><a href="#factor1-mrna-expression" id="toc-factor1-mrna-expression" class="nav-link" data-scroll-target="#factor1-mrna-expression">8.4 Factor1 mRNA Expression</a></li>
+  <li><a href="#factor1-molecular-signatures-clustering" id="toc-factor1-molecular-signatures-clustering" class="nav-link" data-scroll-target="#factor1-molecular-signatures-clustering">8.5. Factor1 Molecular Signatures Clustering</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">9. Summary</a></li>
+  <li><a href="#key-takeaways-and-suggestions" id="toc-key-takeaways-and-suggestions" class="nav-link" data-scroll-target="#key-takeaways-and-suggestions">10. Key takeaways and suggestions</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">9. Conclusions</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -179,22 +242,121 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Welcome back to another week of <em>[VS]Codes</em>! I currently have some longer tutorials and overviews cooking in the background, which I will be sharing in the coming weeks. In the meantime, I’d like to use this week’s post to share some information about an upcoming fundraising event in which I will be participating.</p>
+<p>In this week’s blog, I’ll be summarizing a tutorial and case study developed by Alex Gurbych from blackthorn.ai on factor analysis for multi-omics data. You can review the original tutorial here: https://levelup.gitconnected.com/multi-omics-analysis-3857956a7a3d. My blog post will simply be summarizing and streamlining the content presented. With context out of the way, let’s get started!</p>
 <hr>
-<p>This coming weekend, I will be taking part in a 25-mile bike ride as a part of <a href="https://www.obliteride.org">Fred Hutch Obliteride</a>. Obliteride is an annual event that raises money for cancer research at Fred Hutch. Since 2013, more than 27,000 participants and volunteers, along with sponsors and over 104,000 Obliteride donors, have raised more than $48 million for breakthrough work at Fred Hutch.</p>
-<p><img src="images/12907812_web1_M-Riders-finish.jpg" class="img-fluid"></p>
-<p>Here are a few examples of work that was supported at Fred Hutch by Obliteride in just the past year:</p>
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>What is factor analysis? Factor analysis refers to a statistical method that summarizes the variability across observed, correlated variables with a smaller set of variables. These newly generated variables correspond to the ‘factors’ of the original data - they are generated by determining linear combinations of the observed variables and adding small fixed deviations.</p>
+<p>Correlations between the generated factors from a dataset and the outcome variable can reveal previously unobserved latent variables that affect the response of the data. The discovery of such hidden variables and their correlations with output is the main goal of factor analysis.</p>
+<p>In the following workflow, we will derive biological insights from a multiomic dataset through the application of factor analysis.</p>
+</section>
+<section id="dataset-description" class="level1">
+<h1>2. Dataset description</h1>
+<p>For our example dataset, we will make use of a cohort of 200 patients diagnosed with chronic lymphocytic leukemia (CLL). CLL is publicly available here: <a href="https://bioconductor.org/packages/release/data/experiment/html/BloodCancerMultiOmics2017.html" class="uri">https://bioconductor.org/packages/release/data/experiment/html/BloodCancerMultiOmics2017.html</a></p>
+<p>The CLL dataset includes 4 data modalities: genomics (somatic mutations), epigenomics (DNA methylation), transcriptomics (RNA-seq), and phenotypes (drug response). Around 40% of the feature values are absent.</p>
+<p>We start by importing the required libraries:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~/Documents/Developer/vsriram24.github.io/posts/multiomics-fa"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MOFA2)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MOFAdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, import the CLL dataset. Data is stored as a list of matrices with features as rows, samples as columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">data</span>( <span class="st">"CLL_data"</span> )       </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(CLL_data, dim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the above figure, D tells us the dimensionality of each data modality. (the number of features). N stands for the number of samples. Missing data are represented by grey bars.</p>
+</section>
+<section id="model-training" class="level1">
+<h1>4. Model training</h1>
+<p>First, create a model object. It is not trained at the moment.</p>
+<p>Let’s visualize the number of rows (features) and the number of columns (samples) we have + absent values.</p>
+<p>Second, set required options. Read more about data options here; model options here; about training options here.</p>
+<p>Finally, prepare the model and train it.</p>
+</section>
+<section id="postprocessing" class="level1">
+<h1>5. Postprocessing</h1>
+<section id="add-sample-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="add-sample-metadata">5.1. Add sample metadata</h2>
+<p>Metadata are stored in a data.frame. Important columns: - Age: age in years - Died: (T/F) did the patient die? - Gender: (M/F) - treatedAfter: (T/F) was the patient treated after?</p>
+<p>You can load the full metadata from the Bioconductor package <code>BloodCancerMultiOmics2017</code> as <code>data("patmeta")</code> object.</p>
+</section>
+<section id="factors-correlation-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="factors-correlation-analysis">5.2 Factors Correlation Analysis</h2>
+<p>To have a good model, reduced dimensions (or factors) must not be correlated. If you observe significant interdependence between factors, you probably used too many factors or the normalization was not adequate.</p>
+<p>Conclusions: Factors show no significant correlation</p>
+</section>
+</section>
+<section id="variance-breakdown" class="level1">
+<h1>6. Variance Breakdown</h1>
+<section id="explained-variance-decomposition-by-factor" class="level2">
+<h2 class="anchored" data-anchor-id="explained-variance-decomposition-by-factor">6.1 Explained variance decomposition by factor</h2>
+<p>The explained variance summarises the sources of variation from the observed factors.</p>
+<p>Conclusions: - Factor1 represents strong diversity across all omics modalities. Looks like, it is supreme for the disease etiology. - Factor2 expresses a very strong variance related solely to the drug response. - Factor3 retains variance in all omics, except the epigenomic profile. - Factor4 has a medium mRNA variance. - Factor5 shows the interdependency between drug response and mRNA.</p>
+<p>We will omit other components as their variances are expressed worse.</p>
+</section>
+<section id="explained-variance-per-omics" class="level2">
+<h2 class="anchored" data-anchor-id="explained-variance-per-omics">6.2 Explained Variance per Omics</h2>
+<p>Explained variance is a ratio to which a mathematical model considers the variation (or dispersion) of a dataset. Explained variance is the part of the total variance of the model that is explained by factors that are actually present and aren’t due to error variance. Higher percentages of the variance indicate a stronger association. It also means that you make better predictions.</p>
+<p>Let’s compute explained variation per data modality:</p>
+<p>Conclusions: Extracted 15 Factors explain: ~53% Drug effect variance ~27% epigenomic profile variance ~42% mRNA variance ~20% Mutations variance Drug reaction (~53%) and mRNA profile (~42%) capture the most variability amongst omics.</p>
+</section>
+</section>
+<section id="factor-association-analysis" class="level1">
+<h1>7. Factor Association Analysis</h1>
+<p>Let’s compute the interconnection of the sample metadata (Gender, survival outcome (Died TRUE/FALSE), and Age) and Factor vals:</p>
+<p>Conclusions: Most Factors don’t have a clear association with any of the covariates. Factors 13 and 15 associated with survival outcome. We will go back to associations with clinical data at the end of the story.</p>
+<p>#8. Factor1 Profile</p>
+<section id="factor-values" class="level2">
+<h2 class="anchored" data-anchor-id="factor-values">8.1. Factor Values</h2>
+<p>A Factor is a linear combination of initial features and represents a source of data variability. On the image below, Factor values are located around the zero axis as the data is mandatory centered prior to the Factor analysis. Points with positive and negative signs represent contrasting phenotypes. A larger absolute value correlates with a more expressed biological effect.</p>
+</section>
+<section id="feature-weights" class="level2">
+<h2 class="anchored" data-anchor-id="feature-weights">8.2 Feature Weights</h2>
+<p>Feature weights are the grades of the interconnection of each feature with each factor. A larger absolute feature weight indicates a stronger association of the feature with the factor. A sign interprets the effect direction: positive — the feature demonstrates larger values in the samples with positive factor values, etc.</p>
+</section>
+<section id="factor1-somatic-mutations" class="level2">
+<h2 class="anchored" data-anchor-id="factor1-somatic-mutations">8.3 Factor1 Somatic Mutations</h2>
+<p>Explained Variance demonstrated that Factor1 represents variance across all omics. The somatic mutation data are very sparse and any DNA edit will have consequences to all subsequent omics layers.</p>
+<p>Conclusions: Most features are allocated around zero weight vertical line, indicating that they have no association with Factor1 Immunoglobulin Heavy Chain Variable (IGHV) region gene mutation clearly stands out. We’ve just discovered the main clinical marker for CLL. Let’s create a plot to display features with the corresponding weight sign on the right:</p>
+<p>IGHV has a positive weight. Samples with positive Factor1 values have IGHV mutation whereas samples with negative Factor1 values do not have the IGHV mutation. To confirm this, let’s plot the Factor values and color the IGHV mutation status.</p>
+</section>
+<section id="factor1-mrna-expression" class="level2">
+<h2 class="anchored" data-anchor-id="factor1-mrna-expression">8.4 Factor1 mRNA Expression</h2>
+<p>From the variance explained plot we know that Factor1 drives variation across all data modalities. Let’s visualize the mRNA expression changes that are associated with Factor1:</p>
+<p>Conclusions: A substantial number of genes with negative weights (for instance, ENSG00000198046) and genes with positive weight (for instance, ENSG00000168594) are present. Likely, genes with large positive mRNA expression values are more expressed in the samples with IGHV mutation; genes with large negative values are more expressed in the samples without the IGHV mutation</p>
+<p>Let’s verify the last assumption.</p>
+</section>
+<section id="factor1-molecular-signatures-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="factor1-molecular-signatures-clustering">8.5. Factor1 Molecular Signatures Clustering</h2>
+<p>Let’s make a heat map of Factor1 values (x-axis) versus gene expression values (y-axis). Samples are colored by IGHV status — is the mutation present (red) or not (blue).</p>
+<p>Conclusions: Clusters with different gene expressions are clearly visible which proves the assumption.</p>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>9. Summary</h1>
+<ol start="9" type="1">
+<li>Summary CLL dataset contains 4 omics: genomics (somatic mutations), epigenomics (DNA methylation), transcriptomics (RNA-seq), phenotypic (drug response); 200 patients 15 factors (reduced dimensions) model training converged on iteration 908 with ELBO=-2850734.58, deltaELBO=0.197 (0.00000100%). Factors showed no correlation, which is good. Cumulatively, the 15 factors represented~53% drug response variation, ~42% mRNA, ~27% DNA methylation, and ~20% somatic mutation variation. Factors 13 and 15 associated with survival outcome. Factor1 represents strong diversity across all omics modalities. Looks like, it is supreme for the disease etiology. Factor2 expresses a very strong variance related solely to the drug response. Factor3 retains variance in all omics, except the epigenomic profile. Factor4 represents a medium mRNA vаriаncе. Factor5 shоws the interdependency bеtwееn the drug response and the mRNA. IGHV mutation exists in samples with positive Factor1 values and absents in samples with negative Factor1 values. IGHV mutation was discovered as the main clinical marker for CLL. IGHV biomarker potency was proven in multiple wet-lab experiments.</li>
+</ol>
+</section>
+<section id="key-takeaways-and-suggestions" class="level1">
+<h1>10. Key takeaways and suggestions</h1>
 <ul>
-<li><p>Research and clinical advances for a variety of cancers and disease areas, including breast, colon, head and neck, and prostate cancers.</p></li>
-<li><p>Partnerships to increase health equity and reduce disparities in labs, clinics, classrooms, and more.</p></li>
-<li><p>Advances in patient care, including diagnostics, surgery, and follow-up.</p></li>
+<li><p>Do not blindly apply batch correction! You risk introducing more artifacts than you remove.</p></li>
+<li><p>In general, it is better to use batch correction methods for data exploration and visualization rather than analysis.</p></li>
+<li><p>If you have a batch effect, model it in your downstream analysis (i.e include it as a covariate) instead of modifying your data directly.</p></li>
 </ul>
-<p><strong>My participation in Obliteride 2024 is focused on amplifying the impact of data science across Fred Hutch.</strong> My team (the <a href="https://hutchdatascience.org">Fred Hutch Data Science Lab</a>) focuses on getting both data and tools into the hands of researchers at Fred Hutch through the creation of centralized data resources and advanced models and workflows for simplified data analysis, as well as the development of comprehensive training resources and communities of practice across a variety of subjects in biomedical data science.</p>
-<p>This year, with the support of our donors, <strong>we aim to accelerate the next discoveries that the Fred Hutch will make via expanded data access, advanced technology, and artificial intelligence</strong>. Any donations toward my profile or that of my team’s will directly facilitate the research conducted by groups at Fred Hutch who strive to advance their work by engaging with our data science and AI services.</p>
-<p>My team and I are a part of Obliteride because we want to help Fred Hutch overcome cancer once and for all. Please consider sponsoring me <a href="https://secure.fredhutch.org/site/TR/?px=2167539&amp;fr_id=2070&amp;pg=personal&amp;success=true">here</a> - every donation helps!</p>
-<p>Until next week, [VS]Coders!</p>
+</section>
+<section id="conclusions" class="level1">
+<h1>9. Conclusions</h1>
+<p>This concludes the content that was covered in the SASC User Group workshop on batch correction. I’d like to give a huge thank you again to Mary and the team at the BBI for organizing this tutorial and sharing it freely with the public! I look forward to covering more from these meetings in the future, as well as sharing my own thoughts and exploration of single cell data down the road.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

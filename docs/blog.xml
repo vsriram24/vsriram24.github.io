@@ -10,7 +10,40 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.4.555</generator>
-<lastBuildDate>Mon, 29 Jul 2024 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 05 Aug 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Obliteride 2024</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/obliteride-24/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Welcome back to another week of <em>[VS]Codes</em>! I currently have some longer tutorials and overviews cooking in the background, which I will be sharing in the coming weeks. In the meantime, I’d like to use this week’s post to share some information about an upcoming fundraising event in which I will be participating.</p>
+<hr>
+<p>This coming weekend, I will be taking part in a 25-mile bike ride as a part of <a href="https://www.obliteride.org">Fred Hutch Obliteride</a>. Obliteride is an annual event that raises money for cancer research at Fred Hutch. Since 2013, more than 27,000 participants and volunteers, along with sponsors and over 104,000 Obliteride donors, have raised more than $48 million for breakthrough work at Fred Hutch.</p>
+<p><img src="https://vsriram24.github.io/posts/obliteride-24/images/12907812_web1_M-Riders-finish.jpg" class="img-fluid"></p>
+<p>Here are a few examples of work that was supported at Fred Hutch by Obliteride in just the past year:</p>
+<ul>
+<li><p>Research and clinical advances for a variety of cancers and disease areas, including breast, colon, head and neck, and prostate cancers.</p></li>
+<li><p>Partnerships to increase health equity and reduce disparities in labs, clinics, classrooms, and more.</p></li>
+<li><p>Advances in patient care, including diagnostics, surgery, and follow-up.</p></li>
+</ul>
+<p><strong>My participation in Obliteride 2024 is focused on amplifying the impact of data science across Fred Hutch.</strong> My team (the <a href="https://hutchdatascience.org">Fred Hutch Data Science Lab</a>) focuses on getting both data and tools into the hands of researchers at Fred Hutch through the creation of centralized data resources and advanced models and workflows for simplified data analysis, as well as the development of comprehensive training resources and communities of practice across a variety of subjects in biomedical data science.</p>
+<p>This year, with the support of our donors, <strong>we aim to accelerate the next discoveries that the Fred Hutch will make via expanded data access, advanced technology, and artificial intelligence</strong>. Any donations toward my profile or that of my team’s will directly facilitate the research conducted by groups at Fred Hutch who strive to advance their work by engaging with our data science and AI services.</p>
+<p>My team and I are a part of Obliteride because we want to help Fred Hutch overcome cancer once and for all. Please consider sponsoring me <a href="https://secure.fredhutch.org/site/TR/?px=2167539&amp;fr_id=2070&amp;pg=personal&amp;success=true">here</a> - every donation helps!</p>
+<p>Until next week, [VS]Coders!</p>
+
+
+
+ ]]></description>
+  <category>Miscellaneous</category>
+  <guid>https://vsriram24.github.io/posts/obliteride-24/</guid>
+  <pubDate>Mon, 05 Aug 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/obliteride-24/zolaTongue.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Introduction to PyTorch</title>
   <dc:creator>Vivek Sriram</dc:creator>
