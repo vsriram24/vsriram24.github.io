@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/multiomics-fa/index.html",
       "/posts/obliteride-24/index.html",
       "/posts/pytorch-tutorial/index.html",
       "/posts/cascadia-conf-24/index.html",
