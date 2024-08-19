@@ -1,9 +1,9 @@
 ---
-title: "Introduction to PyTorch"
-description: "Using basic PyTorch to process data and train a neural network"
+title: "Applying PyTorch"
+description: "Using basic PyTorch to process and analyze BRCA data"
 author: "Vivek Sriram"
-date: "7/29/2024"
-date-modified: "7/29/2024"
+date: "8/19/2024"
+date-modified: "8/19/2024"
 image: zolaCake.jpg
 categories:
   - Tutorials
@@ -11,9 +11,7 @@ draft: true
 jupyter: python3
 ---
 
-In today's blog post, we'll go through the ["Introduction to PyTorch](https://pytorch.org/tutorials/beginner/basics/intro.html)" tutorial available from PyTorch's online [learning community](https://pytorch.org/tutorials/index.html).
-
-In a future blog post, I will take the foundation developed through this walkthrough and explore a modified data analysis workflow, with a more complicated neural network and additional hyperparameter training for a different set of data.
+In today's blog post, I will take the PyTorch foundation I built in my previous post and apply it to a new dataset with a more complicated neural network and additional hyperparameter training.
 
 With background out of the way, let's get started\~
 
@@ -22,9 +20,7 @@ library(reticulate)
 use_python('/opt/anaconda3/bin/python')
 ```
 
-Most machine learning workflows involve uploading data, creating models, optimizing model parameters, and performing predictions on input data. This tutorial introduces you to a complete ML workflow implemented in PyTorch.
-
-In PyTorch, we use tensors to encode the inputs and outputs of a model, as well as the model’s parameters. Tensors are a specialized data structure that are very similar to arrays and matrices.
+Import required packages.
 
 ```{python}
 # Import required packages
@@ -36,39 +32,17 @@ import matplotlib.pyplot as plt
 ```{python}
 import torch
 from torch import nn
-from torch.utils.data import Dataset
-from torch.utils.data import DataLoader
+import torch.nn.functional as F
 ```
 
 ```{python}
-#import torchvision
-from torchvision import datasets, transforms
-from torchvision.transforms import ToTensor, Lambda
-from torchvision.io import read_image
+import torch_geometric
+from torch_geometric.loader import DataLoader
+from torch_geometric.nn import GCNConv
+from torch_geometric.nn import global_mean_pool
 ```
 
-```{python}
-from torch_geometric.datasets import BrcaTcga
-```
-
-```{python}
-dataset = BrcaTcga(root='/Users/vsriram/Developer/vsriram24.github.io/posts/pytorch-brca/')
-```
-
-```{python}
-len(dataset)
-dataset.num_classes
-dataset.num_node_features
-```
-
-```{python}
-data = dataset[0]
-
-data
-data.is_undirected()
-```
-
-We start by checking to see if we can train our model on a hardware accelerator like the GPU or MPS if available. Otherwise, we'll use the CPU.
+We check to see if we can train our model on a hardware accelerator like the GPU or MPS if available. Otherwise, we'll use the CPU.
 
 ```{python}
 # Get cpu, gpu or mps device for training.
@@ -82,67 +56,70 @@ device = (
 print(f"Using {device} device")
 ```
 
-Code for processing data samples can get messy and hard to maintain. We ideally want our dataset code to be de-coupled from model training code for better readability and modularity. We will break our analysis into the following two sections: **Data** and **Modeling**.
-
 ## Data
 
 ### Importing and transforming the data
 
-PyTorch offers domain-specific libraries such as `TorchText`, `TorchVision`, and `TorchAudio`. In this tutorial, we will be using a `TorchVision` dataset. The `torchvision.datasets` module contains `Dataset` objects for many real-world vision data. Here, we will use the FashionMNIST dataset. Fashion-MNIST is a dataset of images consisting of 60,000 training examples and 10,000 test examples. Each example includes a 28x28 grayscale image and an associated label from one of 10 classes.
+BRCA TCGA Pan-Cancer Atlas dataset: - patients with survival information and gene expression data from cBioPortal - network of biological interactions between those nodes from Pathway commons. - Dataset contains the gene features of 1082 patients, as well as the overall survival time (in months) of each patient as a label.
 
-Each PyTorch `Dataset` stores a set of samples and their corresponding labels. Data do not always come in the final processed form that is required for training ML algorithms. We use *transforms* to perform some manipulation of the data and make it suitable for training. Every TorchVision `Dataset` includes 2 arguments: `transform` to modify the samples and `target_transform` to modify the labels.
+1082 graphs 9288 nodes 271,771 edges 1082 features
 
-The FashionMNIST features are in PIL Image format. For training, we need the features as normalized tensors, and the labels as one-hot encoded tensors. To make this transformation, we use the `ToTensor()` function. `ToTensor()` converts a PIL image or NumPy `ndarray` into a `FloatTensor` and scales the image’s pixel intensity values in the range \[0., 1.\]
+Integrated breast cancer BRCA TCGA data from cBioPortal and a biological network for node connections from Pathway commons.
+
+Data was preprocessed to form a single dataset that could be converted to PyTorch Geometric data ojbects.
+
+Dataset contains gene features of each patient and the overall survival time of each patient
+
 
 ```{python}
-# Download training data from open datasets.
-training_data = datasets.FashionMNIST(
-    root="data",
-    train=True,
-    download=True,
-    transform=ToTensor()
-)
-
-# Download test data from open datasets.
-test_data = datasets.FashionMNIST(
-    root="data",
-    train=False,
-    download=True,
-    transform=ToTensor()
+ppi = torch_geometric.datasets.PPI(
+  root='./posts/pytorch-brca/'
 )
 ```
 
-We now have our data uploaded! We can index an input `Dataset` manually (i.e. `training_data[index]`) to get individual samples. Here, we use `matplotlib` to visualize some samples in our training data.
+
 
 ```{python}
-labels_map = {
-    0: "T-Shirt",
-    1: "Trouser",
-    2: "Pullover",
-    3: "Dress",
-    4: "Coat",
-    5: "Sandal",
-    6: "Shirt",
-    7: "Sneaker",
-    8: "Bag",
-    9: "Ankle Boot",
-}
+brca = torch_geometric.datasets.BrcaTcga(
+  root='./posts/pytorch-brca/'
+)
+```
 
-figure = plt.figure(figsize=(8, 8))
-cols, rows = 3, 3
-for i in range(1, cols * rows + 1):
-    sample_idx = torch.randint(len(training_data), size=(1,)).item()
-    img, label = training_data[sample_idx]
-    figure.add_subplot(rows, cols, i)
-    plt.title(labels_map[label])
-    plt.axis("off")
-    plt.imshow(img.squeeze(), cmap="gray")
-plt.show()
+```{python}
+len(brca)
+brca.num_classes
+brca.num_node_features
+```
+
+Our dataset has 1082 graphs, with 824 classes. Each node in our dataset has 1 feature.
+
+```{python}
+brca_graph0 = brca[0]
+
+print(brca_graph0)
+brca_graph0.is_undirected()
+
+# Access the node features, edge indices, and target label
+node_features = brca_graph0.x
+edge_index = brca_graph0.edge_index
+target = brca_graph0.y
+
+print(node_features)  # Print the node features
+print(edge_index)  # Print the edge indices
+print(target)  # Print the target label
+```
+
+The first graph in our dataset has 9288 nodes, each with a single feature. There are 271,771 directed edges in our graph. And, this data object is holding exactly one graph-level target.
+
+```{python}
+# Apply 70/30 train/test split
+splitIndex = round(len(brca)*.7)
+
+training_data = brca[:splitIndex]
+test_data = brca[splitIndex:]
 ```
 
 ### Preparing data for training with `DataLoaders`
-
-While training a model, we typically want to pass samples in “minibatches”, reshuffle the data at every epoch to reduce model overfitting, and use Pythonic multiprocessing to speed up data retrieval. `DataLoader` is an iterable that abstracts this complexity for us in an easy API. We pass our input `Dataset` as an argument to `DataLoader`. This wraps an iterable over our dataset, supporting automatic batching, sampling, shuffling, and multiprocess data loading in the process.
 
 Here we define a batch size of 64 - each element in the `DataLoader` iterable will return a batch of 64 features and labels.
 
@@ -150,71 +127,63 @@ Here we define a batch size of 64 - each element in the `DataLoader` iterable wi
 batch_size = 64
 
 # Create data loaders.
-train_dataloader = DataLoader(training_data, batch_size=batch_size, shuffle=True)
-test_dataloader = DataLoader(test_data, batch_size=batch_size, shuffle=True)
+train_dataloader = DataLoader(
+  training_data, 
+  batch_size=batch_size, 
+  shuffle=True
+)
 
-for X, y in test_dataloader:
-    print(f"Shape of X [N, C, H, W]: {X.shape}")
-    print(f"Shape of y: {y.shape} {y.dtype}")
-    break
+for step, data in enumerate(train_dataloader):
+    data = data.to(device)
+
+test_dataloader = DataLoader(
+  test_data, 
+  batch_size=batch_size, 
+  shuffle=False
+)
+
+for step, data in enumerate(test_dataloader):
+    data = data.to(device)
 ```
 
-### Iterating over the `DataLoader`
-
-Now that we have loaded our data into a `DataLoader`, we can iterate through the dataset as needed (using `next(iter(DataLoader)`). Each iteration returns a batch of `train_features` and `train_labels` (containing `batch_size=64` features and labels respectively). Because we specified `shuffle=True`, the data are shuffled after we iterate over all of our batches.
-
-```{python}
-# Display image and label.
-train_features, train_labels = next(iter(train_dataloader))
-print(f"Feature batch shape: {train_features.size()}")
-print(f"Labels batch shape: {train_labels.size()}")
-img = train_features[0].squeeze()
-label = train_labels[0]
-plt.imshow(img, cmap="gray")
-plt.show()
-print(f"Label: {label}")
-```
 
 ## Modeling
 
 ### Defining a neural network
 
-Neural networks comprise of layers/modules that perform operations on data. The `torch.nn` namespace provides all the building blocks you need to build your own neural network. Every module in PyTorch subclasses the `nn.Module`. A neural network is a module itself that consists of other modules (layers). This nested structure allows for building and managing complex architectures easily.
-
-To define a neural network in PyTorch, we create a class that inherits from `nn.Module`. We define the layers of the network in the `__init__` function and specify how data will pass through the network in the `forward` function.
-
 ```{python}
-# Define model
-class NeuralNetwork(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.flatten = nn.Flatten()
-        self.linear_relu_stack = nn.Sequential(
-            nn.Linear(28*28, 512),
-            nn.ReLU(),
-            nn.Linear(512, 512),
-            nn.ReLU(),
-            nn.Linear(512, 10)
-        )
+class GCN(nn.Module):
+    def __init__(self, hidden_channels, num_node_features):
+        super(GCN, self).__init__()
+        self.conv1 = GCNConv(num_node_features, hidden_channels)
+        self.conv2 = GCNConv(hidden_channels, hidden_channels)
+        self.conv3 = GCNConv(hidden_channels, hidden_channels)
+        self.conv4 = GCNConv(hidden_channels, hidden_channels)
+        self.lin = nn.Linear(hidden_channels, 1)
 
-    def forward(self, x):
-        x = self.flatten(x)
-        logits = self.linear_relu_stack(x)
-        return logits
+    def forward(self, x, edge_index, batch):
+        # 1. Obtain node embeddings
+        x = self.conv1(x, edge_index)
+        x = x.relu()
+        x = self.conv2(x, edge_index)
+        x = x.relu()
+        x = self.conv3(x, edge_index)
+        x = self.conv4(x, edge_index)
+
+        # 2. Readout layer
+        x = global_mean_pool(x, batch)  # [batch_size, hidden_channels]
+
+        # 3. Apply a final regression layer
+        x = F.dropout(x, p=0.2, training=self.training)
+        x = self.lin(x)
+
+        return x.squeeze()  # Remove the extra dimension
 ```
 
-Now that we've defined the structure of our `NeuralNetwork`, we can create an instance of it and move it to a faster device (GPU or MPS) if available to accelerate operations. We can also print its structure to see the layers that we've just defined.
-
 ```{python}
-model = NeuralNetwork().to(device)
+model = GCN(hidden_channels=64, num_node_features=1).to(device)
 print(f"Model structure: {model}")
 ```
-
-Many layers inside a neural network are parameterized, meaning that they have associated weights and biases that are optimized during training. Subclassing `nn.Module` automatically tracks all fields defined inside your model object, and makes all parameters accessible using your model’s `parameters()` or `named_parameters()` methods.
-
-The linear layer is a module that applies a linear transformation on the input using its stored weights and biases. Non-linear activations are what create the complex mappings between the model’s inputs and outputs. They are applied after linear transformations to introduce nonlinearity, helping neural networks learn a wide variety of phenomena.
-
-In this model, we use `nn.ReLU` between our linear layers, but there are other options for activations to introduce non-linearity in your model.
 
 ```{python}
 for name, param in model.named_parameters():
@@ -223,13 +192,7 @@ for name, param in model.named_parameters():
 
 ### Optimizing the Model Parameters
 
-Now that we have our data and our model, it’s time to train, validate and test our model by optimizing its parameters on the input data! Training a model is an iterative process; in each iteration the model makes a guess about the output, calculates the error in its guess (loss), collects the derivatives of the error with respect to its parameters, and optimizes these parameters using gradient descent.
-
 #### Hyperparameters
-
-Hyperparameters are adjustable parameters that let you control the model optimization process. Different hyperparameter values can impact model training and convergence rates.
-
-We define the following hyperparameters for training: - Number of Epochs - the number times to iterate over the dataset - Batch Size - the number of data samples propagated through the network before the parameters are updated - Learning Rate - how much to update models parameters at each batch/epoch. Smaller values yield slow learning speed, while large values may result in unpredictable behavior during training.
 
 ```{python}
 learning_rate = 1e-3
@@ -239,82 +202,58 @@ epochs = 5
 
 #### Optimization Loop
 
-To train our model, we need a loss function as well as an optimizer.
-
-Once we set our hyperparameters, we can then train and optimize our model with an optimization loop. Each iteration of the optimization loop is called an epoch.
-
-Each epoch consists of two main parts: - The Train Loop - iterate over the training dataset and try to converge to optimal parameters. - The Validation/Test Loop - iterate over the test dataset to check if model performance is improving.
-
-The loss function measures the degree of dissimilarity between an obtained result and the target value, and it is the loss function that we want to minimize during training. To calculate the loss we make a prediction using the inputs of our given data sample and compare it against the true data label value.
-
-Common loss functions include `nn.MSELoss` (Mean Square Error) for regression tasks, and `nn.NLLLoss` (Negative Log Likelihood) for classification. `nn.CrossEntropyLoss` combines `nn.LogSoftmax` and `nn.NLLLoss`.
-
-We pass our model’s output logits to `nn.CrossEntropyLoss`, which will normalize the logits and compute the prediction error.
-
 ```{python}
-# Initialize the loss function
+# Initialize the loss function and the optimizer
 loss_fn = nn.CrossEntropyLoss()
-```
-
-Optimization is the process of adjusting model parameters to reduce model error in each training step. Optimization algorithms define how this process is performed (in this example we use Stochastic Gradient Descent). All optimization logic is encapsulated in the optimizer object. Here, we use the SGD optimizer; additionally, there are many different optimizers available in PyTorch such as ADAM and RMSProp, that work better for different kinds of models and data.
-
-We initialize the optimizer by registering the model’s parameters that need to be trained, and passing in the learning rate hyperparameter.
-
-```{python}
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 ```
 
-Inside the training loop, optimization happens in three steps: - Call `optimizer.zero_grad()` to reset the gradients of model parameters. Gradients by default add up; to prevent double-counting, we explicitly zero them at each iteration. - Backpropagate the prediction loss with a call to `loss.backward()`. PyTorch deposits the gradients of the loss w.r.t. each parameter. - Once we have our gradients, we call `optimizer.step()` to adjust the parameters by the gradients collected in the backward pass.
-
 #### Full Implementation
-
-We define `train_loop` that loops over our optimization code, and `test_loop` that evaluates the model’s performance against our test data.
 
 ```{python}
 def train_loop(dataloader, model, loss_fn, optimizer):
-    size = len(dataloader.dataset)
-    # Set the model to training mode - important for batch normalization and dropout layers
-    # Unnecessary in this situation but added for best practices
     model.train()
-    for batch, (X, y) in enumerate(dataloader):
-        X = X.to(device)
-        y = y.to(device)
-        
+    for step, data in enumerate(train_dataloader):
+        data = data.to(device)
+
         # Compute prediction and loss
-        pred = model(X)
-        loss = loss_fn(pred, y)
+        pred = model(
+          data.x, 
+          data.edge_index, 
+          data.batch
+        )
+        
+        loss = loss_fn(
+          pred, 
+          data.y.view(-1)
+        )
 
         # Backpropagation
         loss.backward()
         optimizer.step()
         optimizer.zero_grad()
+```
 
-        if batch % 100 == 0:
-            loss, current = loss.item(), batch * batch_size + len(X)
-            print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
-
+```{python}
 def test_loop(dataloader, model, loss_fn):
-    # Set the model to evaluation mode - important for batch normalization and dropout layers
-    # Unnecessary in this situation but added for best practices
     model.eval()
-    size = len(dataloader.dataset)
-    num_batches = len(dataloader)
-    test_loss, correct = 0, 0
-
-    # Evaluating the model with torch.no_grad() ensures that no gradients are computed during test mode
-    # also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True
+    test_loss = 0
     with torch.no_grad():
-        for X, y in dataloader:
-            X = X.to(device)
-            y = y.to(device)
-        
-            pred = model(X)
-            test_loss += loss_fn(pred, y).item()
-            correct += (pred.argmax(1) == y).type(torch.float).sum().item()
+        for step, data in enumerate(test_dataloader):
+            data = data.to(device)
+
+            pred = model(
+              data.x, 
+              data.edge_index, 
+              data.batch
+            )
+            
+            loss += loss_fn(
+              pred, 
+              data.y.view(-1)
+            ).item()
 
     test_loss /= num_batches
-    correct /= size
-    print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
 ```
 
 In a single training loop, the model makes predictions on the training dataset (fed to it in batches), and then backpropagates the prediction error to adjust the model’s parameters.
@@ -336,27 +275,59 @@ We can now use this model to make individual predictions.
 To use the model, we pass it the input data. This executes the model’s `forward`, along with some background operations. Note that we do not call `model.forward()` directly!
 
 ```{python}
-classes = [
-    "T-shirt/top",
-    "Trouser",
-    "Pullover",
-    "Dress",
-    "Coat",
-    "Sandal",
-    "Shirt",
-    "Sneaker",
-    "Bag",
-    "Ankle boot",
+model.eval()  # Set the model to evaluation mode
+
+predictions = []  # List to store the predicted outputs
+test_losses = []
+with torch.no_grad():
+    test_loss = 0
+    for data in test_loader:
+        data = data.to(device)  # Move the batch of data to CUDA device
+        out = model(data.x.double(), data.edge_index, data.batch)
+        loss = criterion(out, data.y.view(-1).double())
+        test_loss += loss.item()
+
+        average_test_loss = test_loss / len(test_loader)
+        test_losses.append(average_val_loss)
+
+        predictions.append(out.cpu().detach().numpy())  # Convert the predictions to NumPy array
+
+# Concatenate the predictions from multiple batches
+predictions = np.concatenate(predictions)
+
+# Print the predictions
+print(predictions[:10])
+[43.55725092 44.08028075 38.91240359 49.6856782  57.11545471 49.2488646
+ 46.26797878 69.44459431 40.08783161 47.09477596]
+Making Predictions and calculating MSE
+# Convert the test data batches to a list of Data objects
+test_data_batches = [
+    Data(x=batch.x, edge_index=batch.edge_index, y=batch.y) for batch in test_loader
 ]
 
-model.eval()
-x, y = test_data[0][0], test_data[0][1]
-with torch.no_grad():
-    x = x.to(device)
-    pred = model(x)
-    predicted, actual = classes[pred[0].argmax(0)], classes[y]
-    print(f'Predicted: "{predicted}", Actual: "{actual}"')
+# Convert the predictions to PyTorch tensors
+predictions = torch.tensor(predictions)
+
+# Convert the ground truth labels of the test data to a PyTorch tensor
+y_true = torch.cat([batch.y for batch in test_data_batches])
+
+# Calculate the mean squared error (MSE) loss using PyTorch's function
+mse_loss = torch.nn.functional.mse_loss(predictions.view(-1), y_true.view(-1))
+
+print(f"Mean Squared Error (MSE) Loss: {mse_loss:.4f}")
+Mean Squared Error (MSE) Loss: 957.8370
+Plotting the convergence of the model
+# Visualize convergence results
+plt.figure()
+plt.plot(range(1, num_epochs + 1), train_losses, label='Training Loss')
+plt.plot(range(1, num_epochs + 1), val_losses, label='Validation Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.title('Convergence of Model')
+plt.show()
 ```
+
 
 # Summary
 

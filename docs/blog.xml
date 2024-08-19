@@ -10,7 +10,134 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.4.555</generator>
-<lastBuildDate>Mon, 12 Aug 2024 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 19 Aug 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>An intro to NLP for oncology</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/nlp-oncology-overview/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In this week’s blog, I will be summarizing Yim et al’s 2016 review paper from <em>JAMA Oncology</em>, titled “Natural Language Processing in Oncology: A Review.” This paper was written by researchers at the University of Washington Medical Center, including individuals from the Departments of Biomedical and Health Informatics, the Department of Linguistics, the Division of Oncology at the Department of Medicine, and the Department of Radiology. You can read the abstract for this paper <a href="https://pubmed.ncbi.nlm.nih.gov/27124593/">here</a>.</p>
+<p>The full text of this manuscript is unfortunately not publicly available (you or your institution must have access to <em>JAMA Oncology</em> to read the full text), so I hope that this summary provides those without access to this journal some insight into some exciting content. Furthermore, given that this paper is from 2016, it does not include many of the recent advances in the past 8 years related to transformer / large language models that have become more relevant in NLP applications. Nevertheless, I found this paper to be an excellent summary of how to frame the workflow for tackling NLP research questions, particularly in terms of the collaborations needed among oncologists and informaticians. Much of the content covered remains as relevant today as it did 8 years ago, and I look forward to using my takeaways from this material in <a href="https://hutchdatascience.org/tr-analytics/">my own work at the Fred Hutch Cancer Center</a>.</p>
+<p>With context out of the way, let’s get started!</p>
+<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/paperAbstract.png" class="img-fluid"></p>
+<hr>
+<section id="oncology-focused-nlp" class="level2">
+<h2 class="anchored" data-anchor-id="oncology-focused-nlp">Oncology-focused NLP</h2>
+<p><strong>Natural Language Processing</strong> (NLP) refers to any computer-based algorithm that can handle, augment, and transform natural language so that it can be represented for computation.</p>
+<p>NLP is particularly attractive for clinical research applications for the following reasons. One can:</p>
+<ol type="1">
+<li>define new variables that are not readily available in electronic health records as stored values</li>
+<li>automate the process of reviewing clinical notes for patient diagnosis instead of requiring a resource-intensive manual review process.</li>
+<li>expedite biomedical discovery by empowering clinicians with the ability to analyze outcomes in the context of big data</li>
+</ol>
+<p>With respect to the field of oncology, NLP applications typically have the following objectives:</p>
+<ol type="1">
+<li><strong>Case identification:</strong> determine which patients may have a case of the disease of interest
+<ul>
+<li>Here, we process the free text from clinical notes to augment the diagnosis codes that correspond to a patient’s labeled set of diseases or symptoms</li>
+</ul></li>
+<li><strong>Staging:</strong> determine the stage of a patient’s cancer progress
+<ul>
+<li>Here, we process the free text from clinical notes to determine the stage of a patient’s cancer progression. This objective is more challenging than case identification because it is highly context-specific depending on the type of cancer.</li>
+</ul></li>
+<li><strong>Outcome determination:</strong> determine the patient’s ultimate outcome (cancer advancement vs.&nbsp;remission vs.&nbsp;death)
+<ul>
+<li>Here, we process the free text from clinical notes to determine the patient’s ultimate outcome (advancement vs.&nbsp;remission vs.&nbsp;death). This objective is the most challenging of the three because it essentially requires us to perform cancer staging with respect to time.</li>
+</ul></li>
+</ol>
+</section>
+<section id="the-role-of-the-oncologist" class="level2">
+<h2 class="anchored" data-anchor-id="the-role-of-the-oncologist">The role of the oncologist</h2>
+<p>As with many objectives in the domain of biomedical informatics, developing NLP systems for oncology applications requires significant involvement from a domain expert.</p>
+<p>An oncologist can contribute to the development of an NLP system in the following ways:</p>
+<ul>
+<li><strong>Project conception:</strong> using their domain expertise, an oncologist can devise practical and impactful applications of NLP</li>
+<li><strong>Corpus annotation:</strong> an oncologist can assist with annotation of training data by providing the “correct answers” for a body of text based upon a set of annotation guidelines.</li>
+<li><strong>System evaluation and error analysis:</strong> based on measures such as precision and recall, an oncologist can manually review true and false positives and negatives in the test data to help determine the strengths and weaknesses of the system</li>
+</ul>
+</section>
+<section id="nlp-tasks-and-strategies-for-oncology" class="level2">
+<h2 class="anchored" data-anchor-id="nlp-tasks-and-strategies-for-oncology">NLP tasks and strategies for oncology</h2>
+<p>Within the context of oncology, NLP is typically used for <strong>Information Extraction</strong> (IE). IE refers to the transformation of unstructured data into a structured form. IE encompasses multiple subtasks, including <strong>Named Entity Recognition</strong> (NER), <strong>Relation Extraction</strong> (RE), <strong>Text Classification</strong>, and <strong>Template Extraction</strong>.</p>
+<ul>
+<li>NER involves grouping words in a text and assigning them to a pre-defined “concept</li>
+<li>RE involves the assignment of relationships between entities</li>
+<li>Text Classification assigns categorical label for a body of text</li>
+<li>Template Extraction collects a set of related entities, relations, and labels to define a form for structured data.</li>
+</ul>
+<p>You can refer to figure 1 from the paper to see an example of clinical information extraction.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/nlp_fig1.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 1 from the manuscript - an example of free-text processing, IE, and text classification</figcaption>
+</figure>
+</div>
+<p>Strategies to tackle the above sub-tasks can be grouped into the following three buckets: rule-based, statistical, and hybrid approaches.</p>
+<ul>
+<li><strong>Rule-based</strong> approaches involve heuristic algorithms designed by domain specialists. They can be as simple as individual keyword look-ups or can be defined by complex conditional logic. When the defined rules are simple, rule-based approaches can significantly improve the interpretability of a model. However, if the rules are more complicated, the established model will lose interpretability and become harder to replicate or update.</li>
+<li><strong>Statistical</strong> (a.k.a machine learning) systems are algorithms designed to statistically maximize the probability of finding the correct answer based on the distribution of the training data. Such models are less prone to overfitting compared to rule-based approaches, and they can be easily adapted to new data. However, these models require an extensive amount of unbiased, representative training data to work accurately.</li>
+<li><strong>Hybrid</strong> approaches work to minimize the disadvantages of rule-based and statistical algorithms by combining these two methods.</li>
+</ul>
+</section>
+<section id="resources-needed-for-clinical-nlp" class="level2">
+<h2 class="anchored" data-anchor-id="resources-needed-for-clinical-nlp">Resources needed for clinical NLP</h2>
+<p>Creating an NLP system requires the use of three common related NLP resources: extraction tools, ontologies, and corpora.</p>
+<ul>
+<li><p><strong>Extraction tools</strong> refer to developed subsystems that can be used on new datasets with little to no modifications. Typical clinical NLP pipelines can involve the following tasks:</p>
+<ol type="1">
+<li>Section Identification: identifying sections is particularly useful for clinical notes, where different sections will contain different types of content</li>
+<li>Medical NER: this is a more specialized version of general English NER, taking into account acronyms, abbreviations, and synonyms that are common in medical text. Generally, out-of-the-box NER systems are usually insufficient, requiring the application of in-house rule-based and statistical NER systems. Two freely available development tools include MetaMap and the Mayo Clinical Text Analysis and Knowledge Extraction System</li>
+<li>Negation detection: this helps distinguish the phrase “patient has fever” from “patient has no signs of fever.” This can be a complicated task depending on the language used in the notes.</li>
+</ol>
+<ul>
+<li>Other common tasks in NLP pipelines include: coreference resolution, temporal classification, medication information extraction, family history extraction, assertion detection, and polarity detection. You can see some examples of these tasks in Figure 4 from the paper:</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/nlp_fig4.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 4 from the manuscript - examples of common tasks in NLP pipelines</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>Ontologies</strong> refer to knowledge bases that reference how various concepts are related to one another. The most basic form of an ontology could be a medical dictionary. A more complicated form of an ontology might involve a knowledge graph of concepts and their relationships.</p></li>
+<li><p><strong>Corpora</strong> are collections of (sometimes annotated) clinical text that can be used to train or test an NLP system. Some examples of publicly available de-identified medical corpora including the i2b2 challenge sets, the Conference and Laboratories of the Evaluation Forum datasets, the MIMIC-II corpus, the MIPACQ corpus, and <a href="http://MTSamples.com">MTSamples.com</a>.</p></li>
+</ul>
+</section>
+<section id="challenges-in-designing-an-nlp-system" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-in-designing-an-nlp-system">Challenges in designing an NLP system</h2>
+<p>We can create a desired NLP system by framing our desired objective (case identification, staging, or outcome prediction) as a series of NLP operations. For instance, a basic case identification task may involve NER followed by negation detection. On the other hand, an outcome prediction task may involve a simple NER task or a more complicated algorithm that identifies tumor sizes and associated dates before performing logic operations to deduce that a change took place.</p>
+<p>Ultimately, the final success of an NLP system will depend on two key points:</p>
+<ol type="1">
+<li><strong>how do you frame the problem at hand?</strong></li>
+<li><strong>how effective are the individual components of your pipeline?</strong></li>
+</ol>
+<p>Multiple challenges can affect the efficacy of your model. Firstly, creation of an NLP system requires careful planning and investment to develop an annotated text corpus for system training and testing. Model performance can also be highly variable depending on the task at hand – new larger, heterogeneous test data can challenge the accuracy of your system. Multiple iterations of software development are usually needed before you can arrive at a robust NLP product. Lastly, the data science mantra of “garbage in, garbage out” continues to ring true – the tools that you develop will only be as good the quality of the data that train the systems.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This concludes my overview of “Natural Language Processing in Oncology: A Review.” I look forward to covering more such papers in the future as I progress with my work in clinical NLP at the Hutch.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/27124593/">“Natural Language Processing in Oncology: A Review”</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Overviews</category>
+  <guid>https://vsriram24.github.io/posts/nlp-oncology-overview/</guid>
+  <pubDate>Mon, 19 Aug 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/nlp-oncology-overview/minnesota.jpeg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Factor analysis for multiomics data with MOFA2</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -5450,6 +5577,7 @@ font-style: inherit;">print</span>(k, loss.data)</span></code></pre></div>
 
  ]]></description>
   <category>Personal</category>
+  <category>Overviews</category>
   <guid>https://vsriram24.github.io/posts/phd-papers/</guid>
   <pubDate>Mon, 17 Jun 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/phd-papers/zolaRunning.PNG" medium="image"/>
@@ -5500,6 +5628,7 @@ font-style: inherit;">print</span>(k, loss.data)</span></code></pre></div>
 
  ]]></description>
   <category>Personal</category>
+  <category>Overviews</category>
   <guid>https://vsriram24.github.io/posts/phd-context/</guid>
   <pubDate>Mon, 10 Jun 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/phd-context/zolaStairs.jpeg" medium="image" type="image/jpeg"/>
