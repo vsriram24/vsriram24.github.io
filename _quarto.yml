@@ -3,6 +3,8 @@ project:
   output-dir: docs
 
 website:
+  google-analytics:
+    tracking-id: "G-4174EVHDM6"
   title: "Home"
   favicon: vivek_cropped.JPG
   site-url: "https://vsriram24.github.io"
