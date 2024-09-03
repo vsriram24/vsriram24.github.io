@@ -4,191 +4,186 @@ description: "A few talk summaries and my personal takeaways"
 author: "Vivek Sriram"
 date: "9/2/2024"
 date-modified: "9/2/2024"
-image: lakesideChats.jpg
+image: pensiveZola.jpg
 categories:
   - Conferences
-draft: true
+draft: false
 ---
 
-Welcome back to another week of *\[VS\]Codes*! A few weeks ago, I had the opportunity to attend [posit::conf 2024](https://cascadiarconf.com), a national data science conference organized annually by Posit, PBC. This year, the conference was held in my home turf of Seattle, and it was an amazing experience getting to attend so many inspiring talks and meet so many members of the data science community. This blog post will summarize content from the workshop and some of the talks that I attended over the course of the conference as well as my personal overall takeaways.
+Welcome back to another week of *\[VS\]Codes*! A few weeks ago, I had the opportunity to attend [posit::conf 2024](https://cascadiarconf.com), a national data science conference organized annually by [Posit, PBC](https://posit.co). This year, the conference was held in my home base of Seattle, and it was a wonderful experience getting to attend so many inspiring talks and meet so many members of the data science community. This blog post will summarize content from the workshop I attended on the first day of the conference, as well as some of the talks that I attended over the following couple of days. I'll conclude this post with my personal overall takeaways from the conference.
 
-![](cascadia.jpg)
+![](positConf.jpg)
 
 ------------------------------------------------------------------------
 
-### Package Development: The Rest of the Owl
+### "Package Development: The Rest of the Owl" - [Jenny Bryan](https://jennybryan.org/about/)
 
-Generative Artificial Intelligence (GenAI) is a type of artificial intelligence that can create new content based on the patterns it has learned from existing day. GenAI can be trained through human intervention - a human can reinforce what behavior is correct and what isn't. GenAI can be very powerful when you make it work *for you*.
+The title of this talk was inspired by this [blog post](https://karlastarr.substack.com/p/draw-the-rest-of-the-fucking-owl), and serves to explain how one goes from the basics of creating a new package in R to fleshing out a more complete data product.
 
-We can break GenAI use cases into three different scenarios:
+The key package this workshop highlighted was `devtools`: you can learn more about this package [here](https://devtools.r-lib.org).
 
-1.  Direct
-2.  Customized
-3.  Commercial
+The first thing you should always do when starting to develop a new package is to call `library(devtools)`. You can also force yourself to do this by including the line `require(devtools)` in your `.Rprofile`. With `devtools` loaded, you can call `dev_sitrep()` and `git_sitrep()` to get package development and git/GitHub 'situation reports' respectively as you work on your package.
 
-In a direct scenario, a prompt leads directly to a response.
+When you call the `library` command in R, your code will go from installed packages to memory. On the other hand, calling the `load_all()` function from `devtools` will go through the entire process from source to memory. This includes the following steps:
 
-In a customized scenario, a prompt will lead to data, which will then lead to a response.
+-   simulates building, installing, and attaching your package
 
-Lastly, in a commercial scenario, a prompt will lead to decision making, leading to data, then to actions, then to an outcome, then to feedback, and back to decision making. This will be an iterative process.
+-   makes all of the functions in your package available to use
 
-With this framework of GenAI scenarios, we can see how GenAI might operate across different fields.
+-   makes anything you've imported available to use
 
-| Field      | Direct                                                                                   | Customized                                                                              | Commercial                                                                                                                                                          |
-|---------------|---------------|---------------|-----------------------------|
-| Finance    | Financial literacy                                                                       | Budget and tax optimization                                                             | Fraud detection                                                                                                                                                     |
-| Healthcare | Developing a general health routine                                                      | Personalized fitness / health data summaries                                            | Medical image processing                                                                                                                                            |
-| Education  | General conceptual explanations                                                          | Personalized study plans                                                                | Reasoning and content generation (e.g. Khanmigo bot - a safe space to converse while learning)                                                                      |
-| You!       | Code assistance / copilot (e.g. turning comments into code or synthetic data generation) | README / documentation generation. Return a consistent README / documentation structure | Shiny application support bot. Feed documentation into a bot that sits at the bottom of your web app. This bot can help users when they want to use your dashboard. |
+-   allows fast iteration of editing and test-driving your functions.
 
-: GenAI scenarios for different fields
+As you write code, it is also helpful to call the `check()` function often to ensure that you are not breaking things as you develop. Your workflow for writing and testing code in your package should emulate the following process:
 
-GenAI has many pros and cons to consider:
+![](packDev.png)
 
-| The Good                | The Bad                  | The Ugly             |
-|-------------------------|--------------------------|----------------------|
-| Knowledge accessibility | Garbage in = garbage out | Bias                 |
-| Personalization         | Data Privacy             | Resource Intensive   |
-| Creativity              | Dependencies             | Cost                 |
-| Efficiency              | Hallucinations           | Ethics               |
-|                         | Misinformation           | Evolving Regulations |
+Another thing that folks don't really consider when developing packages is that ***GitHub code search is your friend***. You can check out <https://github.com/cran> on GitHub - as packages get uploaded to CRAN, this user mirrors the full source code for the package onto GitHub for you. The same thing applies for <https://github.com/tidyverse> and <https://github.com/r-lib>.
 
-: "The Good, The Bad, and The Ugly" of GenAI
+Regarding testing - when you are working on package development, most of your time will be spent looking at test files. For testing within the `devtools` framework, we call `use_testthat()`. Then we can run `test_file()` on a test R script that we've generated. A good workflow for macro-iteration across all files is to call `test()` followed by `test_coverage()` and finally followed by `check()`. **Always aim to make tests self-sufficient and self-contained**. It is better to repeat code than to introduce dependencies across tests. Don't include `library()` or `source()` calls in your test files - include these in helper files instead.
 
-GenAI can be incredibly useful in commercial settings if you train it on an application that you've developed so that it can help users navigate the application. However, this means it's more important than ever before to have good, comprehensive documentation, because this will be the training data for your GenAI model!
+Lastly, with respect to documentation - help topics are saved in `.Rd` files and will live in the `man/` folder of your R package. You can build a `README.md` file from your `README.Rmd` using the `build_readme()` function. It is also helpful to insert a `roxygen` skeleton into your code.
 
-A caveat to using GenAI - when you have a hammer, everything looks like a nail! Don't fall into the trap of thinking that GenAI is the only tool you can use... remember to think about the impact that you want!
+The following figure offers a good summary of how to approach package development with `devtools`:
 
-*Questions:*
+![](packDev2.png)
 
--   How do you pick the right LLM for your purposes?
+### "Keynote Session: Updates from Posit" - [Hadley Wickham](https://hadley.nz)
 
-    -   Go with accessibility, cost, data privacy
+The company that organized this conference, formerly known as RStudio, is now known as Posit, PBC. But what is a PBC? PBC stands for "positive benefit corporation." PBC's sit between charities and full for-profit corporations. The mission of Posit is **to create free and open source software for data science, scientific research, and technical communication**. Posit supports both free and commercial tools - the free tools are meant to allow anyone to do data science work. The commercial tools are intended for larger organizations that apply Posit's tooling at large.
 
--   How do you evaluate the output of an LLM?
+### "GitHub: How To Tell Your Professional Story" - [Abigail Haddad](https://github.com/abigailhaddad)
 
-    -   Evaluation is such an evolving field. Different models can check for different things (e.g. no swear words). Human evaluation also
+GitHub doesn't just have to be a way for you to version control your code - it can be a platform for showcasing the work that you care about. You can update the `README` file for the repo that has the same name as your GitHub username to be able to provide an introduction to your GitHub page. Make sure to also pin repositories to your profile that can showcase your skillset in the right way.
 
--   What is the impact on jobs of data scientists?
+\*Note: I went ahead and did this right after Abigail's talk. You can check out the result [here](https://github.com/vsriram24) :)
 
-    -   People who use AI to advance their work will do better. There will be an up-leveling from nitty-gritty work to strategic oversight. Some jobs will become more impactful through the introduction of AI. Other jobs may not find AI to be useful. Employers should train their employees in terms of how they can best apply AI in their jobs.
+### "Oops, I'm A Manager - Finding your Minimal Viable Process" - [Andrew Holz](https://www.linkedin.com/in/andrewholz/)
 
-### "R Workflows in Azure Machine Learning for Athletic Data Analysis," by [Emily Kraschel](https://github.com/ekrasch) from the University of Oregon
+What's the minimal viable process (MVP) to being a manager? Let's break these terms down with some layman's definitions:
 
-When working with data related to sports, you need to work fast. Data collection is live, and will need to be evaluated over a variety of timescales, from daily to weekly to even longer. Sports analytics work requires efficient storage, as well as a combination of basic analysis and reporting as well as more complicated decision making.
+-   P(rocess): how sh\*t gets done!
 
-This fast space of sports analytics stands in high contrast to the slow work of data science, which generally involves extensive data cleaning, the development of in-depth reports and aggregation, and advanced data analysis.
+-   V(iable): someone is paying the bills, so they expect the process to be *meaningful*.
 
-The conflicting needs of data science and sports analytics are thus as follows: - data are changing constantly. There are many new versions of the data and many additions to existing data - data science in general comes with numerous bottlenecks and stopping points - sports data is inherently observational, resulting in an inability to perform controlled experimentation
+-   M(inimal): heavy processes don't promote progress - they paralyze it. Keep the process as lean as possible.
 
-The old framework implemented by the team at the University of Oregon focused on automated reports generated from a data analysis dashboard. This process was good for a fast pace of work, but hindered slower, more complicated analysis. It was challenging to take a step back and decide on new metrics that could be incorporated into the dashboard. There was no central source for raw data, resulting in a variety of athlete IDs coming from different instrument interfaces. Furthermore, with the lack of centrality in the infrastructure of the system, data would exist in different versions, different places, and different file formats. The team was left with a clunky system if they tried to pull data out of the dashboard to perform further, more in-depth analysis.
+We can distill this process into three phases: gather, do, and deliver
 
-Thus, the goals of the new framework were as follows: - improve competition outcomes through the generation of more complete, valid, actionable data - lower the barriers to more complex data science and analytics - aggregate the data in a centralized location and unify athlete IDs across instrumentation sources - enhance compute power and the ability to collaborate - reduce bottlenecks in data analysis (e.g. duplication, updates, incomplete data, etc.)
+1.  Gather
 
-With these goals in mind, the team decided to migrate their data infrastructure to the cloud with Azure ML. Services that they have begun to take advantage of include: - analysis in Jupyter notebooks - configurable compute - services for pipeline development and implementation - improved data storage and loading - enhanced data security
+-   Intentionally consider all stakeholders and the level of input they can and should provide
+-   Specify as much detail as the team needs, and no more (see https://tidyfirst.substack.com/p/responsible-slack)
 
-The team still has an automated dashboard for day-to-day analysis. However, the new platform improves their ability to perform slow work, letting them step back from the constant stream of data. Now they can pull data easily across all instrument APIs into a centralized storage point. They are able to merge data more easily, maintain the most recent version of a given dataset, and perform compute more quickly.
+2.  Do
 
-With this new cloud-based infrastructure, the team is able to perform a variety of more complicated analysis in R, including developing prediction models for hamstring injuries through the application of discrete time survival models, or evaluating differences in jump height by rate of force development across genders.
+-   Make sure you leave as much space as possible for the 'who,' 'what,' and 'how'
+-   Don't make one person do the same thing over and over again. Also avoid dictating how they go about doing their tasks.
+-   Lastly, be careful when you set up meetings - consider purpose and frequency as well as who needs to be there.
+    -   8 people in a meeting is too much - everyone will just be waiting for their turn to speak instead of actively communicating. A 4-person meeting is much better. The best kind of meeting? Context pairs where two individuals are fully aware of the context of their discussion.
 
-### "[Fair Machine Learning](https://github.com/simonpcouch/cascadia-24)," by [Simon Couch](https://www.simonpcouch.com) from Posit PBC
+3.  Delivery
 
-What does it mean for a model to be good vs. a model to be fair? A good model will produce a high value of sensitivity, specificity, or accuracy, all depending on the metric that you choose. Fairness, on the other hand, is not just about statistical behavior. Fairness is about our beliefs. We can think of fairness as the translation of values into mathematical measures.
+-   Beyond shipping your product, other aspects of delivery are often neglected. First, delivering your product involves being able to tell a coherent story with your stakeholders. Second, make sure that your entire team gets credit for its wins. Finally, do your best to own your mistakes.
 
-In general, definitions of fairness are not mathematically or morally compatible (see [Mitchel et al. 2021](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-042720-125902)). Metrics such as *R^2^* and *AUC* are useful for evaluating a model, but at the end of the day, a model is just a single part of a larger system. It is important to think about how model predictions will be used at the end of the day.
+Ultimately, being a good manager is a process of trial and error. There is no "right" process - there is only the "right NOW" process. Observe and reflect along with your team, and make changes to your process over time.
 
-The hard part of this process is articulating what fairness means to you (or your stakeholders) in the context of a problem. Then, you need to choose a mathematical measure of fairness that speaks to that meaning - this should situate the resulting measure in the context of the entire system.
+### Some notes from Lightning Talks - [Eric Leung](https://erictleung.com), [Ben Arancibia](https://www.linkedin.com/in/bcarancibia/), [Claire Bai](https://www.linkedin.com/in/claire-bai-388727122/), [Luis D. Verde Arregoitia](https://luisdva.github.io), [Mika Braginsky](https://mikabr.io), [Andrew Gard](https://www.lakeforest.edu/academics/faculty/agard)
 
-Choose tools that help you think about the hard parts of fair ML. The {tidymodels} set of packages, including {rsample}, {recipes}, {parsnip}, {tune}, and {yardstick}, are a great set of software options to support fair machine learning. You can refer to the textbook [Tidy Modeling with R](tmwr.org) or [tidymodels.org](tidymodels.org) for more information on how to use these tools.
+-   When you're faced with a new challenging task, don't reinvent the wheel! Use the best (available) tool for the job
+-   Companies like [COTA Healthcare](https://cotahealthcare.com) are developing R packages like `rwnavigator` to facilitate outcomes analysis for cancer. The goal of such tasks is to incorporate medical expertise from oncologists and functionality to standardize and simplify code.
+-   The ALARM project has developed an R package called "fifty-states" to simulate alternative congressional redistricting plans for all 50 states. You can learn more about their package [here](https://alarm-redist.org/fifty-states/).
+-   Documenting your code... comment next to the packages you call and also comment above individual steps. Comment as little and as clearly as possible. Automate informative comments by leveraging built-in descriptions, checking code for package components, and examining comments in code.
+-   [Datapages](https://datapages.github.io) are a great tool for findable, accessible, interoperable, reusable (FAIR), and interactive data sharing. Uploading a static `.csv` file is easy for you but hard for the audience. On the other hand, making a custom repository and website is easy for the audience but hard for you. Sharing a datapage gives you the best of both worlds and makes it easy to share your data analysis in a robust manner while communicating its impact to your audience.
+-   Learning in the age of AI... even if we don't need to code ourselves in the future, we need to have the right vocabulary to be able to tell the AI what to do. Instead of telling students what they should implement, have them analyze AI output and figure out what didn't work and why it is missing.
+-   Check out the TV show *The Expanse*!
 
-*Questions:*
+### "Please Let Me Merge Before I Start Crying: And Other Things I've Said at the Git Terminal" - [Meghan Harris](https://github.com/Meghansaha)
 
--   What is a structured way to get stakeholders involved?
+[Git](https://git-scm.com) is not the same as [GitHub](https://github.com). Git is the version control system, while GitHub is the developer platform that uses the Git software. R users can interact with Git through:
 
-    -   Model cards are a great option. These are just a couple of paragraphs that provide context for how the data were initially generated and various techniques used to model the data. Model cards can be generated using the {vetiver} package.
+-   a command-line interface (CLI)
 
-### "[How to make a Thousand Plots Look Good: Data Viz Tips for Parameterized Reporting](https://cascadia2024.rfortherestofus.com/#/title-slide)," by [David Keyes](https://rfortherestofus.com/about) from R for the Rest of Us
+-   the RStudio graphical user interface (GUI)
 
-Parameterized reporting refers to process of creating a single document in markdown/Quarto and using it to make multiple reports at once. For instance, one can work with a single report for the visualization of housing and demographics data, and then expand this report to view data for a variety of towns, counties, and countries.
+-   a third-party UI (e.g. [GitHub Desktop](https://github.com/apps/desktop))
 
-How can we think about intuitive data visualization in the context of parameterized reporting? Here are some rules to consider:
+Merging in git involves the joining of two or more development histories (also known as branches) together. Merging allows you to safely modify work when collaborating with others. A lot of people think they are scared of merges... the truth is, they're really scared of merge conflicts! Merge conflicts occur when competing changes are made to the same line of a file (a content conflict) or someone edits a file and someone else deletes the file (a structure conflict).
 
-1.  There is no magic package
+Here are some tips to dealing with merge conflicts:
 
-2.  Consider the outer limits of your data
+1\. **Don't panic!** You can use `git merge --abort` like a time machine to get you to where you were before. REmember, you are in control. You can choose which code to use.
 
--   e.g. scale of income
+2\. **Assess the damage.** You can call `git status` to see what has happened. Don't be scared, but be careful. It doesn't matter how complicated the conflict is... the process is the same.
 
-3.  Minimize text and position it carefully
+Remember, merge conflicts are not git problems. They are communication, workflow, or knowledge gap problems. When you are working, be thoughtful before, during, and after your coding sessions.
 
-4.  Don't label everything
+-   Before you code: check your git environment and check the branch status. Always pull first before touching anything. Emergencies are not real!
+-   While you code: commit often, push thoughtfully, and use git stashes when needed.
+-   After you code: you are reviewer #1! Make your code as clear as can be.
 
--   {ggrepel}: repel overlapping labels in ggplot
--   {shadowtext}: add background color to text
+With respect to learning how to get better with git... do what you need to do, however you need to do it. Sometimes, all you really need is a bit more practice.
 
-5.  Hide small values
+### "Keynote Session: A Future of Data Science" - [Allen Downey](https://www.allendowney.com/wp/)
 
-6.  Don't put text where it could be obscured
+What does it mean for data work to be successful? It means that we have successfully answered a question of interest. Now how do we go about answering a question? We need the following things:
 
--   Add text elements as multiple layers. Make sure to include a separate element for text position
+-   data
 
-7.  Highlight items strategically
+-   a simple method / basic visualization
 
--   Make use of color, size, shadow, outline, and opacity
--   Consider the R package {ggfx}
+-   free software and tools for reliable science
 
-Here's the ultimate takeaway: there are a countless number of R packages that can help you achieve your goals in modularizing your applications, but at the end of the day, you are the one who has to do the thinking!
+-   a distribution system (e.g. a [blog](https://vsriram24.github.io/blog.html))
 
-### "Cartographic Tricks and Techniques in R," by [Justin Sherrill](https://econw.com/staff/justin-sherrill/) from ECONorthwest
+![](statTest.png)
 
-Cartography refers to the generation of maps for geographic locations. However, in a more figurative sense, cartography is an exercise in story-telling. Through the information that you convey in your cartographic visualizations, you are choosing the story that you tell. Writing a good story is about making decisions - you need to make the right sacrifices in the information that you choose to exclude.
+Data science involves the application of tools and processes to answer questions, resolve disagreements, and make better decisions. Data science has been on the [Gartner hype cycle](https://en.wikipedia.org/wiki/Gartner_hype_cycle) for a while... where are we today with respect to this cycle for data science? The peak of inflated expectations happened around 2009 to 2012, while the trough of disillusionment happened from 2016 to 2018. Now, we're starting to hit the plateau of productivity... and the reason for this is because we have not fully embraced [computational statistics](https://en.wikipedia.org/wiki/Computational_statistics).
 
-What are the key principles of "good" cartography? 1. Visual hierarchy (the arrangement of elements that guide the viewer's eye through the content in the right order) 2. Legibility 3. Figure-ground (the ability to differentiate between an object and its background) 4. Balance
+What is the difference between mathematical statistics and computational statistics? Mathematical statistics can be thought of as the start of the field, while computational statistics can be considered its final evolution. Data science as a field exists because statistics missed the boat on computers. Topics like general purpose programming languages, machine learning, and more were not introduced into the statistical discipline early on enough.
 
-[Jacques Bertin](https://en.wikipedia.org/wiki/Jacques_Bertin) and [William Bunge](https://en.wikipedia.org/wiki/William_Bunge) were two renowned geographers from the 20th century who consistently followed the principles of good cartography. You can refer to a lot of their work to get inspiration for developing cartographic visualizations. [Timo Grossenbacher](https://timogrossenbacher.ch) is a modern-day geographer and data scientist who has used R to develop some beautiful cartographic illustrations. [Here](https://timogrossenbacher.ch/bivariate-maps-with-ggplot2-and-sf/) is a great example of a bivariate thematic map he generated of Switzerland's regional income inequality.
+Nevertheless, there are many reasons to be optimistic about the progression of statistics and data science. Not only do we have more and more available data, but we also have improved data literacy. However, data bias from the increased consumption of negative media is skewing the trajectory of data science progress downward. Ultimately, data itself is the antidote to this negativity bias. We can use data to understand the world better, so that we know how to make the world better! This is the ultimate benefit of open data!
 
-As Timo demonstrates, you can do pretty much all of the data visualization you want to do with {ggplot2}. {ggplot2} is one of the strongest data visualization tools in existence.
+![](openSci.png)
 
-Here is a set of great packages to apply for geospatial data visualization in R and {ggplot2}:
+### "Uniquely Human: Data Storytelling in the Age of AI" - [Laura Gast](https://www.linkedin.com/in/laurabgast/)
 
-1\. {ggspatial}: includes the north arrow / scale bar
+You have to speak for the data! The data will NOT speak for itself. You can do this with the four following modes of persuasion:
 
-2\. {mapboxapi}: can show roads, bodies of water, and more.
+-   Logos (logic): data and methods
 
-3\. {patchwork}: can do map insets to show larger context of your zoomed in map - can also use {ggmagnify}
+-   Ethos (trust): credibility
 
-4\. {ggrepel}: label placement to avoid overlapping labels
+-   Pathos (emotion): narrative
 
-5\. {st_inscribed_circle}: label an unusually shaped polygon
+-   Kairos (time): audience and timing
 
-6\. {ggforce}: label a subset of points in a nice style
+Context feeds story. Story feeds impact. Context includes the following three components: background, framing, and circumstance. Make sure to contextualize both the inputs and the outputs of your data story. Data visualization can be used to communicate scale of impact.
 
-7\. {ggfx}: fun effects for {ggplot2}
+Story includes both an arc and a narrative. A story provides your audience with access. Your audience is not passive - you want them to be excited and rooting for the outcome of your analysis. At the same time, you must be careful in a world where "great stories" and things that aren't true aren't really the same thing. You want to make sure that you do not lose credibility.
 
-8\. {ggdensity}: show density patterns
+Regarding impact: data is not information, information is not knowledge, and knowledge is not wisdom. Data does not act, and AI does not have intent. It thus becomes evident that **humans cannot be cut out of the process**. Remember that you will always have to speak for the data through context, story, and impact.
 
-9\. {rmapshaper}: simplify geometries of shapes
-
-10\. {smoothr}: round the corners for shapes
-
-11\. {ggarrow}: make pretty arrows
-
-12\. {ggstar}: pch symbols
-
-13\. {ggsvg}: use SVGs as points in your plot
-
-These packages are all very easy to implement and can turn your basic cartographic maps into true works of art! If you're interested in playing around with cartographic visualizations, you can get access to open-source geospatial data for the state of Washington from the [Washington Geospatial Open Data Portal](https://geo.wa.gov).
+------------------------------------------------------------------------
 
 ### Personal Takeaways
 
-I had a lot of fun attending Cascadia R Conference 2024, and I look forward to being back in 2025! Here are some personal takeaways I got from the conference.
+I had a great time at my first posit::conf, and I look forward to attending more in the future. Here are a few key takeaways related to trends in the field of data science as well as ways that I could update my personal workflows:
 
--   The R community is extremely creative and fun! This conference felt very different from some of the technical biomedical informatics conferences I've attended in the past, many of which were focused purely on scientific advancements. At this conference, there were so many talks that demonstrated all sorts of random things you could do with the language of R, and these wacky detours were both encouraged and celebrated!
+-   In the coming years, with platforms like [Positron](https://github.com/posit-dev/positron) and [Quarto Live](https://github.com/r-wasm/quarto-live), we will see expanded ways that people can learn and practice data science across languages and disciplines.
 
--   There is a growing focus on R for production-level ventures, including parameterization and modularization. Many data scientists are interested in scaling R for industrial applications and integrating it with other languages.
+-   GitHub should be used not just as a version control platform but as a way to share your projects with the public, as well as to learn from other people's work. Learn how to use GitHub code search!
 
--   While we are currently in a hype cycle for the field of generative AI and large language models, there is still plenty of other interesting work to be accomplished in the field of data science. It's important to not get carried away by the fear of missing out (FOMO)! Focus on the goals of your work and find the right tools for the job (i.e. problem-first instead of tooling-first solutions)
+-   [DuckDB](https://duckdb.org) (and [duckplyr](https://github.com/tidyverse/duckplyr)) is a simple and highly effective way of storing and manipulating data tables. Stop using `.csv`'s!
+
+-   Generative AI tools like ChatGPT aren't the end-all, be-all to data science work, but they can be extremely helpful tools for implementing new tools that have a high learning curve (e.g. [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS))
+
+-   Learning new concepts can be a challenging task, particularly when there are multiple ways to do a single thing. It's often easiest to pick a single way of doing things and master it. Go with what works for you!
+
+-   Regardless of how the field of AI continues to progress (whether the hype grows or shrinks), people will remain at the heart of data science. It is our responsibility as ethical data scientists to promote open sharing of data and tools, as well as to advocate for the data and tell the stories we wish to tell when communicating with stakeholders who are not as data literate.
+
+-   Nothing is ever really an [emergency]{.underline}. If someone's life is on the line, then you can worry. Otherwise, there's no need for you to stress as much as you currently are!
 
 ------------------------------------------------------------------------
 
-This concludes my summary of my experience at Cascadia R Conference 2024! I'd like to give a huge thank you to the [organizers](https://cascadiarconf.com/about/) of this conference for all of their hard work and for bringing the PNW data science community together in such a wonderful event. The next conference I will be attending will be [posit::conf(2024)](https://posit.co/conference/), and I look forward to summarizing my experiences there in another blog post. Until next week, \[VS\]Coders!
+This concludes my summary of my experience at posit::conf 2024! I'd like to give a huge thank you to Posit for bringing not just the national but also international data science community together in such a fun, educational event. Until next time, \[VS\]Coders!

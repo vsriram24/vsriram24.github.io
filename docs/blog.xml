@@ -10,7 +10,169 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.4.555</generator>
-<lastBuildDate>Mon, 19 Aug 2024 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 02 Sep 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>posit::conf 2024</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/posit-conf-24/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Welcome back to another week of <em>[VS]Codes</em>! A few weeks ago, I had the opportunity to attend <a href="https://cascadiarconf.com">posit::conf 2024</a>, a national data science conference organized annually by <a href="https://posit.co">Posit, PBC</a>. This year, the conference was held in my home base of Seattle, and it was a wonderful experience getting to attend so many inspiring talks and meet so many members of the data science community. This blog post will summarize content from the workshop I attended on the first day of the conference, as well as some of the talks that I attended over the following couple of days. I’ll conclude this post with my personal overall takeaways from the conference.</p>
+<p><img src="https://vsriram24.github.io/posts/posit-conf-24/positConf.jpg" class="img-fluid"></p>
+<hr>
+<section id="package-development-the-rest-of-the-owl---jenny-bryan" class="level3">
+<h3 class="anchored" data-anchor-id="package-development-the-rest-of-the-owl---jenny-bryan">“Package Development: The Rest of the Owl” - <a href="https://jennybryan.org/about/">Jenny Bryan</a></h3>
+<p>The title of this talk was inspired by this <a href="https://karlastarr.substack.com/p/draw-the-rest-of-the-fucking-owl">blog post</a>, and serves to explain how one goes from the basics of creating a new package in R to fleshing out a more complete data product.</p>
+<p>The key package this workshop highlighted was <code>devtools</code>: you can learn more about this package <a href="https://devtools.r-lib.org">here</a>.</p>
+<p>The first thing you should always do when starting to develop a new package is to call <code>library(devtools)</code>. You can also force yourself to do this by including the line <code>require(devtools)</code> in your <code>.Rprofile</code>. With <code>devtools</code> loaded, you can call <code>dev_sitrep()</code> and <code>git_sitrep()</code> to get package development and git/GitHub ‘situation reports’ respectively as you work on your package.</p>
+<p>When you call the <code>library</code> command in R, your code will go from installed packages to memory. On the other hand, calling the <code>load_all()</code> function from <code>devtools</code> will go through the entire process from source to memory. This includes the following steps:</p>
+<ul>
+<li><p>simulates building, installing, and attaching your package</p></li>
+<li><p>makes all of the functions in your package available to use</p></li>
+<li><p>makes anything you’ve imported available to use</p></li>
+<li><p>allows fast iteration of editing and test-driving your functions.</p></li>
+</ul>
+<p>As you write code, it is also helpful to call the <code>check()</code> function often to ensure that you are not breaking things as you develop. Your workflow for writing and testing code in your package should emulate the following process:</p>
+<p><img src="https://vsriram24.github.io/posts/posit-conf-24/packDev.png" class="img-fluid"></p>
+<p>Another thing that folks don’t really consider when developing packages is that <strong><em>GitHub code search is your friend</em></strong>. You can check out <a href="https://github.com/cran" class="uri">https://github.com/cran</a> on GitHub - as packages get uploaded to CRAN, this user mirrors the full source code for the package onto GitHub for you. The same thing applies for <a href="https://github.com/tidyverse" class="uri">https://github.com/tidyverse</a> and <a href="https://github.com/r-lib" class="uri">https://github.com/r-lib</a>.</p>
+<p>Regarding testing - when you are working on package development, most of your time will be spent looking at test files. For testing within the <code>devtools</code> framework, we call <code>use_testthat()</code>. Then we can run <code>test_file()</code> on a test R script that we’ve generated. A good workflow for macro-iteration across all files is to call <code>test()</code> followed by <code>test_coverage()</code> and finally followed by <code>check()</code>. <strong>Always aim to make tests self-sufficient and self-contained</strong>. It is better to repeat code than to introduce dependencies across tests. Don’t include <code>library()</code> or <code>source()</code> calls in your test files - include these in helper files instead.</p>
+<p>Lastly, with respect to documentation - help topics are saved in <code>.Rd</code> files and will live in the <code>man/</code> folder of your R package. You can build a <code>README.md</code> file from your <code>README.Rmd</code> using the <code>build_readme()</code> function. It is also helpful to insert a <code>roxygen</code> skeleton into your code.</p>
+<p>The following figure offers a good summary of how to approach package development with <code>devtools</code>:</p>
+<p><img src="https://vsriram24.github.io/posts/posit-conf-24/packDev2.png" class="img-fluid"></p>
+</section>
+<section id="keynote-session-updates-from-posit---hadley-wickham" class="level3">
+<h3 class="anchored" data-anchor-id="keynote-session-updates-from-posit---hadley-wickham">“Keynote Session: Updates from Posit” - <a href="https://hadley.nz">Hadley Wickham</a></h3>
+<p>The company that organized this conference, formerly known as RStudio, is now known as Posit, PBC. But what is a PBC? PBC stands for “positive benefit corporation.” PBC’s sit between charities and full for-profit corporations. The mission of Posit is <strong>to create free and open source software for data science, scientific research, and technical communication</strong>. Posit supports both free and commercial tools - the free tools are meant to allow anyone to do data science work. The commercial tools are intended for larger organizations that apply Posit’s tooling at large.</p>
+</section>
+<section id="github-how-to-tell-your-professional-story---abigail-haddad" class="level3">
+<h3 class="anchored" data-anchor-id="github-how-to-tell-your-professional-story---abigail-haddad">“GitHub: How To Tell Your Professional Story” - <a href="https://github.com/abigailhaddad">Abigail Haddad</a></h3>
+<p>GitHub doesn’t just have to be a way for you to version control your code - it can be a platform for showcasing the work that you care about. You can update the <code>README</code> file for the repo that has the same name as your GitHub username to be able to provide an introduction to your GitHub page. Make sure to also pin repositories to your profile that can showcase your skillset in the right way.</p>
+<p>*Note: I went ahead and did this right after Abigail’s talk. You can check out the result <a href="https://github.com/vsriram24">here</a> :)</p>
+</section>
+<section id="oops-im-a-manager---finding-your-minimal-viable-process---andrew-holz" class="level3">
+<h3 class="anchored" data-anchor-id="oops-im-a-manager---finding-your-minimal-viable-process---andrew-holz">“Oops, I’m A Manager - Finding your Minimal Viable Process” - <a href="https://www.linkedin.com/in/andrewholz/">Andrew Holz</a></h3>
+<p>What’s the minimal viable process (MVP) to being a manager? Let’s break these terms down with some layman’s definitions:</p>
+<ul>
+<li><p>P(rocess): how sh*t gets done!</p></li>
+<li><p>V(iable): someone is paying the bills, so they expect the process to be <em>meaningful</em>.</p></li>
+<li><p>M(inimal): heavy processes don’t promote progress - they paralyze it. Keep the process as lean as possible.</p></li>
+</ul>
+<p>We can distill this process into three phases: gather, do, and deliver</p>
+<ol type="1">
+<li>Gather</li>
+</ol>
+<ul>
+<li>Intentionally consider all stakeholders and the level of input they can and should provide</li>
+<li>Specify as much detail as the team needs, and no more (see https://tidyfirst.substack.com/p/responsible-slack)</li>
+</ul>
+<ol start="2" type="1">
+<li>Do</li>
+</ol>
+<ul>
+<li>Make sure you leave as much space as possible for the ‘who,’ ‘what,’ and ‘how’</li>
+<li>Don’t make one person do the same thing over and over again. Also avoid dictating how they go about doing their tasks.</li>
+<li>Lastly, be careful when you set up meetings - consider purpose and frequency as well as who needs to be there.
+<ul>
+<li>8 people in a meeting is too much - everyone will just be waiting for their turn to speak instead of actively communicating. A 4-person meeting is much better. The best kind of meeting? Context pairs where two individuals are fully aware of the context of their discussion.</li>
+</ul></li>
+</ul>
+<ol start="3" type="1">
+<li>Delivery</li>
+</ol>
+<ul>
+<li>Beyond shipping your product, other aspects of delivery are often neglected. First, delivering your product involves being able to tell a coherent story with your stakeholders. Second, make sure that your entire team gets credit for its wins. Finally, do your best to own your mistakes.</li>
+</ul>
+<p>Ultimately, being a good manager is a process of trial and error. There is no “right” process - there is only the “right NOW” process. Observe and reflect along with your team, and make changes to your process over time.</p>
+</section>
+<section id="some-notes-from-lightning-talks---eric-leung-ben-arancibia-claire-bai-luis-d.-verde-arregoitia-mika-braginsky-andrew-gard" class="level3">
+<h3 class="anchored" data-anchor-id="some-notes-from-lightning-talks---eric-leung-ben-arancibia-claire-bai-luis-d.-verde-arregoitia-mika-braginsky-andrew-gard">Some notes from Lightning Talks - <a href="https://erictleung.com">Eric Leung</a>, <a href="https://www.linkedin.com/in/bcarancibia/">Ben Arancibia</a>, <a href="https://www.linkedin.com/in/claire-bai-388727122/">Claire Bai</a>, <a href="https://luisdva.github.io">Luis D. Verde Arregoitia</a>, <a href="https://mikabr.io">Mika Braginsky</a>, <a href="https://www.lakeforest.edu/academics/faculty/agard">Andrew Gard</a></h3>
+<ul>
+<li>When you’re faced with a new challenging task, don’t reinvent the wheel! Use the best (available) tool for the job</li>
+<li>Companies like <a href="https://cotahealthcare.com">COTA Healthcare</a> are developing R packages like <code>rwnavigator</code> to facilitate outcomes analysis for cancer. The goal of such tasks is to incorporate medical expertise from oncologists and functionality to standardize and simplify code.</li>
+<li>The ALARM project has developed an R package called “fifty-states” to simulate alternative congressional redistricting plans for all 50 states. You can learn more about their package <a href="https://alarm-redist.org/fifty-states/">here</a>.</li>
+<li>Documenting your code… comment next to the packages you call and also comment above individual steps. Comment as little and as clearly as possible. Automate informative comments by leveraging built-in descriptions, checking code for package components, and examining comments in code.</li>
+<li><a href="https://datapages.github.io">Datapages</a> are a great tool for findable, accessible, interoperable, reusable (FAIR), and interactive data sharing. Uploading a static <code>.csv</code> file is easy for you but hard for the audience. On the other hand, making a custom repository and website is easy for the audience but hard for you. Sharing a datapage gives you the best of both worlds and makes it easy to share your data analysis in a robust manner while communicating its impact to your audience.</li>
+<li>Learning in the age of AI… even if we don’t need to code ourselves in the future, we need to have the right vocabulary to be able to tell the AI what to do. Instead of telling students what they should implement, have them analyze AI output and figure out what didn’t work and why it is missing.</li>
+<li>Check out the TV show <em>The Expanse</em>!</li>
+</ul>
+</section>
+<section id="please-let-me-merge-before-i-start-crying-and-other-things-ive-said-at-the-git-terminal---meghan-harris" class="level3">
+<h3 class="anchored" data-anchor-id="please-let-me-merge-before-i-start-crying-and-other-things-ive-said-at-the-git-terminal---meghan-harris">“Please Let Me Merge Before I Start Crying: And Other Things I’ve Said at the Git Terminal” - <a href="https://github.com/Meghansaha">Meghan Harris</a></h3>
+<p><a href="https://git-scm.com">Git</a> is not the same as <a href="https://github.com">GitHub</a>. Git is the version control system, while GitHub is the developer platform that uses the Git software. R users can interact with Git through:</p>
+<ul>
+<li><p>a command-line interface (CLI)</p></li>
+<li><p>the RStudio graphical user interface (GUI)</p></li>
+<li><p>a third-party UI (e.g.&nbsp;<a href="https://github.com/apps/desktop">GitHub Desktop</a>)</p></li>
+</ul>
+<p>Merging in git involves the joining of two or more development histories (also known as branches) together. Merging allows you to safely modify work when collaborating with others. A lot of people think they are scared of merges… the truth is, they’re really scared of merge conflicts! Merge conflicts occur when competing changes are made to the same line of a file (a content conflict) or someone edits a file and someone else deletes the file (a structure conflict).</p>
+<p>Here are some tips to dealing with merge conflicts:</p>
+<p>1. <strong>Don’t panic!</strong> You can use <code>git merge --abort</code> like a time machine to get you to where you were before. REmember, you are in control. You can choose which code to use.</p>
+<p>2. <strong>Assess the damage.</strong> You can call <code>git status</code> to see what has happened. Don’t be scared, but be careful. It doesn’t matter how complicated the conflict is… the process is the same.</p>
+<p>Remember, merge conflicts are not git problems. They are communication, workflow, or knowledge gap problems. When you are working, be thoughtful before, during, and after your coding sessions.</p>
+<ul>
+<li>Before you code: check your git environment and check the branch status. Always pull first before touching anything. Emergencies are not real!</li>
+<li>While you code: commit often, push thoughtfully, and use git stashes when needed.</li>
+<li>After you code: you are reviewer #1! Make your code as clear as can be.</li>
+</ul>
+<p>With respect to learning how to get better with git… do what you need to do, however you need to do it. Sometimes, all you really need is a bit more practice.</p>
+</section>
+<section id="keynote-session-a-future-of-data-science---allen-downey" class="level3">
+<h3 class="anchored" data-anchor-id="keynote-session-a-future-of-data-science---allen-downey">“Keynote Session: A Future of Data Science” - <a href="https://www.allendowney.com/wp/">Allen Downey</a></h3>
+<p>What does it mean for data work to be successful? It means that we have successfully answered a question of interest. Now how do we go about answering a question? We need the following things:</p>
+<ul>
+<li><p>data</p></li>
+<li><p>a simple method / basic visualization</p></li>
+<li><p>free software and tools for reliable science</p></li>
+<li><p>a distribution system (e.g.&nbsp;a <a href="https://vsriram24.github.io/blog.html">blog</a>)</p></li>
+</ul>
+<p><img src="https://vsriram24.github.io/posts/posit-conf-24/statTest.png" class="img-fluid"></p>
+<p>Data science involves the application of tools and processes to answer questions, resolve disagreements, and make better decisions. Data science has been on the <a href="https://en.wikipedia.org/wiki/Gartner_hype_cycle">Gartner hype cycle</a> for a while… where are we today with respect to this cycle for data science? The peak of inflated expectations happened around 2009 to 2012, while the trough of disillusionment happened from 2016 to 2018. Now, we’re starting to hit the plateau of productivity… and the reason for this is because we have not fully embraced <a href="https://en.wikipedia.org/wiki/Computational_statistics">computational statistics</a>.</p>
+<p>What is the difference between mathematical statistics and computational statistics? Mathematical statistics can be thought of as the start of the field, while computational statistics can be considered its final evolution. Data science as a field exists because statistics missed the boat on computers. Topics like general purpose programming languages, machine learning, and more were not introduced into the statistical discipline early on enough.</p>
+<p>Nevertheless, there are many reasons to be optimistic about the progression of statistics and data science. Not only do we have more and more available data, but we also have improved data literacy. However, data bias from the increased consumption of negative media is skewing the trajectory of data science progress downward. Ultimately, data itself is the antidote to this negativity bias. We can use data to understand the world better, so that we know how to make the world better! This is the ultimate benefit of open data!</p>
+<p><img src="https://vsriram24.github.io/posts/posit-conf-24/openSci.png" class="img-fluid"></p>
+</section>
+<section id="uniquely-human-data-storytelling-in-the-age-of-ai---laura-gast" class="level3">
+<h3 class="anchored" data-anchor-id="uniquely-human-data-storytelling-in-the-age-of-ai---laura-gast">“Uniquely Human: Data Storytelling in the Age of AI” - <a href="https://www.linkedin.com/in/laurabgast/">Laura Gast</a></h3>
+<p>You have to speak for the data! The data will NOT speak for itself. You can do this with the four following modes of persuasion:</p>
+<ul>
+<li><p>Logos (logic): data and methods</p></li>
+<li><p>Ethos (trust): credibility</p></li>
+<li><p>Pathos (emotion): narrative</p></li>
+<li><p>Kairos (time): audience and timing</p></li>
+</ul>
+<p>Context feeds story. Story feeds impact. Context includes the following three components: background, framing, and circumstance. Make sure to contextualize both the inputs and the outputs of your data story. Data visualization can be used to communicate scale of impact.</p>
+<p>Story includes both an arc and a narrative. A story provides your audience with access. Your audience is not passive - you want them to be excited and rooting for the outcome of your analysis. At the same time, you must be careful in a world where “great stories” and things that aren’t true aren’t really the same thing. You want to make sure that you do not lose credibility.</p>
+<p>Regarding impact: data is not information, information is not knowledge, and knowledge is not wisdom. Data does not act, and AI does not have intent. It thus becomes evident that <strong>humans cannot be cut out of the process</strong>. Remember that you will always have to speak for the data through context, story, and impact.</p>
+<hr>
+</section>
+<section id="personal-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="personal-takeaways">Personal Takeaways</h3>
+<p>I had a great time at my first posit::conf, and I look forward to attending more in the future. Here are a few key takeaways related to trends in the field of data science as well as ways that I could update my personal workflows:</p>
+<ul>
+<li><p>In the coming years, with platforms like <a href="https://github.com/posit-dev/positron">Positron</a> and <a href="https://github.com/r-wasm/quarto-live">Quarto Live</a>, we will see expanded ways that people can learn and practice data science across languages and disciplines.</p></li>
+<li><p>GitHub should be used not just as a version control platform but as a way to share your projects with the public, as well as to learn from other people’s work. Learn how to use GitHub code search!</p></li>
+<li><p><a href="https://duckdb.org">DuckDB</a> (and <a href="https://github.com/tidyverse/duckplyr">duckplyr</a>) is a simple and highly effective way of storing and manipulating data tables. Stop using <code>.csv</code>’s!</p></li>
+<li><p>Generative AI tools like ChatGPT aren’t the end-all, be-all to data science work, but they can be extremely helpful tools for implementing new tools that have a high learning curve (e.g.&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a>)</p></li>
+<li><p>Learning new concepts can be a challenging task, particularly when there are multiple ways to do a single thing. It’s often easiest to pick a single way of doing things and master it. Go with what works for you!</p></li>
+<li><p>Regardless of how the field of AI continues to progress (whether the hype grows or shrinks), people will remain at the heart of data science. It is our responsibility as ethical data scientists to promote open sharing of data and tools, as well as to advocate for the data and tell the stories we wish to tell when communicating with stakeholders who are not as data literate.</p></li>
+<li><p>Nothing is ever really an <u>emergency</u>. If someone’s life is on the line, then you can worry. Otherwise, there’s no need for you to stress as much as you currently are!</p></li>
+</ul>
+<hr>
+<p>This concludes my summary of my experience at posit::conf 2024! I’d like to give a huge thank you to Posit for bringing not just the national but also international data science community together in such a fun, educational event. Until next time, [VS]Coders!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Conferences</category>
+  <guid>https://vsriram24.github.io/posts/posit-conf-24/</guid>
+  <pubDate>Mon, 02 Sep 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/posit-conf-24/pensiveZola.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>An intro to NLP for oncology</title>
   <dc:creator>Vivek Sriram</dc:creator>

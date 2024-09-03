@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/posit-conf-24/index.html",
       "/posts/nlp-oncology-overview/index.html",
       "/posts/multiomics-fa/index.html",
       "/posts/obliteride-24/index.html",
