@@ -10,7 +10,7 @@ categories:
 draft: false
 ---
 
-Welcome back to another week of *\[VS\]Codes*! A few weeks ago, I had the opportunity to attend [posit::conf 2024](https://cascadiarconf.com), a national data science conference organized annually by [Posit, PBC](https://posit.co). This year, the conference was held in my home base of Seattle, and it was a wonderful experience getting to attend so many inspiring talks and meet so many members of the data science community. This blog post will summarize content from the workshop I attended on the first day of the conference, as well as some of the talks that I attended over the following couple of days. I'll conclude this post with my personal overall takeaways from the conference.
+Welcome back to another week of *\[VS\]Codes*! A few weeks ago, I had the opportunity to attend [posit::conf 2024](https://posit.co/conference/), a national data science conference organized annually by [Posit, PBC](https://posit.co). This year, the conference was held in my home base of Seattle, and it was a wonderful experience getting to attend so many inspiring talks and meet so many members of the data science community. This blog post will summarize content from the workshop I attended on the first day of the conference, as well as some of the talks that I attended over the following couple of days. I'll conclude this post with my personal overall takeaways from the conference.
 
 ![](positConf.jpg)
 
