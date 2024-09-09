@@ -10,7 +10,92 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.4.555</generator>
-<lastBuildDate>Mon, 02 Sep 2024 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 09 Sep 2024 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>An intro to Convolutional Neural Networks</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/cnn-overview/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In this week’s blog, I will be summarizing the introductory “Convolutional Neural Networks” webpage from Fei-Fei Li’s Stanford CS 231n: “Deep Learning for Computer Vision” course. You can read the original page that I am summarizing <a href="https://cs231n.github.io/convolutional-networks/">here</a>, and you can took a look at Fei-Fei’s full course page <a href="https://cs231n.github.io">here</a>. Note that the original webpage includes about twice as much content as what I have in this post, including a more thorough discussion of real-world examples of neural networks, additional schemas such as parameter sharing, and a few coding examples in <code>numpy</code>. My goal for this post is to offer a “CliffsNotes of a CliffsNotes,” presenting just the basic intuition behind CNNs without any further detail. If you want to learn more, I would highly suggest reading the original webpage that this post summarizes, or additional resources such as <a href="https://arxiv.org/abs/1511.08458">this 2015 arXiv review paper</a> or <a href="https://www.geeksforgeeks.org/introduction-convolution-neural-network/">this GeeksForGeeks walkthrough</a> that includes some code examples. Without further ado, let’s get started!</p>
+<p><img src="https://vsriram24.github.io/posts/cnn-overview/introPage.png" class="img-fluid"></p>
+<hr>
+<p>Convolutional Neural Networks (also known as CNNs or ConvNets) are very similar to standard Neural Networks. They are also made up of neurons that have learnable weights and biases, with each neuron receiving an input, performing a dot product, and leading into an optional non-linearity. The overall network will also express a single differentiable score function, as well as include a loss function for the last fully-connected layer of the network.</p>
+<p>So what is the main difference between CNNs and other NNs? CNNs make the explicit assumption that the inputs are images. This assumption allows us to encode certain properties into the architecture, as well as make the forward function more efficient to implement and reduce the number of parameters in the network.</p>
+<section id="architecture-overview" class="level3">
+<h3 class="anchored" data-anchor-id="architecture-overview">Architecture Overview</h3>
+<p>All neural networks will receive an input (a single vector) and transform it through a series of hidden layers. Each hidden layer is made up of a set of neurons, where each neuron is fully connected to all neurons in the previous layer, and the neurons in a single layer function completely independently from one another (i.e.&nbsp;they share no connections with each other). The last fully-connected layer of the neural network is called the output layer - in classification settings, it represents the class scores.</p>
+<p>When working with images, the full connectivity of a neural network makes it difficult to scale neurons for large inputs - for instance, with an image that is 32x32 pixels and has 3 color channels, each individual neuron would need to have 32*32*3 = 3072 weights. So how do we eliminate the wastefulness of fully connected neural networks?</p>
+<p>CNNs constrain their architecture to match the dimensionality of images as input - in a CNN, neurons are arranged in three dimensions: <strong>width</strong>, <strong>height</strong>, and <strong>depth</strong>. Further, the neurons in a layer of a CNN will only be connected to a small region of the layer before them. Lastly, the final output layer will have dimensionality limited to 1x1xn, where n is the depth of the input layer, because the CNN architecture reduces the full input image into a single vector of class scores.</p>
+<p><img src="https://vsriram24.github.io/posts/cnn-overview/3d.png" class="img-fluid"></p>
+</section>
+<section id="cnn-layers" class="level3">
+<h3 class="anchored" data-anchor-id="cnn-layers">CNN Layers</h3>
+<p>Every layer of a CNN will transform one volume of activations to another through a differentiable function. There are three main types of layers used to build CNN architectures:</p>
+<ul>
+<li><p>Convolutional Layer</p></li>
+<li><p>Pooling Layer</p></li>
+<li><p>Fully-Connected Layer</p></li>
+</ul>
+<p>These layers are stacked together to form a full CNN architecture. CNNs will then transform the original image layer by layer from its original pixel values down to the final class scores.</p>
+<p>A point to note is that some layers contain parameters, while others do not. For instance, the convolutional layers and the fully-connected layers perform transformations that are a function of not only the activations in the input volume, but also the parameters of the neurons. On the other hand, ReLU layers (applying an elementwise activation function such as thresholding at 0 with max[0,x]) or pooling layers will implement a fixed function. Parameters in the convolutional and fully connected layers will be trained via gradient descent to get the class scores predicted by the CNN to match with the labels in the training set of images.</p>
+<p>Let’s now dive deeper into the individual CNN layers and their hyperpameters / connectivities</p>
+<section id="convolutional-conv-layer" class="level4">
+<h4 class="anchored" data-anchor-id="convolutional-conv-layer">Convolutional (CONV) Layer</h4>
+<p>The convolutional layer (CONV) is the core building block of a CNN - these layers perform the most computational heavy lifting. The CONV layer’s parameters include a set of learnable filters - each filter will have a small width and height but will extend through the full depth of the input volume (e.g.&nbsp;5x5x3 for an RGB picture). During the forward pass, we slide (a.k.a. convolve) each filter across the width and height of the input volume, computing dot products between the entries of the filter and the input at any position. As we slide the filter over the input volume, we produce a 2D activation map that gives the responses of that filter at every spatial position. We can think of the activation maps as masks that activate when they see a specific visual feature (e.g an edge or a blotch of color in the first layer; wheel or honeycomb shape in the last layer).</p>
+<p><img src="https://vsriram24.github.io/posts/cnn-overview/depthSlice.png" class="img-fluid"></p>
+<section id="local-connectivity" class="level5">
+<h5 class="anchored" data-anchor-id="local-connectivity">Local Connectivity</h5>
+<p>Convolutional layers also maintain local connectivity within the CNN - each neuron is connected only to a local region of the input volume. The spatial extent of this connectivity is a a hyperparameter known as the <strong>receptive field</strong>. While the connections exist locally along the width and height dimensions, they will extend along the full depth of the input volume.</p>
+</section>
+<section id="spatial-arrangement" class="level5">
+<h5 class="anchored" data-anchor-id="spatial-arrangement">Spatial Arrangement</h5>
+<p>Three different hyperparameters control how many neurons exist in the output volume and how they are arranged - these hyperparameters include depth, stride, and zero-padding.</p>
+<ol type="1">
+<li>Depth: corresponds to the number of filters we would like to use. The more filters we include in our CNN, the more features we may be able to identify.</li>
+<li>Stride: corresponds to how we slide each filter in two-dimensional space. If the stride is 1, then we move the filters one pixel at a time. Changing the stride allows us to spatially manipulate the output volume of a layer.</li>
+<li>Zero-padding: corresponds to padding the input volume with 0’s around the border. Zero padding allows us to control the spatial size of the output volumes - most commonly, zero padding can be used to ensure that the input and output width and height are kept consistent.</li>
+</ol>
+</section>
+</section>
+<section id="pooling-layer" class="level4">
+<h4 class="anchored" data-anchor-id="pooling-layer">Pooling Layer</h4>
+<p>Pooling layers can be found in between successive CONV layers in a CNN. The objective of each pooling layer is to reduce the spatial size of the representation, allowing us to control the number of parameters in the network, reduce required computation, and prevent overfitting to the training data. Each pooling layer operates independently on every depth slice of the input and resizes it spatially using the MAX operation (for instance, taking just the maximum value from a 2x2 square of values). Similar to the CONV layer, pooling occurs over the width and height dimensions, leaving the depth of the input unchanged. Note that it is not a <strong>requirement</strong> to include a pooling layer - many modern architectures have dropped pooling by sticking with CONV layers and manipulating the stride and depth hyperparameters instead.</p>
+</section>
+<section id="fully-connected-fc-layer" class="level4">
+<h4 class="anchored" data-anchor-id="fully-connected-fc-layer">Fully-connected (FC) Layer</h4>
+<p>Neurons in a FC layer have full connections to all activations in the previous layer, just like in neural networks.</p>
+</section>
+</section>
+<section id="cnn-architectures" class="level3">
+<h3 class="anchored" data-anchor-id="cnn-architectures">CNN Architectures</h3>
+<p>The most common form of a CNN architecture will stack a few CONV-ReLu layers, follow them with a pooling layer, and then repeat this pattern until the image has been merged spatially to a smaller size. At some point, one might transition to fully-connected layers from CONV layers. The last FC layer will hold the output (e.g.&nbsp;the class scores).</p>
+<p><img src="https://vsriram24.github.io/posts/cnn-overview/exampleArch.png" class="img-fluid"></p>
+<p>If you’re feeling a bit of fatigue in thinking about NN architectures, then you will be relieved to know that in most cases, you really do not have to worry about how the structure of your network will affect the performance of your model. You really never have to train a CNN from scratch - just download a pretrained model (whatever works best on ImageNet) and finetune it on your data.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This concludes my overview of the introductory “Convolutional Neural Networks” chapter from Fei-Fei Li’s CS231n course. I look forward to summarizing more such chapters in the future and sharing more examples of code walkthroughs of these topics in the future. Until next time!</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://cs231n.github.io/convolutional-networks/" class="uri">https://cs231n.github.io/convolutional-networks/</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Overviews</category>
+  <guid>https://vsriram24.github.io/posts/cnn-overview/</guid>
+  <pubDate>Mon, 09 Sep 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/cnn-overview/donut.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>posit::conf 2024</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -5805,7 +5890,7 @@ font-style: inherit;">print</span>(k, loss.data)</span></code></pre></div>
 
 
 
-<p>Welcome back to another week of <em>[VS]Codes</em>! In today’s post, I will be summarizing my personal definitions and interpretations of the various subdisciplines in biomedical data science. Given my prior background and experience in this subject area, I figured that writing this post would be an easy task! However, referencing the literature further made me realize that the boundaries across the subfields of health technology are fairly nebulous. Different departments, organizations, and individuals all have their own opinions of what their work involves. Dr.&nbsp;<a href="https://www.ohsu.edu/people/william-r-hersh-md">Bill Hersh</a> from Oregon Health and Science University has a great paper (all the way back from 2009!) on the need to converge on consistent terminology in the field of biomedical informatics: you can give it a read <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-9-24">here</a>.</p>
+<p>Welcome to another week of <em>[VS]Codes</em>! In today’s post, I will be summarizing my personal definitions and interpretations of the various subdisciplines in biomedical data science. Given my prior background and experience in this subject area, I figured that writing this post would be an easy task! However, referencing the literature further made me realize that the boundaries across the subfields of health technology are fairly nebulous. Different departments, organizations, and individuals all have their own opinions of what their work involves. Dr.&nbsp;<a href="https://www.ohsu.edu/people/william-r-hersh-md">Bill Hersh</a> from Oregon Health and Science University has a great paper (all the way back from 2009!) on the need to converge on consistent terminology in the field of biomedical informatics: you can give it a read <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-9-24">here</a>.</p>
 <p>Given the lack of clarity in the subfields of biomedical data science, my goal today will be to provide my personal interpretation of the breakdown of relevant fields, informed by some of the definitions I’ve collated from external references. This description is absolutely meant to be a first draft of sorts (hence the v0 in the title)… I aim to refine these terms further based on additional input down the road.</p>
 <section id="my-priors" class="level1">
 <h1>My Priors</h1>
