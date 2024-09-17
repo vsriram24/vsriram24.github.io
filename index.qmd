@@ -27,11 +27,11 @@ My general research skills and interests include:
 
 -   translational bioinformatics and personalized medicine
 
--   big data analysis
+-   big data analysis and visualization
 
 -   deep learning and generative AI
 
--   data visualization
+-   natural language processing
 
 -   network science
 
