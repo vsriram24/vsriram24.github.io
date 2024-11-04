@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/work-life-harmony/index.html",
       "/posts/newsletters/index.html",
       "/posts/cnn-overview/index.html",
       "/posts/posit-conf-24/index.html",

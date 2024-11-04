@@ -1,5 +1,5 @@
 ---
-title: "Vivek Sriram, PhD"
+title: "Vivek Sriram, PhD, MA"
 image: vivek_cropped.JPG
 about:
   template: broadside
