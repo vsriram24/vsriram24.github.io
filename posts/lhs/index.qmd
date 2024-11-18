@@ -2,17 +2,17 @@
 title: "An overview of learning health systems"
 description: "A data-driven paradigm for healthcare"
 author: "Vivek Sriram"
-date: "11/11/2024"
-date-modified: "11/11/2024"
+date: "11/18/2024"
+date-modified: "11/18/2024"
 image: zola_looking_over.jpg
 categories:
   - Overviews
-draft: true
+draft: false
 ---
 
 Welcome back to another post from my personal biomedical data science blog, *\[VS\]Codes*! In today's post, I will provide a brief overview of the concept of "learning health systems" and how this model is shifting the way that healthcare is approached today.
 
-![](leaves.jpg){fig-align="center" width="484"}
+![](leaves.jpg){fig-align="center" width="384"}
 
 #### **Translational informatics: advancing medical care from "bench to bedside"**
 
