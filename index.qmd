@@ -7,9 +7,9 @@ about:
     - icon: envelope-fill
       text: Email
       href: "mailto:vivek.sriram@gmail.com"
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com/viveksrm24
+    - icon: brightness-alt-high-fill
+      text: Bluesky
+      href: https://bsky.app/profile/vsriram24.bsky.social
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/vivek-sriram/
