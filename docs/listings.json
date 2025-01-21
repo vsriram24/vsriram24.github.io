@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/gxs-paper/index.html",
       "/posts/stanford_health_ai_conf_24/index.html",
       "/posts/data-democratization/index.html",
       "/posts/lhs/index.html",
