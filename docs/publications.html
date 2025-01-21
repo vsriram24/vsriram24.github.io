@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Home - Publications</title>
+<title>Publications – Home</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -92,7 +92,7 @@ gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -124,7 +124,7 @@ gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -133,7 +133,7 @@ gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
@@ -165,9 +165,9 @@ gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
 <li><p>Lee S§, Nam Y§, Choi ES, Jung YM, <strong>Sriram V</strong>, Leiby J, Koo JN, Oh IH, Kim BJ, Kim SM, Kim SY, Kim GM, Joo SK, Shin S, Norwitz E, Park CW, Jun JK, Kim W,&nbsp;Kim D*, Park JS*. Development of early prediction model for pregnancy-associated hypertension with graph-based semi-supervised learning.&nbsp;<em>Scientific Reports</em>, 12(1), 15793, 2022. <a href="https://doi.org/10.1038/s41598-022-15391-4" class="uri">https://doi.org/10.1038/s41598-022-15391-4</a></p></li>
 <li><p>Nam Y§, Jung SH§, Yun JS, Verma A, <strong>Sriram V</strong>, Shin H, Won H*,&nbsp;Kim D*. Discovering comorbid diseases using an inter-disease interactivity network based on biobank-scale PheWAS data. <em>Bioinformatics</em> 39(1), 2023. <a href="https://doi.org/10.1093/bioinformatics/btac822" class="uri">https://doi.org/10.1093/bioinformatics/btac822</a></p></li>
 <li><p>Woerner J§, <strong>Sriram V§,</strong> Nam Y, Verma A, Kim D*. Uncovering genetic associations in the human diseasome using an endophenotype-augmented disease network. <em>Bioinformatics</em> 40(3), 2024. <a href="https://doi.org/10.1093/bioinformatics/btae126" class="uri">https://doi.org/10.1093/bioinformatics/btae126</a>.</p></li>
+<li><p><strong>Sriram V</strong>, Woerner J, Ahn YY*, Kim D*. The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank. Human Genomics 19(4), 2025. <a href="https://doi.org/10.1186/s40246-024-00710-9" class="uri">https://doi.org/10.1186/s40246-024-00710-9</a>.</p></li>
 <li><p><strong>Sriram V</strong>, Conard AM, Rosenberg I, Kim D, Hall AK*. Accelerating precision medicine: a proposed framework for large-scale multiomic data integrity, interoperability, analysis, and collaboration in biomedical discovery. <em>medRXiv</em>. <a href="https://doi.org/10.1101/2024.03.15.24304358" class="uri">https://doi.org/10.1101/2024.03.15.24304358</a>. Preprint.</p></li>
 <li><p>Nam Y§, <strong>Sriram V§,</strong> Shivakumar M, Verma A, Yun JS, Kim D*. An enhanced disease network with robust cross-phenotype relationships via variant frequency-inverse phenotype frequency. Preprint.</p></li>
-<li><p><strong>Sriram V</strong>, Woerner J, Ahn YY*, Kim D*. The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank. Preprint.</p></li>
 </ol>
 
 
@@ -208,18 +208,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -251,7 +240,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/vsriram24\.github\.io");
@@ -259,7 +270,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
