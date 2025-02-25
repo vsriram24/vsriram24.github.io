@@ -5,7 +5,7 @@ title: "Teaching and Mentorship"
 **Teaching**
 
 -   Present
-    -   Teaching Assistant – “[Introduction to SQL](https://hutchdatascience.org/courses/#intro-to-sql)”, 2024 to Present
+    -   Teaching Assistant and Guest Lecturer – “[Introduction to SQL](https://intro-sql-fh.netlify.app)”, 2025 to Present
         -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
     -   Teaching Assistant – “[Introduction to Python](https://hutchdatascience.org/Intro_to_Python/index.html)”, 2024 to Present
         -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
@@ -30,9 +30,9 @@ title: "Teaching and Mentorship"
 **Mentorship**
 
 -   Present
-    -   UPenn [Biomedical Graduate Studies Career Paths](https://www.med.upenn.edu/bgs/career-paths-mentorship-program-with-bgs-alumni.html) Mentor (2024 - Present)
-    -   AHLI Machine Learning for Health ([ML4H](https://ahli.cc/ml4h/)) Mentor (2024 - Present)
+    -   UPenn [Biomedical Graduate Studies Career Paths](https://www.med.upenn.edu/bgs/career-paths-mentorship-program-with-bgs-alumni.html) Mentor (2024 to Present)
+    -   AHLI Machine Learning for Health ([ML4H](https://ahli.cc/ml4h/)) Mentor (2024 to Present)
 -   Prior
-    -   Rotation Advisor for Alexis Garófalo, UPenn GCB PhD Student (2022)
+    -   Rotation Advisor for [Alexis Garófalo](https://www.linkedin.com/in/alexis0208), UPenn GCB PhD Student (2022)
     -   Rotation Advisor for [Jakob Woerner](https://scholar.google.com/citations?user=VWvZhigAAAAJ&hl=en), UPenn GCB PhD Student (2021)
     -   Rotation Advisor for [Anni Moore](https://github.com/mooreann), UPenn GCB PhD Student (2021)
