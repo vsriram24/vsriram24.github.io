@@ -12,10 +12,10 @@ title: "Publications"
 
 5.  Nam Y§, Jung SH§, Yun JS, Verma A, **Sriram V**, Shin H, Won H\*, Kim D\*. Discovering comorbid diseases using an inter-disease interactivity network based on biobank-scale PheWAS data. *Bioinformatics* 39(1), 2023. <https://doi.org/10.1093/bioinformatics/btac822>
 
-6.  Woerner J§, **Sriram V§,** Nam Y, Verma A, Kim D\*. Uncovering genetic associations in the human diseasome using an endophenotype-augmented disease network. *Bioinformatics* 40(3), 2024. <https://doi.org/10.1093/bioinformatics/btae126>.
+6.  Woerner J§, **Sriram V§,** Nam Y, Verma A, Kim D\*. Uncovering genetic associations in the human diseasome using an endophenotype-augmented disease network. *Bioinformatics* 40(3), 2024. <https://doi.org/10.1093/bioinformatics/btae126>
 
-7.  **Sriram V**, Woerner J, Ahn YY\*, Kim D\*. The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank. *Human Genomics* 19(4), 2025. <https://doi.org/10.1186/s40246-024-00710-9>.
+7.  **Sriram V**, Woerner J, Ahn YY\*, Kim D\*. The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank. *Human Genomics* 19(4), 2025. <https://doi.org/10.1186/s40246-024-00710-9>
 
-8.  **Sriram V**, Conard AM, Rosenberg I, Kim D, Saponas TS, Hall AK\**.* Addressing biomedical data challenges and opportunities to inform a large-scale data lifecycle for enhanced data sharing, interoperability, analysis, and collaboration across stakeholders. *Scientific Reports* 15, 6291 (2025). <https://doi.org/10.1038/s41598-025-90453-x>.
+8.  **Sriram V**, Conard AM, Rosenberg I, Kim D, Saponas TS, Hall AK\**.* Addressing biomedical data challenges and opportunities to inform a large-scale data lifecycle for enhanced data sharing, interoperability, analysis, and collaboration across stakeholders. *Scientific Reports,* 15(1), 6291, 2025. <https://doi.org/10.1038/s41598-025-90453-x>
 
 9.  Nam Y§, **Sriram V§,** Shivakumar M, Verma A, Yun JS, Kim D\*. An enhanced disease network with robust cross-phenotype relationships via variant frequency-inverse phenotype frequency. Preprint.
