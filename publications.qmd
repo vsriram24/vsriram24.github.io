@@ -16,6 +16,6 @@ title: "Publications"
 
 7.  **Sriram V**, Woerner J, Ahn YY\*, Kim D\*. The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank. *Human Genomics* 19(4), 2025. <https://doi.org/10.1186/s40246-024-00710-9>.
 
-8.  **Sriram V**, Conard AM, Rosenberg I, Kim D, Hall AK\*. Accelerating precision medicine: a proposed framework for large-scale multiomic data integrity, interoperability, analysis, and collaboration in biomedical discovery. *medRXiv*. <https://doi.org/10.1101/2024.03.15.24304358>. Preprint.
+8.  **Sriram V**, Conard AM, Rosenberg I, Kim D, Saponas TS, Hall AK\**.* Addressing biomedical data challenges and opportunities to inform a large-scale data lifecycle for enhanced data sharing, interoperability, analysis, and collaboration across stakeholders. *Scientific Reports* 15, 6291 (2025). <https://doi.org/10.1038/s41598-025-90453-x>.
 
 9.  Nam Y§, **Sriram V§,** Shivakumar M, Verma A, Yun JS, Kim D\*. An enhanced disease network with robust cross-phenotype relationships via variant frequency-inverse phenotype frequency. Preprint.
