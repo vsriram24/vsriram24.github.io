@@ -1,5 +1,5 @@
 ---
-title: "Publications"
+title: "Publications and Peer Review"
 ---
 
 1.  **Sriram V§,** Nam Y§, Shivakumar M, Verma A, Jung S-H, Lee SM\*, Kim D\*. A Network-Based Analysis of Disease Complication Associations for Obstetric Disorders in the UK Biobank. *Journal of Personalized Medicine*. 2021; 11(12):1382. <https://doi.org/10.3390/jpm11121382>
@@ -19,3 +19,15 @@ title: "Publications"
 8.  **Sriram V**, Conard AM, Rosenberg I, Kim D, Saponas TS, Hall AK\**.* Addressing biomedical data challenges and opportunities to inform a large-scale data lifecycle for enhanced data sharing, interoperability, analysis, and collaboration across stakeholders. *Scientific Reports,* 15(1), 6291, 2025. <https://doi.org/10.1038/s41598-025-90453-x>
 
 9.  Nam Y§, **Sriram V§,** Shivakumar M, Verma A, Yun JS, Kim D\*. An enhanced disease network with robust cross-phenotype relationships via variant frequency-inverse phenotype frequency. Preprint.
+
+-----------------------------------------------------
+
+**Academic Peer Reviewer for:**
+
+-   *Nature Communications*
+
+-   *PLOS Digital Health*
+
+-   *BMC Genomics*
+
+-   *IEEE Transactions on Computational Biology and Bioinformatics*
