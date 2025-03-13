@@ -19,7 +19,6 @@ about:
     - icon: mortarboard-fill
       text: Google Scholar
       href: https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en
-
 ---
 
 I consider myself a computational scientist with a passion for people-focused projects. I currently work as a data scientist for the [Office of the Chief Data Officer](https://ocdo.fredhutch.org) at the [Fred Hutch Cancer Center](https://www.fredhutch.org/en.html) in Seattle, WA. My role centers on the development and productization of statistical models and machine learning systems for electronic phenotyping and cohort identification across the institution. I also serve as a guest lecturer in the [Department of Biostatistics, Epidemiology, and Informatics](https://www.dbei.med.upenn.edu) at the [University of Pennsylvania](https://www.upenn.edu) and a collaborator with the [Health Futures Group](https://www.microsoft.com/en-us/research/lab/microsoft-health-futures/) at [Microsoft Research](https://www.microsoft.com/en-us/research/).

@@ -135,6 +135,7 @@ While the Eisenhower Matrix is an excellent way to organize the priority of your
 The Eisenhower Matrix is a simple yet effective way to improve time management and productivity. Ultimately, by distinguishing between the urgency and importance of our tasks, we can reduce stress, work more efficiently, and focus on the things that truly matter.
 
 ## References
+
 -   [The Illusion of Urgency](https://pmc.ncbi.nlm.nih.gov/articles/PMC10159458/)
 -   [Spica - the Eisenhower Matrix](https://www.spica.com/blog/the-eisenhower-matrix)
 -   [Inc - The 4 D's of how to prioritize your time effectively](https://www.inc.com/nick-hobson/69-years-ago-president-eisenhower-came-up-with-best-matrix-for-making-better-decisions.html)
