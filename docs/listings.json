@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/eisenhower-matrix/index.html",
       "/posts/msr-scireports/index.html",
       "/posts/gxs-paper/index.html",
       "/posts/stanford_health_ai_conf_24/index.html",

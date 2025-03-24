@@ -10,7 +10,156 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Thu, 13 Mar 2025 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 24 Mar 2025 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Breaking the urgency trap with the Eisenhower Matrix</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/eisenhower-matrix/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>I recently came across an article titled “<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10159458/">The Illusion of Urgency</a>,” published in 2022 by <a href="https://wne.edu/directory/daniel-kennedy.cfm">Daniel R. Kennedy</a> and <a href="https://apps.pharmacy.wisc.edu/sopdir/andrea_porter/">Andrea L Porter</a> in the <em>American Journal of Pharmaceutical Education</em>. The publication is focused on time management for academic faculty, and I found the following paragraph to be particularly insightful:</p>
+<ul>
+<li><em>“One of the many rewarding aspects of an academic career is the numerous, varied responsibilities that create a stimulating job with a daily schedule that is different from one day to the next. Yet, these stimuli and responsibilities, coming from students, faculty, administrators, professional organizations, colleagues, and external stakeholders, can get overwhelming, especially as many of the requests can feel like they require an immediate response. To prosper as an academic, <strong>one must be able to identify the truly urgent issues over those that give an illusion of urgency</strong>, or else the short-term requests may interfere with the important time-intensive and productivity-driven tasks that the promotion and tenure process is primarily based upon.”</em></li>
+</ul>
+<p>In today’s fast-paced work environment, this statement rings true beyond the circles of academia and into many of our daily lives - being able to manage tasks efficiently is crucial for not just our productivity and success, but also our sanity!</p>
+<p>In this week’s blog post, I will highlight the <strong>Eisenhower Matrix</strong>, a powerful tool for prioritizing tasks based on urgency and importance. Following the principles established in this tool can help us focus on the tasks that truly matter over those that distract us each and every day.</p>
+<p><img src="https://vsriram24.github.io/posts/eisenhower-matrix/divine_dessert.jpg" class="img-fluid" width="388"></p>
+<section id="a-bit-of-history" class="level2">
+<h2 class="anchored" data-anchor-id="a-bit-of-history">A bit of history</h2>
+<p>71 years ago, <a href="https://en.wikipedia.org/wiki/Dwight_D._Eisenhower">Dwight D. Eisenhower</a> was facing a variety of demands in his presidency, including managing the Cold War, domestic affairs, and other national issues. In spite of (or perhaps, in the face of) the breadth of his committments, Eisenhower developed a reputation for productivity and decision-making skills. In particular, Eisenhower created a new method for task prioritization that later became known as the “Eisenhower Matrix.”</p>
+</section>
+<section id="what-is-the-eisenhower-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-eisenhower-matrix">What is the Eisenhower Matrix?</h2>
+<p>The Eisenhower Matrix is a simple framework that helps individuals and teams classify tasks into four categories, also known as “the 4 D’s”: <strong>Do</strong>, <strong>Decide</strong>, <strong>Delegate</strong>, <strong>Delete</strong>. These categories are based on two metrics: <strong>urgency</strong> and <strong>importance</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/eisenhower-matrix/The_Eisenhower_matrix_Illustration.png" class="img-fluid figure-img"></p>
+<figcaption>Illustration from Spica</figcaption>
+</figure>
+</div>
+<p>Let’s dive a little deeper into each of our quadrants.</p>
+<section id="quadrant-1-do-urgent-and-important" class="level3">
+<h3 class="anchored" data-anchor-id="quadrant-1-do-urgent-and-important"><strong>Quadrant 1: Do</strong> <em>(Urgent and Important)</em></h3>
+<p>Tasks in this category require immediate attention and have significant consequences if not completed. Examples include:</p>
+<ul>
+<li><p>Meeting a critical project deadline</p></li>
+<li><p>Handling a last-minute client request</p></li>
+<li><p>Resolving a major issue or crisis</p></li>
+</ul>
+<p><strong>Strategy:</strong> Address these tasks immediately to avoid negative consequences.</p>
+</section>
+<section id="quadrant-2-decide-important-but-not-urgent" class="level3">
+<h3 class="anchored" data-anchor-id="quadrant-2-decide-important-but-not-urgent">Quadrant 2: Decide <em>(Important but Not Urgent)</em></h3>
+<p>These tasks contribute to long-term success but do not require immediate attention. Examples include:</p>
+<ul>
+<li><p>Strategic planning and goal setting</p></li>
+<li><p>Professional development and training</p></li>
+<li><p>Relationship-building and networking</p></li>
+</ul>
+<p><strong>Strategy:</strong> Schedule dedicated time to work on these tasks to prevent them from becoming urgent.</p>
+</section>
+<section id="quadrant-3-delegate-urgent-but-not-important" class="level3">
+<h3 class="anchored" data-anchor-id="quadrant-3-delegate-urgent-but-not-important">Quadrant 3: Delegate <em>(Urgent but Not Important)</em></h3>
+<p>Tasks that require immediate attention but do not significantly impact long-term goals belong here. Examples include:</p>
+<ul>
+<li><p>Responding to non-critical emails</p></li>
+<li><p>Attending unnecessary meetings</p></li>
+<li><p>Handling minor administrative tasks</p></li>
+</ul>
+<p><strong>Strategy:</strong> Delegate these tasks to others whenever possible.</p>
+</section>
+<section id="quadrant-4-delete-neither-urgent-nor-important" class="level3">
+<h3 class="anchored" data-anchor-id="quadrant-4-delete-neither-urgent-nor-important">Quadrant 4: Delete <em>(Neither Urgent nor Important)</em></h3>
+<p>These tasks provide little to no value and can often be eliminated. Examples include:</p>
+<ul>
+<li><p>Excessive social media browsing</p></li>
+<li><p>Unnecessary paperwork</p></li>
+<li><p>Low-priority busywork</p></li>
+</ul>
+<p><strong>Strategy:</strong> Minimize or eliminate these tasks to free up time for higher-priority work.</p>
+</section>
+</section>
+<section id="deciding-what-is-important" class="level2">
+<h2 class="anchored" data-anchor-id="deciding-what-is-important">Deciding what is important</h2>
+<p>While the Eisenhower Matrix is an excellent way to organize the priority of your to-do’s, the challenge still remains to evaluate the importance of each task. Determining what truly matters to you when categorizing tasks involves understanding their impact and their alignment with your long-term goals. Here are some key ways to evaluate importance:</p>
+<section id="evaluate-alignment-with-long-term-aspirations" class="level3">
+<h3 class="anchored" data-anchor-id="evaluate-alignment-with-long-term-aspirations"><strong>1. Evaluate alignment with long-term aspirations</strong></h3>
+<p>Ask yourself, <em>“Does this task contribute to my key objectives or long-term success?”</em> A task that directly impacts a project deadline or a business goal is important, while one that has minimal long-term effect is less so.</p>
+</section>
+<section id="assess-the-impact-of-completion-vs.-non-completion" class="level3">
+<h3 class="anchored" data-anchor-id="assess-the-impact-of-completion-vs.-non-completion"><strong>2. Assess the impact of completion vs.&nbsp;non-completion</strong></h3>
+<p>Ask yourself, <em>“What happens if this task is not done?”</em> If skipping a task leads to major consequences (missed revenue, regulatory penalties, lost customers, etc.), then it’s important.</p>
+</section>
+<section id="consider-the-value-addition" class="level3">
+<h3 class="anchored" data-anchor-id="consider-the-value-addition"><strong>3. Consider the value addition</strong></h3>
+<p>Ask yourself, <em>“Does this task create meaningful value for me, my team, or my organization?”</em> Developing a strategic report that informs future decisions is important, whereas responding to routine emails may not be.</p>
+</section>
+<section id="distinguish-between-importance-and-urgency" class="level3">
+<h3 class="anchored" data-anchor-id="distinguish-between-importance-and-urgency"><strong>4. Distinguish between importance and urgency</strong></h3>
+<p><strong>Important tasks</strong> drive meaningful results and progress. <strong>Urgent tasks</strong> require immediate attention but don’t always have long-term value. A last-minute request for a non-critical report may feel urgent but isn’t necessarily important.</p>
+</section>
+<section id="use-the-pareto-principle-the-8020-rule" class="level3">
+<h3 class="anchored" data-anchor-id="use-the-pareto-principle-the-8020-rule"><strong>5. Use the <a href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> (the 80/20 Rule)</strong></h3>
+<p>Ask yourself, <em>“Which 20% of tasks will yield 80% of the results?”</em> Focus on high-impact activities that move the needle over busywork.</p>
+</section>
+<section id="identify-dependencies-and-impact-on-others" class="level3">
+<h3 class="anchored" data-anchor-id="identify-dependencies-and-impact-on-others"><strong>6. Identify dependencies and impact on others</strong></h3>
+<p>Ask yourself, <em>“Does this task affect others’ ability to get their work done?”</em> If delaying a task will hold up an entire team, then it’s probably important!</p>
+</section>
+<section id="prioritize-learning-growth-potential" class="level3">
+<h3 class="anchored" data-anchor-id="prioritize-learning-growth-potential"><strong>7. Prioritize learning &amp; growth potential</strong></h3>
+<p>Ask yourself, <em>“Does this task help develop skills, improve efficiency, or lead to innovation?”</em> The best investment you’ll ever be able to make in your life is <strong>in yourself</strong>. Always keep yourself in a growth mindset, and position yourself to learn more at any chance you have.</p>
+</section>
+</section>
+<section id="productive-procrastination" class="level2">
+<h2 class="anchored" data-anchor-id="productive-procrastination">Productive procrastination</h2>
+<p>One of the biggest challenges in prioritization is <strong>procrastination</strong>, referring to the avoidance of difficult or uncomfortable tasks. Notably, however, it is important to remember that <strong>procrastination is often more of an emotional regulation issue than a time management problem -</strong> we often assume that procrastination happens because we feel unmotivated by the importance or urgency of the task. In reality, it becomes a way for us to avoid negative emotions including stress, anxiety, boredom, or self-doubt. If a task feels overwhelming, ambiguous, or unpleasant, we tend to avoid it not because of the task itself, but because of how it makes us feel.</p>
+<p>“<strong>Productive procrastination</strong>” arises when we focus on the tasks that can be classified as not important and not urgent over other, more significant deliverables. We can use the Eisenhower Matrix to appropriately classify each of our key jobs-to-be-done, but without addressing the emotions behind each job, we will continue to fall victim to the illusion of urgency.</p>
+<p>Ultimately, the tasks we have to complete are not the problem - it is our perception of these tasks! A report you put off for weeks might take just 30 minutes when you finally start, revealing that the resistance was never about the difficulty - it was about how you <em>felt</em> about starting.</p>
+<p>Many people wait for motivation to strike before starting, but action itself is what creates motivation. Instead of focusing on finding the motivation for a job, focus on why the task makes you feel uncomfortable in the first place. Ask yourself: <em>“Am I avoiding this because it’s unclear? Because I’m afraid of failing? Because I find it boring?”</em> Reframing the task (e.g., “this will help me grow” instead of “this is too difficult”) can help shift your emotional response.</p>
+</section>
+<section id="eating-the-frog" class="level2">
+<h2 class="anchored" data-anchor-id="eating-the-frog">“Eating the frog”</h2>
+<p>A powerful method to combat procrastination is <strong>“eating the frog,”</strong> a concept popularized by <a href="https://www.briantracy.com/blog/time-management/the-truth-about-frogs/">Brian Tracy</a>. The idea is simple: <strong>tackle your most difficult or important task first</strong>. By addressing your most challenging task early, you reduce stress, boost productivity, and create momentum for the rest of your work.</p>
+<p>How can we eat our frogs? Start by identifying your frog: determine which task feels the most challenging to you and will have the highest impact on your goals. Then, prioritize this task as the first goal in your productivity time frame, whenever your energy and focus are at its highest. If the task seems too big, divide it into smaller, more manageable steps. Make sure the time you spend on this task is distraction-free, and as you work through each step of this objective, celebrate your progress and acknowledge each and every win.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/eisenhower-matrix/eatthefrog.jpeg" class="img-fluid figure-img" width="376"></p>
+<figcaption>Drawing by sketchplanations</figcaption>
+</figure>
+</div>
+<p>By understanding the psychology of avoidance and applying strategies like “Eating the Frog,” you can effectively overcome procrastination and make the Eisenhower Matrix even more effective in your daily workflow.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The Eisenhower Matrix is a simple yet effective way to improve time management and productivity. Ultimately, by distinguishing between the urgency and importance of our tasks, we can reduce stress, work more efficiently, and focus on the things that truly matter.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10159458/">The Illusion of Urgency</a></p></li>
+<li><p><a href="https://www.spica.com/blog/the-eisenhower-matrix">Spica - the Eisenhower Matrix</a></p></li>
+<li><p><a href="https://www.inc.com/nick-hobson/69-years-ago-president-eisenhower-came-up-with-best-matrix-for-making-better-decisions.html">Inc - The 4 D’s of how to prioritize your time effectively</a></p></li>
+<li><p><a href="https://asana.com/resources/eisenhower-matrix">Asana - the Eisenhower Matrix</a></p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Pareto_principle">Wikipedia - Pareto principle</a></p></li>
+<li><p><a href="https://www.briantracy.com/blog/time-management/the-truth-about-frogs/">Brian Tracy - Eat the Frog</a></p></li>
+<li><p><a href="https://sketchplanations.com/eat-the-frog">Sketchplanations - Eat The Frog</a></p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Advice</category>
+  <category>Miscellaneous</category>
+  <guid>https://vsriram24.github.io/posts/eisenhower-matrix/</guid>
+  <pubDate>Mon, 24 Mar 2025 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/eisenhower-matrix/zola_snow.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Bridging the gaps in biomedical data science</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -6917,166 +7066,6 @@ font-style: inherit;">print</span>(k, loss.data)</span></code></pre></div>
   <guid>https://vsriram24.github.io/posts/phd-context/</guid>
   <pubDate>Mon, 10 Jun 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/phd-context/zolaStairs.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Biomedical Data Science sub-disciplines (v0)</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/terminologies/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Welcome to another week of <em>[VS]Codes</em>! In today’s post, I will be summarizing my personal definitions and interpretations of the various subdisciplines in biomedical data science. Given my prior background and experience in this subject area, I figured that writing this post would be an easy task! However, referencing the literature further made me realize that the boundaries across the subfields of health technology are fairly nebulous. Different departments, organizations, and individuals all have their own opinions of what their work involves. Dr.&nbsp;<a href="https://www.ohsu.edu/people/william-r-hersh-md">Bill Hersh</a> from Oregon Health and Science University has a great paper (all the way back from 2009!) on the need to converge on consistent terminology in the field of biomedical informatics: you can give it a read <a href="https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-9-24">here</a>.</p>
-<p>Given the lack of clarity in the subfields of biomedical data science, my goal today will be to provide my personal interpretation of the breakdown of relevant fields, informed by some of the definitions I’ve collated from external references. This description is absolutely meant to be a first draft of sorts (hence the v0 in the title)… I aim to refine these terms further based on additional input down the road.</p>
-<section id="my-priors" class="level1">
-<h1>My Priors</h1>
-<p>One of my sources of inspiration for this post comes from a rotation mentor of mine during my PhD, Dr.&nbsp;<a href="https://researchers.cedars-sinai.edu/Ryan.Urbanowicz">Ryan Urbanowicz</a>. Ryan is an outstanding educator and has released several useful educational resources related to data science and machine learning in the past (for instance, his video series on <a href="https://www.youtube.com/playlist?list=PLafPhSv1OSDfEqFsBnurxzJbcwZSJA8X4">Machine Learning Essentials for Biomedical Data Science</a>). In my first year of graduate school, I found his Venn diagram of data science terms gave me a lot of clarity as I was starting off - you can refer to his original tweet <a href="https://x.com/DocUrbs/status/1007375834347376642">here</a>. My hope is that this post will provide a similar degree of intuition to those entering the field.</p>
-<p><img src="https://vsriram24.github.io/posts/terminologies/docUrbs.jpeg" class="img-fluid"></p>
-<p>Another source of inspiration for my definitions comes from the description of my graduate program at the University of Pennsylvania - the “<a href="https://www.med.upenn.edu/gcb/about/">Genomics and Computational Biology</a>” (GCB) graduate group. Here are some snippets from the program’s website that I found relevant to today’s discussion:</p>
-<ul>
-<li><p>“GCB accomplishes its training goals by administering a comprehensive training program that gives students a broad foundation in the biological and quantitative sciences along with practical experience in computational genomics, experimental genomics, or biomedical informatics.”</p></li>
-<li><p>“These disciplines take a holistic approach to ask about the origins, functions, and interactions of whole systems, using both experimental and theoretical work.”</p></li>
-<li><p>“The synthesis and integration of biology, computer science, mathematics, statistics, and engineering requires a new generation of scientists that thrives in cross-disciplinary research. This can include molecular, cellular, and organismal biology (including genetics), mathematics, statistics, chemistry, and engineering.”</p></li>
-<li><p>“As examples of areas of study one might explore: (a) Complex disease mapping, human genetic variation, and evolution of populations, (b) Genome-scale functional analysis of RNA, protein, and pathways, (c) Biophysical models of molecules and their interactions, (d) Design of novel experimental systems using microfluidics, nano-fabrication, and optics, (e) Development of computational algorithms for genome-scale data, (f) Construction of computational pipelines and software engineering of analysis systems, (g) System-level modeling of cell processes and organismal development, (h) Evolutionary dynamics of genomes, transcriptomes, pathways, and organisms”</p></li>
-<li><p>“[Our] mission … is to train the next generation of quantitative scientists with an integrated and deep understanding of the biological basis of health and disease.</p></li>
-</ul>
-<p>Based on these pieces of information, it is evident that biomedical data science is made up of multiple interdisciplinary, overlapping fields. So, the terms that I define today should not be taken as ground truths - a lot of things are open to personal interpretation.</p>
-<p>With all this context out of the way, let’s jump into my personal definitions - I’ll start with terms related to information and data, then explore the distinctions between biomedical informatics and computational biology, and finally conclude with a summary of health tech and biotech.</p>
-</section>
-<section id="definitions" class="level1">
-<h1>Definitions</h1>
-<section id="information-and-data" class="level2">
-<h2 class="anchored" data-anchor-id="information-and-data">Information and Data</h2>
-<p><strong>Information Technology (IT)</strong></p>
-<p><em>Information technology (IT)</em> refers to the use of computer systems to manage, process, protect, and exchange information. The overarching goal among its specializations is to use technology systems to solve problems and handle information. [<a href="https://www.coursera.org/articles/what-is-information-technology#">5</a>]</p>
-<p><strong>Information Science</strong></p>
-<p><em>Information science</em> is the theoretical study of how information is created, organized, managed, stored, retrieved, and used. It is an interdisciplinary field that combines aspects of computer science and information management. [<a href="https://www.si.umich.edu/student-experience/what-information-science">6</a>]</p>
-<p><strong>Informatics</strong></p>
-<p><em>Informatics</em> refers to the use and implementation of technology systems to analyze and manage information. Its primary focus is its application to specific external domains “for the good of people, organizations, and society”. [<a href="https://ischool.uw.edu/programs/informatics/what-is-informatics">7</a>, <a href="http://nces.ed.gov/ipeds/cipcode/cipdetail.aspx?y=55&amp;cipid=89325">8</a>]</p>
-<p><strong>Data Science</strong></p>
-<p><em>Data science</em> refers the study of data to extract meaningful insights and acquire knowledge. It is an interdisciplinary field that combines principles from a broad range of fields, including mathematics, statistics, artificial intelligence, and computer engineering, to collect, process, and analyze large amounts of data. There is a stronger focus on predictive modeling and algorithmic design. [<a href="https://aws.amazon.com/what-is/data-science/">9</a>, <a href="https://www.ibm.com/topics/data-science">10</a>, <a href="https://www.nnlm.gov/guides/data-glossary/data-science">11</a>]</p>
-<p><strong>Data Analytics</strong></p>
-<p><em>Data analysis</em> involves the analysis and examination of large amounts of data to better understand trends in the system being studied. There is a stronger focus on developing tables, visualizations, and overarching products to comprehend the data. [<a href="https://graduate.northeastern.edu/resources/data-analytics-vs-data-science/">12</a>]</p>
-<p>Based on the above definitions, I visualize the interplay of information and data as follows:</p>
-<p><img src="https://vsriram24.github.io/posts/terminologies/infoTech.png" class="img-fluid"></p>
-<p>Information technology serves as the overarching guidebook for computational work. Within IT, information science dictates the way that we collect, store, organize, and manage our data. And finally, under both information technology and information science, data science, data analytics, and informatics intersect with one another, allowing for the development of predictive models and the analysis of data for applications to external domains.</p>
-</section>
-<section id="biomedical-informatics-and-computational-biology" class="level2">
-<h2 class="anchored" data-anchor-id="biomedical-informatics-and-computational-biology">Biomedical Informatics and Computational Biology</h2>
-<p><strong>Biomedicine</strong></p>
-<p><em>Biomedicine</em> and the biomedical sciences refer to a set of sciences that apply understandings of biology and the natural sciences to develop knowledge, interventions, or technology that are of use in healthcare or public health. [<a href="https://en.wikipedia.org/wiki/Biomedical_sciences#cite_note-1">13</a>]</p>
-<section id="biomedical-informatics" class="level3">
-<h3 class="anchored" data-anchor-id="biomedical-informatics">Biomedical Informatics</h3>
-<p><strong>Biomedical Informatics</strong></p>
-<p><em>Biomedical informatics</em> is an interdisciplinary field seeking to study and advance the use of biomedical data to improve individual health, public health, and healthcare. It investigates, simulates, experiments with and translates a wide swath of biological systems to connect basic and clinical research with practical application for the overall betterment of healthcare. [17, 18, 19]</p>
-<p><strong>Bioinformatics</strong></p>
-<p><em>Bioinformatics</em>, the application of biomedical informatics in cellular and molecular biology (often with a focus on genomics), is a scientific subdiscipline that involves using computer technology to collect, store, analyze, and disseminate biological data and information, such as DNA and amino acid sequences or annotations about those sequences, to increase our understanding of health and disease. [<a href="https://www.ohsu.edu/school-of-medicine/medical-informatics-and-clinical-epidemiology/what-biomedical-informatics">19</a>, <a href="https://www.genome.gov/genetics-glossary/Bioinformatics">20</a>]</p>
-<p><strong>Translational Informatics</strong></p>
-<p><em>Translational informatics</em>, the application of biomedical informatics to human health, is focused on the study and application of existing biomedical data to bridge new ways to improve diagnosis, staging, prognosis, and treatment of human disease. [<a href="https://www.ohsu.edu/school-of-medicine/medical-informatics-and-clinical-epidemiology/what-biomedical-informatics">19</a>, <a href="https://bmir.stanford.edu/research-groups/translational-informatics.html">21</a>]</p>
-<p><strong>Clinical Informatics</strong></p>
-<p><em>Clinical informatics</em>, the subdiscipline of biomedical informatics related to patient data (typically from electronic medical records), focuses on the application of informatics to specific clinical subdisciplines, such as healthcare, nursing, dentistry, and pathology. [<a href="https://www.ohsu.edu/school-of-medicine/medical-informatics-and-clinical-epidemiology/what-biomedical-informatics">19</a>, <a href="https://www.usfhealthonline.com/resources/health-informatics/biomedical-informatics/">22</a>]</p>
-<p>The subfields of biomedical informatics can be represented in the following hierarchy:</p>
-<p><img src="https://vsriram24.github.io/posts/terminologies/bioInfo.png" class="img-fluid"></p>
-<p>Bioinformatics is focused on processing the core data of biological systems, translational informatics is focused on the translation from biology to medicine, and clinical informatics is focused on the analysis of medical and healthcare data.</p>
-</section>
-<section id="computational-biology" class="level3">
-<h3 class="anchored" data-anchor-id="computational-biology">Computational Biology</h3>
-<p><strong>Computational Biology</strong></p>
-<p><em>Computational biology</em> refers to the use of mathematics, statistics, and algorithms to understand biological systems based on data from experimental measurements. Examples of biological questions that may be tackled include what:</p>
-<ul>
-<li><p>biological tasks are carried out by particular nucleic acid or peptide sequences</p></li>
-<li><p>which gene (or genes) when expressed produce a particular phenotype or behavior</p></li>
-<li><p>what sequence of changes in gene or protein expression or localization lead to a particular disease</p></li>
-<li><p>how do changes in cell organization influence cell behavior. [<a href="https://cbd.cmu.edu/about-us/what-is-computational-biology.html">23</a>]</p></li>
-</ul>
-<p><strong>Computational Genomics</strong></p>
-<p><em>Genomics</em> is a subfield of biomedicine focused on studying the entire set of DNA of an organism. Genomics research involves identifying and characterizing all the genes and functional elements in an organism’s genome as well as how they interact. [<a href="https://www.genome.gov/genetics-glossary/genomics">14</a>, <a href="https://www.illumina.com/techniques/multiomics.html">15</a>] <em>Computational genomics</em> refers to the use of computational and statistical analysis to decipher biology from genome sequences and related data, including both DNA and RNA sequence as well as other “post-genomic” data. [<a href="https://en.wikipedia.org/wiki/Computational_genomics">24</a>]</p>
-<p>The following figure shows some of the subfields of biology that can be addressed through computation. Computational genomics could be utilized in all three cases.</p>
-<p><img src="https://vsriram24.github.io/posts/terminologies/compBio.png" class="img-fluid"></p>
-</section>
-<section id="differentiating-biomedical-informatics-and-computational-biology" class="level3">
-<h3 class="anchored" data-anchor-id="differentiating-biomedical-informatics-and-computational-biology">Differentiating biomedical informatics and computational biology</h3>
-<p>Biomedical informatics and computational biology are very similar terms to one another - both involve the interdisciplinary application of information technology to biomedicine. The key differentiators I see between the two terms are the order of prioritization in disciplines and the nature of the data under consideration.</p>
-<p>In biomedical informatics, the focus is on the development computational infrastructure and analysis to handle large-scale biomedical data.</p>
-<p>On the other hand, computational biology starts with the focus on a biological experiment. From a biological question, corresponding data are generated, and computational analyses are applied.</p>
-<p>Indeed, I see the second word in each phrase as the “order of operations”: biomedical informatics is centered on the informatics, and computational biology is centered on the biology.</p>
-<p><img src="https://vsriram24.github.io/posts/terminologies/bioinfoVsCompbio.png" width="695" height="405"></p>
-</section>
-</section>
-<section id="health-technology-and-biotechnology" class="level2">
-<h2 class="anchored" data-anchor-id="health-technology-and-biotechnology">Health Technology and Biotechnology</h2>
-<p><strong>Health Technology</strong></p>
-<p><em>Health technology</em>, or “health tech,” refers to the use of technologies developed for the purpose of improving any and all aspects of the healthcare system. It is focused primarily on the development of healthcare products and services. [<a href="https://builtin.com/healthcare-technology">25</a>]</p>
-<p><strong>Health Information Technology</strong></p>
-<p><em>Health information technology</em> (health IT) involves the processing, storage, and exchange of health information in an electronic environment. Applications include enhancing the quality of healthcare, preventing medical errors, reducing healthcare costs, and expanding access to healthcare. [<a href="https://www.hhs.gov/hipaa/for-professionals/special-topics/health-information-technology/index.html">26</a>]</p>
-<p><strong>Biotechnology</strong></p>
-<p><em>Biotechnology</em> (biotech) involves the use of living organisms and/or biological systems to develop or create different products [<a href="https://www.ntnu.edu/ibt/about-us/what-is-biotechnology">27</a>].</p>
-<p><strong>Bioengineering</strong></p>
-<p><em>Bioengineering</em> involves the application of engineering principles in combination with living organisms and/or biological systems to develop or create different products. These solutions may take the form of devices or computer programs (e.g., simulation of biomedical processes). However, the focus is on the biomedical problem to be solved, not data, information or knowledge. [<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2814957/">28</a>]</p>
-<p><strong>Digital Health</strong></p>
-<p><em>Digital health</em> refers to the use of information and communications technologies in medicine and other health professions to manage illnesses and health risks and to promote wellness. [<a href="https://www.ncbi.nlm.nih.gov/books/NBK470260/">29</a>]</p>
-<p>I see health technology and biotechnology as synonymous fields to one another, with health tech focused more on advancing human healthcare and biotech focused more on the use of biological systems. The incorporation of IT into health technology yields digital health and health IT, while the incorporation of engineering into biotechnology yields bioengineering.</p>
-<p><img src="https://vsriram24.github.io/posts/terminologies/healthVsBioTech.png" class="img-fluid"></p>
-</section>
-</section>
-<section id="conclusions" class="level1">
-<h1>Conclusions</h1>
-<ul>
-<li><p>Data science, data analytics, and informatics can be thought of as complementary terms to one another. On the whole, these terms can pretty much be used interchangeably. However, the real nuance is that data science is focused primarily on the development of models and algorithms, data analytics is focused on data tabulation and visualization, and informatics is focused on the application of data analysis to external sub-domains.</p></li>
-<li><p>Computational Biology and Biomedical Informatics are fairly interchangeable - however, I like to think that computational biology prioritizes the impact of the biological question, while biomedical informatics prioritizes the computational systems needed to analyze large-scale biomedical data.</p></li>
-<li><p>Health tech and biotech are parallel industries that both involve information technology and biomedicine, with an emphasis on human healthcare in the former and biological systems in the latter.</p></li>
-</ul>
-<p>Based on these definitions, here is how I would define my own work:</p>
-<ul>
-<li><p>In my PhD, I pursued computational biology research, with an emphasis on computational systems biology. I made use of both biomedical informatics and computational genomics methods in my work. My biomedical informatics research included both bioinformatics and translational informatics, and my computational methods included informatics, data science, and data analysis.</p></li>
-<li><p>Now, as a data scientist at the Fred Hutchinson Cancer Center, my work is centered more broadly on biomedical data science, with an emphasis on the translational and clinical informatics subfields of biomedical informatics. My computational methods included informatics, data science, and data analysis. I have a more explicit focus on health IT/digital health now too.</p></li>
-</ul>
-<p>Hopefully, today’s post has given you a relatively clear summary of the nuances in biomedical data science. In future posts, I will refine on these definitions and dive deeper into more of the terms described today. Until next week!</p>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<ol type="1">
-<li>https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/1472-6947-9-24</li>
-<li>https://x.com/DocUrbs/status/1007375834347376642/photo/1</li>
-<li>https://dmice.ohsu.edu/hersh/whatis/</li>
-<li>https://dmice.ohsu.edu/hersh/whatis/WhatIs01.pdf</li>
-<li>https://www.coursera.org/articles/what-is-information-technology#</li>
-<li>https://www.si.umich.edu/student-experience/what-information-science</li>
-<li>https://ischool.uw.edu/programs/informatics/what-is-informatics</li>
-<li>http://nces.ed.gov/ipeds/cipcode/cipdetail.aspx?y=55&amp;cipid=89325</li>
-<li>https://aws.amazon.com/what-is/data-science/</li>
-<li>https://www.ibm.com/topics/data-science</li>
-<li>https://www.nnlm.gov/guides/data-glossary/data-science</li>
-<li>https://graduate.northeastern.edu/resources/data-analytics-vs-data-science/</li>
-<li>https://en.wikipedia.org/wiki/Biomedical_sciences#cite_note-1</li>
-<li>https://www.genome.gov/genetics-glossary/genomics</li>
-<li>https://www.illumina.com/techniques/multiomics.html</li>
-<li>https://irp.nih.gov/catalyst/19/6/systems-biology-as-defined-by-nih</li>
-<li>https://dmice.ohsu.edu/hersh/whatis/WhatIs01.pdf</li>
-<li>https://www.usfhealthonline.com/resources/health-informatics/biomedical-informatics/</li>
-<li>https://www.ohsu.edu/school-of-medicine/medical-informatics-and-clinical-epidemiology/what-biomedical-informatics</li>
-<li>https://www.genome.gov/genetics-glossary/Bioinformatics</li>
-<li>https://bmir.stanford.edu/research-groups/translational-informatics.html</li>
-<li>https://www.usfhealthonline.com/resources/health-informatics/biomedical-informatics/</li>
-<li>https://cbd.cmu.edu/about-us/what-is-computational-biology.html</li>
-<li>https://en.wikipedia.org/wiki/Computational_genomics</li>
-<li>https://builtin.com/healthcare-technology</li>
-<li>https://www.hhs.gov/hipaa/for-professionals/special-topics/health-information-technology/index.html</li>
-<li>https://www.ntnu.edu/ibt/about-us/what-is-biotechnology</li>
-<li>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2814957/</li>
-<li>https://www.ncbi.nlm.nih.gov/books/NBK470260/</li>
-</ol>
-
-
-</section>
-
- ]]></description>
-  <category>Overviews</category>
-  <guid>https://vsriram24.github.io/posts/terminologies/</guid>
-  <pubDate>Mon, 03 Jun 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/terminologies/IMG_6833.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
