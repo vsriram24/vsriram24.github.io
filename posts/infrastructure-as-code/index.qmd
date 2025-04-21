@@ -2,12 +2,12 @@
 title: "An introduction to 'Infrastructure as Code' (IaC)"
 description: "Automating and scaling infrastructure management"
 author: "Vivek Sriram"
-date: "03/10/2025"
-date-modified: "03/10/2025"
+date: "04/21/2025"
+date-modified: "04/21/2025"
 image: sisters.JPEG
 categories:
   - Overviews
-draft: true
+draft: false
 ---
 
 Welcome back to my personal biomedical data science blog, *\[VS\]Codes*! In today's post, I will provide a brief overview of the concept of "infrastructure as code" and why this practice holds an essential place in the operational strategies of modern data-driven organizations.

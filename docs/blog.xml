@@ -10,7 +10,118 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Mon, 24 Mar 2025 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 21 Apr 2025 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>An introduction to ‘Infrastructure as Code’ (IaC)</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/infrastructure-as-code/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Welcome back to my personal biomedical data science blog, <em>[VS]Codes</em>! In today’s post, I will provide a brief overview of the concept of “infrastructure as code” and why this practice holds an essential place in the operational strategies of modern data-driven organizations.</p>
+<p><img src="https://vsriram24.github.io/posts/infrastructure-as-code/rocket.jpg" class="img-fluid" width="556"></p>
+<hr>
+<p>In the evolving landscape of software development and operations, <strong>Infrastructure as Code (IaC)</strong> has become a cornerstone of modern <strong>DevOps</strong> practices. By treating infrastructure configuration and provisioning as code, teams can achieve consistency, scalability, and automation in deploying their applications.</p>
+<section id="but-first-what-even-is-devops" class="level2">
+<h2 class="anchored" data-anchor-id="but-first-what-even-is-devops">But first… what even is DevOps?</h2>
+<p><strong>DevOps</strong> refers to a set of practices and principles that aim to unify software development (the “dev”) and IT operations (the “ops”) to enhance collaboration, automate workflows, and improve the software delivery lifecycle.</p>
+<section id="key-principles-of-devops-include" class="level4">
+<h4 class="anchored" data-anchor-id="key-principles-of-devops-include">Key principles of DevOps include:</h4>
+<ol type="1">
+<li><p><strong>Collaboration and communication</strong>: Breaking down the siloes between developers and operations teams.</p></li>
+<li><p><strong>Automation</strong>: Using tools to automate testing, integration, deployment, and infrastructure management.</p></li>
+<li><p><strong>Continuous Integration / Continuous Deployment (CI/CD)</strong>: Deploying frequent, reliable code releases.</p></li>
+<li><p><strong>Monitoring and feedback</strong>: Tracking system performance and collecting user feedback for continuous improvement.</p></li>
+<li><p><strong>Security</strong>: Ensuring that appropriate security and governance practices are built into the entire development pipeline</p></li>
+</ol>
+<p>Some examples of popular DevOps tools include: Docker, Kubernetes, Terraform, Jenkins, GitLab CI/CD, and Prometheus.</p>
+</section>
+</section>
+<section id="what-is-infrastructure-as-code" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-infrastructure-as-code">What is Infrastructure as Code?</h2>
+<p><strong>Infrastructure as Code (IaC)</strong> refers to the practice of managing and provisioning computing infrastructure through machine-readable configuration files. Instead of manually setting up servers, databases, and networking configurations, IaC allows you to define these resources in code, which can then be version-controlled and automated.</p>
+<p>Popular IaC tools include:</p>
+<ul>
+<li><p><strong>Terraform</strong> – A cloud-agnostic tool for defining infrastructure using a declarative language.</p></li>
+<li><p><strong>Ansible</strong> – A configuration management tool that automates system administration tasks.</p></li>
+<li><p><strong>AWS CloudFormation</strong> – A native AWS service that defines infrastructure using JSON or YAML templates.</p></li>
+<li><p><strong>Pulumi</strong> – Uses general-purpose programming languages (Python, TypeScript, etc.) for infrastructure definition.</p></li>
+</ul>
+</section>
+<section id="why-does-iac-matter" class="level2">
+<h2 class="anchored" data-anchor-id="why-does-iac-matter">Why does IaC matter?</h2>
+<section id="consistency-and-replicability" class="level4">
+<h4 class="anchored" data-anchor-id="consistency-and-replicability">1. <strong>Consistency and replicability</strong></h4>
+<p>When infrastructure is defined as code, deployments become predictable and reproducible, reducing the risk of human error.</p>
+</section>
+<section id="version-control-and-collaboration" class="level4">
+<h4 class="anchored" data-anchor-id="version-control-and-collaboration">2. <strong>Version control and collaboration</strong></h4>
+<p>With infrastructure stored in a repository (i.e.&nbsp;in GitHub or GitLab), teams can collaborate, track changes, and roll back configurations when needed.</p>
+</section>
+<section id="automation-and-speed" class="level4">
+<h4 class="anchored" data-anchor-id="automation-and-speed">3. <strong>Automation and speed</strong></h4>
+<p>IaC eliminates the need for manual setup, enabling rapid provisioning and scaling of infrastructure.</p>
+</section>
+<section id="cost-and-efficiency" class="level4">
+<h4 class="anchored" data-anchor-id="cost-and-efficiency">4. <strong>Cost and efficiency</strong></h4>
+<p>By automating infrastructure management, teams can optimize resource allocation, reduce downtime, and eliminate inefficiencies.</p>
+</section>
+</section>
+<section id="getting-started-with-iac" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started-with-iac">Getting started with IaC</h2>
+<section id="choose-the-right-tool" class="level4">
+<h4 class="anchored" data-anchor-id="choose-the-right-tool">1. <strong>Choose the right tool</strong></h4>
+<p>Select an IaC tool that aligns with your current cloud provider, your existing workflows, and the expertise of your team.</p>
+</section>
+<section id="define-your-infrastructure" class="level4">
+<h4 class="anchored" data-anchor-id="define-your-infrastructure">2. <strong>Define your infrastructure</strong></h4>
+<p>Write infrastructure definitions using a <em>declarative</em> (more common) or an <em>imperative</em> approach.</p>
+<ul>
+<li><p><strong>Declarative (functional) approach</strong>: specify what the final state of the infrastructure should be. The IaC tool will automatically determine how to achieve that state.</p></li>
+<li><p><strong>Imperative (procedural) approach</strong>: define how to provision and configure infrastructure, often in a step-by-step manner.</p></li>
+</ul>
+</section>
+<section id="version-and-store-your-code" class="level4">
+<h4 class="anchored" data-anchor-id="version-and-store-your-code">3. <strong>Version and store your code</strong></h4>
+<p>Use tools like Git to version-control your infrastructure code, ensuring transparency and collaboration.</p>
+</section>
+<section id="test-and-validate" class="level4">
+<h4 class="anchored" data-anchor-id="test-and-validate">4. <strong>Test and validate</strong></h4>
+<p>Use functions built into your IaC tool of choice (e.g.&nbsp;<code>terraform plan</code> or <code>ansible --check</code>) to test your infrastructure configurations before applying them.</p>
+</section>
+<section id="automate-deployment" class="level4">
+<h4 class="anchored" data-anchor-id="automate-deployment">5. <strong>Automate deployment</strong></h4>
+<p>Integrate IaC with CI/CD pipelines to enable automated provisioning and updates.</p>
+</section>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<p>Infrastructure as Code has transformed the way that teams manage their infrastructure by making the process automated, scalable, and repeatable. By adopting IaC, organizations can streamline their development workflows, reduce errors, and enhance collaboration. Whether you’re new to IaC or looking to refine your current approach, embracing this paradigm can significantly improve your organization’s operational efficiency!</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references"><strong>References</strong></h2>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/DevOps">Wikipedia - DevOps</a></p></li>
+<li><p><a href="https://www.reddit.com/r/devops/comments/812527/can_someone_explain_what_devops_is/">Reddit - Can someone explain what DevOps is?</a></p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Wikipedia - Infrastructure as Code</a></p></li>
+<li><p><a href="https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac">RedHat - What is Infrastructure as Code?</a></p></li>
+<li><p><a href="https://www.ibm.com/think/topics/infrastructure-as-code">IBM - Infrastructure as Code</a></p></li>
+<li><p><a href="https://www.puppet.com/blog/what-is-infrastructure-as-code">Puppet - What is Infrastructure as Code</a></p></li>
+<li><p><a href="https://aws.amazon.com/what-is/iac/">AWS - What is IaC?</a></p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Overviews</category>
+  <guid>https://vsriram24.github.io/posts/infrastructure-as-code/</guid>
+  <pubDate>Mon, 21 Apr 2025 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/infrastructure-as-code/sisters.JPEG" medium="image"/>
+</item>
 <item>
   <title>Breaking the urgency trap with the Eisenhower Matrix</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -7015,57 +7126,6 @@ font-style: inherit;">print</span>(k, loss.data)</span></code></pre></div>
   <guid>https://vsriram24.github.io/posts/phd-papers/</guid>
   <pubDate>Mon, 17 Jun 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/phd-papers/zolaRunning.PNG" medium="image"/>
-</item>
-<item>
-  <title>My doctoral research: the background</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/phd-context/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>In the next few posts, I will be providing an overview of my PhD in <a href="https://www.med.upenn.edu/gcb/">Biomedical Informatics and Computational Genomics</a> that I completed under the mentorship of Dr.&nbsp;<a href="https://www.biomedinfolab.com">Dokyoon Kim</a> at the University of Pennsylvania Perelman School of Medicine. You can listen to a full presentation of my thesis defense <a href="https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d">here</a>, and you can read the full text of my dissertation <a href="https://repository.upenn.edu/entities/publication/d7441349-baa0-407e-b556-ec96c6930db8">here</a>. Note that all figures featured in this blog post were created using <a href="https://www.biorender.com">BioRender.com</a>. Today’s post will focus on the background context that motivated my research. Without further ado, let’s get started!</p>
-<p><img src="https://vsriram24.github.io/posts/phd-context/benfranklin.jpeg" class="img-fluid"></p>
-<hr>
-<p>Human biology is a complicated field. Millions of cells, cellular components, molecules, and chemicals interact with one another moment by moment to keep us alive each and every day. And while biologists and clinicians have defined a variety of classifications and <a href="https://guides.lib.umich.edu/ontology/ontologies">ontologies</a> to organize and understand these systems, the intricacies of the field continue to require extensive research and investment. Achieving a better understanding of human biology necessitates a unified language.</p>
-<p>At the core of human biology and its defined ontologies lies the field of <em>genetics</em>. <a href="https://en.wikipedia.org/wiki/Genetics">Genetics</a> refers to the study of heritable traits (also known as <a href="https://www.genome.gov/genetics-glossary/Phenotype">phenotypes</a>). If we define genetics as the language of biology, then the vocabulary of genetics would be the <a href="https://en.wikipedia.org/wiki/Gene">gene</a> - a unit of heritable information that influences how we develop and operate. Extending the analogy further, the letters of genetics would be the <a href="https://en.wikipedia.org/wiki/Nucleotide">nucleotide</a>, a set of four molecules whose arrangements define different genes. Indeed, differences in individual nucleotides, also known as single-nucleotide variants/polymorphisms or “SNVs/<a href="https://en.wikipedia.org/wiki/Single-nucleotide_polymorphism">SNPs</a>”, are responsible for genetic variation across individuals and can lead to differing phenotypic outcomes. Genetic variation is a significant component of the diversity of life.</p>
-<p>Given the complex interactions that occur across biomolecules in our bodies, it becomes apparent that networks of interacting genes drive our ability to live. Human diseases can be thought of as disruptions to these networks. The field of <a href="https://en.wikipedia.org/wiki/Medicine">medicine</a> aims to prevent, alleviate, and cure disease through the maintenance of health and the development of novel therapeutics.</p>
-<p>Unfortunately, for the most part, medicine today still operates from a “good enough” perspective - many patients are treated with the same medications without regard for or understanding of differences in their individual backgrounds or health profiles. Indeed, much more can be done to enhance the accuracy and efficacy of treatment.</p>
-<p>The field of <a href="https://health.ucdavis.edu/precision-medicine/what-is-precision-medicine.html#:~:text=Precision%20medicine%20is%20the%20intersection,change%20and%20interact%20over%20time.">precision medicine</a> uses large-scale multimodal/<a href="https://www.illumina.com/techniques/multiomics.html#:~:text=Multiomics%20(multiple%20'omics)%20provides,and%20their%20mechanism%20of%20action.">multiomic</a> data to individualize patient care and gain a comprehensive understanding of human health. The goal of precision medicine is to achieve more accurate and precise disease prediction, prevention, treatment, and therapeutics. The field of genomics, involving the study of genetics from a “big data” lens, offers a significant opportunity to advance precision medicine research.</p>
-<p><a href="https://www.genomicseducation.hee.nhs.uk/education/core-concepts/what-is-genomics/#:~:text=Put%20simply%2C%20genomics%20is%20the,is%20made%20up%20of%20DNA.">Genomics</a> refers to the study of an individual’s entire set of genes (a.k.a. their genome). We can work with genomic data from large-scale biomedical data, including both electronic health records (EHRs) and patient biobanks. <a href="https://www.healthit.gov/faq/what-electronic-health-record-ehr">EHRs</a>, also known as electronic medical records (EMRs), refer to large clinical databases of patient medical history and clinical data. <a href="https://allofus.nih.gov/funding-and-program-partners/biobank">Biobanks</a>, on the other hand, refer to biomedical databases with large quantities of patient biological samples, often including access to their genetic information. Combining these two data sources into a merged <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7983809/">EHR-linked biobank</a> provides an extra level of power in the study of genomics and medicine. EHR-linked biobanks offer the ability to identify and evaluate statistically significant genetic contributors to human disease. For instance, a genome-wide or phenome-wide association study (<a href="https://www.nature.com/articles/s43586-021-00056-9">GWAS</a>/<a href="https://pubmed.ncbi.nlm.nih.gov/34982132/">PheWAS</a>) applied to an EHR-linked biobank can identify associations between a variety of diseases and SNPs.</p>
-<p>Many research efforts in the field of <a href="https://pubmed.ncbi.nlm.nih.gov/27147087/">precision medicine have used the results of PheWASs</a> to identify genetic contributors to diseases. With such discoveries, patient genetic profiles can be built into diagnosis/treatment pipelines, allowing for the personalization of patient care.</p>
-<p>Notably, so far, most precision medicine research efforts that have made their way into the clinic have focused on one disease at a time. However, complex diseases rarely impact patients one-at-a-time. Shared SNPs and genes can contribute to the onset of multiple diseases in a single patient over time. These disease “<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7613517/#:~:text=Multimorbidity%20refers%20to%20the%20presence,as%20frailty%20or%20chronic%20pain">multimorbidities</a>” can lead to increase healthcare costs, health burdens, and risk of death. Thus, it becomes clear that we must evaluate the genetics of not only individual diseases but also cross-phenotype associations if we wish to gain a deeper understanding of overall patient health.</p>
-<p>Given the significance of cross-phenotype associations, the field of “<a href="https://www.nature.com/articles/nrg2918">network medicine</a>” offers a helpful framework to investigate the associations between diseases. Thus, the objective of my dissertation was to apply a “network medicine” approach to investigate genetic contributors to disease multimorbidities:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-context/overview.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 1. An overview of the process of using PheWAS results from an EHR-linked biobank for network medicine</figcaption>
-</figure>
-</div>
-<p>I broke this objective down into three chapters:</p>
-<ol type="1">
-<li><strong>Creation</strong>: construct and analyze a network of diseases derived from an EHR-linked biobank for the evaluation of genetic similarity between phenotypes</li>
-<li><strong>Comparison</strong>. generate and compare different disease networks generated from different populations and from genetic components.</li>
-<li><strong>Translation</strong>. extend the conclusions drawn from disease network analysis and comparison to downstream precision medicine applications.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-context/chapters.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 2. The three sub-chapters of my PhD dissertation</figcaption>
-</figure>
-</div>
-<p>In the coming week(s), I will go in-depth into the published manuscripts and preprints that correspond to these chapters, as well as my overall takeaways from my PhD research! Till next time~</p>
-
-
-
- ]]></description>
-  <category>Personal</category>
-  <category>Overviews</category>
-  <guid>https://vsriram24.github.io/posts/phd-context/</guid>
-  <pubDate>Mon, 10 Jun 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/phd-context/zolaStairs.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

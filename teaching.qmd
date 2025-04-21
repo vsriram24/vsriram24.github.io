@@ -5,7 +5,7 @@ title: "Teaching and Mentorship"
 **Teaching**
 
 -   Present
-    -   Teaching Assistant and Guest Lecturer – “[Introduction to SQL](https://intro-sql-fh.netlify.app)”, 2025 to Present
+    -   Lecturer and Teaching Assistant – “[Introduction to Databases](https://intro-sql-fh.netlify.app)”, 2025 to Present
         -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
     -   Teaching Assistant – “[Introduction to Python](https://hutchdatascience.org/Intro_to_Python/index.html)”, 2024 to Present
         -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA

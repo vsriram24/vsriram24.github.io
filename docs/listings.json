@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/infrastructure-as-code/index.html",
       "/posts/eisenhower-matrix/index.html",
       "/posts/msr-scireports/index.html",
       "/posts/gxs-paper/index.html",
