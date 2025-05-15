@@ -2,25 +2,25 @@
 title: "How to activate a virtual Python environment"
 description: "3 quick steps to simplify Python package installation"
 author: "Vivek Sriram"
-date: "03/10/2025"
-date-modified: "03/10/2025"
-image: sisters.JPEG
+date: "05/15/2025"
+date-modified: "05/15/2025"
+image: lewk.jpg
 categories:
   - Tutorial
-draft: true
+draft: false
 ---
 
 Welcome back to my personal biomedical data science blog, \[VS\]Codes! Today's blog post will be a brief tutorial on how to create and activate a virtual environment for your Python project.
 
-I've recently been working on a lot of code with older Python packages that are not supported for the most recent versions of Python (e.g. `medspaCy` does not work with Python version 13)! So, I've needed to find a way to make use of an alternate version of Python for my project. The solution? **Setting up a Python virtual environment.**
+I've recently been working on a lot of code with older Python packages that are not supported for the most recent versions of Python. So, I've needed to find a way to make use of an alternate version of Python for my project. The solution? **Setting up a Python virtual environment.**
+
+![](needle.jpg){width="500"}
 
 The following StackOverflow [post](https://stackoverflow.com/questions/41972261/what-is-a-virtualenv-and-why-should-i-use-one) provides a great overview of the benefits of Python virtual environments. Here's a brief summary of its key takeaways:
 
 -   **What are virtual environments?**
 
     -   "Virtual environments are lightweight, self-contained Python installations, designed to be set up without requiring extensive configuration or specialized knowledge."
-
-<!-- -->
 
 -   **Why is it bad to use your system's Python installation?**
 
@@ -32,7 +32,9 @@ The following StackOverflow [post](https://stackoverflow.com/questions/41972261/
 
 Now let's go into the steps for setting up a Python virtual environment.
 
-*Note*: these next steps assumes that you are working on a Mac. Our example will focus on setting up a Python 3.10 virtual environment. Refer to the StackOverflow post above for instructions for Windows systems.
+::: callout-note
+These next steps assumes that you are working on a Mac. Our example will focus on setting up a Python 3.10 virtual environment. Refer to the StackOverflow post above for instructions for Windows systems.
+:::
 
 ## Step 1: Install the version of Python that you need
 
@@ -64,29 +66,33 @@ Create a virtual environment using the following command:
 python3.10 -m venv [environment_name]
 ```
 
-For instance, if we wanted to name our environment `breaking_bad`, our command would be:
+For instance, if we wanted to name our environment `.breaking_bad`, our command would be:
 
 ```         
-python3.10 -m venv breaking_bad
+python3.10 -m venv .breaking_bad
 ```
+
+::: callout-tip
+It is good practice to start the name of your virtual environment with a period (.) so that the folder becomes hidden by default on your system - in the process, you can keep your project directory clean, help prevent accidental Git commits, and more easily avoid potential namespace conflicts.
+:::
 
 Finally, we can active the virtual environment we've just created!
 
 ```         
-source breaking_bad/bin/activate
+source .breaking_bad/bin/activate
 ```
 
-After activation, our terminal prompt should show the name of our environment (e.g. `(breaking_bad)$`).
+After activation, our terminal prompt should show the name of our environment (e.g. `(.breaking_bad)$`).
 
 ## Step 3: Install your required Python packages
 
 Once inside your virtual environment, you can install any Python packages that you want! For instance:
 
 ```         
-(breaking_bad)$ pip install medspacy
+(.breaking_bad)$ pip install medspacy
 ```
 
-And ta-da! That's all we need to do.
+And ta-da! Mission accomplished!
 
 # References
 

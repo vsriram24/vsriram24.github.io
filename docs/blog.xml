@@ -10,7 +10,103 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Mon, 21 Apr 2025 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 15 May 2025 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>How to activate a virtual Python environment</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/python-venv/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Welcome back to my personal biomedical data science blog, [VS]Codes! Today’s blog post will be a brief tutorial on how to create and activate a virtual environment for your Python project.</p>
+<p>I’ve recently been working on a lot of code with older Python packages that are not supported for the most recent versions of Python. So, I’ve needed to find a way to make use of an alternate version of Python for my project. The solution? <strong>Setting up a Python virtual environment.</strong></p>
+<p><img src="https://vsriram24.github.io/posts/python-venv/needle.jpg" class="img-fluid" width="500"></p>
+<p>The following StackOverflow <a href="https://stackoverflow.com/questions/41972261/what-is-a-virtualenv-and-why-should-i-use-one">post</a> provides a great overview of the benefits of Python virtual environments. Here’s a brief summary of its key takeaways:</p>
+<ul>
+<li><p><strong>What are virtual environments?</strong></p>
+<ul>
+<li>“Virtual environments are lightweight, self-contained Python installations, designed to be set up without requiring extensive configuration or specialized knowledge.”</li>
+</ul></li>
+<li><p><strong>Why is it bad to use your system’s Python installation?</strong></p>
+<ul>
+<li>“Running with the system Python and libraries limits you to one specific Python version, chosen by your OS provider. Trying to run all Python applications on one Python installation makes it likely that version conflicts will occur among the collection of libraries. It’s also possible that changes to the system Python will break other OS features that depend on it.”</li>
+</ul></li>
+<li><p><strong>What do virtual environments do?</strong></p>
+<ul>
+<li>“Virtual environments avoid the need to install Python packages globally. When a virtual environment is active, <code>pip</code> will install packages entirely within the environment, which does not affect the base Python installation in any way.”</li>
+</ul></li>
+</ul>
+<p>Now let’s go into the steps for setting up a Python virtual environment.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These next steps assumes that you are working on a Mac. Our example will focus on setting up a Python 3.10 virtual environment. Refer to the StackOverflow post above for instructions for Windows systems.</p>
+</div>
+</div>
+<section id="step-1-install-the-version-of-python-that-you-need" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-install-the-version-of-python-that-you-need">Step 1: Install the version of Python that you need</h2>
+<p>First, install Python 3.10 if you don’t already have it. If you’re on macOS, you can use Homebrew to install Python 3.10 from your Terminal:</p>
+<pre><code>brew install python@3.10</code></pre>
+<p>Then, verify your installation:</p>
+<pre><code>python3.10 --version</code></pre>
+</section>
+<section id="step-2-create-a-virtual-environment" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-create-a-virtual-environment">Step 2: Create a Virtual Environment</h2>
+<p>Now, we can create a new virtual environment for our project using Python 3.10:</p>
+<p>Navigate to your project folder in your Terminal:</p>
+<pre><code>cd path/to/your/project</code></pre>
+<p>Create a virtual environment using the following command:</p>
+<pre><code>python3.10 -m venv [environment_name]</code></pre>
+<p>For instance, if we wanted to name our environment <code>.breaking_bad</code>, our command would be:</p>
+<pre><code>python3.10 -m venv .breaking_bad</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is good practice to start the name of your virtual environment with a period (.) so that the folder becomes hidden by default on your system - in the process, you can keep your project directory clean, help prevent accidental Git commits, and more easily avoid potential namespace conflicts.</p>
+</div>
+</div>
+<p>Finally, we can active the virtual environment we’ve just created!</p>
+<pre><code>source .breaking_bad/bin/activate</code></pre>
+<p>After activation, our terminal prompt should show the name of our environment (e.g.&nbsp;<code>(.breaking_bad)$</code>).</p>
+</section>
+<section id="step-3-install-your-required-python-packages" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-install-your-required-python-packages">Step 3: Install your required Python packages</h2>
+<p>Once inside your virtual environment, you can install any Python packages that you want! For instance:</p>
+<pre><code>(.breaking_bad)$ pip install medspacy</code></pre>
+<p>And ta-da! Mission accomplished!</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li><a href="https://stackoverflow.com/questions/41972261/what-is-a-virtualenv-and-why-should-i-use-one">What is a virtualenv and why should I use one (StackOverflow)</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Tutorial</category>
+  <guid>https://vsriram24.github.io/posts/python-venv/</guid>
+  <pubDate>Thu, 15 May 2025 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/python-venv/lewk.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>An introduction to ‘Infrastructure as Code’ (IaC)</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -1409,6 +1505,1195 @@ Ultimately, responsible AI in healthcare demands equity, transparency, collabora
   <guid>https://vsriram24.github.io/posts/posit-conf-24/</guid>
   <pubDate>Mon, 02 Sep 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/posit-conf-24/pensiveZola.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Introduction to PyTorch</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/pytorch-brca/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In today’s blog post, we’ll go through the <a href="https://pytorch.org/tutorials/beginner/basics/intro.html">“Introduction to PyTorch</a>” tutorial available from PyTorch’s online <a href="https://pytorch.org/tutorials/index.html">learning community</a>.</p>
+<p>In a future blog post, I will take the foundation developed through this walkthrough and explore a modified data analysis workflow, with a more complicated neural network and additional hyperparameter training for a different set of data.</p>
+<p>With background out of the way, let’s get started~</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```{r}</span></span>
+<span id="cb1-2"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">library(reticulate)</span></span>
+<span id="cb1-3"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">use_python('/opt/anaconda3/bin/python')</span></span>
+<span id="cb1-4"><span class="in" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">```</span></span></code></pre></div>
+<p>Most machine learning workflows involve uploading data, creating models, optimizing model parameters, and performing predictions on input data. This tutorial introduces you to a complete ML workflow implemented in PyTorch.</p>
+<p>In PyTorch, we use tensors to encode the inputs and outputs of a model, as well as the model’s parameters. Tensors are a specialized data structure that are very similar to arrays and matrices.</p>
+<div id="214677dd" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Import required packages</span></span>
+<span id="cb2-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> os</span>
+<span id="cb2-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb2-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span></code></pre></div>
+</div>
+<div id="ece72ba1" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch</span>
+<span id="cb3-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torch <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> nn</span>
+<span id="cb3-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torch.utils.data <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Dataset</span>
+<span id="cb3-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torch.utils.data <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> DataLoader</span></code></pre></div>
+</div>
+<div id="73963da2" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#import torchvision</span></span>
+<span id="cb4-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torchvision <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> datasets, transforms</span>
+<span id="cb4-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torchvision.transforms <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> ToTensor, Lambda</span>
+<span id="cb4-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torchvision.io <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> read_image</span></code></pre></div>
+</div>
+<div id="8617d666" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torch_geometric.datasets <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> BrcaTcga</span></code></pre></div>
+</div>
+<div id="e425e99d" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">dataset <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> BrcaTcga(root<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'/Users/vsriram/Developer/vsriram24.github.io/posts/pytorch-brca/'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/vsriram/.virtualenvs/r-reticulate/lib/python3.12/site-packages/torch_geometric/data/dataset.py:238: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  if osp.exists(f) and torch.load(f) != _repr(self.pre_transform):
+/Users/vsriram/.virtualenvs/r-reticulate/lib/python3.12/site-packages/torch_geometric/data/dataset.py:246: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  if osp.exists(f) and torch.load(f) != _repr(self.pre_filter):
+/Users/vsriram/.virtualenvs/r-reticulate/lib/python3.12/site-packages/torch_geometric/io/fs.py:215: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  return torch.load(f, map_location)</code></pre>
+</div>
+</div>
+<div id="9e6d65c5" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(dataset)</span>
+<span id="cb8-2">dataset.num_classes</span>
+<span id="cb8-3">dataset.num_node_features</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/vsriram/.virtualenvs/r-reticulate/lib/python3.12/site-packages/torch_geometric/data/dataset.py:169: UserWarning: Found floating-point labels while calling `dataset.num_classes`. Returning the number of unique elements. Please make sure that this is expected before proceeding.
+  warnings.warn("Found floating-point labels while calling "</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>1</code></pre>
+</div>
+</div>
+<div id="c71e2526" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> dataset[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb11-2"></span>
+<span id="cb11-3">data</span>
+<span id="cb11-4">data.is_undirected()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>We start by checking to see if we can train our model on a hardware accelerator like the GPU or MPS if available. Otherwise, we’ll use the CPU.</p>
+<div id="69943f62" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Get cpu, gpu or mps device for training.</span></span>
+<span id="cb13-2">device <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (</span>
+<span id="cb13-3">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cuda"</span></span>
+<span id="cb13-4">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> torch.cuda.is_available()</span>
+<span id="cb13-5">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mps"</span></span>
+<span id="cb13-6">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> torch.backends.mps.is_available()</span>
+<span id="cb13-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cpu"</span></span>
+<span id="cb13-8">)</span>
+<span id="cb13-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Using </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>device<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> device"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Using mps device</code></pre>
+</div>
+</div>
+<p>Code for processing data samples can get messy and hard to maintain. We ideally want our dataset code to be de-coupled from model training code for better readability and modularity. We will break our analysis into the following two sections: <strong>Data</strong> and <strong>Modeling</strong>.</p>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<section id="importing-and-transforming-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="importing-and-transforming-the-data">Importing and transforming the data</h3>
+<p>PyTorch offers domain-specific libraries such as <code>TorchText</code>, <code>TorchVision</code>, and <code>TorchAudio</code>. In this tutorial, we will be using a <code>TorchVision</code> dataset. The <code>torchvision.datasets</code> module contains <code>Dataset</code> objects for many real-world vision data. Here, we will use the FashionMNIST dataset. Fashion-MNIST is a dataset of images consisting of 60,000 training examples and 10,000 test examples. Each example includes a 28x28 grayscale image and an associated label from one of 10 classes.</p>
+<p>Each PyTorch <code>Dataset</code> stores a set of samples and their corresponding labels. Data do not always come in the final processed form that is required for training ML algorithms. We use <em>transforms</em> to perform some manipulation of the data and make it suitable for training. Every TorchVision <code>Dataset</code> includes 2 arguments: <code>transform</code> to modify the samples and <code>target_transform</code> to modify the labels.</p>
+<p>The FashionMNIST features are in PIL Image format. For training, we need the features as normalized tensors, and the labels as one-hot encoded tensors. To make this transformation, we use the <code>ToTensor()</code> function. <code>ToTensor()</code> converts a PIL image or NumPy <code>ndarray</code> into a <code>FloatTensor</code> and scales the image’s pixel intensity values in the range [0., 1.]</p>
+<div id="b8569db5" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Download training data from open datasets.</span></span>
+<span id="cb15-2">training_data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> datasets.FashionMNIST(</span>
+<span id="cb15-3">    root<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>,</span>
+<span id="cb15-4">    train<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>,</span>
+<span id="cb15-5">    download<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>,</span>
+<span id="cb15-6">    transform<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>ToTensor()</span>
+<span id="cb15-7">)</span>
+<span id="cb15-8"></span>
+<span id="cb15-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Download test data from open datasets.</span></span>
+<span id="cb15-10">test_data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> datasets.FashionMNIST(</span>
+<span id="cb15-11">    root<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>,</span>
+<span id="cb15-12">    train<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>,</span>
+<span id="cb15-13">    download<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>,</span>
+<span id="cb15-14">    transform<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>ToTensor()</span>
+<span id="cb15-15">)</span></code></pre></div>
+</div>
+<p>We now have our data uploaded! We can index an input <code>Dataset</code> manually (i.e.&nbsp;<code>training_data[index]</code>) to get individual samples. Here, we use <code>matplotlib</code> to visualize some samples in our training data.</p>
+<div id="e5f0f987" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">labels_map <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb16-2">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T-Shirt"</span>,</span>
+<span id="cb16-3">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Trouser"</span>,</span>
+<span id="cb16-4">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pullover"</span>,</span>
+<span id="cb16-5">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Dress"</span>,</span>
+<span id="cb16-6">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Coat"</span>,</span>
+<span id="cb16-7">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sandal"</span>,</span>
+<span id="cb16-8">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Shirt"</span>,</span>
+<span id="cb16-9">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sneaker"</span>,</span>
+<span id="cb16-10">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bag"</span>,</span>
+<span id="cb16-11">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ankle Boot"</span>,</span>
+<span id="cb16-12">}</span>
+<span id="cb16-13"></span>
+<span id="cb16-14">figure <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> plt.figure(figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>))</span>
+<span id="cb16-15">cols, rows <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb16-16"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, cols <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> rows <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>):</span>
+<span id="cb16-17">    sample_idx <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.randint(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(training_data), size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,)).item()</span>
+<span id="cb16-18">    img, label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> training_data[sample_idx]</span>
+<span id="cb16-19">    figure.add_subplot(rows, cols, i)</span>
+<span id="cb16-20">    plt.title(labels_map[label])</span>
+<span id="cb16-21">    plt.axis(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"off"</span>)</span>
+<span id="cb16-22">    plt.imshow(img.squeeze(), cmap<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gray"</span>)</span>
+<span id="cb16-23">plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/pytorch-brca/index_files/figure-html/cell-11-output-1.png" width="613" height="631" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="preparing-data-for-training-with-dataloaders" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-data-for-training-with-dataloaders">Preparing data for training with <code>DataLoaders</code></h3>
+<p>While training a model, we typically want to pass samples in “minibatches”, reshuffle the data at every epoch to reduce model overfitting, and use Pythonic multiprocessing to speed up data retrieval. <code>DataLoader</code> is an iterable that abstracts this complexity for us in an easy API. We pass our input <code>Dataset</code> as an argument to <code>DataLoader</code>. This wraps an iterable over our dataset, supporting automatic batching, sampling, shuffling, and multiprocess data loading in the process.</p>
+<p>Here we define a batch size of 64 - each element in the <code>DataLoader</code> iterable will return a batch of 64 features and labels.</p>
+<div id="06fb0341" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">batch_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">64</span></span>
+<span id="cb17-2"></span>
+<span id="cb17-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create data loaders.</span></span>
+<span id="cb17-4">train_dataloader <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> DataLoader(training_data, batch_size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>batch_size, shuffle<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>)</span>
+<span id="cb17-5">test_dataloader <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> DataLoader(test_data, batch_size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>batch_size, shuffle<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>)</span>
+<span id="cb17-6"></span>
+<span id="cb17-7"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> X, y <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> test_dataloader:</span>
+<span id="cb17-8">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Shape of X [N, C, H, W]: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>X<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>shape<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb17-9">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Shape of y: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>shape<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>y<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>dtype<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb17-10">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">break</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Shape of X [N, C, H, W]: torch.Size([64, 1, 28, 28])
+Shape of y: torch.Size([64]) torch.int64</code></pre>
+</div>
+</div>
+</section>
+<section id="iterating-over-the-dataloader" class="level3">
+<h3 class="anchored" data-anchor-id="iterating-over-the-dataloader">Iterating over the <code>DataLoader</code></h3>
+<p>Now that we have loaded our data into a <code>DataLoader</code>, we can iterate through the dataset as needed (using <code>next(iter(DataLoader)</code>). Each iteration returns a batch of <code>train_features</code> and <code>train_labels</code> (containing <code>batch_size=64</code> features and labels respectively). Because we specified <code>shuffle=True</code>, the data are shuffled after we iterate over all of our batches.</p>
+<div id="87e3b6f8" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Display image and label.</span></span>
+<span id="cb19-2">train_features, train_labels <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">next</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">iter</span>(train_dataloader))</span>
+<span id="cb19-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Feature batch shape: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>train_features<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>size()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb19-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Labels batch shape: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>train_labels<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>size()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb19-5">img <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> train_features[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].squeeze()</span>
+<span id="cb19-6">label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> train_labels[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb19-7">plt.imshow(img, cmap<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gray"</span>)</span>
+<span id="cb19-8">plt.show()</span>
+<span id="cb19-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Label: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>label<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Feature batch shape: torch.Size([64, 1, 28, 28])
+Labels batch shape: torch.Size([64])
+Label: 8</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/pytorch-brca/index_files/figure-html/cell-13-output-2.png" width="415" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="modeling" class="level2">
+<h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
+<section id="defining-a-neural-network" class="level3">
+<h3 class="anchored" data-anchor-id="defining-a-neural-network">Defining a neural network</h3>
+<p>Neural networks comprise of layers/modules that perform operations on data. The <code>torch.nn</code> namespace provides all the building blocks you need to build your own neural network. Every module in PyTorch subclasses the <code>nn.Module</code>. A neural network is a module itself that consists of other modules (layers). This nested structure allows for building and managing complex architectures easily.</p>
+<p>To define a neural network in PyTorch, we create a class that inherits from <code>nn.Module</code>. We define the layers of the network in the <code>__init__</code> function and specify how data will pass through the network in the <code>forward</code> function.</p>
+<div id="872aac43" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Define model</span></span>
+<span id="cb21-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> NeuralNetwork(nn.Module):</span>
+<span id="cb21-3">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">__init__</span>(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>):</span>
+<span id="cb21-4">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">super</span>().<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">__init__</span>()</span>
+<span id="cb21-5">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.flatten <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Flatten()</span>
+<span id="cb21-6">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.linear_relu_stack <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(</span>
+<span id="cb21-7">            nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">28</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">28</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">512</span>),</span>
+<span id="cb21-8">            nn.ReLU(),</span>
+<span id="cb21-9">            nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">512</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">512</span>),</span>
+<span id="cb21-10">            nn.ReLU(),</span>
+<span id="cb21-11">            nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">512</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb21-12">        )</span>
+<span id="cb21-13"></span>
+<span id="cb21-14">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> forward(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, x):</span>
+<span id="cb21-15">        x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.flatten(x)</span>
+<span id="cb21-16">        logits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.linear_relu_stack(x)</span>
+<span id="cb21-17">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> logits</span></code></pre></div>
+</div>
+<p>Now that we’ve defined the structure of our <code>NeuralNetwork</code>, we can create an instance of it and move it to a faster device (GPU or MPS) if available to accelerate operations. We can also print its structure to see the layers that we’ve just defined.</p>
+<div id="aa0652a1" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> NeuralNetwork().to(device)</span>
+<span id="cb22-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Model structure: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>model<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model structure: NeuralNetwork(
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+  (linear_relu_stack): Sequential(
+    (0): Linear(in_features=784, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=512, out_features=512, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=512, out_features=10, bias=True)
+  )
+)</code></pre>
+</div>
+</div>
+<p>Many layers inside a neural network are parameterized, meaning that they have associated weights and biases that are optimized during training. Subclassing <code>nn.Module</code> automatically tracks all fields defined inside your model object, and makes all parameters accessible using your model’s <code>parameters()</code> or <code>named_parameters()</code> methods.</p>
+<p>The linear layer is a module that applies a linear transformation on the input using its stored weights and biases. Non-linear activations are what create the complex mappings between the model’s inputs and outputs. They are applied after linear transformations to introduce nonlinearity, helping neural networks learn a wide variety of phenomena.</p>
+<p>In this model, we use <code>nn.ReLU</code> between our linear layers, but there are other options for activations to introduce non-linearity in your model.</p>
+<div id="bfc337f5" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> name, param <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> model.named_parameters():</span>
+<span id="cb24-2">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Layer: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>name<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> | Size: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>param<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>size()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> | Values : </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>param[:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Layer: linear_relu_stack.0.weight | Size: torch.Size([512, 784]) | Values : tensor([[-0.0137,  0.0180, -0.0038,  ..., -0.0288,  0.0247,  0.0047],
+        [-0.0027, -0.0064,  0.0060,  ...,  0.0168,  0.0072,  0.0185]],
+       device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
+
+Layer: linear_relu_stack.0.bias | Size: torch.Size([512]) | Values : tensor([-0.0209,  0.0113], device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
+
+Layer: linear_relu_stack.2.weight | Size: torch.Size([512, 512]) | Values : tensor([[ 0.0398, -0.0057,  0.0337,  ...,  0.0392,  0.0286,  0.0139],
+        [-0.0359,  0.0057,  0.0314,  ..., -0.0165, -0.0135, -0.0054]],
+       device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
+
+Layer: linear_relu_stack.2.bias | Size: torch.Size([512]) | Values : tensor([-0.0152, -0.0237], device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
+
+Layer: linear_relu_stack.4.weight | Size: torch.Size([10, 512]) | Values : tensor([[ 0.0041,  0.0418,  0.0345,  ..., -0.0015, -0.0423, -0.0096],
+        [-0.0395,  0.0183, -0.0321,  ...,  0.0371, -0.0126, -0.0107]],
+       device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
+
+Layer: linear_relu_stack.4.bias | Size: torch.Size([10]) | Values : tensor([ 0.0070, -0.0366], device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
+</code></pre>
+</div>
+</div>
+</section>
+<section id="optimizing-the-model-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="optimizing-the-model-parameters">Optimizing the Model Parameters</h3>
+<p>Now that we have our data and our model, it’s time to train, validate and test our model by optimizing its parameters on the input data! Training a model is an iterative process; in each iteration the model makes a guess about the output, calculates the error in its guess (loss), collects the derivatives of the error with respect to its parameters, and optimizes these parameters using gradient descent.</p>
+<section id="hyperparameters" class="level4">
+<h4 class="anchored" data-anchor-id="hyperparameters">Hyperparameters</h4>
+<p>Hyperparameters are adjustable parameters that let you control the model optimization process. Different hyperparameter values can impact model training and convergence rates.</p>
+<p>We define the following hyperparameters for training: - Number of Epochs - the number times to iterate over the dataset - Batch Size - the number of data samples propagated through the network before the parameters are updated - Learning Rate - how much to update models parameters at each batch/epoch. Smaller values yield slow learning speed, while large values may result in unpredictable behavior during training.</p>
+<div id="87b93a7e" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1">learning_rate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1e-3</span></span>
+<span id="cb26-2">batch_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">64</span></span>
+<span id="cb26-3">epochs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span></span></code></pre></div>
+</div>
+</section>
+<section id="optimization-loop" class="level4">
+<h4 class="anchored" data-anchor-id="optimization-loop">Optimization Loop</h4>
+<p>To train our model, we need a loss function as well as an optimizer.</p>
+<p>Once we set our hyperparameters, we can then train and optimize our model with an optimization loop. Each iteration of the optimization loop is called an epoch.</p>
+<p>Each epoch consists of two main parts: - The Train Loop - iterate over the training dataset and try to converge to optimal parameters. - The Validation/Test Loop - iterate over the test dataset to check if model performance is improving.</p>
+<p>The loss function measures the degree of dissimilarity between an obtained result and the target value, and it is the loss function that we want to minimize during training. To calculate the loss we make a prediction using the inputs of our given data sample and compare it against the true data label value.</p>
+<p>Common loss functions include <code>nn.MSELoss</code> (Mean Square Error) for regression tasks, and <code>nn.NLLLoss</code> (Negative Log Likelihood) for classification. <code>nn.CrossEntropyLoss</code> combines <code>nn.LogSoftmax</code> and <code>nn.NLLLoss</code>.</p>
+<p>We pass our model’s output logits to <code>nn.CrossEntropyLoss</code>, which will normalize the logits and compute the prediction error.</p>
+<div id="21c2869c" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Initialize the loss function</span></span>
+<span id="cb27-2">loss_fn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.CrossEntropyLoss()</span></code></pre></div>
+</div>
+<p>Optimization is the process of adjusting model parameters to reduce model error in each training step. Optimization algorithms define how this process is performed (in this example we use Stochastic Gradient Descent). All optimization logic is encapsulated in the optimizer object. Here, we use the SGD optimizer; additionally, there are many different optimizers available in PyTorch such as ADAM and RMSProp, that work better for different kinds of models and data.</p>
+<p>We initialize the optimizer by registering the model’s parameters that need to be trained, and passing in the learning rate hyperparameter.</p>
+<div id="c49809b7" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1">optimizer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.optim.SGD(model.parameters(), lr<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>learning_rate)</span></code></pre></div>
+</div>
+<p>Inside the training loop, optimization happens in three steps: - Call <code>optimizer.zero_grad()</code> to reset the gradients of model parameters. Gradients by default add up; to prevent double-counting, we explicitly zero them at each iteration. - Backpropagate the prediction loss with a call to <code>loss.backward()</code>. PyTorch deposits the gradients of the loss w.r.t. each parameter. - Once we have our gradients, we call <code>optimizer.step()</code> to adjust the parameters by the gradients collected in the backward pass.</p>
+</section>
+<section id="full-implementation" class="level4">
+<h4 class="anchored" data-anchor-id="full-implementation">Full Implementation</h4>
+<p>We define <code>train_loop</code> that loops over our optimization code, and <code>test_loop</code> that evaluates the model’s performance against our test data.</p>
+<div id="72f292ed" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> train_loop(dataloader, model, loss_fn, optimizer):</span>
+<span id="cb29-2">    size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(dataloader.dataset)</span>
+<span id="cb29-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Set the model to training mode - important for batch normalization and dropout layers</span></span>
+<span id="cb29-4">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Unnecessary in this situation but added for best practices</span></span>
+<span id="cb29-5">    model.train()</span>
+<span id="cb29-6">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> batch, (X, y) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(dataloader):</span>
+<span id="cb29-7">        X <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> X.to(device)</span>
+<span id="cb29-8">        y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> y.to(device)</span>
+<span id="cb29-9">        </span>
+<span id="cb29-10">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Compute prediction and loss</span></span>
+<span id="cb29-11">        pred <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model(X)</span>
+<span id="cb29-12">        loss <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> loss_fn(pred, y)</span>
+<span id="cb29-13"></span>
+<span id="cb29-14">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Backpropagation</span></span>
+<span id="cb29-15">        loss.backward()</span>
+<span id="cb29-16">        optimizer.step()</span>
+<span id="cb29-17">        optimizer.zero_grad()</span>
+<span id="cb29-18"></span>
+<span id="cb29-19">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> batch <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>:</span>
+<span id="cb29-20">            loss, current <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> loss.item(), batch <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> batch_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(X)</span>
+<span id="cb29-21">            <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"loss: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>loss<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:&gt;7f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">  [</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>current<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:&gt;5d}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>size<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:&gt;5d}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">]"</span>)</span>
+<span id="cb29-22"></span>
+<span id="cb29-23"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> test_loop(dataloader, model, loss_fn):</span>
+<span id="cb29-24">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Set the model to evaluation mode - important for batch normalization and dropout layers</span></span>
+<span id="cb29-25">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Unnecessary in this situation but added for best practices</span></span>
+<span id="cb29-26">    model.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">eval</span>()</span>
+<span id="cb29-27">    size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(dataloader.dataset)</span>
+<span id="cb29-28">    num_batches <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(dataloader)</span>
+<span id="cb29-29">    test_loss, correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb29-30"></span>
+<span id="cb29-31">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Evaluating the model with torch.no_grad() ensures that no gradients are computed during test mode</span></span>
+<span id="cb29-32">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True</span></span>
+<span id="cb29-33">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> torch.no_grad():</span>
+<span id="cb29-34">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> X, y <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> dataloader:</span>
+<span id="cb29-35">            X <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> X.to(device)</span>
+<span id="cb29-36">            y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> y.to(device)</span>
+<span id="cb29-37">        </span>
+<span id="cb29-38">            pred <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model(X)</span>
+<span id="cb29-39">            test_loss <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> loss_fn(pred, y).item()</span>
+<span id="cb29-40">            correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> (pred.argmax(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> y).<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">type</span>(torch.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">float</span>).<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>().item()</span>
+<span id="cb29-41"></span>
+<span id="cb29-42">    test_loss <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/=</span> num_batches</span>
+<span id="cb29-43">    correct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/=</span> size</span>
+<span id="cb29-44">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Test Error: </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> Accuracy: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>correct)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:&gt;0.1f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%, Avg loss: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>test_loss<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:&gt;8f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span></code></pre></div>
+</div>
+<p>In a single training loop, the model makes predictions on the training dataset (fed to it in batches), and then backpropagates the prediction error to adjust the model’s parameters.</p>
+<p>We can also check the model’s performance against the test dataset to ensure it is learning.</p>
+<p>The training process is conducted over several iterations (epochs). During each epoch, the model learns parameters to make better predictions. We print the model’s accuracy and loss at each epoch; we’d like to see the accuracy increase and the loss decrease with every epoch.</p>
+<div id="c0c2611b" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> t <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(epochs):</span>
+<span id="cb30-2">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Epoch </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>t<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-------------------------------"</span>)</span>
+<span id="cb30-3">    train_loop(train_dataloader, model, loss_fn, optimizer)</span>
+<span id="cb30-4">    test_loop(test_dataloader, model, loss_fn)</span>
+<span id="cb30-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Done!"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 1
+-------------------------------
+loss: 2.313123  [   64/60000]
+loss: 2.285968  [ 6464/60000]
+loss: 2.279950  [12864/60000]
+loss: 2.261608  [19264/60000]
+loss: 2.234406  [25664/60000]
+loss: 2.228365  [32064/60000]
+loss: 2.181631  [38464/60000]
+loss: 2.178308  [44864/60000]
+loss: 2.168746  [51264/60000]
+loss: 2.135072  [57664/60000]
+Test Error: 
+ Accuracy: 36.4%, Avg loss: 2.136111 
+
+Epoch 2
+-------------------------------
+loss: 2.136322  [   64/60000]
+loss: 2.113021  [ 6464/60000]
+loss: 2.088278  [12864/60000]
+loss: 2.043051  [19264/60000]
+loss: 2.046329  [25664/60000]
+loss: 2.025762  [32064/60000]
+loss: 1.939848  [38464/60000]
+loss: 1.940282  [44864/60000]
+loss: 1.881336  [51264/60000]
+loss: 1.876047  [57664/60000]
+Test Error: 
+ Accuracy: 56.8%, Avg loss: 1.832395 
+
+Epoch 3
+-------------------------------
+loss: 1.842130  [   64/60000]
+loss: 1.771711  [ 6464/60000]
+loss: 1.715626  [12864/60000]
+loss: 1.661744  [19264/60000]
+loss: 1.599232  [25664/60000]
+loss: 1.558062  [32064/60000]
+loss: 1.587824  [38464/60000]
+loss: 1.659741  [44864/60000]
+loss: 1.540324  [51264/60000]
+loss: 1.457054  [57664/60000]
+Test Error: 
+ Accuracy: 62.3%, Avg loss: 1.464174 
+
+Epoch 4
+-------------------------------
+loss: 1.465014  [   64/60000]
+loss: 1.422204  [ 6464/60000]
+loss: 1.399371  [12864/60000]
+loss: 1.378896  [19264/60000]
+loss: 1.340550  [25664/60000]
+loss: 1.292807  [32064/60000]
+loss: 1.194880  [38464/60000]
+loss: 1.318207  [44864/60000]
+loss: 1.210237  [51264/60000]
+loss: 1.319617  [57664/60000]
+Test Error: 
+ Accuracy: 63.7%, Avg loss: 1.218638 
+
+Epoch 5
+-------------------------------
+loss: 1.151209  [   64/60000]
+loss: 1.275276  [ 6464/60000]
+loss: 1.121574  [12864/60000]
+loss: 1.157526  [19264/60000]
+loss: 1.165031  [25664/60000]
+loss: 1.169642  [32064/60000]
+loss: 1.062104  [38464/60000]
+loss: 1.159328  [44864/60000]
+loss: 1.061364  [51264/60000]
+loss: 1.091813  [57664/60000]
+Test Error: 
+ Accuracy: 64.7%, Avg loss: 1.065644 
+
+Done!</code></pre>
+</div>
+</div>
+<p>We can now use this model to make individual predictions.</p>
+<p>To use the model, we pass it the input data. This executes the model’s <code>forward</code>, along with some background operations. Note that we do not call <code>model.forward()</code> directly!</p>
+<div id="d4472324" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1">classes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb32-2">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"T-shirt/top"</span>,</span>
+<span id="cb32-3">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Trouser"</span>,</span>
+<span id="cb32-4">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pullover"</span>,</span>
+<span id="cb32-5">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Dress"</span>,</span>
+<span id="cb32-6">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Coat"</span>,</span>
+<span id="cb32-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sandal"</span>,</span>
+<span id="cb32-8">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Shirt"</span>,</span>
+<span id="cb32-9">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sneaker"</span>,</span>
+<span id="cb32-10">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bag"</span>,</span>
+<span id="cb32-11">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ankle boot"</span>,</span>
+<span id="cb32-12">]</span>
+<span id="cb32-13"></span>
+<span id="cb32-14">model.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">eval</span>()</span>
+<span id="cb32-15">x, y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> test_data[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>][<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>], test_data[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>][<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb32-16"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> torch.no_grad():</span>
+<span id="cb32-17">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> x.to(device)</span>
+<span id="cb32-18">    pred <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model(x)</span>
+<span id="cb32-19">    predicted, actual <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> classes[pred[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].argmax(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)], classes[y]</span>
+<span id="cb32-20">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'Predicted: "</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>predicted<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">", Actual: "</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>actual<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Predicted: "Ankle boot", Actual: "Ankle boot"</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>This concludes my walkthrough of using basic PyTorch to process data and train a neural network. As mentioned, in a future post in the coming weeks, I will iterate on this pipeline, demonstrating a different neural network architecture and more data exploration for a different dataset. Until next time, [VS]Coders!</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Tutorials</category>
+  <guid>https://vsriram24.github.io/posts/pytorch-brca/</guid>
+  <pubDate>Mon, 19 Aug 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/pytorch-brca/zolaCake.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>An intro to NLP for oncology</title>
@@ -6684,448 +7969,6 @@ font-style: inherit;">print</span>(k, loss.data)</span></code></pre></div>
   <guid>https://vsriram24.github.io/posts/karpathy-1/</guid>
   <pubDate>Mon, 08 Jul 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/karpathy-1/zolaFish.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>My doctoral research: takeaways and advice</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/phd-takeaways/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>In the last few posts, I have provided an overview of my PhD in <a href="https://www.med.upenn.edu/gcb/">Biomedical Informatics and Computational Genomics</a> that I completed under the mentorship of Dr.&nbsp;<a href="https://www.biomedinfolab.com">Dokyoon Kim</a> at the University of Pennsylvania Perelman School of Medicine. You can listen to a full presentation of my thesis defense <a href="https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d">here</a>, and you can read the full text of my dissertation <a href="https://repository.upenn.edu/entities/publication/d7441349-baa0-407e-b556-ec96c6930db8">here</a>. In today’s post, I will conclude this series on my doctoral research with my personal takeaways and tips for picking, pursuing, and finishing a PhD program.</p>
-<p><img src="https://vsriram24.github.io/posts/phd-takeaways/beach.jpeg" class="img-fluid"></p>
-<section id="motivations" class="level1">
-<h1>Motivations</h1>
-<p>I’ll start this post with explaining some of my personal motivators for pursuing a PhD.</p>
-<section id="why-did-i-choose-to-pursue-a-phd-after-my-undergrad" class="level2">
-<h2 class="anchored" data-anchor-id="why-did-i-choose-to-pursue-a-phd-after-my-undergrad">Why did I choose to pursue a PhD after my undergrad?</h2>
-<p>As I explained in my previous <a href="https://vsriram24.github.io/posts/professional-journey/">post describing my professional journey</a>, I’ve always wanted to be a leader in impactful projects that made a clear benefit in people’s lives. When I was an undergrad, I began to research job opportunities that I found aligned with my interests. Looking at the qualifications required for these roles, and based on further advice from colleagues and mentors in my summer internships, I realized that in order for me to be able to become a leader in an interdisicplinary field in the future, I would have to pursue education beyond my undergraduate degree. Without a Master’s or PhD, I knew that I would eventually hit a wall in my career progression.</p>
-<p>I knew earning a graduate degree in the future after working for some time was a completely valid option. But, I also felt that knowing my own personality, it would be harder to bring myself back to school after a few years - I would feel the pay differential more keenly, and I would have to retrain myself to become a student. So, I decided to apply for graduate programs during my senior year of college.</p>
-<p>I considered both Master’s and PhD programs, but in weighing the opportunity costs for the computational fields I was considering, I ended up focusing my attention on doctorate degrees. I knew that a PhD would help me transition more clearly into cutting-edge research-based career opportunities. I also ideally wanted to avoid having to pay for a Master’s degree. A PhD program, on the other hand, would support me with a stipend for the duration of the program. Finally, I knew that with a computationally-focused PhD, it would be very reasonable to aim to graduate in about five years, which would be shorter than the average timeline for a PhD in the United States.</p>
-<p>I applied only for PhD programs where I knew I would feel content about spending 5+ years of my time. I also applied to one Master’s program in case I didn’t get in to any PhD programs. If nothing worked out for me, my back-up plan would have been to try to find a 1-year Master’s program attached to my undergrad or look for a short-term research position so that I could gain more experience and reapply fully for Master’s programs in the following year. Luckily, PhD admissions worked out, and I found a program that fit with everything I was looking for!</p>
-</section>
-<section id="why-did-i-apply-for-bioinformatics-programs" class="level2">
-<h2 class="anchored" data-anchor-id="why-did-i-apply-for-bioinformatics-programs">Why did I apply for bioinformatics programs?</h2>
-<p>I chose to apply for bioinformatics / computational biology programs based on both my interest in the field as well as my likelihood of getting into such a department. I had always been motivated by the concepts of interdisclipinary research involving informational technology. So, I knew that I wanted to pursue a graduate degree related to data science, computer science, or statistics. At the same time, focusing on the area of biomedical research felt like an untapped market to me - there was so much data to work with and so much opportunity to advance the field. My time at Duke also gave me extensive exposure to research in the biomedical informatics domain. As a result, I felt that I would be a competitive applicant for cutting-edge programs in biomedical informatics and computational biology compared to other disciplines. I also felt that even if I wanted to pivot to a career that didn’t involve biomedical applications in the future, having a computational PhD would be sufficient to qualify me for such roles.</p>
-</section>
-<section id="why-did-i-pick-penn-genomics-and-computational-biology" class="level2">
-<h2 class="anchored" data-anchor-id="why-did-i-pick-penn-genomics-and-computational-biology">Why did I pick <a href="https://www.med.upenn.edu/gcb/">Penn Genomics and Computational Biology</a>?</h2>
-<p>Coming from a more computational background, I wanted a program that could help me catch up in topics in which I was lacking while also advancing further in my training for subjects where I already had the expertise. Penn GCB offered a very customized approach for selecting coursework, allowing me to take more foundational classes in genetics and molecular biology while pursuing more advanced curriculum in statistics and computer science.</p>
-<p>Penn also had multiple professors under whom I could see myself working, as well as access to interesting medical data due to its association with the University of Pennsylvania Health System.</p>
-<p>I also considered the happiness of students currently in the program and the livability of Philadelphia. It was apparent to me after my interview weekend that students were able to have fulfilling lives outside of their research, and that Philadelphia would be an exciting (and affordable) city for me to spend my twenties!</p>
-<p>Lastly, I appreciated that Penn offered the opportunity to pursue a free <a href="https://doctoral-inside.wharton.upenn.edu/dual-master-of-arts-in-statistics-and-data-sciences/">Master’s degree in Statistics and Data Science</a> from the Wharton School of Business concurrently with my PhD. Given my undergraduate degree in Statistics, I felt that this would be something I could more easily pursue, and that it would also give me a leg up in terms of foundational knowledge and branding in the future if I chose to pivot away from biomedical research.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-takeaways/picard.jpg" height="300" class="figure-img"></p>
-<figcaption>A view of my thinking face for all of my major life decisions during my PhD.</figcaption>
-</figure>
-</div>
-</section>
-<section id="how-did-i-choose-my-principal-investigator-pi" class="level2">
-<h2 class="anchored" data-anchor-id="how-did-i-choose-my-principal-investigator-pi">How did I choose my Principal Investigator (PI)?</h2>
-<p>The highest priority for me in picking my PhD lab was finding a group whose research spoke to me. After this, there were a few pieces that led me to settle on Dr.&nbsp;<a href="https://www.med.upenn.edu/apps/faculty/index.php/g275/p9240045">Dokyoon Kim</a>.</p>
-<p>Coming directly out of my undergrad, I knew that I would need a lot of support from my PI. So, I wanted to work with a more junior professor who would have the time to help me when I needed it. I also liked the idea of being one of the first students in a new lab and marking my own path. Based on my rotation, I could tell that my PI was highly attentive, and I had plenty of face-time with him each week, as well as support from post-docs and engineers in the lab whenever I needed it.</p>
-<p>Further, I appreciated that my PI had a program set up with internationally-based clinicians to stay in Philadelphia and work in the lab each year. This gave countless opportunities to learn from and collaborate with people in the medical field as well as gain deeper insight into the impact that our projects could have downstream.</p>
-<p>Lastly, it just so happened that my rotation with my PI coincided with March 2020, the start of the full impact of the COVID-19 pandemic on the U.S. In the face of entirely remote work for an unknown amount of time, it was immediately apparent to me that my PI would be great about supporting me virtually for however long we were required to work from home.</p>
-</section>
-<section id="how-did-i-choose-my-dissertation-topic" class="level2">
-<h2 class="anchored" data-anchor-id="how-did-i-choose-my-dissertation-topic">How did I choose my dissertation topic?</h2>
-<p>To read more about the context and content of my dissertation, you can read my previous posts <a href="https://vsriram24.github.io/posts/phd-context/">here</a> and <a href="https://vsriram24.github.io/posts/phd-papers/">here</a>.</p>
-<p>Personally, I’ve always found that I excel the most when I am passionate about the projects I’m pursuing. It is important for me to not only see the motivators of my work, but also its downstream impact. As a result, I wanted to pursue a dissertation that felt intuitive and important.</p>
-<p>Coming from a computational background, I did not have a disease area of interest that I had to focus on. Indeed, the biological question at hand was less important to me in my initial choice of project than its impact.</p>
-<p>Lastly, I wanted the opportunity to familiarize myself with new types of data, to develop new computational methods and tools that could be used by the biomedical research community, and to see the translational impact of my work on people’s lives.</p>
-<p>My rotation project (you can read the published manuscript for this project <a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giac002/6528770">here</a>) gave me an incredible view into the potential of my research trajectory at the start of my PhD. I loved how intuitive the baseline concepts of network medicine were, and I could see how it had the potential to bring together scientific storytelling aspects of data visualization with advanced technical research in graph-based machine learning. Ultimately, this dissertation topic felt like something that I could truly take full ownership of.</p>
-</section>
-</section>
-<section id="takeaways" class="level1">
-<h1>Takeaways</h1>
-<p>Here are my personal views on the pros and cons of doing a PhD:</p>
-<section id="my-personal-phd-pros" class="level2">
-<h2 class="anchored" data-anchor-id="my-personal-phd-pros">My personal PhD pros</h2>
-<ul>
-<li>I gained strong interdisciplinary expertise in my subject matter:
-<ul>
-<li>Biomedical informatics, computational genomics, translational science</li>
-<li>Data science, software development, statistics, machine learning</li>
-</ul></li>
-<li>I learned how to conduct independent research and lead the direction of projects</li>
-<li>I gained valuable experience in mentoring and teaching others</li>
-<li>I was able to network with many amazing colleagues both in academia and industry in my discipline</li>
-<li>I was able to keep making income throughout the duration of my degree</li>
-<li>After my degree, I am taken more seriously by people in my field whom I meet for the first time</li>
-<li>I feel tremendously prepared to take on leadership roles in exciting interdisciplinary research areas in the future</li>
-</ul>
-</section>
-<section id="my-personal-phd-cons" class="level2">
-<h2 class="anchored" data-anchor-id="my-personal-phd-cons">My personal PhD cons</h2>
-<ul>
-<li>Having a PhD will make the jobs that you seek more niche
-<ul>
-<li>When you pursue a PhD for career advancement, you’re typically seeking a career that is beyond the norm</li>
-<li>Bachelor’s-level (and to an extent, Master’s-level) jobs are less individually unique from one another, but they are more broadly available (e.g.&nbsp;software engineer)</li>
-<li>Finding the right type of opportunity for a PhD-level individual requires patience</li>
-</ul></li>
-<li>Pursuing a PhD is a stressful experience!
-<ul>
-<li>It can be hard to set boundaries between your work and your personal life. There are no clear deadlines for your projects either… your work will expand to fill your time unless you set your own pace</li>
-<li>A lot of luck is involved in how quickly you can make progress. There are so many factors out of your control that can affect the success of your experiments and your publications</li>
-</ul></li>
-<li>There is a financial cost to pursuing a PhD
-<ul>
-<li>If you can be accepted to a PhD program, then you can be accepted to a much higher-paying job in industry. It is a very personal decision regarding whether or not this drop in salary is worth it</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="advice" class="level1">
-<h1>Advice</h1>
-<p>Based upon the experiences I had throughout my PhD, here is my advice for current, incoming, and aspiring PhD students.</p>
-<section id="choosing-to-do-a-phd" class="level2">
-<h2 class="anchored" data-anchor-id="choosing-to-do-a-phd">Choosing to do a PhD</h2>
-<p>The biggest piece of advice I have here is… <strong>make sure you’re doing a PhD for the right reason.</strong></p>
-<ul>
-<li><p>It’s important to think about why you want a graduate degree in the first place… Becoming a professor? Seeking those longer-term “extraordinary” opportunities in industry? Pure academic curiosity?</p>
-<ul>
-<li>I know people in all three of these camps, and I think they’re all very justified reasons. There are plenty more reasons to do a PhD outside of these - everyone has their own individual biases that draw them to the experience.</li>
-</ul></li>
-<li><p>There are also plenty of reasons NOT to do a PhD.</p>
-<ul>
-<li><p>The worst reason to pursue a PhD is for the “prestige.”</p>
-<ul>
-<li><p>If you don’t find yourself intrinsically excited about the work you’re doing at the end of the day, then stop wasting your time! It’s not worth spending so much time on something just because you want other people to think more of you.</p></li>
-<li><p>A caveat - this lack of intrinsic excitement is different from joining a PhD program and then experiencing lulls in your research where you’re frustrated with your progress. This latter occurrence is totally normal and quite common! At the end of the day, when the experiments work out, you’ll remember why you started your program in the first place.</p></li>
-</ul></li>
-<li><p>The second worst reason to pursue a PhD is that you don’t know what else to do with your time.</p>
-<ul>
-<li>Getting a PhD is not a passive experience. You cannot just “let it happen to you.” You have to be active about seeking out opportunities, making connections with others, and progressing on your work in order to succeed.</li>
-</ul></li>
-<li><p>If you find yourself in either of these camps, then I can guarantee that you will be miserable and that you <strong>will</strong> burn out.</p></li>
-</ul></li>
-<li><p>If you want to gain more knowledge, there are plenty of more lucrative / less time-intensive ways to do so than pursuing a PhD:</p>
-<ul>
-<li><p>Pursue a different type of graduate degree</p></li>
-<li><p>Find a job relevant to your career</p></li>
-<li><p>Join a technical bootcamp</p></li>
-<li><p>Take individual classes / online courses</p></li>
-<li><p>Pursue independent projects (maybe even start a blog! ;))</p></li>
-</ul></li>
-<li><p>There will always be a tradeoff when you decide to pursue a PhD. Some doors will open and other doors will close. Think about what’s best for YOU in your life and for your career.</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-takeaways/yoda.jpeg" height="300" class="figure-img"></p>
-<figcaption>My transition from first-year student to graduate. A pandemic and a doctorate degree will make you older AND wiser!</figcaption>
-</figure>
-</div>
-</section>
-<section id="selecting-a-program" class="level2">
-<h2 class="anchored" data-anchor-id="selecting-a-program">Selecting a program</h2>
-<p>I’ve discussed earlier why I personally chose to attend Penn GCB, but here are some good questions to ask yourself when selecting a PhD program to attend:</p>
-<ol type="1">
-<li><strong>Do you like the work that you’ll be doing?</strong>
-<ul>
-<li>This is the whole point of a PhD - to do cutting-edge work. You need to like the field you’re in and the opportunities that will be available to you</li>
-</ul></li>
-<li><strong>Is there more than one professor with whom you could see yourself working?</strong>
-<ul>
-<li>Even if you have a professor who has committed to taking you on, this point is important to consider. Professors are people too, and they move around universities all the time. Make sure you’re not joining a program just because of a single person - otherwise, if they leave or if you position doesn’t work out, you may find yourself scrambling to find a new professor in the middle of your PhD who may not even align with your research interests.</li>
-</ul></li>
-<li><strong>Will you have the right level of support for your background?</strong>
-<ul>
-<li><p>Some people will come with a lot of experience and need less guidance when they start their PhDs. Others will come with minimal experience and need more hand-holding.</p>
-<ul>
-<li>I was in this second camp - I needed lots of hand-holding for biomedical concepts, and I wanted more independence in my explorations of computer science and statistics</li>
-</ul></li>
-<li><p>Make sure that the program can help you up-skill as needed (i.e.&nbsp;through coursework, registering for conferences / workshops, connecting you with the right mentors, etc.)</p></li>
-</ul></li>
-<li><strong>How is work-life harmony handled in this program?</strong>
-<ul>
-<li><p>I cannot stress this enough - <strong>you are more than your work</strong>. You will need to work hard in a PhD, but you cannot let it absorb your entire life. You will burn out if you do. A PhD is a marathon and not a sprint.</p></li>
-<li><p>You won’t necessarily need an active student community, but your peers are the only people who will truly understand the day-to-day of what being a PhD student means. You’ll find that being a part of such a community can be tremendously rewarding, and that your colleagues will be a huge help in your times of need.</p></li>
-<li><p>You can gauge the status of how well work boundaries are set by your program through the students you meet during interview/admit visits. Obviously a lot of your work-life balance will come down to the lab you join. But in general, are the students happy with their choice to join this program? Do they have time for things outside of their work?</p></li>
-</ul></li>
-<li><strong>Do you like where will you be living?</strong>
-<ul>
-<li><p>Do you like the location of the program? Can you see yourself spending 5+ years there?</p></li>
-<li><p>Is the place you’re living affordable given the stipend that the program offers? How are housing/rental costs in the area?</p></li>
-<li><p>Is it easy to get to work? If not, how often will you expect to be coming in to campus?</p></li>
-</ul></li>
-<li><strong>How does the program support career progression and what are the types of opportunities that may be available to you after graduation?</strong>
-<ul>
-<li><p>What kinds of support systems does the program have for career development?</p>
-<ul>
-<li>Is there support for internships? Fellowships / grants? Travel opportunities to conferences? Mentorship / teaching opportunities? The ability to earn additional certificates / degrees?</li>
-</ul></li>
-<li><p>What do alumni from the program usually do after graduation? Where (physically) do they end up? How much did the program and/or their research focus help with finding a job?</p></li>
-<li><p>In these situations, when you have an admission to a program and you’re trying to decide on it, it’s great to speak to not only current students but also alumni to get a sense for the pros and cons of the program. You may not know the right questions to ask during these informational interviews, but if the program has a good community, then they’ll be happy to help you out regardless.</p></li>
-</ul></li>
-</ol>
-</section>
-<section id="selecting-a-thesis-advisor" class="level2">
-<h2 class="anchored" data-anchor-id="selecting-a-thesis-advisor">Selecting a thesis advisor</h2>
-<ul>
-<li><p>Your PhD advisor doesn’t have to be your <em>best</em> friend, but you should ideally have a friendly relationship with them :) Are they a nice person to work with? Do they have your best interests at heart? Or are they more concerned with using your time and work to advance the standing of their lab?</p></li>
-<li><p>Do you like the work that you’d be doing with this PI? It’s important that you don’t pick a lab just because you like the mentor’s personality.</p></li>
-<li><p>Pick a PI who will lift you up rather than hold you down</p>
-<ul>
-<li><p>You want to be challenged, but you don’t want to make life harder for yourself. Your PI is directly responsible for:</p>
-<ul>
-<li><p>the type of research you explore</p></li>
-<li><p>when you graduate</p></li>
-<li><p>how much work-life balance you have</p></li>
-</ul></li>
-<li><p>At the end of the day, a great PI should always be your advocate!</p></li>
-</ul></li>
-<li><p>Regarding co-mentorships…</p>
-<ul>
-<li><p>Co-mentorships across two groups can be great if you have the right projects in mind and need both labs’ expertise.</p></li>
-<li><p>However, these can also go very poorly if your work aligns more with one group than the other. There’s a high likelihood that you will fall between the cracks and be stuck in your PhD for much longer than you need to be.</p>
-<ul>
-<li>Sometimes it’ll still work out, especially if both PI’s already collaborate. But in these cases, I personally think it seems unnecessary to have both professors be your mentor. You can always have one of these professors serve on your thesis committee instead.</li>
-</ul></li>
-<li><p>Here’s my personal opinion… If you are coming in with less experience, I would advise picking a single PI. If you are coming in with more experience and know exactly what type of dissertation you want to work on, then you can consider multiple PIs.</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="picking-research-projects" class="level2">
-<h2 class="anchored" data-anchor-id="picking-research-projects">Picking research projects</h2>
-<ul>
-<li><p>Here’s a big “duh” piece of advice – pick a research topic you’re excited about! Why would you spend 5+ years of your life on something that doesn’t get you excited?</p></li>
-<li><p>Another point - prioritize skill-building when you can, but don’t prioritize it over progress on your dissertation.</p>
-<ul>
-<li>You can up-skill in specific areas as much as you want after your PhD. If you are distracted by “side-quests,” you will take longer to graduate when you could have instead finished your degree earlier and kept progressing in your career.</li>
-</ul></li>
-<li><p>Think about the trade-off between your academic passions and the logistics of your work. Try to find the optimal balance across academic curiosity, skill-building, and time required for the research project.</p>
-<ul>
-<li><strong>Data generation will always take longer than expected.</strong> The easiest way to cut down on the time needed for your PhD is to work on projects where the data are already generated :)</li>
-</ul></li>
-</ul>
-</section>
-<section id="wrapping-up-your-phd" class="level2">
-<h2 class="anchored" data-anchor-id="wrapping-up-your-phd">Wrapping up your PhD</h2>
-<ul>
-<li><p>In my personal opinion, ending a PhD is an exercise in self-confidence and believing in oneself. Ultimately, completing your PhD means knowing how to advocate for yourself.</p>
-<ul>
-<li><p>This can be easier or harder depending on your PI and your thesis committee. Some PIs / committees will be on the same page as you. They may even say themselves that it’s time for you to defend.</p></li>
-<li><p>Others will not tell you they think you are ready to leave. It is up to you to justify in your committee meetings why you feel qualified to defend and graduate.</p></li>
-</ul></li>
-<li><p>Here’s my biggest indicator for when it’s time to graduate - when you no longer feel that you NEED guidance from your superiors.</p>
-<ul>
-<li>You don’t need to feel that you have nothing more to learn. In fact, pursuing a PhD will teach you that you always have more to learn!</li>
-<li>You don’t even have to have fulfilled all the goals of your dissertation… the aims that you come up with at the start of your disseration are somewhat arbitrary benchmarks.</li>
-<li>Instead… Are you able to devise a full research project concept and methodology? Can you procure the right data and follow through on the analysis? Are you able to communicate your results in a cogent, impactful manner?</li>
-</ul></li>
-<li><p>I hit a point toward the end of my PhD where I felt I could still keep learning and exploring, but I was coming up with all of the directions of the exploration myself. In other words, I was an independent researcher! This was my cue to wrap up and defend.</p></li>
-</ul>
-<hr>
-<p>With that, we’ve reached the conclusion of my series on my doctoral research! If you’ve read this far, I hope you found the information I shared to be useful. The process of picking, starting, and completing a PhD is a tremendous challenge, and if you’re struggling at any point with any of the concepts I’ve covered today, feel free to reach out to me on <a href="https://www.linkedin.com/in/vivek-sriram/">LinkedIn</a> or shoot me an email at <a href="mailto:vivek.sriram@gmail.com">vivek.sriram@gmail.com</a>! I am always happy to chat and offer my two cents.</p>
-<p>And a last reminder… as I’ve said earlier in this post - <strong>you are not your work!</strong> Regardless of the stressors and major decisions that surround you, never forget to remember what matters most at the end of the day: your personal happiness and well-being. Make sure to take time to enjoy the little things in life, like this squirrel :)</p>
-<p><img src="https://vsriram24.github.io/posts/phd-takeaways/squirrel.webp" height="300"></p>
-<section id="image-references" class="level3">
-<h3 class="anchored" data-anchor-id="image-references">Image References:</h3>
-<ul>
-<li><a href="https://www.paramountplus.com/shows/star-trek-discovery/photos/1006913/50-terms-you-know-because-of-star-trek/12/">Paramount Plus</a></li>
-<li><a href="https://cheezburger.com/10708485/thirty-phd-memes-for-the-grad-student-whos-checked-the-eff-out">Memebase.com</a></li>
-<li><a href="https://www.businessinsider.com/photographer-captured-moment-squirrel-stopped-to-smell-daisy-2019-11">Business Insider</a></li>
-</ul>
-
-
-</section>
-</section>
-</section>
-
- ]]></description>
-  <category>Personal</category>
-  <category>Advice</category>
-  <guid>https://vsriram24.github.io/posts/phd-takeaways/</guid>
-  <pubDate>Mon, 24 Jun 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/phd-takeaways/zolaRainier.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>My doctoral research: the content</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/phd-papers/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>In last week’s post, I provided an overview of the context for my PhD research in <a href="https://www.med.upenn.edu/gcb/">Biomedical Informatics and Computational Genomics</a> that I completed under the mentorship of Dr.&nbsp;<a href="https://www.biomedinfolab.com">Dokyoon Kim</a> at the University of Pennsylvania Perelman School of Medicine. Today’s post will focus on some of the actual content that came out of my research. You can listen to a full presentation of my thesis defense <a href="https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d">here</a>, and you can read the full text of my dissertation <a href="https://repository.upenn.edu/entities/publication/d7441349-baa0-407e-b556-ec96c6930db8">here</a>. Note that all figures featured in this blog post were created using <a href="https://www.biorender.com">BioRender.com</a>.</p>
-<p><img src="https://vsriram24.github.io/posts/phd-papers/washington.jpeg" class="img-fluid"></p>
-<hr>
-<p>As discussed last week, the objective of my dissertation was to apply a <a href="https://www.nature.com/articles/nrg2918">network medicine</a> approach to investigate genetic contributors to disease multimorbidities.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/overview.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 1. An overview of the process of using PheWAS results from an EHR-linked biobank for network medicine</figcaption>
-</figure>
-</div>
-<p>I broke this objective down into three chapters:</p>
-<ol type="1">
-<li><strong>Creation</strong>: construct and analyze a network of diseases derived from an EHR-linked biobank for the evaluation of genetic similarity between phenotypes</li>
-<li><strong>Comparison</strong>. generate and compare different disease networks generated from different populations and from genetic components.</li>
-<li><strong>Translation</strong>. extend the conclusions drawn from disease network analysis and comparison to downstream precision medicine applications.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/chapters.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 2. The three sub-chapters of my PhD dissertation</figcaption>
-</figure>
-</div>
-<p>In today’s post, I will provide an example manuscript from each of these chapters to provide more insight into some of the work that I did.</p>
-<p><strong>Chapter 1. Creation</strong></p>
-<p><strong>Example manuscript -</strong> <em>NETMAGE: A human disease phenotype map generator for the network-based visualization of phenome-wide association study results</em></p>
-<ul>
-<li><p>Disease-disease networks (DDNs), graphs where nodes represent diseases and edges represent associations between diseases, can provide an intuitive way of understanding the relationships between diseases.</p></li>
-<li><p>Using summary statistics from a phenome-wide association study (<a href="https://academic.oup.com/bioinformatics/article/26/9/1205/201211">PheWAS</a>), we can generate a corresponding DDN where edges represent shared genetic variants (e.g.&nbsp;SNPs) between diseases.</p></li>
-<li><p>Such a network can help us analyze genetic associations across the “<a href="https://academic.oup.com/bfg/article/11/6/533/236949">diseasome</a>,” the landscape of all human diseases, and identify potential genetic influences for disease <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7613517/#:~:text=Multimorbidity%20refers%20to%20the%20presence,such%20as%20diabetes%20or%20schizophrenia">multimorbidities</a>.</p></li>
-<li><p>To improve the ease of network-based analysis of shared genetic components across diseases, we developed the humaN disEase phenoType MAp GEnerator (NETMAGE), a web-based tool that produces interactive DDN visualizations from PheWAS summary statistics. You can try out the tool we developed at the following link: <a href="https://hdpm.biomedinfolab.com/netmage/" class="uri">https://hdpm.biomedinfolab.com/netmage/</a></p>
-<ul>
-<li>Users can search their generated maps by various attributes and select nodes to view related diseases, associated variants, and various network statistics.</li>
-</ul></li>
-<li><p>As a test case, we used NETMAGE to construct an example network from <a href="https://www.leelabsg.org/resources">UK BioBank (UKBB) PheWAS summary statistic data</a>. You can explore this network at the following link: <a href="https://hdpm.biomedinfolab.com/ddn/ukbb" class="uri">https://hdpm.biomedinfolab.com/ddn/ukbb</a></p>
-<ul>
-<li>Our map correctly displayed previously identified disease comorbidities from the UKBB and identified concentrations of hub diseases in the endocrine/metabolic and circulatory disease categories.</li>
-</ul></li>
-<li><p>By examining the associations between diseases in our map, we can identify potential genetic explanations for the relationships between diseases and better understand the underlying architecture of the human diseasome.</p></li>
-<li><p>You can read the published manuscript for this project <a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giac002/6528770?login=false">here</a>.</p></li>
-</ul>
-<p><strong>Chapter 2. Comparison</strong></p>
-<p><strong>Example manuscript -</strong> <em>The interplay of sex and genotype in disease associations: a comprehensive network analysis in the UK Biobank</em></p>
-<ul>
-<li><p>Given that many individual diseases exhibit sex-specific differences in their genetic influences (also known as “genotype-by-sex” or “<a href="https://pubmed.ncbi.nlm.nih.gov/8314069/">GxS</a>” effects), we aimed to determine whether disease multimorbidities are also influenced by GxS interactions.</p></li>
-<li><p>Through the comparison of sex-stratified DDNs, we investigated differences across the sexes in patterns of shared genetic architecture between diseases.</p></li>
-<li><p>Using <a href="https://datashare.ed.ac.uk/handle/10283/3908">sex-stratified phenome-wide association study summary data from the UK Biobank</a>, we built male- and female-specific DDNs for 103 different diseases.</p></li>
-<li><p>We compared our networks using the network comparison methods highlighted in figure 3:</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/gxsOverview.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 3. Overview of network comparison methods for comparing sex-stratified DDNs</figcaption>
-</figure>
-</div>
-<ul>
-<li>Comparing the two graphs reveals that the diseasomes of males and females are similar to one another in terms of network topology.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/gxsNetworkStats.png" class="img-fluid figure-img"></p>
-<figcaption>Table 1. Network statistics for our two sex-stratified DDNs</figcaption>
-</figure>
-</div>
-<ul>
-<li>Some diseases, however, seem to exhibit sex-specific influence in cross-phenotype associations. For instance, autoimmune and inflammatory disorders including multiple sclerosis and osteoarthritis are centrally involved only in the female-specific DDN, while cardiometabolic diseases and skin cancer are more prominent only in the male-specific DDN.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/gxsCentralDiseases.png" class="img-fluid figure-img"></p>
-<figcaption>Table 2. Most central diseases in our sex-stratified DDNs, based on centrality measures including degree, weighted degree, and betweenness centrality.</figcaption>
-</figure>
-</div>
-<ul>
-<li>Notably, discrepancies in embedding distances and clustering patterns across the networks imply a more expansive genetic influence on multimorbidity risk for females than males.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/gxsEdgeSets.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 4. Heatmaps of edge sets across disease categories for our two sex-stratified DDNs. Brighter colors indicate more edges shared between disease categories.</figcaption>
-</figure>
-</div>
-<ul>
-<li><p>In summary, our analysis affirms the presence of GxS interactions in cross-phenotype associations, emphasizing the continued need for investigation of the role of sex in disease onset and its importance in biomedical discovery and precision medicine research.</p></li>
-<li><p>This manuscript is currently under review for publication.</p></li>
-</ul>
-<p><strong>Chapter 3. Translation</strong></p>
-<p><strong>Example chapter -</strong> <em>An enhanced disease network with robust cross-phenotype relationships via variant frequency-inverse phenotype frequency.</em></p>
-<ul>
-<li>DDNs constructed from PheWAS data offer a unique ability to observe and evaluate associations between diseases from large-scale biomedical data.</li>
-<li>These publications all follow a similar approach when constructing a DDN:
-<ul>
-<li>(a) a single statistical significance level (p-value) is selected to determine associations between diseases and SNPs.</li>
-<li>(b) the links between diseases and SNPs are compressed into links between diseases to generate the DDN</li>
-<li>(c) a similarity metric such as <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> is used to determine how similar two diseases are based on the number of shared associated SNPs</li>
-</ul></li>
-<li>This process for constructing DDN seems straightforward, but it has the following limitations (see Figure 5):
-<ul>
-<li>(a) the entire structure of the DDN can vary depending on the selection of significance level threshold in the PheWAS-driven complex relationship.</li>
-<li>(b) the effect of individual SNPs on the interactions across more than 2 diseases is masked</li>
-<li>(c) the chosen similarity metric can mask the exact amount of similarity between diseases</li>
-</ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/nlpOverview.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 5. Overview of current approaches for constructing a DDN and their limitations.</figcaption>
-</figure>
-</div>
-<ul>
-<li><p>To address the discussed limitations of previous approaches to developing DDNs, we proposed a new method inspired by natural language processing to generate networks from PheWAS data</p></li>
-<li><p>Taking inspiration from the NLP method “term frequency - inverse document frequency” (<a href="https://en.wikipedia.org/wiki/Tf–idf#:~:text=The%20tf–idf%20is%20the,document%20or%20a%20web%20page.">TF-IDF</a>), we propose a new method we call “variant frequency - inverse phenotype frequency” (VF-IPF), which will weight the contributions of SNPs to disease associations. The outcome of this method presents itself as follows:</p>
-<ul>
-<li><p>If a SNP is significant for only a few diseases, it is upweighted.</p></li>
-<li><p>If a SNP is significant for many diseases, it is downweighted (similar to searching for the word “the” in a manuscript)</p></li>
-<li><p>If a SNP is not significant for diseases, it is downweighted.</p></li>
-</ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/nlpSteps.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 6. An overview of the VF-IPF algorithm</figcaption>
-</figure>
-</div>
-<ul>
-<li><p>To test how the proposed method affects the way we represent cross-phenotype associations, we constructed an enhanced disease-disease network (eDDN) using UK biobank PheWAS summary statistics and tested the eDDN with three downstream tasks (see Figure 7), including:</p>
-<ol type="1">
-<li><p>co-occurrence disease prediction when index disease of interest is given,</p></li>
-<li><p>novel disease connection prediction, and</p></li>
-<li><p>therapeutic drug prediction based on disease similarity.</p></li>
-</ol></li>
-</ul>
-<p><img src="https://vsriram24.github.io/posts/phd-papers/nlp_ab.png" class="img-fluid"></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/nlp_c.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 7. Downstream tasks for the eDDN</figcaption>
-</figure>
-</div>
-<ul>
-<li>Comparing our eDDN’s effectivness at predicting known disease comorbidities compared to other DDNs, we see that our eDDN has the highest <a href="https://www.analyticsvidhya.com/blog/2020/06/auc-roc-curve-machine-learning/#:~:text=The%20Area%20Under%20the%20Curve,the%20positive%20and%20negative%20classes.">AUC</a> (i.e.&nbsp;it has the best performance).</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/nlp_auc.png" class="img-fluid figure-img" width="437"></p>
-<figcaption>Fig 8. The eDDN can predict disease comorbidities better than standard DDNs</figcaption>
-</figure>
-</div>
-<ul>
-<li>Furthermore, we see the utility of the eDDN in evaluating potential options for <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9945820/#:~:text=Drug%20repurposing%20is%20the%20technique,serendipitous%20process%20that%20happens%20unexpectedly.">drug repurposing</a> in the treatment of rheumatoid arthritis.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/phd-papers/nlp_ra.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 9. The eDDN can help with drug repurposing applications, suggesting alternative pre-existing treatments for rheumatoid arthritis.</figcaption>
-</figure>
-</div>
-<ul>
-<li><p>In summary, we find that our proposed eDDN more effectively captures genetic associations between diseases from PheWAS data compared to previous approaches.</p></li>
-<li><p>This manuscript is currently under review for publication.</p></li>
-</ul>
-<hr>
-<p>Today’s post was meant to give a sample of some of my work during my PhD. To read more about my currently published manuscripts, you can refer to my Google Scholar profile <a href="https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&amp;hl=en">here</a>.</p>
-<p>In next week’s post, I will conclude this series on my PhD work with my personal takeaways from my program as well as tips for current, incoming, and aspiring PhD students, including selecting a program, selecting a thesis advisor, picking projects, and more! Until then~</p>
-
-
-
- ]]></description>
-  <category>Personal</category>
-  <category>Overviews</category>
-  <guid>https://vsriram24.github.io/posts/phd-papers/</guid>
-  <pubDate>Mon, 17 Jun 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/phd-papers/zolaRunning.PNG" medium="image"/>
 </item>
 </channel>
 </rss>

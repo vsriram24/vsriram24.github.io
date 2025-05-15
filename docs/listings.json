@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/python-venv/index.html",
       "/posts/infrastructure-as-code/index.html",
       "/posts/eisenhower-matrix/index.html",
       "/posts/msr-scireports/index.html",
@@ -13,6 +14,7 @@
       "/posts/newsletters/index.html",
       "/posts/cnn-overview/index.html",
       "/posts/posit-conf-24/index.html",
+      "/posts/pytorch-brca/index.html",
       "/posts/nlp-oncology-overview/index.html",
       "/posts/multiomics-fa/index.html",
       "/posts/obliteride-24/index.html",
