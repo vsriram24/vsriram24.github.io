@@ -31,3 +31,5 @@ title: "Publications and Peer Review"
 -   [*BMC Genomics*](https://bmcgenomics.biomedcentral.com)
 
 -   [*IEEE Transactions on Computational Biology and Bioinformatics*](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8857)
+
+-   [*Scientific Reports*](https://www.nature.com/srep/)

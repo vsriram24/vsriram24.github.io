@@ -6,7 +6,7 @@ date: "05/15/2025"
 date-modified: "05/15/2025"
 image: lewk.jpg
 categories:
-  - Tutorial
+  - Tutorials
 draft: false
 ---
 
