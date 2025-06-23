@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Vivek Sriram">
+<meta name="dcterms.date" content="2025-06-23">
+<meta name="description" content="Highlights from the 2025 Stanford AIMI Symposium">
+
+<title>Bridging the Health AI Readiness Gap – Home</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../vivek_cropped.JPG" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-138ec2404b29d2a06c3147fc9fea89cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-4174EVHDM6"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Home</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">[VS]Codes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching and Mentorship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../conferences.html"> 
+<span class="menu-text">Presentations and Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html"> 
+<span class="menu-text">Publications and Peer Review</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Bridging the Health AI Readiness Gap</h1>
+                  <div>
+        <div class="description">
+          Highlights from the 2025 Stanford AIMI Symposium
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Conferences</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Vivek Sriram </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 23, 2025</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">June 23, 2025</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#opening-keynote-closing-the-gap-between-ai-capabilities-and-health-system-readiness" id="toc-opening-keynote-closing-the-gap-between-ai-capabilities-and-health-system-readiness" class="nav-link active" data-scroll-target="#opening-keynote-closing-the-gap-between-ai-capabilities-and-health-system-readiness">Opening Keynote: “Closing the Gap Between AI Capabilities and Health System Readiness”</a></li>
+  <li><a href="#panel-1-hard-won-lessons-from-the-front-lines-of-clinical-ai" id="toc-panel-1-hard-won-lessons-from-the-front-lines-of-clinical-ai" class="nav-link" data-scroll-target="#panel-1-hard-won-lessons-from-the-front-lines-of-clinical-ai">Panel 1: Hard-won lessons from the front lines of clinical AI</a></li>
+  <li><a href="#scientific-talks-session-1" id="toc-scientific-talks-session-1" class="nav-link" data-scroll-target="#scientific-talks-session-1">Scientific Talks Session 1</a></li>
+  <li><a href="#panel-2-the-foundation-model-roadmap-what-health-ai-teams-need-to-know" id="toc-panel-2-the-foundation-model-roadmap-what-health-ai-teams-need-to-know" class="nav-link" data-scroll-target="#panel-2-the-foundation-model-roadmap-what-health-ai-teams-need-to-know">Panel 2: The foundation model roadmap – what health AI teams need to know</a></li>
+  <li><a href="#lightning-talks-session-1" id="toc-lightning-talks-session-1" class="nav-link" data-scroll-target="#lightning-talks-session-1">Lightning Talks Session 1</a></li>
+  <li><a href="#panel-3-preparing-clinicians-for-an-ai-enabled-future" id="toc-panel-3-preparing-clinicians-for-an-ai-enabled-future" class="nav-link" data-scroll-target="#panel-3-preparing-clinicians-for-an-ai-enabled-future">Panel 3: Preparing clinicians for an AI-enabled future</a></li>
+  <li><a href="#scientific-talks-session-2" id="toc-scientific-talks-session-2" class="nav-link" data-scroll-target="#scientific-talks-session-2">Scientific Talks Session 2</a></li>
+  <li><a href="#panel-4-roi-which-ai-solutions-are-built-to-scale" id="toc-panel-4-roi-which-ai-solutions-are-built-to-scale" class="nav-link" data-scroll-target="#panel-4-roi-which-ai-solutions-are-built-to-scale">Panel 4: ROI – Which AI solutions are built to scale?</a></li>
+  <li><a href="#lightning-talks-session-2" id="toc-lightning-talks-session-2" class="nav-link" data-scroll-target="#lightning-talks-session-2">Lightning Talks Session 2</a></li>
+  <li><a href="#panel-5-publishing-health-ai-how-journals-are-shaping-the-future" id="toc-panel-5-publishing-health-ai-how-journals-are-shaping-the-future" class="nav-link" data-scroll-target="#panel-5-publishing-health-ai-how-journals-are-shaping-the-future">Panel 5: Publishing health AI – how journals are shaping the future</a></li>
+  <li><a href="#fireside-chat-a-policy-perspective-for-moving-clinical-ai-forward" id="toc-fireside-chat-a-policy-perspective-for-moving-clinical-ai-forward" class="nav-link" data-scroll-target="#fireside-chat-a-policy-perspective-for-moving-clinical-ai-forward">Fireside Chat: A Policy Perspective for Moving Clinical AI Forward</a></li>
+  <li><a href="#final-thoughts" id="toc-final-thoughts" class="nav-link" data-scroll-target="#final-thoughts">Final Thoughts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Welcome back to another week of <em>[VS]Codes</em>! A few weeks ago, I had the opportunity to attend the <a href="https://aimi.stanford.edu/aimi25">2025 Stanford AIMI Symposium</a>, a hybrid in-person and remote conference hosted by the <a href="https://aimi.stanford.edu/">Stanford Center for Artificial Intelligence in Medicine and Imaging (AIMI)</a>, where researchers, clinicians, and industry leaders came together to discuss one of the most urgent challenges in health AI: closing the gap between technical innovation and real-world clinical adoption. Below are my notes and takeaways from all of the talks and panels that I attended.</p>
+<p><img src="aimi25.png" class="img-fluid"></p>
+<hr>
+<section id="opening-keynote-closing-the-gap-between-ai-capabilities-and-health-system-readiness" class="level2">
+<h2 class="anchored" data-anchor-id="opening-keynote-closing-the-gap-between-ai-capabilities-and-health-system-readiness">Opening Keynote: “Closing the Gap Between AI Capabilities and Health System Readiness”</h2>
+<ul>
+<li><a href="https://profiles.ucsf.edu/julia.adler-milstein">Julia Adler-Milstein</a> (UCSF)</li>
+</ul>
+<p>Adler-Milstein mapped the history of <em>enterprise technology</em> (how we get large organizations to adopt new tech) in healthcare into four major waves: <strong>EHRs</strong>, <strong>Interoperability</strong>, <strong>Telemedicine</strong>, and <strong>AI</strong></p>
+<p>Each past wave has been catalyzed by different forces. For instance, EHR development was driven by federal policy, while telemedicine arose as a common practice as a result of the COVID-19 pandemic.</p>
+<p>AI, however, is different. There is no policy mandate or acute crisis driving its adoption. Rather, it presents a fast-moving set of technologies with the potential to solve sticky healthcare problems in new and exciting ways.</p>
+<p>The core tension of the AI era? <strong>Technology is outpacing the people, processes, and infrastructure meant to adopt it</strong>. Adler-Milstein challenged the audience to think beyond model performance and to consider “market readiness” and organizational capacity as equally important. Her framework for this process, the <em>Health AI Delivery Agenda</em>, focused on five under-examined but critical questions:</p>
+<ol type="1">
+<li><strong>Will electronic health information (eHI) and LLMs finally deliver on the promise of patient engagement?</strong> We’ve had access to electronic health information for years, but how do we help patients understand their data? Should prompt engineering be built into patient portals?</li>
+<li><strong>Is there institutional capacity to act on AI predictions?</strong> Do implementation leaders have enough authority to change existing clinical workflows?</li>
+<li><strong>What is the optimal “unit” of AI?</strong> Can we move beyond modular predictive models to closed-loop systems that span administrative and clinical functions?</li>
+<li><strong>How do we establish robust, ongoing monitoring of AI performance?</strong> Who notices when models degrade or perform poorly across subpopulations? And who is responsible for fixing these issues when they arise?</li>
+<li><strong>What are the best investments for creating an AI-ready workforce?</strong> Should we start with the creation of <a href="https://www.vocabulary.com/dictionary/stopgap#:~:text=Definitions%20of%20stopgap,expedient">stopgap</a> training programs? How do we assess skill erosion and development?</li>
+</ol>
+</section>
+<section id="panel-1-hard-won-lessons-from-the-front-lines-of-clinical-ai" class="level2">
+<h2 class="anchored" data-anchor-id="panel-1-hard-won-lessons-from-the-front-lines-of-clinical-ai">Panel 1: Hard-won lessons from the front lines of clinical AI</h2>
+<p><strong>Panelists</strong>: <a href="https://www.linkedin.com/in/ruijunchen/">Ray Chen</a> (Ambience Healthcare), <a href="https://www.linkedin.com/in/toyinfalola/">Toyin Falola</a> (Providence Health), <a href="https://profiles.stanford.edu/sneha-shah-jain">Sneha Jain</a> (Stanford), <a href="https://www.linkedin.com/in/izzomd/">Joseph Izzo</a> (Kaiser Permanente / San Joaquin General)</p>
+<p>This panel focused on implementation reality: governance, trust, and usability. One memorable metaphor compared AI stakeholders to a “chicken and pig starting a restaurant,” highlighting the difference between basic involvement and deep commitment. The success of clinical AI, they argued, hinges on executive-level sponsorship: “Some AI tools are helpful. A few are transformational. But none can flourish without institutional commitment at the top.”</p>
+<p>Another recurring theme from the panel was the concept of workflow integration. For clinicians to trust and adopt tools, AI cannot be an extra step - it must be invisible, reliable, and tightly woven into existing practices.</p>
+</section>
+<section id="scientific-talks-session-1" class="level2">
+<h2 class="anchored" data-anchor-id="scientific-talks-session-1">Scientific Talks Session 1</h2>
+<ol type="1">
+<li><p><a href="https://www.linkedin.com/in/carolcain/">Carol Cain</a> (Kaiser Permanente): <strong>Quality Assurance for AI-Powered Clinical Documentation</strong></p>
+<p>Cain shared a case study on implementing ambient scribe technology (<a href="https://www.abridge.com">Abridge</a>) across Kaiser Permanente - arguably the fastest roll-out of any new tool in their history. Their goal: reduce clinician documentation burden while preserving the quality of patient interactions. Even a 5-minute delay in note generation is a deal-breaker in clinical workflows. Their evaluation framework balanced speed and safety using a combination of structured note quality reviews, starred tech performance ratings, and user feedback and scenario-specific assessments</p>
+<p>Common issues identified through their evaluation framework included content omission, over-synthesis of information, and confusion between speaker voices (<a href="https://en.wikipedia.org/wiki/Speaker_diarisation">speaker diarisation</a>).</p>
+<p>Their strategy to address these challenges? Decentralized risk identification combined with centralized improvement cycles - “We needed fast feedback loops, but not at the expense of local nuance.” Ultimately, success came from balancing centralized governance with local responsiveness.</p></li>
+<li><p><a href="https://www.linkedin.com/in/daniel-morgan-03899252/">Daniel Morgan</a> (Veterans Affairs): <strong>Detecting HAIs with LLMs</strong></p>
+<p>Morgan presented an ambitious pilot: using GPT-4 to help identify central line-associated bloodstream infections (CLABSI), an important quality metric tied to CMS reimbursement.</p>
+<p>In current practice, the identification of CLABSI requires manual chart review, which can be slow, subjective, and inconsistently applied. Using a secure, local deployment of GPT-4, the VA was able to compare CLABSI charting across three review processes: human-only review, AI-only review, and AI-assisted human review.</p>
+<p>Morgan and his team found that AI-assisted review was both faster (14 vs.&nbsp;25 mins) and more accurate than manual review alone. Still, trust remained a hurdle: clinicians felt compelled to double-check outputs of the model in the EHR. Furthermore, GPT-4 made some avoidable errors in the study. Nevertheless, these errors were easily correctable by the providers, suggesting that a collaborative framework may be optimal. Next steps include integrating different forms of structured and unstructured data into the predictive models, as well as expanding to other hospital-acquired conditions.</p></li>
+</ol>
+</section>
+<section id="panel-2-the-foundation-model-roadmap-what-health-ai-teams-need-to-know" class="level2">
+<h2 class="anchored" data-anchor-id="panel-2-the-foundation-model-roadmap-what-health-ai-teams-need-to-know">Panel 2: The foundation model roadmap – what health AI teams need to know</h2>
+<p><strong>Panelists</strong>: <a href="https://profiles.stanford.edu/emily-alsentzer">Emily Alsentzer</a> (Stanford), <a href="https://www.linkedin.com/in/khaled-saab-181034122/">Khaled Saab</a> (Google DeepMind), <a href="https://www.linkedin.com/in/karan1149/">Karan Singhal</a> (OpenAI), <a href="https://dbmi.hms.harvard.edu/people/marinka-zitnik">Marinka Zitnik</a> (Harvard)</p>
+<p>This panel dove into practical implications of working with foundation models in health. Key takeaways included the following:</p>
+<ul>
+<li><p>Smaller, better models are on the rise, but performance still hinges on context and fine-tuning. Medical fine-tuning may degrade a larger model’s general skills, making training pipelines for healthcare use cases a delicate balance. Researchers and clinicians will have to carefully consider how ’omics data and other nontraditional inputs are incorporated into these systems to ensure that scalability and precision are maintained as best as possible.</p></li>
+<li><p>With respect to the <a href="https://en.wikipedia.org/wiki/Nondeterministic_algorithm">nondeterminism</a> of LLMs, concepts including <a href="https://zilliz.com/glossary/semantic-similarity">semantic linkage</a> and prompt variability remain under-explored areas. Furthermore, tradeoffs in transparency and control have to be considered when choosing between open and closed models.</p></li>
+</ul>
+</section>
+<section id="lightning-talks-session-1" class="level2">
+<h2 class="anchored" data-anchor-id="lightning-talks-session-1">Lightning Talks Session 1</h2>
+<ol type="1">
+<li><a href="https://www.linkedin.com/in/brice-gaudilliere-1528147/">Brice Gaudillere</a> (Stanford): <strong>Driving Precision Medicine by Decoding the Human Immune System</strong></li>
+</ol>
+<ul>
+<li><p>Aiming to build the first foundation model for complex immunological datasets to identify biomarkers for tools</p></li>
+<li><p>90% of ’omics studies have fewer than 100 patients involved… makes it difficult to identify statistically relevant biomarkers</p></li>
+<li><p>Use a noise injection technique to identify the most reliable, stable biomarkers</p></li>
+</ul>
+<ol start="2" type="1">
+<li><a href="https://www.linkedin.com/in/drxuanzhao/">Xuan Zhao</a> (Flourish Science): <strong>Empowering Every Mental Health and Wellness Journey</strong></li>
+</ol>
+<ul>
+<li><p>Switch from reactive to proactive mental health treatment</p></li>
+<li><p>The “Last Mile Problem” of science - how do we deliver the right insight at the right time?</p></li>
+<li><p>Use AI to facilitate personalized mental health support</p>
+<ul>
+<li>Awareness, Action, Habit Building, Social Connection</li>
+</ul></li>
+</ul>
+<ol start="3" type="1">
+<li><a href="https://www.linkedin.com/in/marcos-rojas-pino/">Marcos Rojas</a> (Stanford): <strong>Clinical Mind AI: Improving Clinical Reasoning with AI</strong></li>
+</ol>
+<ul>
+<li><p>Medical school and residency are focused on teaching clinical reasoning</p></li>
+<li><p>Challenges in teaching present opportunities to use new technologies:</p></li>
+<li><p>An AI-powered learning platform designed to enhance clinical reasoning for healthcare practitioners</p>
+<ul>
+<li><p>Create customized AI-simulated patients</p></li>
+<li><p>Provide real-time feedback</p></li>
+<li><p>Adapt to diverse medical curricula</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="panel-3-preparing-clinicians-for-an-ai-enabled-future" class="level2">
+<h2 class="anchored" data-anchor-id="panel-3-preparing-clinicians-for-an-ai-enabled-future">Panel 3: Preparing clinicians for an AI-enabled future</h2>
+<p><strong>Panelists:</strong> <a href="https://www.linkedin.com/in/erichorvitz/">Eric Horvitz</a> (Microsoft), <a href="https://www.linkedin.com/in/daniel-ting-0b327895/">Daniel Ting</a> (Duke), <a href="https://www.linkedin.com/in/danielayang/">Daniel Yang</a> (Kaiser Permanente), <a href="https://www.linkedin.com/in/julie-wu-4730321a5/">Julie Tsu-Yu Wu</a> (Veterans Affairs)</p>
+<p>The biggest point of consensus for these panelists was the following: “Clinicians won’t be replaced. But clinicians who use AI effectively will set the new norm.” True innovation lies in co-creation between technologists and care teams. Lastly, the use of AI in compute was compared to the transition from horses to cars - before the invention of cars, if asked what they wanted, the public would have said “faster horses.” We need to think outside of the box of what’s possible, broadening the AI vision beyond note summarization and information retrieval to new applications that would never have been possible before.</p>
+</section>
+<section id="scientific-talks-session-2" class="level2">
+<h2 class="anchored" data-anchor-id="scientific-talks-session-2">Scientific Talks Session 2</h2>
+<ol type="1">
+<li><a href="https://profiles.stanford.edu/francois-camille-grolleau-raoux">Francois Raoux</a> (Stanford): <strong>MedAgentBrief</strong></li>
+</ol>
+<ul>
+<li><p>What’s the most significant issue in healthcare today? The explosion of (often hidden) information that overwhelms human capabilities</p>
+<ul>
+<li><p>Pages of unstructured, sometimes inconsistent data from discharge summaries</p></li>
+<li><p>Provider “pajama time”: late-night summary writing</p></li>
+<li><p>Average chart-closure delay: 24-72 hours post-discharge</p></li>
+<li><p>Diverts time from hand-offs / direct patient conversations</p></li>
+</ul></li>
+<li><p>High-quality summaries could solve these issues</p>
+<ul>
+<li><p>Two approaches toward scalable and trustworthy evaluation sof hospital course summaries</p>
+<p>a. Human Expert Evaluation: trust-worthy but slow</p>
+<p>b. LLM judge: lack of trust; need an oracle LLM to judge</p></li>
+</ul></li>
+<li><p>How to get best of both worlds?</p>
+<ul>
+<li>MedFactEval: experts come up with expected outputs (what key points need to be included). Expensive, but one-time cost
+<ul>
+<li>Then an LLM judges the generated text to make sure physician opinions are present</li>
+<li>Compared to full physician evaluations</li>
+</ul></li>
+</ul></li>
+<li><p>Impact Evaluation</p>
+<ul>
+<li>Safety, Effectiveness, Expansion, Post-deployment surveillance</li>
+</ul></li>
+</ul>
+<ol start="2" type="1">
+<li><a href="https://profiles.stanford.edu/vasiliki-bikia">Vicky Bikia</a> (Stanford): <strong>Toward Scalable Clinical Evaluation: Building Ground Truth for Discharge Summaries Using LLMs</strong></li>
+</ol>
+<ul>
+<li><p>Fluent ≠ Factual. Traditional NLP baselines can’t assess clinical factuality</p></li>
+<li><p>Perturbation Engine - introduce clinical errors into reference summaries that can be used to train smaller models with fewer parameters</p>
+<ul>
+<li>Creating labeled ground truth data at scale with controlled, clinically meaningful errors</li>
+</ul></li>
+<li><p>SAFRAN builds on this foundation with:</p>
+<ul>
+<li><p>clinically grounded error categories</p></li>
+<li><p>scalable perturbation-based datasets</p></li>
+<li><p>student-teacher LLM evaluation and quantitative scoring</p></li>
+</ul></li>
+<li><p>Together, enable scalable, automated benchmarking of LLM-generated clinical summaries</p>
+<ul>
+<li>Bridge expert review and real-world deployment</li>
+</ul></li>
+</ul>
+<ol start="3" type="1">
+<li><a href="https://profiles.stanford.edu/xiaohan-wang">Xiohan Wang</a> (Stanford): <strong>Towards AI-Assisted Surgery and Surgical Training</strong></li>
+</ol>
+<ul>
+<li><p>Spatio-temporal modeling of hands during surgeries</p></li>
+<li><p>Video Self-training with augmented reasoning</p>
+<ul>
+<li>Iterative self-training to create VideoVLM with better reasoning capabilities</li>
+</ul></li>
+</ul>
+</section>
+<section id="panel-4-roi-which-ai-solutions-are-built-to-scale" class="level2">
+<h2 class="anchored" data-anchor-id="panel-4-roi-which-ai-solutions-are-built-to-scale">Panel 4: ROI – Which AI solutions are built to scale?</h2>
+<p><strong>Panelists:</strong> <a href="https://www.linkedin.com/in/lynne-chou-o-keefe-5617a/">Lynne Chou O’Keefe</a> (Define Ventures), <a href="https://www.linkedin.com/in/fabiënneterhuurne/">Fabiënne ter Huurne</a> (Bayer), <a href="https://www.linkedin.com/in/galymimanbayev/">Galym Imanbayev</a> (Lightspeed Venture Partners), <a href="https://www.linkedin.com/in/christine-nguyen310/">Christine Nguyen</a> (Inland Empire Health Plan)</p>
+<p>This venture-focused panel tackled the business reality of health AI. Some key points included the following:</p>
+<ul>
+<li>Companies like Abridge are gaining traction by positioning themselves as viable alternatives to dominant players like Nuance. Success requires clearly demonstrating your unique value in a crowded market.</li>
+<li>Health tech evolves in phases - early versions don’t need to be perfect, but teams must be bold enough to launch, iterate, and build momentum. Intermediate phases are about accumulating wins and expanding use cases, while late stage phases should focus on transforming care delivery and redefining value.</li>
+<li>Venture capital looks for scalable ROI across healthcare verticals, but alignment with patient outcomes is key. Innovations should ideally benefit both investors and patients, particularly by lowering long-term costs.</li>
+<li>While improving outcomes can eventually reduce costs, not every new technology is cost-effective upfront. Strategic investment and evaluation are essential.</li>
+<li>Much of today’s innovation focuses on simplifying administrative tasks to free up provider time and improve efficiency. Clinical AI is likely to be the next major focus of funding, but administrative solutions are still going to have major impact in the long-term</li>
+</ul>
+</section>
+<section id="lightning-talks-session-2" class="level2">
+<h2 class="anchored" data-anchor-id="lightning-talks-session-2">Lightning Talks Session 2</h2>
+<ol type="1">
+<li><a href="https://www.linkedin.com/in/dimitrytran/">Dimitry Tran</a> (Harrison.ai)</li>
+</ol>
+<ul>
+<li>There is a global shortage of providers that is leading to delay of care
+<ul>
+<li>10 years’ worth of promise to catch up to in fields of radiology and pathology</li>
+<li>We need to go from “isolated clinical predictions” and “AI point solutions” to comprehensive AI.</li>
+<li>Harrison.ai creates models that have the ability to handle multiple subtypes of diagnoses</li>
+</ul></li>
+<li>Next steps: Vision Language Models
+<ul>
+<li>AI takes in imaging and patient history to write a report</li>
+<li>Fill in a template with section/headings/etc.</li>
+</ul></li>
+</ul>
+<ol start="2" type="1">
+<li><a href="https://www.linkedin.com/in/kichun/">Kimberly Chun</a> (Cohere): <strong>Path to Agentic AI for Healthcare</strong></li>
+</ol>
+<ul>
+<li>Cohere offers customized, multilingual, accurate, secure models for both on-prem and cloud platforms</li>
+<li>Narrow products that are entirely focused around the needs of individual customers
+<ul>
+<li>Collaboration across a variety of sectors</li>
+</ul></li>
+<li>The path to agentic AI includes:
+<ul>
+<li>Single container deployment of autonomous agent applications (Application Layer)</li>
+<li>RAG-optimized generative models</li>
+<li>Search applications</li>
+<li>Plug-and-play customizable integrations with popular business apps</li>
+</ul></li>
+</ul>
+<ol start="3" type="1">
+<li><a href="https://www.linkedin.com/in/jayodita-sanghvi-34b1057/">Jayodita Sangvhi</a> (Color): <strong>Large Language Experts: Trustworthy AI for Complex Clinical Workflows</strong></li>
+</ol>
+<ul>
+<li><p>What will AI’s role in medicine be? A smart efficient assistant vs.&nbsp;a trustworthy expert?</p>
+<ul>
+<li>There needs to be a balance between efficiency and accuracy/trust</li>
+</ul></li>
+<li><p>In oncology, timely workup between diagnosis and treatment is critical but complex</p>
+<ul>
+<li>There are a lot of steps to go from first abnormal screen to treatment</li>
+</ul></li>
+<li><p>Our goal is to smooth the process out for improved prognosis</p></li>
+<li><p>Color Copilot: generative AI mixed with clinical guidelines</p>
+<ul>
+<li><p>Input guidelines into LLM to create structured questions/prompts</p></li>
+<li><p>Extract clinical decision factors from patient summary → input into a logic evaluater</p></li>
+<li><p>Last step: another LLM to provide contextualized recommendation / explanation for reasoning</p></li>
+</ul></li>
+</ul>
+<ol start="4" type="1">
+<li><a href="https://www.linkedin.com/in/daniel-golden/">Daniel Golden</a> (Google Health): <strong>MedGemma: Accelerating the Health AI developer community with open medical foundation models</strong></li>
+</ol>
+<ul>
+<li><p>About Google Research’s Health AI team</p>
+<ul>
+<li><p>Mission: catalyze the adoption of human-centered AI in health</p></li>
+<li><p>Show the world how to build safe and effective AI</p></li>
+<li><p>Enable others to build AI for their use cases</p></li>
+</ul></li>
+<li><p>Health AI Developer Foundations (HAI-DEF)</p>
+<ul>
+<li><p>Open models to accelerate the development of AI for healthcare and life sciences</p></li>
+<li><p>Medical Embeddings</p></li>
+<li><p>TxGemma (therapeutics simulation)</p></li>
+<li><p>MedGemma (Medical image and text comprehension)</p></li>
+</ul></li>
+<li><p>MedGemma includes 2 different models</p>
+<ul>
+<li><p>Smaller 4B param model for multimodal data integration</p></li>
+<li><p>Larger 27B param thinking model: clinical reasoning, triage, summarization / retrieval, etc.</p></li>
+</ul></li>
+<li><p>Models are:</p>
+<ul>
+<li><p>Medically tuned - customized image encoder and tuned text capabilities</p></li>
+<li><p>High performance - performance approaches larger, proprietary models</p></li>
+<li><p>Open to all - ideal starting point for developers working on medical research or products/applications</p></li>
+</ul></li>
+<li><p>Although it may not be as accurate as the biggest models, it allows data to stay on site, permits adaptation for specific research applications, offline use, low inference costs, and medical device regulatory approval</p>
+<ul>
+<li><p>Publicly available on Hugging Face</p></li>
+<li><p><a href="https://goo.gle/hai-def" class="uri">https://goo.gle/hai-def</a></p></li>
+</ul></li>
+</ul>
+<ol start="5" type="1">
+<li><a href="https://www.linkedin.com/in/krishnaramkenthapadi/">Krishnaram Kenthapadi</a> (Oracle Health AI): <strong>Oracle Health Clinical AI Agents: Insights from Building and Deploying AI Agents</strong></li>
+</ol>
+<ul>
+<li><p>Administrative burden - we need to restore the joy in providing patient care</p></li>
+<li><p>Clinical AI Agent - voice-first agentic experiences</p>
+<ul>
+<li>Make AI accessible</li>
+</ul></li>
+<li><p>Multi-agent orchestrator interacts with UI agents, API agents, search agents, etc. LLM based tool calling and argument extraction</p>
+<ul>
+<li>App context, conversation history, patient context as input</li>
+</ul></li>
+<li><p>Engage with domain experts to improve data quality and evaluation methodology in addition to model dev</p>
+<ul>
+<li><p>Prioritizing which investmenets are likely to become important</p></li>
+<li><p>Early and rapid iteration to validate key assumptions and obtain early feedback</p></li>
+</ul></li>
+<li><p>Trustworthy AI is crucial for adoption of agents in healthcare</p>
+<ul>
+<li><p>Long-term monitoring is important too</p></li>
+<li><p>Catching new biases, performance degradation</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="panel-5-publishing-health-ai-how-journals-are-shaping-the-future" class="level2">
+<h2 class="anchored" data-anchor-id="panel-5-publishing-health-ai-how-journals-are-shaping-the-future">Panel 5: Publishing health AI – how journals are shaping the future</h2>
+<p>Panelists: <a href="https://www.linkedin.com/in/charlotte-j-haug-md-phd-msc-53162721/">Charlotte Haug</a> (NEJM AI), <a href="https://hswen.ucsf.edu">Yulin Hswen</a> (JAMA), <a href="https://www.linkedin.com/in/drchrispaton/">Chris Paton</a> (BMJ Digital Health and AI)</p>
+<p>AI publishing in healthcare needs a major shift. Journals should prioritize transparency, standardized evaluation methods, and clear explanations of modeling decisions, with editors aligned on consistent expectations. Given the patchy state of international regulation, alternative frameworks are needed to balance access and reproducibility. The current publishing pace lags far behind the rapid evolution of AI, and while large language models show promise, they’re not yet equipped to support peer review. Journals also tend to overvalue novelty and impact at the expense of incremental but meaningful progress. Ultimately, the focus must shift from algorithmic flashiness to real-world improvements in patient outcomes.</p>
+</section>
+<section id="fireside-chat-a-policy-perspective-for-moving-clinical-ai-forward" class="level2">
+<h2 class="anchored" data-anchor-id="fireside-chat-a-policy-perspective-for-moving-clinical-ai-forward">Fireside Chat: A Policy Perspective for Moving Clinical AI Forward</h2>
+<p>Speakers: <a href="https://law.stanford.edu/michelle-m-mello/">Michelle Mello</a> (Stanford), <a href="https://profiles.ucsf.edu/julia.adler-milstein">Julia Adler-Milstein</a> (UCSF)</p>
+<p>In today’s current political environment, the U.S. may be drifting toward an unregulated clinical AI marketplace - nevertheless, thoughtful regulation is essential for sustainable innovation. As Mello put it, we need to avoid the “Magpie vs.&nbsp;Cat” trap - don’t chase every shiny new model like a magpie… instead, be more like a cat: selective, skeptical, and willing to walk away from hype.</p>
+<p>Effective AI governance should empower organizations to say “no,” keeping the patient as the ultimate North Star. This means shifting from narrow, individual-level predictions to systems-level thinking, and avoiding the “Turing Trap” of simply trying to mimic human behavior. Instead, AI should enable new capabilities and long-term value creation.</p>
+<p>While speed is important, lasting impact matters more, especially in a field where success depends on not just clinical accuracy, but also clinical feasibility. Furthermore, “snapshot AI” isn’t enough - healthcare is inherently longitudinal, and predictions for patients must be treated the same way.</p>
+<p>Finally, there’s a major medical data gap. Healthcare training datasets are far smaller than in other domains, making it critical to invest in robust, domain-specific data strategies to ensure meaningful progress.</p>
+</section>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
+<p>Overall, the Stanford AIMI Conference revealed a major theme for me: <strong>AI alone won’t transform healthcare</strong>. While AI’s technical trajectory is unstoppable, its impact is neither inevitable nor evenly distributed. Current bottlenecks in the incorporation of AI into larger clinical practice are human, organizational, and regulatory.</p>
+<p>Nevertheless, the talks and panels at the conference also highlighted a hopeful next step in the pursuit of health AI - the next frontier doesn’t lie just in the creation of better models, but in <strong>designing institutional ecosystems ready to absorb, govern, and benefit from them</strong>.</p>
+<p>Ultimately, the implementation of broader health AI won’t succeed through technology itself. It requires courageous leadership, human trust, and organizational vision.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/vsriram24\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Powered by <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

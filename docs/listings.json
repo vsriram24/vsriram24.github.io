@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/stanford-aimi-25/index.html",
       "/posts/sloan-precision-ai-conf/index.html",
       "/posts/python-venv/index.html",
       "/posts/infrastructure-as-code/index.html",
@@ -15,7 +16,6 @@
       "/posts/newsletters/index.html",
       "/posts/cnn-overview/index.html",
       "/posts/posit-conf-24/index.html",
-      "/posts/pytorch-brca/index.html",
       "/posts/nlp-oncology-overview/index.html",
       "/posts/multiomics-fa/index.html",
       "/posts/obliteride-24/index.html",

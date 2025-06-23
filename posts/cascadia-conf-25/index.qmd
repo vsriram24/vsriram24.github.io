@@ -1,0 +1,183 @@
+---
+title: "Cascadia R Conference 2025"
+description: "A few talk summaries and my personal takeaways"
+author: "Vivek Sriram"
+date: "7/22/2025"
+date-modified: "7/22/2025"
+image: lakesideChats.jpg
+categories:
+  - Conferences
+draft: true
+---
+
+# Cascadia R Conf 2025 Recap: R as a Swiss Army Knife—and Then Some
+
+Welcome back to another week of *\[VS\]Codes*! A few weeks ago, I had the opportunity to attend [Cascadia R Conference 2025](https://cascadiarconf.com), a local R conference for the data science community of the Pacific Northwest. It was a great experience getting to see so many different applications of data science across a variety of industries, and I very much enjoyed the experience of connecting with other data scientists from the surrounding PNW area. This blog post will summarize content from some of the talks that I attended that day as well as my personal overall takeaways from the conference.
+
+From automating workflows and building public dashboards to integrating AI into your R scripts, the talks showcased how R continues to evolve—not just as a language, but as an ecosystem.
+
+Here are some of my highlights from the conference:
+
+![](cascadia.jpg)
+
+------------------------------------------------------------------------
+
+## Keynote: 25 Things You Didn’t Know You Could Do With R
+
+-   David Keyes
+
+R isn't just a statistical tool - it's a Swiss Army knife for data.
+
+David took us on a whirlwind tour of R's lesser-known superpowers:
+
+-   Access data automagically: Use googlesheets4, qualtRics, and tidycensus to grab live data. Tap into APIs with httr2 or scrape the web with rvest.
+
+-   Level up your data viz: Create custom ggplot themes and use theme_set() and update_geom_defaults() for consistency across plots.
+
+-   Make beautiful maps: Go spatial with sf, and interactive with mapgl.
+
+-   Publish like a pro: Use Quarto + Netlify to make websites, and even generate PDFs with Typst.
+
+-   Automate the boring stuff: Email reports with blastula, gmailr, or GitHub Actions.
+
+-   AI in R workflows: Add instructions to tailor AI tools like GitHub Copilot. Explore gander for environment introspection and ellmer or mall for LLM-powered data analysis.
+
+Read more here: 25 Things You Didn't Know You Could Do With R
+
+## Building Smarter R Workflows
+
+### Leveraging LLMs in R
+
+-   Yan Liu
+
+Yan explored how large language models (LLMs) can transform R workflows—especially when dealing with unstructured, qualitative data. Using the {ellmer} package, you can:
+
+-   Call LLMs like GPT-4o or LLaMA directly from your R environment.
+
+-   Generate text from plots or images.
+
+-   Classify free-text survey responses.
+
+-   Translate content at scale.
+
+He emphasized prompt engineering, validation, and ethical concerns like data privacy and model bias.
+
+### {lessR}: Comprehensive Analysis with Minimal Code
+
+-   David Gerbing
+
+David showed how the {lessR} package enables complete statistical analysis with minimal input:
+
+-   One Read() function to import anything.
+
+-   One Write() function to export everything.
+
+-   Built-in visualizations like BarChart() and Plot() that "just work" with smart defaults.
+
+The goal? Reduce friction for teaching, learning, and doing statistics.
+
+### Creating a Better Universe with {dverse}
+
+-   Mauro Lepore
+
+R developers working across many packages will love {dverse}, a tool for documenting a universe of related packages:
+
+-   document_universe(packages, template) auto-generates cohesive docs.
+
+-   Integrates global search across multiple packages (e.g., pactaverse).
+
+## Lightning Talks: Automation Edition
+
+-   Megan Holtorf showed how to send scheduled updates via email using GitHub Actions, Quarto, and {blastula}.
+
+-   Lindsay Dickey walked through parameterized reporting in RMarkdown for dynamic report generation.
+
+-   Frank Aragona tackled language translation in R using {lightparser} to parse and update .qmd files programmatically.
+
+## Development in R
+
+### 10 Years of RStudio and What’s Next
+
+-   Jonathan McPherson
+
+Jonathan reflected on RStudio’s growth and previewed Positron, a next-gen IDE aiming for:
+
+Multi-language support Multiple sessions Best-in-class features Positron aims to unify the toolchain for all data scientists, while RStudio continues to be the gold standard for R-centric workflows. And yes, AI integration is coming—with models that understand your code, your data, and your computational context.
+
+### Supercharge Your Work with GitHub Actions
+
+-   Ben Matheson
+
+GitHub Actions isn't just for package checks anymore:
+
+Schedule CRON jobs Automate website builds Email reports Keep analyses up-to-date Ben walked us through the anatomy of an action: workflows, jobs, steps—all powered by YAML.
+
+### From Frustration to Function
+
+-   Dror Berel
+
+Dror shared how tools like LLMs helped him overcome adoption barriers for new R packages. His advice?
+
+Keep things simple. Reduce cognitive load. Use storytelling to make your outputs approachable.
+
+## R in Action
+
+### Metadata-Driven Data Science
+
+-   Peter Geissert
+
+Peter described the trap of "Potemkin Village Data Science"—flashy outputs hiding fragile workflows. His solution: build around metadata to enable reuse, reduce maintenance, and ensure consistency across systems.
+
+### Introducing R to Your Friends
+
+-   Hanna Winter
+
+Her message: no task is too small for R. Whether it's automating calculations or switching from expensive software to open-source tools, R can handle it.
+
+### R for Public Transit Analysis
+
+-   Evan Landman
+
+Transit data is complex and inherently spatial. Evan walked through a workflow combining:
+
+tidycensus, ipumsr, and custom mobility datasets Spatial analysis in R Reusable tools packaged from one-off analyses
+
+## Lightning Talks
+
+### BLS API with R
+
+-   Samer Hijjazi
+
+Use the httr package to pull time series data from the Bureau of Labor Statistics and build labor market analyses.
+
+## R in Public Health
+
+### Public Health Dashboards
+
+-   Ariane Erickson
+
+Great dashboards need to be accessible and performant. She emphasized:
+
+Accessibility: font size, contrast, navigation Feedback: user testing, feedback forms Tech tips: shinyally and bslib
+
+### From REDCap to Reporting
+
+-   Arilene Novak & Andie Hendrick
+
+The duo shared how they used Quarto and REDCap APIs to automate weekly reports and expand to more surveillance metrics.
+
+### Evaluating Access to Healthcare
+
+-   Alec Kretchun
+
+Modern spatial workflows in public health involve:
+
+PostGIS-enabled Postgres databases REST APIs via plumber R Shiny dashboards for dissemination
+
+## Final Thoughts
+
+Cascadia R Conf reminded me why I love this language and this community. The innovation is impressive—but even more important is the collaboration. Whether you’re building AI-powered apps or just figuring out how to make your reports prettier, there’s someone in the R community who’s done it, written a package for it, and is excited to help you learn.
+
+R isn’t just a programming language—it’s a movement.
+
+This concludes my summary of my experience at Cascadia R Conference 2024! I'd like to give a huge thank you to the [organizers](https://cascadiarconf.com/about/) of this conference for all of their hard work and for bringing the PNW data science community together in such a wonderful event. The next conference I will be attending will be [posit::conf(2024)](https://posit.co/conference/), and I look forward to summarizing my experiences there in another blog post. Until next week, \[VS\]Coders!
