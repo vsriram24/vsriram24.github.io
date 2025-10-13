@@ -21,7 +21,7 @@ about:
       href: https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en
 ---
 
-Welcome to my website! I am a biomedical data scientist and health machine learning researcher based in Seattle, WA.
+Welcome to my website! I am a health machine learning researcher and biomedical data scientist based in Seattle, WA.
 
 My general research skills and interests include:
 

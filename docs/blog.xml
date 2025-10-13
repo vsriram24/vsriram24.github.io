@@ -10,7 +10,124 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Mon, 23 Jun 2025 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 13 Oct 2025 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>An Intro to Deep Learning for Biology</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/dl-for-bio-lec1/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Welcome back to [VS]Codes! In an effort to find publicly available material that could help me bolster my deep learning fundamentals and offer an opportunity for structured self-learning, I came across* this delightful course from the UNC Biostatistics program, titled “<a href="https://bios740.github.io/about/">Deep Learning Methods in Biomedical Sciences</a>.” As the course description explains:</p>
+<p><em>“This course … offers an in-depth exploration of how advanced computational techniques intersect with complex biomedical data to drive new discoveries. As biomedical datasets expand in size and complexity, traditional algorithms often struggle to capture subtle patterns and relationships. In contrast, deep learning … offers robust solutions for some of the field’s most challenging problems.”</em></p>
+<p>So, I plan to work through the lectures and homework assignments offered by this course, summarizing my takeaways and highlighting key points. By reframing the content from these lecture slides into corresponding blog posts, my goal is to turn my understanding of these topics into mastery! And hopefully, you’ll learn a little something along the way too. With that, let’s get started!</p>
+<p>*I believe I first heard about this course from my old colleague <a href="https://leibyj.github.io">Jake Leiby</a>. Thank you, Jake!</p>
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec1/reflection.JPG" class="img-fluid" width="675"></p>
+<section id="ai-vs.-ml-vs.-dl-vs.-genai-whats-in-a-name" class="level2">
+<h2 class="anchored" data-anchor-id="ai-vs.-ml-vs.-dl-vs.-genai-whats-in-a-name">AI vs.&nbsp;ML vs.&nbsp;DL vs.&nbsp;GenAI: what’s in a name?</h2>
+<p>At its core, <strong>deep learning (DL)</strong> is a sub-field of machine learning that uses <strong>neural networks</strong> to extract and learn complex patterns from data. Here’s a breakdown of how it fits into the broader AI landscape:</p>
+<ul>
+<li><p><strong>Artificial Intelligence (AI)</strong>: Algorithms that simulate human intelligence (e.g., decision-making, language translation).</p></li>
+<li><p><strong>Machine Learning (ML)</strong>: A subset of AI where systems learn patterns from data, rather than being explicitly programmed.</p></li>
+<li><p><strong>Deep Learning (DL)</strong>: A further subset of ML that uses <em>deep</em> (i.e.&nbsp;multi-layered) neural networks to model hierarchical relationships in data.</p></li>
+<li><p><strong>Generative AI (GenAI)</strong>: DL-based systems that can generate new data (e.g.&nbsp;text, images, molecules) using learned patterns.</p></li>
+</ul>
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec1/comparingAI.png" class="img-fluid"></p>
+<p>Several factors have led to the rapid growth of DL in recent years, including (a) faster compute (with the spread of GPUs and TPUs over CPUs), (b) the availability of large datasets, and (c) advances in optimization algorithms and neural network architectures. These advances have made DL especially effective at handling <strong>unstructured data</strong>, including images, text, and genomic sequences.</p>
+</section>
+<section id="neural-networks-the-backbone-of-deep-learning" class="level2">
+<h2 class="anchored" data-anchor-id="neural-networks-the-backbone-of-deep-learning">Neural Networks: The Backbone of Deep Learning</h2>
+<p>Neural networks are the core structures in DL. A typical neural net has:</p>
+<ul>
+<li><p><strong>An input layer</strong> that receives raw data</p></li>
+<li><p><strong>Multiple hidden layers</strong> that learn and represent features of the data through nonlinear transformations</p></li>
+<li><p><strong>An output layer</strong> that produces predictions or classifications</p></li>
+</ul>
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec1/ann.png" class="img-fluid" width="461"></p>
+<p>The <strong>depth</strong> of a neural network refers to the number of layers that it contains, while the <strong>width</strong> refers to the number of neurons per layer. A network’s <strong>capacity</strong> refers to the product of these two values.</p>
+<p>Key components of neural networks include:</p>
+<ul>
+<li><p><strong>Neurons</strong>: Nodes that perform weighted computations</p></li>
+<li><p><strong>Weights and biases</strong>: Parameters learned during training</p></li>
+<li><p><strong>Activation functions</strong>: Introduce non-linearity. Examples include the ReLU, tanh, sigmoid functions</p></li>
+</ul>
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec1/neuron.svg" class="img-fluid" width="481"></p>
+<section id="shallow-vs.-deep-models" class="level3">
+<h3 class="anchored" data-anchor-id="shallow-vs.-deep-models">Shallow vs.&nbsp;Deep Models</h3>
+<p>While both shallow and deep networks can be used to approximate complex functions, <strong>deep networks are able to do so more efficiently</strong> - they can create more nonlinear “pieces” using fewer parameters. This hierarchical representation of data is particularly helpful when learning from high-dimensional modalities (e.g., multiomics or imaging).</p>
+</section>
+</section>
+<section id="types-of-learning" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-learning">Types of Learning</h2>
+<p>Deep learning supports various learning paradigms:</p>
+<ul>
+<li><p><strong>Supervised Learning</strong>: Learn from labeled data (e.g., disease prediction from gene expression)</p></li>
+<li><p><strong>Unsupervised Learning</strong>: Discover hidden patterns without labels (e.g., clustering cells)</p></li>
+<li><p><strong>Reinforcement Learning</strong>: Learn to make decisions in an environment (e.g., adaptive treatment strategies)</p></li>
+</ul>
+<p>There are also newer paradigms such as:</p>
+<ul>
+<li><p><a href="https://www.geeksforgeeks.org/machine-learning/self-supervised-learning-ssl/"><strong>Self-supervised</strong> <strong>learning</strong></a><strong>:</strong> Train the model using self-learned labels</p></li>
+<li><p><a href="https://lilianweng.github.io/posts/2021-05-31-contrastive/"><strong>Contrastive learning</strong></a><strong>:</strong> Train the model to distinguish similar and dissimilar data points</p></li>
+<li><p><a href="https://www.ibm.com/think/topics/few-shot-learning"><strong>Few-shot learning</strong></a><strong>:</strong> Train a model to learn from a small number of labeled examples</p></li>
+<li><p><a href="https://developers.google.com/machine-learning/gan/generative"><strong>Generative modeling</strong></a><strong>:</strong> Models that learn to create new, original data that resemble the training data</p></li>
+</ul>
+</section>
+<section id="statistical-modeling-vs.-algorithmic-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-modeling-vs.-algorithmic-modeling">Statistical Modeling vs.&nbsp;Algorithmic Modeling</h2>
+<p>Statistics can be broken into two distinct historical cultures:</p>
+<ul>
+<li><p><strong>Data modeling</strong>: Assumes a predefined probabilistic model (e.g., linear regression)</p></li>
+<li><p><strong>Algorithmic modeling</strong>: Focuses on flexible predictive models without assuming a specific data-generating process</p></li>
+</ul>
+<p>DL belongs firmly in the <strong>algorithmic camp.</strong></p>
+</section>
+<section id="why-deep-learning-for-biology" class="level2">
+<h2 class="anchored" data-anchor-id="why-deep-learning-for-biology">Why Deep Learning for Biology?</h2>
+<p>The field of biology presents several challenges that are ideal for the application of deep learning, including high-dimensional, noisy, and heterogeneous data, as well as complex, nonlinear relationships across systems.</p>
+<p>Deep learning shines in these situations because it:</p>
+<ul>
+<li><p>Learns features directly from raw data without the need for preprocessing or feature extraction</p></li>
+<li><p>Can handle multimodal inputs</p></li>
+<li><p>Scales to large datasets, which are becoming increasingly available in biology and medicine</p></li>
+</ul>
+<p>The field of biomedical AI is moving fast - some exciting applications include:</p>
+<ul>
+<li><p><strong>AI-driven public health</strong>: Forecasting disease spread and optimizing interventions</p></li>
+<li><p><strong>Personalized drug response modeling</strong>: Predicting individual reactions to drugs using multiomic and clinical data</p></li>
+<li><p><strong>Multiomic integration</strong>: Combining modalities including genomics, transcriptomics, and proteomics for better disease understanding</p></li>
+<li><p><strong>Generalist medical AI</strong>: Developing large foundation models that work across data modalities for tasks like diagnosis, prognosis, and treatment planning</p></li>
+</ul>
+</section>
+<section id="getting-started-with-pytorch" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started-with-pytorch">Getting Started with PyTorch</h2>
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec1/pytorch.png" class="img-fluid" width="398"></p>
+<p>PyTorch is the deep learning framework that will be used for the rest of this course. Here are its core components:</p>
+<ul>
+<li><p><code>torch.nn</code>: Defines layers and building blocks for neural networks</p></li>
+<li><p><code>torch.nn.Module</code>: Base class for all PyTorch models</p></li>
+<li><p><code>torch.optim</code>: Optimization algorithms for training (e.g., SGD, Adam)</p></li>
+<li><p><code>torch.utils.data.Dataset</code>: Custom dataset wrappers</p></li>
+<li><p><code>torch.utils.data.DataLoader</code>: Batches and shuffles data for training</p></li>
+</ul>
+<p>We’ll dive deeper into each of these as we build models in future tutorials.</p>
+</section>
+<section id="wrap-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
+<p>That’s it for Lecture 1! We covered a broad overview of what deep learning is, why it matters for biology, and how we’ll start building models in PyTorch. Next up: neural network fundamentals, including back-propagation, initialization, and practical model training.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Overviews</category>
+  <guid>https://vsriram24.github.io/posts/dl-for-bio-lec1/</guid>
+  <pubDate>Mon, 13 Oct 2025 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/dl-for-bio-lec1/tonguesout.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Bridging the Health AI Readiness Gap</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -4310,57 +4427,6 @@ font-style: inherit;">"'</span>)</span></code></pre></div>
   <guid>https://vsriram24.github.io/posts/cascadia-conf-24/</guid>
   <pubDate>Mon, 22 Jul 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/cascadia-conf-24/lakesideChats.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>My podcast recommendations</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/podcasts/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Welcome back to another edition of <em>[VS]Codes</em>! In this week’s post, I’ll be summarizing a list of my top podcasts, including content that covers the biomedical informatics and digital health space, statistics and data science, and a couple of miscellaneous topics as well. Without further ado, let’s get started!</p>
-<p><img src="https://vsriram24.github.io/posts/podcasts/mountain.jpg" class="img-fluid" width="500"></p>
-<hr>
-<p><strong><em>Biomedicine / Health AI</em></strong></p>
-<ol type="1">
-<li><p><a href="https://www.linkedin.com/company/the-ai-health-podcast/"><strong>The AI Health Podcast</strong></a>, hosted by <a href="https://dbmi.hms.harvard.edu/people/pranav-rajpurkar">Pranav Rajpurkar</a> and <a href="https://asaporta.github.io">Adriel Saporta</a></p>
-<p>“The AI Health Podcast” was my first foray into the realm of podcasts covering technical topics - with the demands of my doctoral research and my limited time, I was finding it challenging to keep up with the plethora of advances that were concurrently occurring in medicine with the expanded use of AI. Pranav and Adriel do a great job of synthesizing complex topics across the field of health AI, explaining both the biomedical context as well as the impact of the methodologies being developed. I appreciate how each episode is separated into a section covering the context of the topic followed by an interview with an expert. The experts interviewed also come from a variety of backgrounds in both academia and industry, offering diverse perspectives on artificial intelligence and biomedicine.</p></li>
-<li><p><a href="https://erictopol.substack.com"><strong>Ground Truths</strong></a>, hosted by <a href="https://en.wikipedia.org/wiki/Eric_Topol">Eric Topol</a></p>
-<p>Eric Topol is a giant in the field cardiovascular medicine, At the same time, he is a keen proponent of expanding the applications of AI to medicine. In this podcast, he interviews leading experts on a variety of topics in biomedicine and health science. I appreciate how the pace of his discussions synthesizes complex areas into very digestible conversations, and I don’t think any other host has the same ability as Eric to bring such esteemed guests to the table so easily!</p></li>
-<li><p><a href="https://medium.com/wharton-pulse-podcast"><strong>The Pulse</strong></a>, hosted by <a href="https://whartondigitalhealthclub.org">Wharton Digital Health</a></p>
-<p>I learned about “The Pulse” from other Wharton students while I was at the University of Pennsylvania. This podcast is a great way to gain a broad perspective of the field of health technology from a commercial perspective - the companies and interviews vary tremendously from episode to episode, and I found these episodes particularly helpful while I was in academia and looking to learn more about opportunities in the health technology space in industry. Given that the series comes from the Wharton School, there is a focus in some episodes on the business / MBA side of health tech, but much of the content is still relevant to broad audiences looking to learn more about the landscape of the field.</p></li>
-</ol>
-<p><strong><em>Data Science / Statistics</em></strong></p>
-<ol start="4" type="1">
-<li><p><a href="https://www.thoughtspot.com/data-chief/podcast"><strong>The Data Chief</strong></a>, hosted by <a href="https://www.thoughtspot.com/author/cindi-howson">Cindi Howson</a></p>
-<p>How does one become a “Chief Data Officer”? What does it take to manage the data infrastructure of an organization? How does one continue to support a culture of innovation and progress from such a high-level position? “The Data Chief” answers these questions and more through interviews with leaders across a variety of industries. I appreciate how this podcast exposes listeners to the importance of well-maintained data ecosystems across practically any application area one can think of.</p></li>
-<li><p><a href="https://casualinfer.libsyn.com"><strong>Casual Inference</strong></a>, hosted by <a href="https://www.lucymcgowan.com">Lucy D’Agostino McGowan</a> and <a href="https://www.bu.edu/sph/profile/eleanor-murray/">Ellie Murray</a></p>
-<p>A play on the field of “causal inference,” this podcast covers a variety of topics in epidemiology, statistics, data science, causal inference, and public health. I am a big fan of the hosts’ mantra of “keeping it casual” by requiring guests to explain their subject matter expertise as simply as they can!</p></li>
-<li><p><a href="https://podcast.bestbook.cool"><strong>Build a Career in Data Science</strong></a>, hosted by <a href="https://jnolis.com">Jacqueline Nolis</a> and <a href="https://hookedondata.org/about">Emily Robinson</a></p>
-<p>This podcast serves as an accompaniment to Jacqueline and Emily’s amazing book “Build a Career in Data Science,” but there is absolutely no need to have read the book to follow along! Jacqueline and Emily spend each episode on a chapter from their book, covering practical advice for how to succeed in the data science industry. Topics include how to interview for a data science job, how to communicate with stakeholders, how to pick the right position for you, and more!</p></li>
-<li><p><a href="https://nssdeviations.com"><strong>Not So Standard Deviations</strong></a>, hosted by <a href="https://rdpeng.org">Roger Peng</a> and <a href="https://hilaryparker.com">Hilary Parker</a></p>
-<p>As I transitioned from the biomedical focus of my dissertation research to broader data science applications, I wanted to find a podcast that could expose me to the gamut of statistics, machine learning, data science. “Not So Standard Deviations” fits this bill to a tee, including discussions of topics in both data science and tech while making time for fun tangents and detours depending on the news of the day.</p></li>
-</ol>
-<p><strong><em>Miscellaneous</em></strong></p>
-<ol start="8" type="1">
-<li><p><a href="https://www.pushkin.fm/podcasts/the-happiness-lab-with-dr-laurie-santos"><strong>The Happiness Lab</strong></a>, hosted by <a href="https://www.drlauriesantos.com">Laurie Santos</a></p>
-<p>Laurie Santos is a professor of psychology at Yale and has spent her career studying the evolutionary origins of human cognition and the science of happiness. In this podcast, she considers a variety of questions in the happiness space using a science-based approach, interviewing a plethora of guests across the field of human cognition. I’ve found the way I think about how I approach each of my days has notably shifted since finding this podcast!</p></li>
-<li><p><a href="https://headgum.com/factually-with-adam-conover"><strong>“Factually!”</strong></a>, hosted by <a href="https://www.adamconover.net">Adam Conover</a></p>
-<p>I first learned about Adam Conover from watching his television show “Adam Ruins Everything,” where he reveals hidden truths about a variety of topics that are commonly misunderstood by the public using a comedic lens. “Factually!” continues this tradition of irreverently diving deeper through interviews with experts that cover every topic imaginable, whether it be the ethics of artificial intelligence or “your houseplants can think!”</p></li>
-</ol>
-<hr>
-<p>This concludes my blog post for today. Until next week!</p>
-
-
-
- ]]></description>
-  <category>Personal</category>
-  <guid>https://vsriram24.github.io/posts/podcasts/</guid>
-  <pubDate>Mon, 15 Jul 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/podcasts/zolaStaring.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
