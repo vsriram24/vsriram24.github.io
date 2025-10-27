@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/dl-for-bio-lec2/index.html",
       "/posts/dl-for-bio-lec1/index.html",
       "/posts/stanford-aimi-25/index.html",
       "/posts/sloan-precision-ai-conf/index.html",

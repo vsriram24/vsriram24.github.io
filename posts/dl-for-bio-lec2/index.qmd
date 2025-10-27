@@ -2,12 +2,12 @@
 title: "Foundations of Deep Learning"
 description: "Deep Learning in Biology - Week 2"
 author: "Vivek Sriram"
-date: "10/03/2021"
-date-modified: "10/03/2021"
+date: "10/27/2025"
+date-modified: "10/27/2025"
 image: wrappedup.jpg
 categories:
   - Overviews
-draft: true
+draft: false
 ---
 
 Welcome to Week 2 of my [Deep Learning in Biology](https://bios740.github.io/about/) self-study series! In today's post, I’ll dive into the core building blocks of deep learning: how neural networks work, how they’re trained, and the modern architectures driving today’s AI systems, particularly in biomedical contexts.

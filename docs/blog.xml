@@ -10,7 +10,199 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Mon, 13 Oct 2025 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 27 Oct 2025 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Foundations of Deep Learning</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/dl-for-bio-lec2/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Welcome to Week 2 of my <a href="https://bios740.github.io/about/">Deep Learning in Biology</a> self-study series! In today’s post, I’ll dive into the core building blocks of deep learning: how neural networks work, how they’re trained, and the modern architectures driving today’s AI systems, particularly in biomedical contexts.</p>
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec2/mtn.jpg" class="img-fluid"></p>
+<section id="neural-network-basics" class="level2">
+<h2 class="anchored" data-anchor-id="neural-network-basics">Neural Network Basics</h2>
+<p>At the heart of deep learning are <strong>neural networks</strong>, composed of layers of interconnected units (also known as neurons). Each <strong>connection</strong> has an associated <strong>weight</strong> that determines the strength of influence one neuron has on the next. These weights are <strong>learnable parameters</strong> adjusted during training.</p>
+<p>Each neuron also has a <strong>bias</strong>, which shifts the input to the activation function. Biases help the model better fit data by offsetting the activation threshold—just like an intercept in linear regression.</p>
+<p>To introduce <strong>non-linearity</strong>, we make use of <strong>activation functions</strong>. These allow networks to approximate complex, real-world relationships:</p>
+<ul>
+<li><p><strong>Sigmoid</strong>: Outputs between 0 and 1; good for binary classification.</p></li>
+<li><p><strong>Tanh</strong>: Outputs between -1 and 1; zero-centered and better for deep networks.</p></li>
+<li><p><strong>ReLU</strong>: Efficient and widely used; outputs positive values only.</p></li>
+<li><p><strong>Softmax</strong>: Used for multi-class classification; outputs probabilities that sum to 1.</p></li>
+</ul>
+</section>
+<section id="forward-backpropagation" class="level2">
+<h2 class="anchored" data-anchor-id="forward-backpropagation">Forward &amp; Backpropagation</h2>
+<p>Training a neural network involves two primary steps:</p>
+<ol type="1">
+<li><p><strong>Forward Propagation</strong><br>
+Inputs pass through the network layer by layer until predictions are made.</p></li>
+<li><p><strong>Backpropagation</strong><br>
+Errors from the output are propagated backward to update the weights. Gradients are computed using the <strong>chain rule</strong>, guiding the model to minimize its <strong>loss function</strong>.</p></li>
+</ol>
+<p>This cycle repeats over many <strong>epochs</strong> (passes through the training data), gradually refining the model.</p>
+</section>
+<section id="key-deep-learning-model-architectures" class="level2">
+<h2 class="anchored" data-anchor-id="key-deep-learning-model-architectures">Key Deep Learning Model Architectures</h2>
+<p>Modern deep learning uses specialized architectures, each tailored to specific data types and tasks. We will go more in depth into these subtypes of deep learning models in the coming weeks:</p>
+<section id="convolutional-neural-networks-cnns" class="level3">
+<h3 class="anchored" data-anchor-id="convolutional-neural-networks-cnns">1. Convolutional Neural Networks (CNNs)</h3>
+<ul>
+<li><p><strong>Use case</strong>: Image data</p></li>
+<li><p><strong>Components</strong>:</p>
+<ul>
+<li><p><strong>Convolutional layers</strong>&nbsp;extract spatial features.</p></li>
+<li><p><strong>Pooling layers</strong>&nbsp;reduce dimensionality.</p></li>
+<li><p><strong>Fully connected layers</strong>&nbsp;make predictions.</p></li>
+</ul></li>
+<li><p><strong>Biomedical applications</strong>: Diagnostic imaging, tumor segmentation</p></li>
+<li><p><strong>Example models</strong>: LeNet-5, AlexNet, VGGNet</p></li>
+</ul>
+</section>
+<section id="recurrent-neural-networks-rnns" class="level3">
+<h3 class="anchored" data-anchor-id="recurrent-neural-networks-rnns">2. Recurrent Neural Networks (RNNs)</h3>
+<ul>
+<li><p><strong>Use case</strong>: Sequential data (e.g., EHRs, time-series)</p></li>
+<li><p><strong>Feature</strong>: Loops that “remember” prior inputs</p></li>
+<li><p><strong>Variants</strong>: LSTM, GRU—solve vanishing gradient issues</p></li>
+<li><p><strong>Biomedical applications</strong>: Monitoring vitals over time, clinical event prediction</p></li>
+</ul>
+</section>
+<section id="u-net" class="level3">
+<h3 class="anchored" data-anchor-id="u-net">3. U-Net</h3>
+<ul>
+<li><p><strong>Use case</strong>: Image segmentation</p></li>
+<li><p><strong>Architecture</strong>: U-shaped with encoder-decoder paths and skip connections</p></li>
+<li><p><strong>Variants</strong>: 2D/3D U-Net, Attention U-Net</p></li>
+<li><p><strong>Biomedical applications</strong>: Organ delineation, lesion detection</p></li>
+</ul>
+</section>
+<section id="autoencoders" class="level3">
+<h3 class="anchored" data-anchor-id="autoencoders">4. Autoencoders</h3>
+<ul>
+<li><p><strong>Use case</strong>: Unsupervised feature learning, dimensionality reduction</p></li>
+<li><p><strong>Structure</strong>: Encoder compresses, decoder reconstructs</p></li>
+<li><p><strong>Variants</strong>: Standard AE, Variational AE (VAE)</p></li>
+<li><p><strong>Biomedical applications</strong>: Denoising images, detecting anomalies</p></li>
+</ul>
+</section>
+<section id="graph-neural-networks-gnns" class="level3">
+<h3 class="anchored" data-anchor-id="graph-neural-networks-gnns">5. Graph Neural Networks (GNNs)</h3>
+<ul>
+<li><p><strong>Use case</strong>: Graph-structured data (networks)</p></li>
+<li><p><strong>Structure</strong>: Nodes, edges, graph convolutions</p></li>
+<li><p><strong>Variants</strong>: GCN, GAT, GRN, Graph Autoencoder</p></li>
+<li><p><strong>Biomedical applications</strong>: Drug discovery, gene interaction networks</p></li>
+</ul>
+</section>
+<section id="generative-adversarial-networks-gans" class="level3">
+<h3 class="anchored" data-anchor-id="generative-adversarial-networks-gans">6. Generative Adversarial Networks (GANs)</h3>
+<ul>
+<li><p><strong>Use case</strong>: Data generation</p></li>
+<li><p><strong>Mechanism</strong>: Two networks (Generator vs.&nbsp;Discriminator) in a game-like setup</p></li>
+<li><p><strong>Variants</strong>: DCGAN, CycleGAN, Pix2Pix</p></li>
+<li><p><strong>Biomedical applications</strong>: Synthesizing high-resolution medical images, augmenting datasets</p></li>
+</ul>
+</section>
+<section id="transformers" class="level3">
+<h3 class="anchored" data-anchor-id="transformers">7. Transformers</h3>
+<ul>
+<li><p><strong>Use case</strong>: Sequence modeling without recurrence</p></li>
+<li><p><strong>Core idea</strong>: Self-attention mechanisms</p></li>
+<li><p><strong>Variants</strong>: BERT, AlphaFold</p></li>
+<li><p><strong>Biomedical applications</strong>: Protein folding, DNA sequence analysis</p></li>
+</ul>
+</section>
+<section id="deep-reinforcement-learning-drl" class="level3">
+<h3 class="anchored" data-anchor-id="deep-reinforcement-learning-drl">8. Deep Reinforcement Learning (DRL)</h3>
+<ul>
+<li><p><strong>Use case</strong>: Decision-making in dynamic environments</p></li>
+<li><p><strong>Key concepts</strong>: Agent, environment, reward, policy, value function</p></li>
+<li><p><strong>Example algorithms</strong>: DQN, PPO, A3C, SAC</p></li>
+<li><p><strong>Applications</strong>: Robotics, autonomous surgery, adaptive diagnostics</p></li>
+</ul>
+</section>
+</section>
+<section id="perceptrons-multilayer-perceptrons-mlps" class="level2">
+<h2 class="anchored" data-anchor-id="perceptrons-multilayer-perceptrons-mlps">Perceptrons &amp; Multilayer Perceptrons (MLPs)</h2>
+<p>Before we go into some of the “deeper” forms of DL, let’s start with the basics. The <strong>Perceptron</strong> is the simplest form of a neural network: A perceptron takes multiple inputs, applies weights, adds bias, and produces a binary output. Perceptrons also make use of a step activation function (a binary deactivate / activate) to determine the final output.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec2/Perceptron-unit.svg.png" class="img-fluid figure-img" width="290"></p>
+<figcaption>A diagram of a perceptron</figcaption>
+</figure>
+</div>
+<p><strong>Multilayer Perceptrons (MLPs)</strong> expand on the perceptron model - MLPs contain multiple layers, including an input layer, hidden layer(s), and an output layer. MLPs are capable of learning non-linear patterns in the data using their multiple hidden layers, and we can specify different types of MLPs using the following hyperparameters: width (number of units per layer), depth (number of hidden layers), and capacity (total number of learnable parameters).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec2/Multi-Layer_Perceptron_(MLP)_Neural_Network._From_Left_to_right_Inputs,_Weights,_Perceptron_Neurons_in_Hidden_Layer,_Weights_and_Output_Layer.png" class="img-fluid figure-img" width="452"></p>
+<figcaption>A diagram of a multilayer perceptron</figcaption>
+</figure>
+</div>
+<section id="the-universal-approximation-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="the-universal-approximation-theorem">The Universal Approximation Theorem:</h3>
+<p>The universal approximation theorem states that a neural network with enough width or depth can approximate any continuous function. However, when considering the structure of a neural network, it is important to remember the tradeoffs between width and depth:</p>
+<ul>
+<li><p><strong>Wider networks</strong> are simpler but more inefficient</p></li>
+<li><p><strong>Deeper networks</strong> are more compact but harder to train</p></li>
+</ul>
+</section>
+</section>
+<section id="activation-functions" class="level2">
+<h2 class="anchored" data-anchor-id="activation-functions">Activation Functions</h2>
+<p>Activation functions are added to the end of each perceptron to introduce non-linearity into the produced output. Different activation functions serve different purposes. In binary classification, we would introduce a sigmoid activation function in the output layer to convert the output to a 0-1 value. For multi-class classification, this activation function would become a softmax, letting us convert the output to one of multiple categories. And for a regression, the activation function can simply be a linear function, returning the output of the neural network scaled to an appropriate value. For intermediate hidden layers, rectified linear units (ReLUs) can generate output if the input is positive and return zeroes for any negative inputs. Alternatively, Tanh activation functions can be used if the data are centered, shifting output to a value between -1 and 1.</p>
+</section>
+<section id="loss-functions" class="level2">
+<h2 class="anchored" data-anchor-id="loss-functions">Loss Functions</h2>
+<p>Loss functions are used to quantify the difference between predictions and true labels. Different types of loss functions can apply different constraints and transformations to the data, allowing us to manipulate the behavior of the model to forms that we find most pertinent.</p>
+<section id="for-regression" class="level3">
+<h3 class="anchored" data-anchor-id="for-regression">For regression:</h3>
+<ul>
+<li><p><strong>MSE</strong> penalizes large errors more, but is sensitive to outliers.</p></li>
+<li><p><strong>MAE</strong> institutes an equal penalty for all errors (even if they are large), but is more robust to outliers.</p></li>
+<li><p><strong>Huber Loss</strong> is a hybrid of MSE and MAE, allowing for robustness against large errors and outliers.</p></li>
+</ul>
+</section>
+<section id="for-classification" class="level3">
+<h3 class="anchored" data-anchor-id="for-classification">For classification:</h3>
+<ul>
+<li><p><strong>Binary Cross-Entropy</strong> is used for binary tasks, while <strong>Cross-Entropy</strong> is effective for multi-class tasks.</p></li>
+<li><p><strong>KL Divergence</strong> measures the divergence between two distributions, and is used in architectures such as Variational Autoencoders (VAEs)</p></li>
+<li><p><strong>Negative Log Likelihood (NLL)</strong> can be used with log-softmax outputs</p></li>
+<li><p>As a special case, <strong>Dice Loss</strong> is effective for segmentation tasks with imbalanced classes</p></li>
+</ul>
+</section>
+</section>
+<section id="optimization-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="optimization-algorithms">Optimization Algorithms</h2>
+<p>In addition to selecting the appropriate loss function to maximize the utility of mdel training, an effective optimization algorithm should be chosen as well to improve model training. One of the most basic forms of model optimization is <strong>stochastic gradient descent (SGD) -</strong> however, this approach can be noisy and slow. Concepts like momentum and adaptive learning rates can be introduced to reduce oscillations around local loss minima - for instance, the <strong>Adaptive Moment Estimation (Adam) optimizer</strong> combines the advantages of multiple optimization algorithms to adjust learning rates during training.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec2/Gradient_descent.gif" class="img-fluid figure-img"></p>
+<figcaption>A visual depiction of gradient descent</figcaption>
+</figure>
+</div>
+<p>Even with advances in optimization algorithms, a variety of challenges remain. Vanishing gradients occur when the derivatives of the activation functions become close to zero during backpropagation, hindering effective training and weight updates. This issue can arise for many deep neural networks, and it is particularly associated with the sigmoid and tanh activation functions that have smaller ranges of derivatives.</p>
+<p>Exploding gradients represent the reverse problem, when gradients of the network’s loss function become excessively large with respect to the weights of the model - this outcome is more tied to the weights of the network than the choice of activation function, with high weights leading to large derivatives. As a result, gradients fail to converge, leading to networks oscillating around local minima.</p>
+<p>Solutions for these issues include <strong>batch normalization</strong>, where the activations are normalized within each mini batch of data, effectively scaling gradients and reducing variance. <strong>Gradient clipping</strong> can also impose a threshold on the gradients during backpropagation, preventing them from becoming too small or exploding. Other activation functions (e.g.&nbsp;ReLUs) and other types of networks (ResNets, LSTMs, and GRUs) can address the vanishing gradient problem by skipping certain layers during backpropagation or incorporating gating mechanisms.</p>
+</section>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
+<p>Deep learning is a powerful tool for the analysis of multidimensional, complex data. Understanding the basics of how neural networks work, how they’re trained, and when to use different architectures is crucial for building practical and effective models, especially in high-stakes domains like the field of biomedicine.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Overviews</category>
+  <guid>https://vsriram24.github.io/posts/dl-for-bio-lec2/</guid>
+  <pubDate>Mon, 27 Oct 2025 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/dl-for-bio-lec2/wrappedup.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>An Intro to Deep Learning for Biology</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -4195,238 +4387,6 @@ font-style: inherit;">"'</span>)</span></code></pre></div>
   <guid>https://vsriram24.github.io/posts/pytorch-tutorial/</guid>
   <pubDate>Mon, 29 Jul 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/pytorch-tutorial/zolaCake.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Cascadia R Conference 2024</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/cascadia-conf-24/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Welcome back to another week of <em>[VS]Codes</em>! A few weeks ago, I had the opportunity to attend <a href="https://cascadiarconf.com">Cascadia R Conference 2024</a>, a local R conference for the data science community of the Pacific Northwest. It was a great experience getting to see so many different applications of data science across a variety of industries, and I very much enjoyed the experience of connecting with other data scientists from the surrounding PNW area. This blog post will summarize content from some of the talks that I attended that day as well as my personal overall takeaways from the conference.</p>
-<p><img src="https://vsriram24.github.io/posts/cascadia-conf-24/cascadia.jpg" class="img-fluid"></p>
-<hr>
-<section id="keynote-why-is-everybody-talking-about-generative-ai-by-deepsha-menghani-from-microsoft" class="level3">
-<h3 class="anchored" data-anchor-id="keynote-why-is-everybody-talking-about-generative-ai-by-deepsha-menghani-from-microsoft">Keynote: “Why is everybody talking about Generative AI?,” by <a href="https://deepshamenghani.quarto.pub/dmenghani/">Deepsha Menghani</a> from Microsoft</h3>
-<p>Generative Artificial Intelligence (GenAI) is a type of artificial intelligence that can create new content based on the patterns it has learned from existing day. GenAI can be trained through human intervention - a human can reinforce what behavior is correct and what isn’t. GenAI can be very powerful when you make it work <em>for you</em>.</p>
-<p>We can break GenAI use cases into three different scenarios:</p>
-<ol type="1">
-<li>Direct</li>
-<li>Customized</li>
-<li>Commercial</li>
-</ol>
-<p>In a direct scenario, a prompt leads directly to a response.</p>
-<p>In a customized scenario, a prompt will lead to data, which will then lead to a response.</p>
-<p>Lastly, in a commercial scenario, a prompt will lead to decision making, leading to data, then to actions, then to an outcome, then to feedback, and back to decision making. This will be an iterative process.</p>
-<p>With this framework of GenAI scenarios, we can see how GenAI might operate across different fields.</p>
-<table class="caption-top table">
-<caption>GenAI scenarios for different fields</caption>
-<colgroup>
-<col style="width: 3%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 46%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Direct</th>
-<th>Customized</th>
-<th>Commercial</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Finance</td>
-<td>Financial literacy</td>
-<td>Budget and tax optimization</td>
-<td>Fraud detection</td>
-</tr>
-<tr class="even">
-<td>Healthcare</td>
-<td>Developing a general health routine</td>
-<td>Personalized fitness / health data summaries</td>
-<td>Medical image processing</td>
-</tr>
-<tr class="odd">
-<td>Education</td>
-<td>General conceptual explanations</td>
-<td>Personalized study plans</td>
-<td>Reasoning and content generation (e.g.&nbsp;Khanmigo bot - a safe space to converse while learning)</td>
-</tr>
-<tr class="even">
-<td>You!</td>
-<td>Code assistance / copilot (e.g.&nbsp;turning comments into code or synthetic data generation)</td>
-<td>README / documentation generation. Return a consistent README / documentation structure</td>
-<td>Shiny application support bot. Feed documentation into a bot that sits at the bottom of your web app. This bot can help users when they want to use your dashboard.</td>
-</tr>
-</tbody>
-</table>
-<p>GenAI has many pros and cons to consider:</p>
-<table class="caption-top table">
-<caption>“The Good, The Bad, and The Ugly” of GenAI</caption>
-<colgroup>
-<col style="width: 34%">
-<col style="width: 35%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>The Good</th>
-<th>The Bad</th>
-<th>The Ugly</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Knowledge accessibility</td>
-<td>Garbage in = garbage out</td>
-<td>Bias</td>
-</tr>
-<tr class="even">
-<td>Personalization</td>
-<td>Data Privacy</td>
-<td>Resource Intensive</td>
-</tr>
-<tr class="odd">
-<td>Creativity</td>
-<td>Dependencies</td>
-<td>Cost</td>
-</tr>
-<tr class="even">
-<td>Efficiency</td>
-<td>Hallucinations</td>
-<td>Ethics</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>Misinformation</td>
-<td>Evolving Regulations</td>
-</tr>
-</tbody>
-</table>
-<p>GenAI can be incredibly useful in commercial settings if you train it on an application that you’ve developed so that it can help users navigate the application. However, this means it’s more important than ever before to have good, comprehensive documentation, because this will be the training data for your GenAI model!</p>
-<p>A caveat to using GenAI - when you have a hammer, everything looks like a nail! Don’t fall into the trap of thinking that GenAI is the only tool you can use… remember to think about the impact that you want!</p>
-<p><em>Questions:</em></p>
-<ul>
-<li><p>How do you pick the right LLM for your purposes?</p>
-<ul>
-<li>Go with accessibility, cost, data privacy</li>
-</ul></li>
-<li><p>How do you evaluate the output of an LLM?</p>
-<ul>
-<li>Evaluation is such an evolving field. Different models can check for different things (e.g.&nbsp;no swear words). Human evaluation also</li>
-</ul></li>
-<li><p>What is the impact on jobs of data scientists?</p>
-<ul>
-<li>People who use AI to advance their work will do better. There will be an up-leveling from nitty-gritty work to strategic oversight. Some jobs will become more impactful through the introduction of AI. Other jobs may not find AI to be useful. Employers should train their employees in terms of how they can best apply AI in their jobs.</li>
-</ul></li>
-</ul>
-</section>
-<section id="r-workflows-in-azure-machine-learning-for-athletic-data-analysis-by-emily-kraschel-from-the-university-of-oregon" class="level3">
-<h3 class="anchored" data-anchor-id="r-workflows-in-azure-machine-learning-for-athletic-data-analysis-by-emily-kraschel-from-the-university-of-oregon">“R Workflows in Azure Machine Learning for Athletic Data Analysis,” by <a href="https://github.com/ekrasch">Emily Kraschel</a> from the University of Oregon</h3>
-<p>When working with data related to sports, you need to work fast. Data collection is live, and will need to be evaluated over a variety of timescales, from daily to weekly to even longer. Sports analytics work requires efficient storage, as well as a combination of basic analysis and reporting as well as more complicated decision making.</p>
-<p>This fast space of sports analytics stands in high contrast to the slow work of data science, which generally involves extensive data cleaning, the development of in-depth reports and aggregation, and advanced data analysis.</p>
-<p>The conflicting needs of data science and sports analytics are thus as follows: - data are changing constantly. There are many new versions of the data and many additions to existing data - data science in general comes with numerous bottlenecks and stopping points - sports data is inherently observational, resulting in an inability to perform controlled experimentation</p>
-<p>The old framework implemented by the team at the University of Oregon focused on automated reports generated from a data analysis dashboard. This process was good for a fast pace of work, but hindered slower, more complicated analysis. It was challenging to take a step back and decide on new metrics that could be incorporated into the dashboard. There was no central source for raw data, resulting in a variety of athlete IDs coming from different instrument interfaces. Furthermore, with the lack of centrality in the infrastructure of the system, data would exist in different versions, different places, and different file formats. The team was left with a clunky system if they tried to pull data out of the dashboard to perform further, more in-depth analysis.</p>
-<p>Thus, the goals of the new framework were as follows: - improve competition outcomes through the generation of more complete, valid, actionable data - lower the barriers to more complex data science and analytics - aggregate the data in a centralized location and unify athlete IDs across instrumentation sources - enhance compute power and the ability to collaborate - reduce bottlenecks in data analysis (e.g.&nbsp;duplication, updates, incomplete data, etc.)</p>
-<p>With these goals in mind, the team decided to migrate their data infrastructure to the cloud with Azure ML. Services that they have begun to take advantage of include: - analysis in Jupyter notebooks - configurable compute - services for pipeline development and implementation - improved data storage and loading - enhanced data security</p>
-<p>The team still has an automated dashboard for day-to-day analysis. However, the new platform improves their ability to perform slow work, letting them step back from the constant stream of data. Now they can pull data easily across all instrument APIs into a centralized storage point. They are able to merge data more easily, maintain the most recent version of a given dataset, and perform compute more quickly.</p>
-<p>With this new cloud-based infrastructure, the team is able to perform a variety of more complicated analysis in R, including developing prediction models for hamstring injuries through the application of discrete time survival models, or evaluating differences in jump height by rate of force development across genders.</p>
-</section>
-<section id="fair-machine-learning-by-simon-couch-from-posit-pbc" class="level3">
-<h3 class="anchored" data-anchor-id="fair-machine-learning-by-simon-couch-from-posit-pbc">“<a href="https://github.com/simonpcouch/cascadia-24">Fair Machine Learning</a>,” by <a href="https://www.simonpcouch.com">Simon Couch</a> from Posit PBC</h3>
-<p>What does it mean for a model to be good vs.&nbsp;a model to be fair? A good model will produce a high value of sensitivity, specificity, or accuracy, all depending on the metric that you choose. Fairness, on the other hand, is not just about statistical behavior. Fairness is about our beliefs. We can think of fairness as the translation of values into mathematical measures.</p>
-<p>In general, definitions of fairness are not mathematically or morally compatible (see <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-042720-125902">Mitchel et al.&nbsp;2021</a>). Metrics such as <em>R<sup>2</sup></em> and <em>AUC</em> are useful for evaluating a model, but at the end of the day, a model is just a single part of a larger system. It is important to think about how model predictions will be used at the end of the day.</p>
-<p>The hard part of this process is articulating what fairness means to you (or your stakeholders) in the context of a problem. Then, you need to choose a mathematical measure of fairness that speaks to that meaning - this should situate the resulting measure in the context of the entire system.</p>
-<p>Choose tools that help you think about the hard parts of fair ML. The {tidymodels} set of packages, including {rsample}, {recipes}, {parsnip}, {tune}, and {yardstick}, are a great set of software options to support fair machine learning. You can refer to the textbook <a href="tmwr.org">Tidy Modeling with R</a> or <a href="tidymodels.org">tidymodels.org</a> for more information on how to use these tools.</p>
-<p><em>Questions:</em></p>
-<ul>
-<li><p>What is a structured way to get stakeholders involved?</p>
-<ul>
-<li>Model cards are a great option. These are just a couple of paragraphs that provide context for how the data were initially generated and various techniques used to model the data. Model cards can be generated using the {vetiver} package.</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-to-make-a-thousand-plots-look-good-data-viz-tips-for-parameterized-reporting-by-david-keyes-from-r-for-the-rest-of-us" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-make-a-thousand-plots-look-good-data-viz-tips-for-parameterized-reporting-by-david-keyes-from-r-for-the-rest-of-us">“<a href="https://cascadia2024.rfortherestofus.com/#/title-slide">How to make a Thousand Plots Look Good: Data Viz Tips for Parameterized Reporting</a>,” by <a href="https://rfortherestofus.com/about">David Keyes</a> from R for the Rest of Us</h3>
-<p>Parameterized reporting refers to process of creating a single document in markdown/Quarto and using it to make multiple reports at once. For instance, one can work with a single report for the visualization of housing and demographics data, and then expand this report to view data for a variety of towns, counties, and countries.</p>
-<p>How can we think about intuitive data visualization in the context of parameterized reporting? Here are some rules to consider:</p>
-<ol type="1">
-<li><p>There is no magic package</p></li>
-<li><p>Consider the outer limits of your data</p></li>
-</ol>
-<ul>
-<li>e.g.&nbsp;scale of income</li>
-</ul>
-<ol start="3" type="1">
-<li><p>Minimize text and position it carefully</p></li>
-<li><p>Don’t label everything</p></li>
-</ol>
-<ul>
-<li>{ggrepel}: repel overlapping labels in ggplot</li>
-<li>{shadowtext}: add background color to text</li>
-</ul>
-<ol start="5" type="1">
-<li><p>Hide small values</p></li>
-<li><p>Don’t put text where it could be obscured</p></li>
-</ol>
-<ul>
-<li>Add text elements as multiple layers. Make sure to include a separate element for text position</li>
-</ul>
-<ol start="7" type="1">
-<li>Highlight items strategically</li>
-</ol>
-<ul>
-<li>Make use of color, size, shadow, outline, and opacity</li>
-<li>Consider the R package {ggfx}</li>
-</ul>
-<p>Here’s the ultimate takeaway: there are a countless number of R packages that can help you achieve your goals in modularizing your applications, but at the end of the day, you are the one who has to do the thinking!</p>
-</section>
-<section id="cartographic-tricks-and-techniques-in-r-by-justin-sherrill-from-econorthwest" class="level3">
-<h3 class="anchored" data-anchor-id="cartographic-tricks-and-techniques-in-r-by-justin-sherrill-from-econorthwest">“Cartographic Tricks and Techniques in R,” by <a href="https://econw.com/staff/justin-sherrill/">Justin Sherrill</a> from ECONorthwest</h3>
-<p>Cartography refers to the generation of maps for geographic locations. However, in a more figurative sense, cartography is an exercise in story-telling. Through the information that you convey in your cartographic visualizations, you are choosing the story that you tell. Writing a good story is about making decisions - you need to make the right sacrifices in the information that you choose to exclude.</p>
-<p>What are the key principles of “good” cartography? 1. Visual hierarchy (the arrangement of elements that guide the viewer’s eye through the content in the right order) 2. Legibility 3. Figure-ground (the ability to differentiate between an object and its background) 4. Balance</p>
-<p><a href="https://en.wikipedia.org/wiki/Jacques_Bertin">Jacques Bertin</a> and <a href="https://en.wikipedia.org/wiki/William_Bunge">William Bunge</a> were two renowned geographers from the 20th century who consistently followed the principles of good cartography. You can refer to a lot of their work to get inspiration for developing cartographic visualizations. <a href="https://timogrossenbacher.ch">Timo Grossenbacher</a> is a modern-day geographer and data scientist who has used R to develop some beautiful cartographic illustrations. <a href="https://timogrossenbacher.ch/bivariate-maps-with-ggplot2-and-sf/">Here</a> is a great example of a bivariate thematic map he generated of Switzerland’s regional income inequality.</p>
-<p>As Timo demonstrates, you can do pretty much all of the data visualization you want to do with {ggplot2}. {ggplot2} is one of the strongest data visualization tools in existence.</p>
-<p>Here is a set of great packages to apply for geospatial data visualization in R and {ggplot2}:</p>
-<p>1. {ggspatial}: includes the north arrow / scale bar</p>
-<p>2. {mapboxapi}: can show roads, bodies of water, and more.</p>
-<p>3. {patchwork}: can do map insets to show larger context of your zoomed in map - can also use {ggmagnify}</p>
-<p>4. {ggrepel}: label placement to avoid overlapping labels</p>
-<p>5. {st_inscribed_circle}: label an unusually shaped polygon</p>
-<p>6. {ggforce}: label a subset of points in a nice style</p>
-<p>7. {ggfx}: fun effects for {ggplot2}</p>
-<p>8. {ggdensity}: show density patterns</p>
-<p>9. {rmapshaper}: simplify geometries of shapes</p>
-<p>10. {smoothr}: round the corners for shapes</p>
-<p>11. {ggarrow}: make pretty arrows</p>
-<p>12. {ggstar}: pch symbols</p>
-<p>13. {ggsvg}: use SVGs as points in your plot</p>
-<p>These packages are all very easy to implement and can turn your basic cartographic maps into true works of art! If you’re interested in playing around with cartographic visualizations, you can get access to open-source geospatial data for the state of Washington from the <a href="https://geo.wa.gov">Washington Geospatial Open Data Portal</a>.</p>
-</section>
-<section id="personal-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="personal-takeaways">Personal Takeaways</h3>
-<p>I had a lot of fun attending Cascadia R Conference 2024, and I look forward to being back in 2025! Here are some personal takeaways I got from the conference.</p>
-<ul>
-<li><p>The R community is extremely creative and fun! This conference felt very different from some of the technical biomedical informatics conferences I’ve attended in the past, many of which were focused purely on scientific advancements. At this conference, there were so many talks that demonstrated all sorts of random things you could do with the language of R, and these wacky detours were both encouraged and celebrated!</p></li>
-<li><p>There is a growing focus on R for production-level ventures, including parameterization and modularization. Many data scientists are interested in scaling R for industrial applications and integrating it with other languages.</p></li>
-<li><p>While we are currently in a hype cycle for the field of generative AI and large language models, there is still plenty of other interesting work to be accomplished in the field of data science. It’s important to not get carried away by the fear of missing out (FOMO)! Focus on the goals of your work and find the right tools for the job (i.e.&nbsp;problem-first instead of tooling-first solutions)</p></li>
-</ul>
-<hr>
-<p>This concludes my summary of my experience at Cascadia R Conference 2024! I’d like to give a huge thank you to the <a href="https://cascadiarconf.com/about/">organizers</a> of this conference for all of their hard work and for bringing the PNW data science community together in such a wonderful event. The next conference I will be attending will be <a href="https://posit.co/conference/">posit::conf(2024)</a>, and I look forward to summarizing my experiences there in another blog post. Until next week, [VS]Coders!</p>
-
-
-</section>
-
- ]]></description>
-  <category>Conferences</category>
-  <guid>https://vsriram24.github.io/posts/cascadia-conf-24/</guid>
-  <pubDate>Mon, 22 Jul 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/cascadia-conf-24/lakesideChats.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
