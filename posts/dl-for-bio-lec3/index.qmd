@@ -2,12 +2,12 @@
 title: "Convolutional Neural Networks (CNNs)"
 description: "Deep Learning in Biology - Week 3"
 author: "Vivek Sriram"
-date: "10/03/2021"
-date-modified: "10/03/2021"
+date: "11/10/2025"
+date-modified: "11/10/2025"
 image: goat.jpg
 categories:
   - Overviews
-draft: true
+draft: false
 ---
 
 Imaging data is everywhere, from radiology scans and pathology slides to self-driving cars and satellite imagery. To make sense of this visual information, deep learning relies on Convolutional Neural Networks (CNNs): specialized architectures designed to handle data with grid-like structures such as images.
@@ -16,7 +16,7 @@ Welcome to Week 3 of my [Deep Learning in Biology](https://bios740.github.io/abo
 
 ![](lake.JPG)
 
-## Why Images Are Hard for Neural Networks
+## Why images are hard for standard neural networks
 
 Images are high-dimensional - every pixel is a separate feature, and the number of features grows quadratically with image resolution. For instance, a single 1000×1000 RGB image consists of three million input values!
 
@@ -29,7 +29,7 @@ Traditional fully connected networks don’t scale well in these scenarios. Each
 
 Convolutional Neural Networks (CNNs) solve these challenges by using local connections and shared weights to drastically reduce the number of parameters and improve efficiency.
 
-## Preserving Spatial Relationships
+## Preserving spatial relationships
 
 In an image, nearby pixels are often correlated with one another, forming edges, textures, and patterns. Fully connected networks ignore this structure, treating each pixel independently. CNNs, by contrast, respect spatial locality through the use of **kernels**.
 
@@ -37,7 +37,7 @@ Kernels can be thought of as filters that slide over small regions of the image.
 
 ![A depiction of a typical CNN](Typical_cnn.png)
 
-## Stability Under Transformations
+## Stability under transformations
 
 In real-world settings, the same object can appear in many forms: rotated, scaled, flipped, or shifted. **Translational invariance** refers to the concept that a robust model should recognize an image regardless of any of these transformations. CNNs achieve translational invariance through:
 
@@ -47,7 +47,7 @@ In real-world settings, the same object can appear in many forms: rotated, scale
 
 -   Data augmentation during the training process (i.e. random rotations, crops, flips) to teach invariance explicitly.
 
-## CNNs as Hierarchical Feature Extractors
+## CNNs as hierarchical feature extractors
 
 Images contain information at multiple levels. **Low-level** features can be thought of as edges and corners, **mid-level** as textures and motifs, and **high-level** as specific objects and scenes. CNNs naturally build this hierarchy through **stacked convolutional layers**. Early layers detect simple shapes, while deeper layers capture more abstract concepts. This multiscale representation is a key reason CNNs generalize well to complex visual tasks.
 
@@ -81,7 +81,7 @@ In practice, CNNs use cross-correlation, which is similar but omits the kernel f
 
 ![An example of a convolution calculation](Convolutional_neural_network,_convolution_worked_example.png)
 
-## Beyond Images: CNNs for Audio and Text
+## Beyond images: CNNs for audio and text
 
 The concepts of locality and translation invariance applies to data types beyond images. Two other potential use cases include **audio** and **text**.
 
@@ -91,7 +91,7 @@ With audio, local patterns in the data may represent short bursts of frequencies
 
 Similarly for text, one-dimensional convolutions can be applied over word embeddings. CNNs can be effective in text for short-range dependencies - however, for longer sequences, we'll want to turn to more advanced models like transformers.
 
-## Iconic CNN Architectures
+## Iconic CNN architectures
 
 Let’s look at some key milestones that shaped CNN development:
 
@@ -139,7 +139,7 @@ Let’s look at some key milestones that shaped CNN development:
 
     -   Trades some accuracy for speed and compactness.
 
-## Optimization and Generalization
+## Optimization and generalization
 
 Training deep CNNs is challenging - overfitting, slow convergence, and massive compute demands are common issues. Common remedies include:
 
@@ -167,7 +167,7 @@ Training deep CNNs is challenging - overfitting, slow convergence, and massive c
 
     -   Reuse pretrained CNNs (e.g., VGG, ResNet) and fine-tune on smaller, domain-specific datasets.
 
-## Looking Ahead
+## Looking ahead
 
 CNNs have revolutionized visual understanding in the past decade, allowing for classification, object detection, and segmentation for a variety of imaging data and other data types. Nevertheless, obstacles remain, including:
 
