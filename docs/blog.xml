@@ -9,7 +9,7 @@
 <link>https://vsriram24.github.io/blog.html</link>
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram&#39;s personal website</description>
-<generator>quarto-1.6.42</generator>
+<generator>quarto-1.5.57</generator>
 <lastBuildDate>Mon, 24 Nov 2025 08:00:00 GMT</lastBuildDate>
 <item>
   <title>Modeling Sequential Data (RNNs, LSTMs, and GRUs)</title>
@@ -136,192 +136,6 @@
   <guid>https://vsriram24.github.io/posts/dl-for-bio-lec4/</guid>
   <pubDate>Mon, 24 Nov 2025 08:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/dl-for-bio-lec4/sunbathe.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Convolutional Neural Networks (CNNs)</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/CopyOfdl-for-bio-lec3/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Imaging data is everywhere, from radiology scans and pathology slides to self-driving cars and satellite imagery. To make sense of this visual information, deep learning relies on Convolutional Neural Networks (CNNs): specialized architectures designed to handle data with grid-like structures such as images.</p>
-<p>Welcome to Week 3 of my <a href="https://bios740.github.io/about/">Deep Learning in Biology</a> self-study series! In today’s post, we’ll explore why CNNs are so effective, how they overcome key challenges of high-dimensional visual data, and how modern CNN architectures have evolved over time.</p>
-<p><img src="https://vsriram24.github.io/posts/CopyOfdl-for-bio-lec3/lake.JPG" class="img-fluid"></p>
-<section id="why-images-are-hard-for-standard-neural-networks" class="level2">
-<h2 class="anchored" data-anchor-id="why-images-are-hard-for-standard-neural-networks">Why images are hard for standard neural networks</h2>
-<p>Images are high-dimensional - every pixel is a separate feature, and the number of features grows quadratically with image resolution. For instance, a single 1000×1000 RGB image consists of three million input values!</p>
-<p>Traditional fully connected networks don’t scale well in these scenarios. Each input pixel connects to every neuron in the next layer, leading to:</p>
-<ul>
-<li>Billions of learnable parameters</li>
-<li>High memory and compute demands</li>
-<li>Slow training</li>
-<li>Risk of overfitting (too many parameters, not enough data)</li>
-</ul>
-<p>Convolutional Neural Networks (CNNs) solve these challenges by using local connections and shared weights to drastically reduce the number of parameters and improve efficiency.</p>
-</section>
-<section id="preserving-spatial-relationships" class="level2">
-<h2 class="anchored" data-anchor-id="preserving-spatial-relationships">Preserving spatial relationships</h2>
-<p>In an image, nearby pixels are often correlated with one another, forming edges, textures, and patterns. Fully connected networks ignore this structure, treating each pixel independently. CNNs, by contrast, respect spatial locality through the use of <strong>kernels</strong>.</p>
-<p>Kernels can be thought of as filters that slide over small regions of the image. Each filter detects specific local features in the image (i.e.&nbsp;boundaries of a figure, edges, corner). These local patterns are combined in deeper layers to represent complex structures (such as faces or organ systems). This spatial awareness makes CNNs especially powerful for object detection and segmentation, where the arrangement of features matters.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/CopyOfdl-for-bio-lec3/Typical_cnn.png" class="img-fluid figure-img"></p>
-<figcaption>A depiction of a typical CNN</figcaption>
-</figure>
-</div>
-</section>
-<section id="stability-under-transformations" class="level2">
-<h2 class="anchored" data-anchor-id="stability-under-transformations">Stability under transformations</h2>
-<p>In real-world settings, the same object can appear in many forms: rotated, scaled, flipped, or shifted. <strong>Translational invariance</strong> refers to the concept that a robust model should recognize an image regardless of any of these transformations. CNNs achieve translational invariance through:</p>
-<ul>
-<li><p>Shared filters that detect patterns no matter where they appear in the image.</p></li>
-<li><p><strong>Pooling layers</strong> that summarize nearby activations, reducing sensitivity to position.</p></li>
-<li><p>Data augmentation during the training process (i.e.&nbsp;random rotations, crops, flips) to teach invariance explicitly.</p></li>
-</ul>
-</section>
-<section id="cnns-as-hierarchical-feature-extractors" class="level2">
-<h2 class="anchored" data-anchor-id="cnns-as-hierarchical-feature-extractors">CNNs as hierarchical feature extractors</h2>
-<p>Images contain information at multiple levels. <strong>Low-level</strong> features can be thought of as edges and corners, <strong>mid-level</strong> as textures and motifs, and <strong>high-level</strong> as specific objects and scenes. CNNs naturally build this hierarchy through <strong>stacked convolutional layers</strong>. Early layers detect simple shapes, while deeper layers capture more abstract concepts. This multiscale representation is a key reason CNNs generalize well to complex visual tasks.</p>
-</section>
-<section id="anatomy-of-a-cnn" class="level2">
-<h2 class="anchored" data-anchor-id="anatomy-of-a-cnn">Anatomy of a CNN</h2>
-<p>A standard CNN is composed of several types of layers:</p>
-<ul>
-<li><p><strong>Convolutional layers</strong> extract local features using learnable filters</p></li>
-<li><p><strong>ReLU (Activation) layers</strong> introduce non-linearity for richer representations</p></li>
-<li><p><strong>Pooling layers</strong> downsample and increase translation invariance</p></li>
-<li><p><strong>Fully connected layers</strong> combine extracted features for final classification</p></li>
-</ul>
-<p>Additional parameters that can affect the behavior of a CNN include:</p>
-<ul>
-<li><p><strong>Padding</strong>: including pads of empty pixels around the ends of an image preserves image borders during convolution.</p></li>
-<li><p><strong>Stride</strong>: manipulating the stride of a kernel controls how far across the image filters move per step, allowing for a balance between granularity and compute.</p></li>
-<li><p><strong>Pooling Type:</strong> <em>Max pooling</em> merges features across a group of pixels, allowing for the emphasis of strong features. Meanwhile, <em>average pooling</em> takes the average of a set of pixels, smoothing outputs in the process. Max pooling is generally preferred for classification, while average pooling is better for tasks requiring contextual smoothness.</p></li>
-</ul>
-</section>
-<section id="what-is-a-convolution" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-a-convolution">What is a convolution?</h2>
-<p>Mathematically, a convolution makes use of two parameters: an input (i.e.&nbsp;an image), and a kernel (the filter for the image). These parameters are merged to produce an output (feature map) as follows:</p>
-<p><img src="https://latex.codecogs.com/png.latex?(f*g)(i,j)=%5CSigma_a%20%5CSigma_b%20f(a,%20b)%20g(i-a,%20j-b)"></p>
-<p>In practice, CNNs use cross-correlation, which is similar but omits the kernel flip. Each kernel acts as a feature detector, highlighting areas of the image that match its pattern.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/CopyOfdl-for-bio-lec3/Convolutional_neural_network,_convolution_worked_example.png" class="img-fluid figure-img"></p>
-<figcaption>An example of a convolution calculation</figcaption>
-</figure>
-</div>
-</section>
-<section id="beyond-images-cnns-for-audio-and-text" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-images-cnns-for-audio-and-text">Beyond images: CNNs for audio and text</h2>
-<p>The concepts of locality and translation invariance applies to data types beyond images. Two other potential use cases include <strong>audio</strong> and <strong>text</strong>.</p>
-<p>With audio, local patterns in the data may represent short bursts of frequencies or amplitude changes. CNNs can process these one-dimensional signals directly or make use of two-dimensional spectrograms that plot time against frequency.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/CopyOfdl-for-bio-lec3/Dial-up_sound_spectrogram.png" class="img-fluid figure-img"></p>
-<figcaption>Audio spectrogram for a dial-up tone</figcaption>
-</figure>
-</div>
-<p>Similarly for text, one-dimensional convolutions can be applied over word embeddings. CNNs can be effective in text for short-range dependencies - however, for longer sequences, we’ll want to turn to more advanced models like transformers.</p>
-</section>
-<section id="iconic-cnn-architectures" class="level2">
-<h2 class="anchored" data-anchor-id="iconic-cnn-architectures">Iconic CNN architectures</h2>
-<p>Let’s look at some key milestones that shaped CNN development:</p>
-<ul>
-<li><p>AlexNet (2012)</p>
-<ul>
-<li><p>5 convolutional + 3 fully connected layers.</p></li>
-<li><p>Introduced ReLU, dropout, and local response normalization.</p></li>
-<li><p>Sparked the deep learning revolution after winning ImageNet by a huge margin.</p></li>
-</ul></li>
-<li><p>VGG (2014)</p>
-<ul>
-<li><p>Deep and simple: small 3×3 filters stacked in depth.</p></li>
-<li><p>Up to 19 layers, with ~140M parameters.</p></li>
-<li><p>Still popular for transfer learning due to its clean architecture and pretrained weights.</p></li>
-</ul></li>
-<li><p>GoogleNet / Inception (2014)</p>
-<ul>
-<li><p>Used 1×1 convolutions to reduce dimensions of data before applying larger filters.</p></li>
-<li><p>Inception modules combined multiple filter sizes in parallel.</p></li>
-<li><p>22 layers deep but only 5M parameters, making it extremely efficient.</p></li>
-</ul></li>
-<li><p>ResNet (2015)</p>
-<ul>
-<li><p>Introduced residual connections, allowing the network to learn residuals instead of direct mappings.</p></li>
-<li><p>Solved the vanishing gradient problem, enabling networks &gt;100 layers deep.</p></li>
-</ul></li>
-<li><p>Squeeze-and-Excitation (SE) Network</p>
-<ul>
-<li><p>Added attention to channel relationships.</p></li>
-<li><p>Learns which feature maps are most important.</p></li>
-</ul></li>
-<li><p>MobileNet</p>
-<ul>
-<li><p>Designed for mobile devices.</p></li>
-<li><p>Uses depthwise separable convolutions for efficiency.</p></li>
-<li><p>Trades some accuracy for speed and compactness.</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="optimization-and-generalization" class="level2">
-<h2 class="anchored" data-anchor-id="optimization-and-generalization">Optimization and generalization</h2>
-<p>Training deep CNNs is challenging - overfitting, slow convergence, and massive compute demands are common issues. Common remedies include:</p>
-<ul>
-<li><p><strong>Data Augmentation</strong></p>
-<ul>
-<li>Randomly modify training images (rotate, crop, flip, color-jitter) to simulate diversity.</li>
-</ul></li>
-<li><p><strong>Regularization</strong></p>
-<ul>
-<li><p>Penalize large weights:</p>
-<ul>
-<li><p>L1 (Lasso): Encourages sparsity</p></li>
-<li><p>L2 (Weight Decay): Smooths solutions</p></li>
-<li><p>Elastic Net: Combines both</p></li>
-</ul></li>
-</ul></li>
-<li><p><strong>Dropout and Early Stopping</strong></p>
-<ul>
-<li><p>Dropout: Randomly deactivate neurons to prevent co-adaptation.</p></li>
-<li><p>Early Stopping: Halt training when validation performance peaks.</p></li>
-</ul></li>
-<li><p><strong>Transfer Learning</strong></p>
-<ul>
-<li>Reuse pretrained CNNs (e.g., VGG, ResNet) and fine-tune on smaller, domain-specific datasets.</li>
-</ul></li>
-</ul>
-</section>
-<section id="looking-ahead" class="level2">
-<h2 class="anchored" data-anchor-id="looking-ahead">Looking ahead</h2>
-<p>CNNs have revolutionized visual understanding in the past decade, allowing for classification, object detection, and segmentation for a variety of imaging data and other data types. Nevertheless, obstacles remain, including:</p>
-<ul>
-<li><p>High memory demands and long training times.</p></li>
-<li><p>Dependence on large labeled datasets.</p></li>
-<li><p>Difficulty with small or low-resolution inputs.</p></li>
-</ul>
-<p>Despite these challenges, CNNs remain foundational to computer vision, and their core ideas of locality, hierarchy, and invariance continue to inspire modern architectures like transformers.</p>
-</section>
-<section id="key-takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
-<ul>
-<li><p>CNNs reduce the parameters needed to represent a dataset via local connectivity and weight sharing.</p></li>
-<li><p>CNNs can capture spatial hierarchies through stacked layers.</p></li>
-<li><p>Pooling and data augmentation improve translational invariance.</p></li>
-<li><p>Modern CNNs (VGG, ResNet, Inception) balance depth, efficiency, and accuracy.</p></li>
-<li><p>CNNs can extend beyond imaging data to other modalities, including audio, text, and multiomics.</p></li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>Overviews</category>
-  <guid>https://vsriram24.github.io/posts/CopyOfdl-for-bio-lec3/</guid>
-  <pubDate>Mon, 10 Nov 2025 08:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/CopyOfdl-for-bio-lec3/goat.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Convolutional Neural Networks (CNNs)</title>
@@ -2789,1193 +2603,924 @@ Ultimately, responsible AI in healthcare demands equity, transparency, collabora
   <media:content url="https://vsriram24.github.io/posts/posit-conf-24/pensiveZola.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title>Introduction to PyTorch</title>
+  <title>An intro to NLP for oncology</title>
   <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/pytorch-brca/</link>
+  <link>https://vsriram24.github.io/posts/nlp-oncology-overview/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p>In today’s blog post, we’ll go through the <a href="https://pytorch.org/tutorials/beginner/basics/intro.html">“Introduction to PyTorch</a>” tutorial available from PyTorch’s online <a href="https://pytorch.org/tutorials/index.html">learning community</a>.</p>
-<p>In a future blog post, I will take the foundation developed through this walkthrough and explore a modified data analysis workflow, with a more complicated neural network and additional hyperparameter training for a different set of data.</p>
-<p>With background out of the way, let’s get started~</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="in" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">```{r}</span></span>
-<span id="cb1-2"><span class="in" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">library(reticulate)</span></span>
-<span id="cb1-3"><span class="in" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">use_python('/opt/anaconda3/bin/python')</span></span>
-<span id="cb1-4"><span class="in" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">```</span></span></code></pre></div>
-<p>Most machine learning workflows involve uploading data, creating models, optimizing model parameters, and performing predictions on input data. This tutorial introduces you to a complete ML workflow implemented in PyTorch.</p>
-<p>In PyTorch, we use tensors to encode the inputs and outputs of a model, as well as the model’s parameters. Tensors are a specialized data structure that are very similar to arrays and matrices.</p>
-<div id="214677dd" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Import required packages</span></span>
-<span id="cb2-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> os</span>
-<span id="cb2-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> pd</span>
-<span id="cb2-4"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">as</span> plt</span></code></pre></div>
-</div>
-<div id="ece72ba1" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> torch</span>
-<span id="cb3-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> torch <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> nn</span>
-<span id="cb3-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> torch.utils.data <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> Dataset</span>
-<span id="cb3-4"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> torch.utils.data <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> DataLoader</span></code></pre></div>
-</div>
-<div id="73963da2" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#import torchvision</span></span>
-<span id="cb4-2"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> torchvision <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> datasets, transforms</span>
-<span id="cb4-3"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> torchvision.transforms <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> ToTensor, Lambda</span>
-<span id="cb4-4"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> torchvision.io <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> read_image</span></code></pre></div>
-</div>
-<div id="8617d666" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">from</span> torch_geometric.datasets <span class="im" style="color: #00769E;
-background-color: null;
-font-style: inherit;">import</span> BrcaTcga</span></code></pre></div>
-</div>
-<div id="e425e99d" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">dataset <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> BrcaTcga(root<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">'/Users/vsriram/Developer/vsriram24.github.io/posts/pytorch-brca/'</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/Users/vsriram/.virtualenvs/r-reticulate/lib/python3.12/site-packages/torch_geometric/data/dataset.py:238: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  if osp.exists(f) and torch.load(f) != _repr(self.pre_transform):
-/Users/vsriram/.virtualenvs/r-reticulate/lib/python3.12/site-packages/torch_geometric/data/dataset.py:246: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  if osp.exists(f) and torch.load(f) != _repr(self.pre_filter):
-/Users/vsriram/.virtualenvs/r-reticulate/lib/python3.12/site-packages/torch_geometric/io/fs.py:215: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  return torch.load(f, map_location)</code></pre>
-</div>
-</div>
-<div id="9e6d65c5" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(dataset)</span>
-<span id="cb8-2">dataset.num_classes</span>
-<span id="cb8-3">dataset.num_node_features</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/Users/vsriram/.virtualenvs/r-reticulate/lib/python3.12/site-packages/torch_geometric/data/dataset.py:169: UserWarning: Found floating-point labels while calling `dataset.num_classes`. Returning the number of unique elements. Please make sure that this is expected before proceeding.
-  warnings.warn("Found floating-point labels while calling "</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>1</code></pre>
-</div>
-</div>
-<div id="c71e2526" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">data <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> dataset[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>]</span>
-<span id="cb11-2"></span>
-<span id="cb11-3">data</span>
-<span id="cb11-4">data.is_undirected()</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>False</code></pre>
-</div>
-</div>
-<p>We start by checking to see if we can train our model on a hardware accelerator like the GPU or MPS if available. Otherwise, we’ll use the CPU.</p>
-<div id="69943f62" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Get cpu, gpu or mps device for training.</span></span>
-<span id="cb13-2">device <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> (</span>
-<span id="cb13-3">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cuda"</span></span>
-<span id="cb13-4">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> torch.cuda.is_available()</span>
-<span id="cb13-5">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"mps"</span></span>
-<span id="cb13-6">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> torch.backends.mps.is_available()</span>
-<span id="cb13-7">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">else</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"cpu"</span></span>
-<span id="cb13-8">)</span>
-<span id="cb13-9"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Using </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>device<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> device"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Using mps device</code></pre>
-</div>
-</div>
-<p>Code for processing data samples can get messy and hard to maintain. We ideally want our dataset code to be de-coupled from model training code for better readability and modularity. We will break our analysis into the following two sections: <strong>Data</strong> and <strong>Modeling</strong>.</p>
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
-<section id="importing-and-transforming-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="importing-and-transforming-the-data">Importing and transforming the data</h3>
-<p>PyTorch offers domain-specific libraries such as <code>TorchText</code>, <code>TorchVision</code>, and <code>TorchAudio</code>. In this tutorial, we will be using a <code>TorchVision</code> dataset. The <code>torchvision.datasets</code> module contains <code>Dataset</code> objects for many real-world vision data. Here, we will use the FashionMNIST dataset. Fashion-MNIST is a dataset of images consisting of 60,000 training examples and 10,000 test examples. Each example includes a 28x28 grayscale image and an associated label from one of 10 classes.</p>
-<p>Each PyTorch <code>Dataset</code> stores a set of samples and their corresponding labels. Data do not always come in the final processed form that is required for training ML algorithms. We use <em>transforms</em> to perform some manipulation of the data and make it suitable for training. Every TorchVision <code>Dataset</code> includes 2 arguments: <code>transform</code> to modify the samples and <code>target_transform</code> to modify the labels.</p>
-<p>The FashionMNIST features are in PIL Image format. For training, we need the features as normalized tensors, and the labels as one-hot encoded tensors. To make this transformation, we use the <code>ToTensor()</code> function. <code>ToTensor()</code> converts a PIL image or NumPy <code>ndarray</code> into a <code>FloatTensor</code> and scales the image’s pixel intensity values in the range [0., 1.]</p>
-<div id="b8569db5" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Download training data from open datasets.</span></span>
-<span id="cb15-2">training_data <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> datasets.FashionMNIST(</span>
-<span id="cb15-3">    root<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"data"</span>,</span>
-<span id="cb15-4">    train<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>,</span>
-<span id="cb15-5">    download<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>,</span>
-<span id="cb15-6">    transform<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>ToTensor()</span>
-<span id="cb15-7">)</span>
-<span id="cb15-8"></span>
-<span id="cb15-9"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Download test data from open datasets.</span></span>
-<span id="cb15-10">test_data <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> datasets.FashionMNIST(</span>
-<span id="cb15-11">    root<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"data"</span>,</span>
-<span id="cb15-12">    train<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">False</span>,</span>
-<span id="cb15-13">    download<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>,</span>
-<span id="cb15-14">    transform<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>ToTensor()</span>
-<span id="cb15-15">)</span></code></pre></div>
-</div>
-<p>We now have our data uploaded! We can index an input <code>Dataset</code> manually (i.e.&nbsp;<code>training_data[index]</code>) to get individual samples. Here, we use <code>matplotlib</code> to visualize some samples in our training data.</p>
-<div id="e5f0f987" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">labels_map <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> {</span>
-<span id="cb16-2">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"T-Shirt"</span>,</span>
-<span id="cb16-3">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Trouser"</span>,</span>
-<span id="cb16-4">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Pullover"</span>,</span>
-<span id="cb16-5">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Dress"</span>,</span>
-<span id="cb16-6">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">4</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Coat"</span>,</span>
-<span id="cb16-7">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Sandal"</span>,</span>
-<span id="cb16-8">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">6</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Shirt"</span>,</span>
-<span id="cb16-9">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">7</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Sneaker"</span>,</span>
-<span id="cb16-10">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Bag"</span>,</span>
-<span id="cb16-11">    <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">9</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Ankle Boot"</span>,</span>
-<span id="cb16-12">}</span>
-<span id="cb16-13"></span>
-<span id="cb16-14">figure <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> plt.figure(figsize<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8</span>))</span>
-<span id="cb16-15">cols, rows <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span></span>
-<span id="cb16-16"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>, cols <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> rows <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>):</span>
-<span id="cb16-17">    sample_idx <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> torch.randint(<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(training_data), size<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>,)).item()</span>
-<span id="cb16-18">    img, label <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> training_data[sample_idx]</span>
-<span id="cb16-19">    figure.add_subplot(rows, cols, i)</span>
-<span id="cb16-20">    plt.title(labels_map[label])</span>
-<span id="cb16-21">    plt.axis(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"off"</span>)</span>
-<span id="cb16-22">    plt.imshow(img.squeeze(), cmap<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"gray"</span>)</span>
-<span id="cb16-23">plt.show()</span></code></pre></div>
-<div class="cell-output cell-output-display">
-<div>
+<p>In this week’s blog, I will be summarizing Yim et al’s 2016 review paper from <em>JAMA Oncology</em>, titled “Natural Language Processing in Oncology: A Review.” This paper was written by researchers at the University of Washington Medical Center, including individuals from the Departments of Biomedical and Health Informatics, the Department of Linguistics, the Division of Oncology at the Department of Medicine, and the Department of Radiology. You can read the abstract for this paper <a href="https://pubmed.ncbi.nlm.nih.gov/27124593/">here</a>.</p>
+<p>The full text of this manuscript is unfortunately not publicly available (you or your institution must have access to <em>JAMA Oncology</em> to read the full text), so I hope that this summary provides those without access to this journal some insight into some exciting content. Furthermore, given that this paper is from 2016, it does not include many of the recent advances in the past 8 years related to transformer / large language models that have become more relevant in NLP applications. Nevertheless, I found this paper to be an excellent summary of how to frame the workflow for tackling NLP research questions, particularly in terms of the collaborations needed among oncologists and informaticians. Much of the content covered remains as relevant today as it did 8 years ago, and I look forward to using my takeaways from this material in <a href="https://hutchdatascience.org/tr-analytics/">my own work at the Fred Hutch Cancer Center</a>.</p>
+<p>With context out of the way, let’s get started!</p>
+<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/paperAbstract.png" class="img-fluid"></p>
+<hr>
+<section id="oncology-focused-nlp" class="level2">
+<h2 class="anchored" data-anchor-id="oncology-focused-nlp">Oncology-focused NLP</h2>
+<p><strong>Natural Language Processing</strong> (NLP) refers to any computer-based algorithm that can handle, augment, and transform natural language so that it can be represented for computation.</p>
+<p>NLP is particularly attractive for clinical research applications for the following reasons. One can:</p>
+<ol type="1">
+<li>define new variables that are not readily available in electronic health records as stored values</li>
+<li>automate the process of reviewing clinical notes for patient diagnosis instead of requiring a resource-intensive manual review process.</li>
+<li>expedite biomedical discovery by empowering clinicians with the ability to analyze outcomes in the context of big data</li>
+</ol>
+<p>With respect to the field of oncology, NLP applications typically have the following objectives:</p>
+<ol type="1">
+<li><strong>Case identification:</strong> determine which patients may have a case of the disease of interest
+<ul>
+<li>Here, we process the free text from clinical notes to augment the diagnosis codes that correspond to a patient’s labeled set of diseases or symptoms</li>
+</ul></li>
+<li><strong>Staging:</strong> determine the stage of a patient’s cancer progress
+<ul>
+<li>Here, we process the free text from clinical notes to determine the stage of a patient’s cancer progression. This objective is more challenging than case identification because it is highly context-specific depending on the type of cancer.</li>
+</ul></li>
+<li><strong>Outcome determination:</strong> determine the patient’s ultimate outcome (cancer advancement vs.&nbsp;remission vs.&nbsp;death)
+<ul>
+<li>Here, we process the free text from clinical notes to determine the patient’s ultimate outcome (advancement vs.&nbsp;remission vs.&nbsp;death). This objective is the most challenging of the three because it essentially requires us to perform cancer staging with respect to time.</li>
+</ul></li>
+</ol>
+</section>
+<section id="the-role-of-the-oncologist" class="level2">
+<h2 class="anchored" data-anchor-id="the-role-of-the-oncologist">The role of the oncologist</h2>
+<p>As with many objectives in the domain of biomedical informatics, developing NLP systems for oncology applications requires significant involvement from a domain expert.</p>
+<p>An oncologist can contribute to the development of an NLP system in the following ways:</p>
+<ul>
+<li><strong>Project conception:</strong> using their domain expertise, an oncologist can devise practical and impactful applications of NLP</li>
+<li><strong>Corpus annotation:</strong> an oncologist can assist with annotation of training data by providing the “correct answers” for a body of text based upon a set of annotation guidelines.</li>
+<li><strong>System evaluation and error analysis:</strong> based on measures such as precision and recall, an oncologist can manually review true and false positives and negatives in the test data to help determine the strengths and weaknesses of the system</li>
+</ul>
+</section>
+<section id="nlp-tasks-and-strategies-for-oncology" class="level2">
+<h2 class="anchored" data-anchor-id="nlp-tasks-and-strategies-for-oncology">NLP tasks and strategies for oncology</h2>
+<p>Within the context of oncology, NLP is typically used for <strong>Information Extraction</strong> (IE). IE refers to the transformation of unstructured data into a structured form. IE encompasses multiple subtasks, including <strong>Named Entity Recognition</strong> (NER), <strong>Relation Extraction</strong> (RE), <strong>Text Classification</strong>, and <strong>Template Extraction</strong>.</p>
+<ul>
+<li>NER involves grouping words in a text and assigning them to a pre-defined “concept</li>
+<li>RE involves the assignment of relationships between entities</li>
+<li>Text Classification assigns categorical label for a body of text</li>
+<li>Template Extraction collects a set of related entities, relations, and labels to define a form for structured data.</li>
+</ul>
+<p>You can refer to figure 1 from the paper to see an example of clinical information extraction.</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/pytorch-brca/index_files/figure-html/cell-11-output-1.png" width="613" height="631" class="figure-img"></p>
+<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/nlp_fig1.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 1 from the manuscript - an example of free-text processing, IE, and text classification</figcaption>
 </figure>
 </div>
-</div>
-</div>
+<p>Strategies to tackle the above sub-tasks can be grouped into the following three buckets: rule-based, statistical, and hybrid approaches.</p>
+<ul>
+<li><strong>Rule-based</strong> approaches involve heuristic algorithms designed by domain specialists. They can be as simple as individual keyword look-ups or can be defined by complex conditional logic. When the defined rules are simple, rule-based approaches can significantly improve the interpretability of a model. However, if the rules are more complicated, the established model will lose interpretability and become harder to replicate or update.</li>
+<li><strong>Statistical</strong> (a.k.a machine learning) systems are algorithms designed to statistically maximize the probability of finding the correct answer based on the distribution of the training data. Such models are less prone to overfitting compared to rule-based approaches, and they can be easily adapted to new data. However, these models require an extensive amount of unbiased, representative training data to work accurately.</li>
+<li><strong>Hybrid</strong> approaches work to minimize the disadvantages of rule-based and statistical algorithms by combining these two methods.</li>
+</ul>
 </section>
-<section id="preparing-data-for-training-with-dataloaders" class="level3">
-<h3 class="anchored" data-anchor-id="preparing-data-for-training-with-dataloaders">Preparing data for training with <code>DataLoaders</code></h3>
-<p>While training a model, we typically want to pass samples in “minibatches”, reshuffle the data at every epoch to reduce model overfitting, and use Pythonic multiprocessing to speed up data retrieval. <code>DataLoader</code> is an iterable that abstracts this complexity for us in an easy API. We pass our input <code>Dataset</code> as an argument to <code>DataLoader</code>. This wraps an iterable over our dataset, supporting automatic batching, sampling, shuffling, and multiprocess data loading in the process.</p>
-<p>Here we define a batch size of 64 - each element in the <code>DataLoader</code> iterable will return a batch of 64 features and labels.</p>
-<div id="06fb0341" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">batch_size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">64</span></span>
-<span id="cb17-2"></span>
-<span id="cb17-3"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Create data loaders.</span></span>
-<span id="cb17-4">train_dataloader <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> DataLoader(training_data, batch_size<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>batch_size, shuffle<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>)</span>
-<span id="cb17-5">test_dataloader <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> DataLoader(test_data, batch_size<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>batch_size, shuffle<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span>)</span>
-<span id="cb17-6"></span>
-<span id="cb17-7"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> X, y <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> test_dataloader:</span>
-<span id="cb17-8">    <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Shape of X [N, C, H, W]: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>X<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>shape<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb17-9">    <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Shape of y: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>y<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>shape<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>y<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>dtype<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb17-10">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">break</span></span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Shape of X [N, C, H, W]: torch.Size([64, 1, 28, 28])
-Shape of y: torch.Size([64]) torch.int64</code></pre>
-</div>
-</div>
-</section>
-<section id="iterating-over-the-dataloader" class="level3">
-<h3 class="anchored" data-anchor-id="iterating-over-the-dataloader">Iterating over the <code>DataLoader</code></h3>
-<p>Now that we have loaded our data into a <code>DataLoader</code>, we can iterate through the dataset as needed (using <code>next(iter(DataLoader)</code>). Each iteration returns a batch of <code>train_features</code> and <code>train_labels</code> (containing <code>batch_size=64</code> features and labels respectively). Because we specified <code>shuffle=True</code>, the data are shuffled after we iterate over all of our batches.</p>
-<div id="87e3b6f8" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Display image and label.</span></span>
-<span id="cb19-2">train_features, train_labels <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">next</span>(<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">iter</span>(train_dataloader))</span>
-<span id="cb19-3"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Feature batch shape: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>train_features<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>size()<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb19-4"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Labels batch shape: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>train_labels<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>size()<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span>
-<span id="cb19-5">img <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> train_features[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>].squeeze()</span>
-<span id="cb19-6">label <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> train_labels[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>]</span>
-<span id="cb19-7">plt.imshow(img, cmap<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"gray"</span>)</span>
-<span id="cb19-8">plt.show()</span>
-<span id="cb19-9"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Label: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>label<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Feature batch shape: torch.Size([64, 1, 28, 28])
-Labels batch shape: torch.Size([64])
-Label: 8</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
+<section id="resources-needed-for-clinical-nlp" class="level2">
+<h2 class="anchored" data-anchor-id="resources-needed-for-clinical-nlp">Resources needed for clinical NLP</h2>
+<p>Creating an NLP system requires the use of three common related NLP resources: extraction tools, ontologies, and corpora.</p>
+<ul>
+<li><p><strong>Extraction tools</strong> refer to developed subsystems that can be used on new datasets with little to no modifications. Typical clinical NLP pipelines can involve the following tasks:</p>
+<ol type="1">
+<li>Section Identification: identifying sections is particularly useful for clinical notes, where different sections will contain different types of content</li>
+<li>Medical NER: this is a more specialized version of general English NER, taking into account acronyms, abbreviations, and synonyms that are common in medical text. Generally, out-of-the-box NER systems are usually insufficient, requiring the application of in-house rule-based and statistical NER systems. Two freely available development tools include MetaMap and the Mayo Clinical Text Analysis and Knowledge Extraction System</li>
+<li>Negation detection: this helps distinguish the phrase “patient has fever” from “patient has no signs of fever.” This can be a complicated task depending on the language used in the notes.</li>
+</ol>
+<ul>
+<li>Other common tasks in NLP pipelines include: coreference resolution, temporal classification, medication information extraction, family history extraction, assertion detection, and polarity detection. You can see some examples of these tasks in Figure 4 from the paper:</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/pytorch-brca/index_files/figure-html/cell-13-output-2.png" width="415" height="411" class="figure-img"></p>
+<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/nlp_fig4.png" class="img-fluid figure-img"></p>
+<figcaption>Fig 4 from the manuscript - examples of common tasks in NLP pipelines</figcaption>
 </figure>
 </div>
-</div>
-</div>
+<ul>
+<li><p><strong>Ontologies</strong> refer to knowledge bases that reference how various concepts are related to one another. The most basic form of an ontology could be a medical dictionary. A more complicated form of an ontology might involve a knowledge graph of concepts and their relationships.</p></li>
+<li><p><strong>Corpora</strong> are collections of (sometimes annotated) clinical text that can be used to train or test an NLP system. Some examples of publicly available de-identified medical corpora including the i2b2 challenge sets, the Conference and Laboratories of the Evaluation Forum datasets, the MIMIC-II corpus, the MIPACQ corpus, and <a href="http://MTSamples.com">MTSamples.com</a>.</p></li>
+</ul>
 </section>
+<section id="challenges-in-designing-an-nlp-system" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-in-designing-an-nlp-system">Challenges in designing an NLP system</h2>
+<p>We can create a desired NLP system by framing our desired objective (case identification, staging, or outcome prediction) as a series of NLP operations. For instance, a basic case identification task may involve NER followed by negation detection. On the other hand, an outcome prediction task may involve a simple NER task or a more complicated algorithm that identifies tumor sizes and associated dates before performing logic operations to deduce that a change took place.</p>
+<p>Ultimately, the final success of an NLP system will depend on two key points:</p>
+<ol type="1">
+<li><strong>how do you frame the problem at hand?</strong></li>
+<li><strong>how effective are the individual components of your pipeline?</strong></li>
+</ol>
+<p>Multiple challenges can affect the efficacy of your model. Firstly, creation of an NLP system requires careful planning and investment to develop an annotated text corpus for system training and testing. Model performance can also be highly variable depending on the task at hand – new larger, heterogeneous test data can challenge the accuracy of your system. Multiple iterations of software development are usually needed before you can arrive at a robust NLP product. Lastly, the data science mantra of “garbage in, garbage out” continues to ring true – the tools that you develop will only be as good the quality of the data that train the systems.</p>
 </section>
-<section id="modeling" class="level2">
-<h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
-<section id="defining-a-neural-network" class="level3">
-<h3 class="anchored" data-anchor-id="defining-a-neural-network">Defining a neural network</h3>
-<p>Neural networks comprise of layers/modules that perform operations on data. The <code>torch.nn</code> namespace provides all the building blocks you need to build your own neural network. Every module in PyTorch subclasses the <code>nn.Module</code>. A neural network is a module itself that consists of other modules (layers). This nested structure allows for building and managing complex architectures easily.</p>
-<p>To define a neural network in PyTorch, we create a class that inherits from <code>nn.Module</code>. We define the layers of the network in the <code>__init__</code> function and specify how data will pass through the network in the <code>forward</code> function.</p>
-<div id="872aac43" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Define model</span></span>
-<span id="cb21-2"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">class</span> NeuralNetwork(nn.Module):</span>
-<span id="cb21-3">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">__init__</span>(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>):</span>
-<span id="cb21-4">        <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">super</span>().<span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">__init__</span>()</span>
-<span id="cb21-5">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.flatten <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> nn.Flatten()</span>
-<span id="cb21-6">        <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.linear_relu_stack <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> nn.Sequential(</span>
-<span id="cb21-7">            nn.Linear(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">28</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">28</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">512</span>),</span>
-<span id="cb21-8">            nn.ReLU(),</span>
-<span id="cb21-9">            nn.Linear(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">512</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">512</span>),</span>
-<span id="cb21-10">            nn.ReLU(),</span>
-<span id="cb21-11">            nn.Linear(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">512</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">10</span>)</span>
-<span id="cb21-12">        )</span>
-<span id="cb21-13"></span>
-<span id="cb21-14">    <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> forward(<span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>, x):</span>
-<span id="cb21-15">        x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.flatten(x)</span>
-<span id="cb21-16">        logits <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">self</span>.linear_relu_stack(x)</span>
-<span id="cb21-17">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">return</span> logits</span></code></pre></div>
-</div>
-<p>Now that we’ve defined the structure of our <code>NeuralNetwork</code>, we can create an instance of it and move it to a faster device (GPU or MPS) if available to accelerate operations. We can also print its structure to see the layers that we’ve just defined.</p>
-<div id="aa0652a1" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1">model <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> NeuralNetwork().to(device)</span>
-<span id="cb22-2"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Model structure: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>model<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Model structure: NeuralNetwork(
-  (flatten): Flatten(start_dim=1, end_dim=-1)
-  (linear_relu_stack): Sequential(
-    (0): Linear(in_features=784, out_features=512, bias=True)
-    (1): ReLU()
-    (2): Linear(in_features=512, out_features=512, bias=True)
-    (3): ReLU()
-    (4): Linear(in_features=512, out_features=10, bias=True)
-  )
-)</code></pre>
-</div>
-</div>
-<p>Many layers inside a neural network are parameterized, meaning that they have associated weights and biases that are optimized during training. Subclassing <code>nn.Module</code> automatically tracks all fields defined inside your model object, and makes all parameters accessible using your model’s <code>parameters()</code> or <code>named_parameters()</code> methods.</p>
-<p>The linear layer is a module that applies a linear transformation on the input using its stored weights and biases. Non-linear activations are what create the complex mappings between the model’s inputs and outputs. They are applied after linear transformations to introduce nonlinearity, helping neural networks learn a wide variety of phenomena.</p>
-<p>In this model, we use <code>nn.ReLU</code> between our linear layers, but there are other options for activations to introduce non-linearity in your model.</p>
-<div id="bfc337f5" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> name, param <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> model.named_parameters():</span>
-<span id="cb24-2">    <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Layer: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>name<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> | Size: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>param<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">.</span>size()<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> | Values : </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>param[:<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2</span>]<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> </span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Layer: linear_relu_stack.0.weight | Size: torch.Size([512, 784]) | Values : tensor([[-0.0137,  0.0180, -0.0038,  ..., -0.0288,  0.0247,  0.0047],
-        [-0.0027, -0.0064,  0.0060,  ...,  0.0168,  0.0072,  0.0185]],
-       device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
-
-Layer: linear_relu_stack.0.bias | Size: torch.Size([512]) | Values : tensor([-0.0209,  0.0113], device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
-
-Layer: linear_relu_stack.2.weight | Size: torch.Size([512, 512]) | Values : tensor([[ 0.0398, -0.0057,  0.0337,  ...,  0.0392,  0.0286,  0.0139],
-        [-0.0359,  0.0057,  0.0314,  ..., -0.0165, -0.0135, -0.0054]],
-       device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
-
-Layer: linear_relu_stack.2.bias | Size: torch.Size([512]) | Values : tensor([-0.0152, -0.0237], device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
-
-Layer: linear_relu_stack.4.weight | Size: torch.Size([10, 512]) | Values : tensor([[ 0.0041,  0.0418,  0.0345,  ..., -0.0015, -0.0423, -0.0096],
-        [-0.0395,  0.0183, -0.0321,  ...,  0.0371, -0.0126, -0.0107]],
-       device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
-
-Layer: linear_relu_stack.4.bias | Size: torch.Size([10]) | Values : tensor([ 0.0070, -0.0366], device='mps:0', grad_fn=&lt;SliceBackward0&gt;) 
-</code></pre>
-</div>
-</div>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This concludes my overview of “Natural Language Processing in Oncology: A Review.” I look forward to covering more such papers in the future as I progress with my work in clinical NLP at the Hutch.</p>
 </section>
-<section id="optimizing-the-model-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="optimizing-the-model-parameters">Optimizing the Model Parameters</h3>
-<p>Now that we have our data and our model, it’s time to train, validate and test our model by optimizing its parameters on the input data! Training a model is an iterative process; in each iteration the model makes a guess about the output, calculates the error in its guess (loss), collects the derivatives of the error with respect to its parameters, and optimizes these parameters using gradient descent.</p>
-<section id="hyperparameters" class="level4">
-<h4 class="anchored" data-anchor-id="hyperparameters">Hyperparameters</h4>
-<p>Hyperparameters are adjustable parameters that let you control the model optimization process. Different hyperparameter values can impact model training and convergence rates.</p>
-<p>We define the following hyperparameters for training: - Number of Epochs - the number times to iterate over the dataset - Batch Size - the number of data samples propagated through the network before the parameters are updated - Learning Rate - how much to update models parameters at each batch/epoch. Smaller values yield slow learning speed, while large values may result in unpredictable behavior during training.</p>
-<div id="87b93a7e" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1">learning_rate <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1e-3</span></span>
-<span id="cb26-2">batch_size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">64</span></span>
-<span id="cb26-3">epochs <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span></span></code></pre></div>
-</div>
-</section>
-<section id="optimization-loop" class="level4">
-<h4 class="anchored" data-anchor-id="optimization-loop">Optimization Loop</h4>
-<p>To train our model, we need a loss function as well as an optimizer.</p>
-<p>Once we set our hyperparameters, we can then train and optimize our model with an optimization loop. Each iteration of the optimization loop is called an epoch.</p>
-<p>Each epoch consists of two main parts: - The Train Loop - iterate over the training dataset and try to converge to optimal parameters. - The Validation/Test Loop - iterate over the test dataset to check if model performance is improving.</p>
-<p>The loss function measures the degree of dissimilarity between an obtained result and the target value, and it is the loss function that we want to minimize during training. To calculate the loss we make a prediction using the inputs of our given data sample and compare it against the true data label value.</p>
-<p>Common loss functions include <code>nn.MSELoss</code> (Mean Square Error) for regression tasks, and <code>nn.NLLLoss</code> (Negative Log Likelihood) for classification. <code>nn.CrossEntropyLoss</code> combines <code>nn.LogSoftmax</code> and <code>nn.NLLLoss</code>.</p>
-<p>We pass our model’s output logits to <code>nn.CrossEntropyLoss</code>, which will normalize the logits and compute the prediction error.</p>
-<div id="21c2869c" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Initialize the loss function</span></span>
-<span id="cb27-2">loss_fn <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> nn.CrossEntropyLoss()</span></code></pre></div>
-</div>
-<p>Optimization is the process of adjusting model parameters to reduce model error in each training step. Optimization algorithms define how this process is performed (in this example we use Stochastic Gradient Descent). All optimization logic is encapsulated in the optimizer object. Here, we use the SGD optimizer; additionally, there are many different optimizers available in PyTorch such as ADAM and RMSProp, that work better for different kinds of models and data.</p>
-<p>We initialize the optimizer by registering the model’s parameters that need to be trained, and passing in the learning rate hyperparameter.</p>
-<div id="c49809b7" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1">optimizer <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> torch.optim.SGD(model.parameters(), lr<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span>learning_rate)</span></code></pre></div>
-</div>
-<p>Inside the training loop, optimization happens in three steps: - Call <code>optimizer.zero_grad()</code> to reset the gradients of model parameters. Gradients by default add up; to prevent double-counting, we explicitly zero them at each iteration. - Backpropagate the prediction loss with a call to <code>loss.backward()</code>. PyTorch deposits the gradients of the loss w.r.t. each parameter. - Once we have our gradients, we call <code>optimizer.step()</code> to adjust the parameters by the gradients collected in the backward pass.</p>
-</section>
-<section id="full-implementation" class="level4">
-<h4 class="anchored" data-anchor-id="full-implementation">Full Implementation</h4>
-<p>We define <code>train_loop</code> that loops over our optimization code, and <code>test_loop</code> that evaluates the model’s performance against our test data.</p>
-<div id="72f292ed" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> train_loop(dataloader, model, loss_fn, optimizer):</span>
-<span id="cb29-2">    size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(dataloader.dataset)</span>
-<span id="cb29-3">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Set the model to training mode - important for batch normalization and dropout layers</span></span>
-<span id="cb29-4">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Unnecessary in this situation but added for best practices</span></span>
-<span id="cb29-5">    model.train()</span>
-<span id="cb29-6">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> batch, (X, y) <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">enumerate</span>(dataloader):</span>
-<span id="cb29-7">        X <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> X.to(device)</span>
-<span id="cb29-8">        y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> y.to(device)</span>
-<span id="cb29-9">        </span>
-<span id="cb29-10">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Compute prediction and loss</span></span>
-<span id="cb29-11">        pred <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> model(X)</span>
-<span id="cb29-12">        loss <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> loss_fn(pred, y)</span>
-<span id="cb29-13"></span>
-<span id="cb29-14">        <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Backpropagation</span></span>
-<span id="cb29-15">        loss.backward()</span>
-<span id="cb29-16">        optimizer.step()</span>
-<span id="cb29-17">        optimizer.zero_grad()</span>
-<span id="cb29-18"></span>
-<span id="cb29-19">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">if</span> batch <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>:</span>
-<span id="cb29-20">            loss, current <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> loss.item(), batch <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span> batch_size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(X)</span>
-<span id="cb29-21">            <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"loss: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>loss<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:&gt;7f}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">  [</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>current<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:&gt;5d}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>size<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:&gt;5d}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">]"</span>)</span>
-<span id="cb29-22"></span>
-<span id="cb29-23"><span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">def</span> test_loop(dataloader, model, loss_fn):</span>
-<span id="cb29-24">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Set the model to evaluation mode - important for batch normalization and dropout layers</span></span>
-<span id="cb29-25">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Unnecessary in this situation but added for best practices</span></span>
-<span id="cb29-26">    model.<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">eval</span>()</span>
-<span id="cb29-27">    size <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(dataloader.dataset)</span>
-<span id="cb29-28">    num_batches <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">len</span>(dataloader)</span>
-<span id="cb29-29">    test_loss, correct <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span></span>
-<span id="cb29-30"></span>
-<span id="cb29-31">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Evaluating the model with torch.no_grad() ensures that no gradients are computed during test mode</span></span>
-<span id="cb29-32">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># also serves to reduce unnecessary gradient computations and memory usage for tensors with requires_grad=True</span></span>
-<span id="cb29-33">    <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">with</span> torch.no_grad():</span>
-<span id="cb29-34">        <span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> X, y <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> dataloader:</span>
-<span id="cb29-35">            X <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> X.to(device)</span>
-<span id="cb29-36">            y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> y.to(device)</span>
-<span id="cb29-37">        </span>
-<span id="cb29-38">            pred <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> model(X)</span>
-<span id="cb29-39">            test_loss <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+=</span> loss_fn(pred, y).item()</span>
-<span id="cb29-40">            correct <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+=</span> (pred.argmax(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>) <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">==</span> y).<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">type</span>(torch.<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">float</span>).<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">sum</span>().item()</span>
-<span id="cb29-41"></span>
-<span id="cb29-42">    test_loss <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/=</span> num_batches</span>
-<span id="cb29-43">    correct <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">/=</span> size</span>
-<span id="cb29-44">    <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Test Error: </span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> Accuracy: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">*</span>correct)<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:&gt;0.1f}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">%, Avg loss: </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>test_loss<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">:&gt;8f}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;"> </span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>)</span></code></pre></div>
-</div>
-<p>In a single training loop, the model makes predictions on the training dataset (fed to it in batches), and then backpropagates the prediction error to adjust the model’s parameters.</p>
-<p>We can also check the model’s performance against the test dataset to ensure it is learning.</p>
-<p>The training process is conducted over several iterations (epochs). During each epoch, the model learns parameters to make better predictions. We print the model’s accuracy and loss at each epoch; we’d like to see the accuracy increase and the loss decrease with every epoch.</p>
-<div id="c0c2611b" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> t <span class="kw" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">range</span>(epochs):</span>
-<span id="cb30-2">    <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f"Epoch </span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>t<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">-------------------------------"</span>)</span>
-<span id="cb30-3">    train_loop(train_dataloader, model, loss_fn, optimizer)</span>
-<span id="cb30-4">    test_loop(test_dataloader, model, loss_fn)</span>
-<span id="cb30-5"><span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Done!"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Epoch 1
--------------------------------
-loss: 2.313123  [   64/60000]
-loss: 2.285968  [ 6464/60000]
-loss: 2.279950  [12864/60000]
-loss: 2.261608  [19264/60000]
-loss: 2.234406  [25664/60000]
-loss: 2.228365  [32064/60000]
-loss: 2.181631  [38464/60000]
-loss: 2.178308  [44864/60000]
-loss: 2.168746  [51264/60000]
-loss: 2.135072  [57664/60000]
-Test Error: 
- Accuracy: 36.4%, Avg loss: 2.136111 
-
-Epoch 2
--------------------------------
-loss: 2.136322  [   64/60000]
-loss: 2.113021  [ 6464/60000]
-loss: 2.088278  [12864/60000]
-loss: 2.043051  [19264/60000]
-loss: 2.046329  [25664/60000]
-loss: 2.025762  [32064/60000]
-loss: 1.939848  [38464/60000]
-loss: 1.940282  [44864/60000]
-loss: 1.881336  [51264/60000]
-loss: 1.876047  [57664/60000]
-Test Error: 
- Accuracy: 56.8%, Avg loss: 1.832395 
-
-Epoch 3
--------------------------------
-loss: 1.842130  [   64/60000]
-loss: 1.771711  [ 6464/60000]
-loss: 1.715626  [12864/60000]
-loss: 1.661744  [19264/60000]
-loss: 1.599232  [25664/60000]
-loss: 1.558062  [32064/60000]
-loss: 1.587824  [38464/60000]
-loss: 1.659741  [44864/60000]
-loss: 1.540324  [51264/60000]
-loss: 1.457054  [57664/60000]
-Test Error: 
- Accuracy: 62.3%, Avg loss: 1.464174 
-
-Epoch 4
--------------------------------
-loss: 1.465014  [   64/60000]
-loss: 1.422204  [ 6464/60000]
-loss: 1.399371  [12864/60000]
-loss: 1.378896  [19264/60000]
-loss: 1.340550  [25664/60000]
-loss: 1.292807  [32064/60000]
-loss: 1.194880  [38464/60000]
-loss: 1.318207  [44864/60000]
-loss: 1.210237  [51264/60000]
-loss: 1.319617  [57664/60000]
-Test Error: 
- Accuracy: 63.7%, Avg loss: 1.218638 
-
-Epoch 5
--------------------------------
-loss: 1.151209  [   64/60000]
-loss: 1.275276  [ 6464/60000]
-loss: 1.121574  [12864/60000]
-loss: 1.157526  [19264/60000]
-loss: 1.165031  [25664/60000]
-loss: 1.169642  [32064/60000]
-loss: 1.062104  [38464/60000]
-loss: 1.159328  [44864/60000]
-loss: 1.061364  [51264/60000]
-loss: 1.091813  [57664/60000]
-Test Error: 
- Accuracy: 64.7%, Avg loss: 1.065644 
-
-Done!</code></pre>
-</div>
-</div>
-<p>We can now use this model to make individual predictions.</p>
-<p>To use the model, we pass it the input data. This executes the model’s <code>forward</code>, along with some background operations. Note that we do not call <code>model.forward()</code> directly!</p>
-<div id="d4472324" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1">classes <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> [</span>
-<span id="cb32-2">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"T-shirt/top"</span>,</span>
-<span id="cb32-3">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Trouser"</span>,</span>
-<span id="cb32-4">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Pullover"</span>,</span>
-<span id="cb32-5">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Dress"</span>,</span>
-<span id="cb32-6">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Coat"</span>,</span>
-<span id="cb32-7">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Sandal"</span>,</span>
-<span id="cb32-8">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Shirt"</span>,</span>
-<span id="cb32-9">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Sneaker"</span>,</span>
-<span id="cb32-10">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Bag"</span>,</span>
-<span id="cb32-11">    <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Ankle boot"</span>,</span>
-<span id="cb32-12">]</span>
-<span id="cb32-13"></span>
-<span id="cb32-14">model.<span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">eval</span>()</span>
-<span id="cb32-15">x, y <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> test_data[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>][<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>], test_data[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>][<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1</span>]</span>
-<span id="cb32-16"><span class="cf" style="color: #003B4F;
-background-color: null;
-font-weight: bold;
-font-style: inherit;">with</span> torch.no_grad():</span>
-<span id="cb32-17">    x <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> x.to(device)</span>
-<span id="cb32-18">    pred <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> model(x)</span>
-<span id="cb32-19">    predicted, actual <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> classes[pred[<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>].argmax(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>)], classes[y]</span>
-<span id="cb32-20">    <span class="bu" style="color: null;
-background-color: null;
-font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">f'Predicted: "</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>predicted<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">", Actual: "</span><span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">{</span>actual<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">}</span><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"'</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Predicted: "Ankle boot", Actual: "Ankle boot"</code></pre>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="summary" class="level1">
-<h1>Summary</h1>
-<p>This concludes my walkthrough of using basic PyTorch to process data and train a neural network. As mentioned, in a future post in the coming weeks, I will iterate on this pipeline, demonstrating a different neural network architecture and more data exploration for a different dataset. Until next time, [VS]Coders!</p>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/27124593/">“Natural Language Processing in Oncology: A Review”</a></li>
+</ul>
 
 
 </section>
 
  ]]></description>
-  <category>Tutorials</category>
-  <guid>https://vsriram24.github.io/posts/pytorch-brca/</guid>
+  <category>Overviews</category>
+  <guid>https://vsriram24.github.io/posts/nlp-oncology-overview/</guid>
   <pubDate>Mon, 19 Aug 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/pytorch-brca/zolaCake.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://vsriram24.github.io/posts/nlp-oncology-overview/minnesota.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Factor analysis for multiomics data with MOFA2</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/multiomics-fa/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In this week’s blog, I’ll be providing a brief overview on multiomic data and the utility of factor analysis. I will also summarize a tutorial and case study developed by Alex Gurbych from blackthorn.ai that highlights how to perform factor analysis using the Bioconductor package <code>MOFA2</code>. You can review Alex’s original tutorial <a href="https://levelup.gitconnected.com/multi-omics-analysis-3857956a7a3d">here</a>. With context out of the way, let’s get started!</p>
+<hr>
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>In the following workflow, we will derive biological insights from a multiomic dataset through the application of factor analysis with the <code>MOFA2</code> package. Before we get into our case study example, let’s go over some definitions.</p>
+<section id="multiomics" class="level2">
+<h2 class="anchored" data-anchor-id="multiomics">1.1. Multiomics</h2>
+<p><strong>Multiomics</strong> refers to a biological analysis approach that considers multiple data modalities concurrently to study a biological system holistically. The individual data modalities of multiomic analysis, also known as <em>’omes</em>, are comprised of large-scale data and typically summarize the entire set of biomolecules for an organism. Some examples of individual ’omes include the genome, proteome, transcriptome, epigenome, and phenome.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/kimLabOmics.PNG" class="img-fluid figure-img"></p>
+<figcaption>An overview of how multiomic data can lend itself to precision medicine applications - Dokyoon Kim Lab for Integrative ’Omics and Biomedical Informatics at the University of Pennsylvania</figcaption>
+</figure>
+</div>
+<p>Multiomic studies can lend themselves to the improved characterization of biological processes across molecular layers. By integrating multiple ’omes together, researchers can analyze complex biological big data to find novel associations between biological entities, pinpoint relevant biomarkers, and build elaborate markers of disease and physiology.</p>
+<p>Motivated by this improved ability to represent the underlying biology of a system, multiomic profiling has been increasingly applied across a variety of biological domains, including cancer biology, regulatory genomics, microbiology, and host‐pathogen biology. A common aim of these applications is to characterize heterogeneity between samples, as manifested in one or several of the data modalities. Multiomic profiling is particularly appealing if the relevant axes of variation are not known beforehand, and hence may be missed by studies that consider a single data modality or targeted approaches. One approach to capture the relevant axes of variation in a biological system is <em>factor analysis</em>.</p>
+</section>
+<section id="factor-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="factor-analysis">1.2. Factor analysis</h2>
+<p><strong>Factor analysis</strong> is a statistical method that summarizes the variability across observed, correlated variables in a smaller set of variables. These newly generated variables correspond to the ‘factors’ of the original data - they are generated by determining linear combinations of the observed variables and adding small fixed deviations. Correlations between the factors of an input set of predictors and an output response variable can reveal previously unobserved latent axes of variation that affect the response of the data. Thus, the main goal of factor analysis is to identify hidden variables and evaluate their correlations with output variables of interest.</p>
+</section>
+<section id="mofa2" class="level2">
+<h2 class="anchored" data-anchor-id="mofa2">1.3. <code>MOFA2</code></h2>
+<p>Given the utility of factor analysis for the identification of relevant axes of variation in biological systems, it becomes particularly beneficial to have a simple method for integrating and analyzing multiomic data in this manner - <em>Multiomic Factor Analysis (MOFA)</em> offers one such option.</p>
+<p><strong>MOFA</strong> is a probabilistic factor model that performs unsupervised integration of multiple modalities of omics data and discovers the principal axes of variation in multiomic data sets. Intuitively, MOFA can be viewed as a versatile and statistically rigorous generalization of principal component analysis (PCA) for multiomics data. MOFA infers a set of hidden factors that capture biological and technical sources of variability. It disentangles axes of heterogeneity that are shared across multiple modalities as well as those specific to individual data modalities. The learnt factors enable a variety of downstream analyses, including identification of sample subgroups, data imputation and the detection of outlier samples. The inferred factor loadings can be sparse, thereby facilitating the linkage between the factors and the most relevant molecular features. Importantly, MOFA disentangles to what extent each factor is unique to a single data modality or is manifested in multiple modalities, thereby revealing shared axes of variation between the different omics layers. Once trained, the model output can be used for a range of downstream analyses, including visualization, clustering, and classification of samples in the low‐dimensional spaces spanned by the factors.</p>
+<p>You can read more about the <code>MOFA2</code> package on its Bioconducter documentation page <a href="https://www.bioconductor.org/packages/release/bioc/html/MOFA2.html">here</a>.</p>
+</section>
+</section>
+<section id="dataset-description" class="level1">
+<h1>2. Dataset description</h1>
+<p>With background on multiomics and factor analysis covered, let’s jump into our case study: multiomics factor analysis for a dataset of cancer patients.</p>
+<p>For our example dataset, we will make use of a cohort of 200 patients diagnosed with chronic lymphocytic leukemia (CLL). The CLL dataset can be downloaded for free from <a href="https://bioconductor.org/packages/release/data/experiment/html/BloodCancerMultiOmics2017.html">here</a>.</p>
+<p>The CLL dataset we will be using consists of four data modalities:</p>
+<ul>
+<li><p>genomics (somatic mutations)</p></li>
+<li><p>epigenomics (DNA methylation)</p></li>
+<li><p>transcriptomics (RNA-seq)</p></li>
+<li><p>phenotypes (drug response).</p></li>
+</ul>
+<p>Around 40% of the feature values are absent.</p>
+<p>Let’s start by importing the required libraries:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">setwd</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"~/Documents/Developer/vsriram24.github.io/posts/multiomics-fa"</span>)</span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(data.table)</span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(MOFA2)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(MOFAdata)</span></code></pre></div>
+</div>
+<p>Now, we import the CLL dataset. Data are stored as a list of matrices with features as rows and samples as columns. We can use the <code>lapply</code> function to get the number of features and samples for each “’ome” in our data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">utils<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CLL_data"</span>)</span>
+<span id="cb2-2"></span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lapply</span>(</span>
+<span id="cb2-4">  CLL_data, </span>
+<span id="cb2-5">  dim</span>
+<span id="cb2-6">)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Drugs
+[1] 310 200
+
+$Methylation
+[1] 4248  200
+
+$mRNA
+[1] 5000  200
+
+$Mutations
+[1]  69 200</code></pre>
+</div>
+</div>
+</section>
+<section id="model-training" class="level1">
+<h1>3. Model training</h1>
+<p>With our data uploaded into our environment, we can begin to fit a model. We start by creating a new <code>MOFA</code> model for our data using the <code>create_mofa</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">MOFAobject <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">create_mofa</span>(CLL_data)</span></code></pre></div>
+</div>
+<p>We can visualize the number of features and samples in our data as well as missing values using the <code>plot_data_overview</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_data_overview</span>(MOFAobject)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the above figure, <code>D</code> tells us the number of features for each data modality, while <code>N</code> represents the number of samples. Missing data are represented by gray bars.</p>
+<p>With our model initialized, we can set various options to customize the way that we train it on our data. In our case, we will specify that we want to generate 15 factors, and that we want to set the maximum number of model training iterations to be 100.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">data_opts <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">get_default_data_options</span>(MOFAobject)</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">model_opts <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">get_default_model_options</span>(MOFAobject) </span>
+<span id="cb6-4">model_opts<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>num_factors <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span></span>
+<span id="cb6-5"></span>
+<span id="cb6-6">train_opts <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">get_default_training_options</span>(MOFAobject)</span>
+<span id="cb6-7">train_opts<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>seed <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb6-8">train_opts<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>save_interrupted <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span id="cb6-9">train_opts<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>maxiter <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span>
+<span id="cb6-10">train_opts<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>convergence_mode <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"slow"</span></span></code></pre></div>
+</div>
+<p>Finally, with our options specified, we can go ahead and train our model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">MOFAobject <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">prepare_mofa</span>(</span>
+<span id="cb7-2">  MOFAobject,</span>
+<span id="cb7-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">training_options =</span> train_opts,</span>
+<span id="cb7-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">model_options =</span> model_opts,</span>
+<span id="cb7-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data_options =</span> data_opts</span>
+<span id="cb7-6">)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Checking data options...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Checking training options...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Checking model options...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">MOFAobject_trained <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">run_mofa</span>(</span>
+<span id="cb11-2">  MOFAobject,</span>
+<span id="cb11-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">outfile =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MOFA2_CLL_trained.hdf5"</span></span>
+<span id="cb11-4">)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Output file MOFA2_CLL_trained.hdf5 already exists, it will be replaced</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Connecting to the mofapy2 python package using reticulate (use_basilisk = FALSE)... 
+    Please make sure to manually specify the right python binary when loading R with reticulate::use_python(..., force=TRUE) or the right conda environment with reticulate::use_condaenv(..., force=TRUE)
+    If you prefer to let us automatically install a conda environment with 'mofapy2' installed using the 'basilisk' package, please use the argument 'use_basilisk = TRUE'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+        #########################################################
+        ###           __  __  ____  ______                    ### 
+        ###          |  \/  |/ __ \|  ____/\    _             ### 
+        ###          | \  / | |  | | |__ /  \ _| |_           ### 
+        ###          | |\/| | |  | |  __/ /\ \_   _|          ###
+        ###          | |  | | |__| | | / ____ \|_|            ###
+        ###          |_|  |_|\____/|_|/_/    \_\              ###
+        ###                                                   ### 
+        ######################################################### 
+       
+ 
+        
+use_float32 set to True: replacing float64 arrays by float32 arrays to speed up computations...
+
+Successfully loaded view='Drugs' group='group1' with N=200 samples and D=310 features...
+Successfully loaded view='Methylation' group='group1' with N=200 samples and D=4248 features...
+Successfully loaded view='mRNA' group='group1' with N=200 samples and D=5000 features...
+Successfully loaded view='Mutations' group='group1' with N=200 samples and D=69 features...
+
+
+Model options:
+- Automatic Relevance Determination prior on the factors: False
+- Automatic Relevance Determination prior on the weights: True
+- Spike-and-slab prior on the factors: False
+- Spike-and-slab prior on the weights: False
+Likelihoods:
+- View 0 (Drugs): gaussian
+- View 1 (Methylation): gaussian
+- View 2 (mRNA): gaussian
+- View 3 (Mutations): gaussian
+
+
+
+
+######################################
+## Training the model with seed 1 ##
+######################################
+
+
+ELBO before training: -19615100.54 
+
+Iteration 1: time=0.58, ELBO=-3087652.10, deltaELBO=16527448.442 (84.25880055%), Factors=15
+Iteration 2: time=0.55, Factors=15
+Iteration 3: time=0.52, Factors=15
+Iteration 4: time=0.56, Factors=15
+Iteration 5: time=0.50, Factors=15
+Iteration 6: time=0.42, ELBO=-2873482.21, deltaELBO=214169.888 (1.09186230%), Factors=15
+Iteration 7: time=0.44, Factors=15
+Iteration 8: time=0.49, Factors=15
+Iteration 9: time=0.47, Factors=15
+Iteration 10: time=0.40, Factors=15
+Iteration 11: time=0.54, ELBO=-2867923.23, deltaELBO=5558.977 (0.02834029%), Factors=15
+Iteration 12: time=0.47, Factors=15
+Iteration 13: time=0.41, Factors=15
+Iteration 14: time=0.39, Factors=15
+Iteration 15: time=0.53, Factors=15
+Iteration 16: time=0.50, ELBO=-2865486.12, deltaELBO=2437.114 (0.01242468%), Factors=15
+Iteration 17: time=0.63, Factors=15
+Iteration 18: time=0.97, Factors=15
+Iteration 19: time=1.05, Factors=15
+Iteration 20: time=0.54, Factors=15
+Iteration 21: time=0.53, ELBO=-2863390.64, deltaELBO=2095.482 (0.01068300%), Factors=15
+Iteration 22: time=0.46, Factors=15
+Iteration 23: time=0.44, Factors=15
+Iteration 24: time=0.59, Factors=15
+Iteration 25: time=0.46, Factors=15
+Iteration 26: time=0.46, ELBO=-2862445.15, deltaELBO=945.491 (0.00482022%), Factors=15
+Iteration 27: time=0.49, Factors=15
+Iteration 28: time=0.55, Factors=15
+Iteration 29: time=0.58, Factors=15
+Iteration 30: time=0.38, Factors=15
+Iteration 31: time=0.31, ELBO=-2861818.14, deltaELBO=627.006 (0.00319655%), Factors=15
+Iteration 32: time=0.39, Factors=15
+Iteration 33: time=0.31, Factors=15
+Iteration 34: time=0.34, Factors=15
+Iteration 35: time=0.46, Factors=15
+Iteration 36: time=0.41, ELBO=-2861358.43, deltaELBO=459.708 (0.00234364%), Factors=15
+Iteration 37: time=0.54, Factors=15
+Iteration 38: time=0.32, Factors=15
+Iteration 39: time=0.36, Factors=15
+Iteration 40: time=0.30, Factors=15
+Iteration 41: time=0.45, ELBO=-2860993.31, deltaELBO=365.123 (0.00186144%), Factors=15
+Iteration 42: time=0.28, Factors=15
+Iteration 43: time=0.29, Factors=15
+Iteration 44: time=0.30, Factors=15
+Iteration 45: time=0.30, Factors=15
+Iteration 46: time=0.25, ELBO=-2860681.72, deltaELBO=311.589 (0.00158852%), Factors=15
+Iteration 47: time=0.25, Factors=15
+Iteration 48: time=0.24, Factors=15
+Iteration 49: time=0.28, Factors=15
+Iteration 50: time=0.26, Factors=15
+Iteration 51: time=0.27, ELBO=-2860392.99, deltaELBO=288.726 (0.00147196%), Factors=15
+Iteration 52: time=0.29, Factors=15
+Iteration 53: time=0.26, Factors=15
+Iteration 54: time=0.26, Factors=15
+Iteration 55: time=0.26, Factors=15
+Iteration 56: time=0.30, ELBO=-2860101.84, deltaELBO=291.150 (0.00148432%), Factors=15
+Iteration 57: time=0.29, Factors=15
+Iteration 58: time=0.25, Factors=15
+Iteration 59: time=0.29, Factors=15
+Iteration 60: time=0.39, Factors=15
+Iteration 61: time=0.26, ELBO=-2859789.25, deltaELBO=312.592 (0.00159363%), Factors=15
+Iteration 62: time=0.26, Factors=15
+Iteration 63: time=0.28, Factors=15
+Iteration 64: time=0.28, Factors=15
+Iteration 65: time=0.23, Factors=15
+Iteration 66: time=0.29, ELBO=-2859453.86, deltaELBO=335.396 (0.00170989%), Factors=15
+Iteration 67: time=0.27, Factors=15
+Iteration 68: time=0.25, Factors=15
+Iteration 69: time=0.25, Factors=15
+Iteration 70: time=0.24, Factors=15
+Iteration 71: time=0.28, ELBO=-2859111.11, deltaELBO=342.743 (0.00174734%), Factors=15
+Iteration 72: time=0.26, Factors=15
+Iteration 73: time=0.25, Factors=15
+Iteration 74: time=0.28, Factors=15
+Iteration 75: time=0.27, Factors=15
+Iteration 76: time=0.26, ELBO=-2858782.22, deltaELBO=328.898 (0.00167676%), Factors=15
+Iteration 77: time=0.25, Factors=15
+Iteration 78: time=0.28, Factors=15
+Iteration 79: time=0.31, Factors=15
+Iteration 80: time=0.29, Factors=15
+Iteration 81: time=0.29, ELBO=-2858489.40, deltaELBO=292.820 (0.00149283%), Factors=15
+Iteration 82: time=0.29, Factors=15
+Iteration 83: time=0.28, Factors=15
+Iteration 84: time=0.28, Factors=15
+Iteration 85: time=0.27, Factors=15
+Iteration 86: time=0.33, ELBO=-2858247.17, deltaELBO=242.225 (0.00123489%), Factors=15
+Iteration 87: time=0.28, Factors=15
+Iteration 88: time=0.25, Factors=15
+Iteration 89: time=0.33, Factors=15
+Iteration 90: time=0.26, Factors=15
+Iteration 91: time=0.28, ELBO=-2858055.75, deltaELBO=191.417 (0.00097587%), Factors=15
+Iteration 92: time=0.29, Factors=15
+Iteration 93: time=0.26, Factors=15
+Iteration 94: time=0.26, Factors=15
+Iteration 95: time=0.27, Factors=15
+Iteration 96: time=0.32, ELBO=-2857907.84, deltaELBO=147.911 (0.00075407%), Factors=15
+Iteration 97: time=0.26, Factors=15
+Iteration 98: time=0.25, Factors=15
+Iteration 99: time=0.27, Factors=15
+
+
+#######################
+## Training finished ##
+#######################
+
+
+Warning: Output file MOFA2_CLL_trained.hdf5 already exists, it will be replaced
+Saving model in MOFA2_CLL_trained.hdf5...</code></pre>
+</div>
+</div>
+<p>Our model has been successfully trained!</p>
+</section>
+<section id="postprocessing" class="level1">
+<h1>4. Postprocessing</h1>
+<section id="add-sample-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="add-sample-metadata">4.1. Add sample metadata</h2>
+<p>Now that we have trained our model on our data, we can incorporate metadata from the input dataset to evaluate correlations between our different ’omes and additional variables. Let’s get data for age, sex, death status, and treatment status:</p>
+<ul>
+<li><p>Age: age in years</p></li>
+<li><p>Died: (T/F) did the patient die?</p></li>
+<li><p>Sex: (M/F)</p></li>
+<li><p>treatedAfter: (T/F) was the patient treated after?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Load sample metadata</span></span>
+<span id="cb15-2">CLL_metadata <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fread</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ftp://ftp.ebi.ac.uk/pub/databases/mofa/cll_vignette/sample_metadata.txt"</span>)</span>
+<span id="cb15-3"></span>
+<span id="cb15-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add sample metadata to the model</span></span>
+<span id="cb15-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">samples_metadata</span>(MOFAobject_trained) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> CLL_metadata</span></code></pre></div>
+</div>
+</section>
+<section id="correlation-analysis-of-factors" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-analysis-of-factors">4.2. Correlation analysis of factors</h2>
+<p>In order for our model to work accurately, we must ensure that the factors that we have generated are not correlated with one another. If we observe significant correlations between factors, we either used too many factors or performed and insufficient amount of normalization. We can visualize correlations across factors using the <code>plot_factor_cor</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_factor_cor</span>(MOFAobject_trained)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see from our figure that our generated factors show no significant correlations with one another.</p>
+</section>
+</section>
+<section id="variance-breakdown" class="level1">
+<h1>5. Variance Breakdown</h1>
+<section id="explained-variance-decomposition-by-factor" class="level2">
+<h2 class="anchored" data-anchor-id="explained-variance-decomposition-by-factor">5.1. Explained variance decomposition by factor</h2>
+<p>We can use the <code>plot_variance_explained</code> function to determine how much of the variance in each of our individual data modalities is explained by each of our factors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_variance_explained</span>(</span>
+<span id="cb17-2">  MOFAobject_trained, </span>
+<span id="cb17-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max_r2 =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span></span>
+<span id="cb17-4">)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From our explained variance plot, we can see that Factor 1 explains a high amount of variance across all four of our data modalities. Factor 2 explained a high amount of variance for drug response, Factor 3 explains a high amount of variance for drug response, transcriptomics, and genomics, and Factor 4 explains a high amount of variance for transcriptomics.</p>
+</section>
+<section id="explained-variance-per-omic-modality" class="level2">
+<h2 class="anchored" data-anchor-id="explained-variance-per-omic-modality">5.2. Explained variance per omic modality</h2>
+<p>We can also use the <code>plot_variance_explained</code> function to determine the amount of variance that is explained across our four data modalities given all 15 factors in our model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_variance_explained</span>(</span>
+<span id="cb18-2">  MOFAobject_trained,</span>
+<span id="cb18-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot_total =</span> T</span>
+<span id="cb18-4">)[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]]</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here, we can see that the phenotypic and transcriptomic modalities have more variance explained by our model than the genomic or epigenomic modalities.</p>
+</section>
+</section>
+<section id="factor-association-analysis" class="level1">
+<h1>6. Factor association analysis</h1>
+<p>We can now compare our generated factors to metadata from our input data to see if we capture any associations with variables related to CLL. Here, we generate correlation plots using the <code>correlate_factors_with_covariates</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">correlate_factors_with_covariates</span>(</span>
+<span id="cb19-2">  MOFAobject_trained, </span>
+<span id="cb19-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">covariates =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Gender"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"died"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"age"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"treatedAfter"</span>), </span>
+<span id="cb19-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"log_pval"</span></span>
+<span id="cb19-5">)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It appears that most of our factors have an association with at least one of our covariates under consideration.</p>
+</section>
+<section id="zooming-in-on-an-individual-factor" class="level1">
+<h1>7. Zooming in on an individual factor</h1>
+<section id="factor-values" class="level2">
+<h2 class="anchored" data-anchor-id="factor-values">7.1. Factor values</h2>
+<p>We can make use of the <code>plot_factor</code> function to evaluate how the data points in our dataset are distributed with respect to a factor of choice.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_factor</span>(</span>
+<span id="cb20-2">  MOFAobject_trained,</span>
+<span id="cb20-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dodge =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb20-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">add_violin =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb20-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">factors=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>)</span>
+<span id="cb20-6">)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="factor-1s-association-with-the-genomic-data-modality" class="level2">
+<h2 class="anchored" data-anchor-id="factor-1s-association-with-the-genomic-data-modality">7.2. Factor 1’s association with the genomic data modality</h2>
+<p>We can use the <code>plot_weights</code> function to determine how different factors are weighted with respect to the features in our data. In the following graph, we focus on the influence of Factor 1 on features present in the genomic data modality. Features with a higher weight represent a stronger association with the factor of interest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_weights</span>(</span>
+<span id="cb21-2">  MOFAobject_trained,</span>
+<span id="cb21-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">view =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Mutations"</span>,</span>
+<span id="cb21-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">factor=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb21-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nfeatures =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>,</span>
+<span id="cb21-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">scale =</span> T</span>
+<span id="cb21-7">)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From this graph, we can see that most features have a weight of 0 with respect to Factor 1, indicating a lack of association with the factor. However, IGHV (immunoglobulin heavy chain variable) has a weight close to 1 with respect to Factor 1. Indeed, mutations in the genetic region are a main clinical marker for CLL!</p>
+<p>The <code>plot_top_weights</code> function lets us visualize this same output, sorted by absolute value of the weight:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_top_weights</span>(</span>
+<span id="cb22-2">  MOFAobject_trained,</span>
+<span id="cb22-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">view =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Mutations"</span>,</span>
+<span id="cb22-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nfeatures =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>,</span>
+<span id="cb22-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">scale =</span> T,</span>
+<span id="cb22-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">factor=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb22-7">)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Once again, we can see that the weight for IGHV with respect to Factor 1 far exceeds the weights for any other genomic features in our dataset.</p>
+<p>Based on these results, we’d expect to see that samples that have a high positive value for Factor 1 will have IGHV mutations. To confirm this hypothesis, let’s plot the distribution of factor 1 values, colored by IGHV mutation status:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_factor</span>(</span>
+<span id="cb23-2">  MOFAobject_trained,</span>
+<span id="cb23-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dodge =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb23-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">add_violin =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb23-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color_by =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"IGHV"</span>,</span>
+<span id="cb23-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">factors =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb23-7">)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It does seem like our Factor 1 values correlate with presence/absence of IGHV mutation!</p>
+</section>
+<section id="factor-1s-association-with-the-transcriptomic-data-modality" class="level2">
+<h2 class="anchored" data-anchor-id="factor-1s-association-with-the-transcriptomic-data-modality">7.3. Factor 1’s association with the transcriptomic data modality</h2>
+<p>From the variance explained plot we know that Factor 1 drives variation across all four of our data modalities. Let’s visualize the mRNA expression changes that are associated with Factor 1 using the <code>plot_weights</code> function again:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_weights</span>(</span>
+<span id="cb24-2">  MOFAobject_trained,</span>
+<span id="cb24-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nfeatures =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>,</span>
+<span id="cb24-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">view =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mRNA"</span>,</span>
+<span id="cb24-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">factor =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb24-6">)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see from our generated plot that there are a substantial number of transcripts with weights close to -1 or 1 with respect to Factor 1. It is likely that genes with large positive mRNA expression values are more heavily expressed in samples with IGHV mutation. Let’s verify this assumption.</p>
+</section>
+<section id="molecular-signature-clustering-for-factor-1" class="level2">
+<h2 class="anchored" data-anchor-id="molecular-signature-clustering-for-factor-1">7.4. Molecular signature clustering for factor 1</h2>
+<p>Let’s use the <code>plot_data_heatmap</code> function to generate a heatmap of gene expression values against Factor 1 values. Furthermore, we color our heatmap by IGHV mutation status.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot_data_heatmap</span>(</span>
+<span id="cb25-2">  MOFAobject_trained,</span>
+<span id="cb25-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">scale =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"row"</span>,</span>
+<span id="cb25-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cluster_cols =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>,</span>
+<span id="cb25-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cluster_rows =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>,</span>
+<span id="cb25-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">show_colnames =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>,</span>
+<span id="cb25-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">denoise =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb25-8">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">features =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>,</span>
+<span id="cb25-9">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">view =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mRNA"</span>,</span>
+<span id="cb25-10">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">factor=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb25-11">)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/multiomics-fa/index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From our heatmap, we can see that various transcripts correlate with high Factor 1 value, and that these samples are also positive for IGHV status - our assumption is confirmed!</p>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>8. Summary</h1>
+<p>This concludes my walkthrough of applying the <code>MOFA2</code> package to perform factor analysis on multiomics data. Here, we applied factor analysis to multiomics data to integrate and analyze relevant features related to different ’omic subtypes as well as patient metadata of interest. A big thank you again to Alex Gurbych from blackthorn.ai and the authors of the <code>MOFA2</code> package. I look forward to covering more tutorials involving multiomic data analysis and precision medicine in the future.</p>
+</section>
+<section id="references" class="level1">
+<h1>9. References</h1>
+<ul>
+<li><a href="https://levelup.gitconnected.com/multi-omics-analysis-3857956a7a3d">“Multi-Omics Data Factor Analysis, by Alex Gurbych”</a></li>
+<li><a href="https://www.bioconductor.org/packages/release/bioc/html/MOFA2.html">Bioconductor MOFA2 documentation</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6010767/">“Multi‐Omics Factor Analysis—a framework for unsupervised integration of multi‐omics data sets”, by Argelaguet et al.</a></li>
+<li><a href="https://biofam.github.io/MOFA2/">MOFA Homepage</a></li>
+<li><a href="https://www.biomedinfolab.com">Dokyoon Kim Lab Homepage</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Overviews</category>
+  <category>Tutorials</category>
+  <guid>https://vsriram24.github.io/posts/multiomics-fa/</guid>
+  <pubDate>Mon, 12 Aug 2024 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/multiomics-fa/googleLens.PNG" medium="image"/>
 </item>
 </channel>
 </rss>

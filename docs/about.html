@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,10 +34,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-138ec2404b29d2a06c3147fc9fea89cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -166,9 +166,11 @@ gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
   </a>
 </div>
       <div class="about-contents"><main class="content" id="quarto-document-content">
-<p>I consider myself a computational scientist with a passion for people-focused projects. I currently work as a machine learning scientist for the <a href="https://ocdo.fredhutch.org">Office of the Chief Data Officer</a> at the <a href="https://www.fredhutch.org/en.html">Fred Hutch Cancer Center</a> in Seattle, WA. My role centers on the development and productization of statistical models and ML systems for electronic phenotyping and cohort identification across the institution. I also serve as a guest lecturer in the <a href="https://www.dbei.med.upenn.edu">Department of Biostatistics, Epidemiology, and Informatics</a> at the <a href="https://www.upenn.edu">University of Pennsylvania</a>, and I was previously a collaborator with the <a href="https://www.microsoft.com/en-us/research/lab/microsoft-health-futures/">Health Futures Group</a> at <a href="https://www.microsoft.com/en-us/research/">Microsoft Research</a>.</p>
-<p>Prior to my position at Fred Hutch, I completed my Ph.D.&nbsp;and postdoctoral training in <a href="https://www.med.upenn.edu/gcb/">Biomedical Informatics and Computational Genomics</a> at the University of Pennsylvania <a href="https://www.med.upenn.edu">Perelman School of Medicine</a>. There, I worked with Dr.&nbsp;<a href="https://www.med.upenn.edu/apps/faculty/index.php/g275/p9240045">Dokyoon Kim</a>’s <a href="https://www.biomedinfolab.com">Integrative ’Omics and Biomedical Informatics Lab</a>, developing machine learning and graph-based methods to identify genetic contributors to disease comorbidities from large-scale multimodal biomedical data (You can listen to a recording of my public thesis defense <a href="https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d">here</a>!)</p>
-<p>In addition to my doctoral degree, I hold a M.A.&nbsp;in Statistics and Data Science from the <a href="https://www.wharton.upenn.edu">Wharton School of Business</a>, as well as a B.Sc. with honors in Statistics, a B.Sc. in Computer Science, and a minor in Computational Biology from <a href="https://duke.edu">Duke University</a>.</p>
+<p>I’m a Senior Health AI Scientist working at the intersection of generative AI, agentic systems, and multimodal biomedical data. I build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.</p>
+<p>I currently work with the Enterprise AI organization at <a href="https://www.humana.com">Humana</a>, where I develop responsible generative AI and agentic architectures for large-scale healthcare workflows. Previously, I served as a Machine Learning Scientist in the <a href="https://ocdo.fredhutch.org">Chief Data Office</a> at the <a href="#0">Fred Hutch Cancer Center</a> in Seattle, WA, where I led the development and deployment of institution-wide clinical NLP and machine learning systems for automated, longitudinal phenotyping and cohort identification from large-scale EHR data.</p>
+<p>Before industry, I completed my PhD and postdoctoral training in <a href="https://www.med.upenn.edu/gcb/">Biomedical Informatics and Computational Genomics</a> at the University of Pennsylvania <a href="#0">Perelman School of Medicine</a>, where I worked with Dr.&nbsp;<a href="#0">Dokyoon Kim</a>’s <a href="#0">Integrative ’Omics and Biomedical Informatics Lab</a>. My <a href="https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d">dissertation</a> focused on the development of graph-based machine learning methods to identify genetic contributors to disease comorbidities from large-scale, multimodal biomedical data. I also hold a Master’s degree in Statistics and Data Science from the <a href="#0">Wharton School of Business</a>, as well as undergraduate degrees in Statistics and Computer Science and a minor in Computational Biology from <a href="#0">Duke University</a>.</p>
+<p>In addition to my industry work, I serve as a Guest Lecturer in the <a href="#0">Department of Biostatistics, Epidemiology, and Informatics</a> at the <a href="#0">University of Pennsylvania</a>, and I previously collaborated with the <a href="#0">Health Futures Group</a> at <a href="#0">Microsoft Research</a> on applied research at the intersection of biomedical discovery and emerging AI technologies.</p>
+<p>I enjoy working at the boundary of research, engineering, and real-world deployment. My broader interests include responsible AI, generative models, translational informatics, personalized medicine, and human-centered system design. In my free time, I love exploring the PNW wilderness with my wife, taking our pup out for long walks around the neighborhood, and trying out new recipes in the kitchen.</p>
 
 
 </main></div>
@@ -253,6 +255,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -363,6 +367,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
