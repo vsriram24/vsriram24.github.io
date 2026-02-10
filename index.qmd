@@ -21,7 +21,7 @@ about:
       href: https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en
 ---
 
-Welcome to my website! I am a Senior Health AI Scientist based in Seattle, WA, working at the intersection of generative AI, agentic systems, and multimodal biomedical data to build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.
+Welcome to my website! I am a Senior Health AI Scientist based in Seattle, WA. I work at the intersection of generative AI, agentic systems, and multimodal biomedical data to build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.
 
 My general professional skills and interests include:
 
