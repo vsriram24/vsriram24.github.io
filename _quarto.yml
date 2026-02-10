@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
 website:
+  draft-mode: gone
   google-analytics:
     tracking-id: "G-4174EVHDM6"
   title: "Home"
