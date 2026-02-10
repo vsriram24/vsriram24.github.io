@@ -33,3 +33,5 @@ title: "Publications and Peer Review"
 -   [*IEEE Transactions on Computational Biology and Bioinformatics*](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=8857)
 
 -   [*Scientific Reports*](https://www.nature.com/srep/)
+
+-   [*IEEE Transactions on Biomedical Engineering*](https://www.embs.org/tbme/)

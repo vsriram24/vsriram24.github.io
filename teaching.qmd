@@ -5,15 +5,15 @@ title: "Teaching and Mentorship"
 **Teaching**
 
 -   Present
-    -   Lecturer and Teaching Assistant – “[Introduction to Databases](https://intro-sql-fh.netlify.app)”, 2025 to Present
-        -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
-    -   Teaching Assistant – “[Introduction to Python](https://hutchdatascience.org/Intro_to_Python/index.html)”, 2024 to Present
-        -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
-    -   Teaching Assistant – “[Introduction to R](https://hutchdatascience.org/Intro_to_R/)”, 2024 to Present
-        -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
     -   Guest Lecturer – “[Databases and Data Integration](https://catalog.upenn.edu/courses/bmin/)”, 2024 to Present
         -   University of Pennsylvania Department of Biostatistics, Epidemiology, and Informatics, Philadelphia, PA
 -   Prior
+    -   Lecturer and Teaching Assistant – “[Introduction to Databases](https://intro-sql-fh.netlify.app)”, 2025 to 2026
+        -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
+    -   Teaching Assistant – “[Introduction to Python](https://hutchdatascience.org/Intro_to_Python/index.html)”, 2024 to 2026
+        -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
+    -   Teaching Assistant – “[Introduction to R](https://hutchdatascience.org/Intro_to_R/)”, 2024 to 2026
+        -   Fred Hutch Cancer Center [Data Science Lab](https://hutchdatascience.org/training/), Seattle, WA
     -   Volunteer teacher and instructor, 2019 to 2023
         -   [Science Education Academy](https://scienceeducationacademy.com) outreach program, Philadelphia, PA
     -   Graduate Teaching Assistant – “[Databases and Data Integration](https://catalog.upenn.edu/courses/bmin/)”, 2022 to 2023

@@ -21,20 +21,18 @@ about:
       href: https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en
 ---
 
-Welcome to my website! I am a health machine learning researcher and biomedical data scientist based in Seattle, WA.
+Welcome to my website! I am a Senior Health AI Scientist based in Seattle, WA, working at the intersection of generative AI, agentic systems, and multimodal biomedical data to build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.
 
-My general research skills and interests include:
+My general professional skills and interests include:
 
--   translational bioinformatics and personalized medicine
+-   responsible generative AI and agentic systems in healthcare
 
--   big data analysis and visualization
+-   multimodal and transformer-based machine learning
 
--   deep learning and generative AI
+-   clinical NLP and real-world healthcare data
 
--   natural language processing
+-   translational informatics and personalized medicine
 
--   network science
+-   evaluation, governance, and human-centered AI system design
 
--   human-centered design
-
-I am always open to speaking, teaching, collaboration, consulting, and outreach opportunities. Feel free to reach out to me with questions or requests at [vivek.sriram\@gmail.com](mailto:vivek.sriram@gmail.com).
+I am always open to speaking, teaching, collaboration, consulting, and outreach opportunities. Feel free to reach out to me with questions or requests at [vivek.sriram\@gmail.com](#0).
