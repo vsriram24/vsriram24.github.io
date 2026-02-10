@@ -3,16 +3,24 @@ project:
   output-dir: docs
 
 website:
+  draft-mode: gone
   google-analytics:
     tracking-id: "G-4174EVHDM6"
-  title: "Home"
+  title: "Vivek Sriram"
   favicon: vivek_cropped.JPG
   site-url: "https://vsriram24.github.io"
-  description: "Vivek Sriram's personal website"
+  description: "Vivek Sriram - Senior Health AI Scientist | Personal website and blog"
+
+  search:
+    location: navbar
+    type: overlay
+
   navbar:
-    theme: lumen
-    background: "#99bb8a"
+    background: "#1a1a2e"
     pinned: true
+    left:
+      - text: "VS"
+        href: index.qmd
     right:
       - about.qmd
       - blog.qmd
@@ -21,16 +29,38 @@ website:
       - publications.qmd
       - icon: rss
         href: blog.xml
+        aria-label: RSS
+
   page-footer:
+    background: "#1a1a2e"
     left: |
-      Powered by [Quarto](https://quarto.org)
-    border: false
+      &copy; 2025 Vivek Sriram &middot; Built with [Quarto](https://quarto.org)
+    center:
+      - icon: envelope-fill
+        href: "mailto:vivek.sriram@gmail.com"
+        aria-label: Email
+      - icon: linkedin
+        href: https://www.linkedin.com/in/vivek-sriram/
+        aria-label: LinkedIn
+      - icon: github
+        href: https://github.com/vsriram24
+        aria-label: GitHub
+      - icon: mortarboard-fill
+        href: https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en
+        aria-label: Google Scholar
+    right: |
+      [Subscribe via RSS](/blog.xml)
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      light: [cosmo, custom.scss]
+      dark: [darkly, custom.scss]
     toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true
+    smooth-scroll: true
 
 editor: visual
-

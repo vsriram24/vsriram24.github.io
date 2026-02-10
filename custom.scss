@@ -1,0 +1,582 @@
+/*-- scss:defaults --*/
+
+// ========================================
+// "Refined Academic" Theme
+// Deep navy + warm gold, serif/sans pairing
+// ========================================
+
+// Color palette
+$navy: #1a1a2e;
+$navy-light: #16213e;
+$navy-mid: #0f3460;
+$gold: #c9a96e;
+$gold-light: #e8d5b0;
+$gold-muted: #f5edd6;
+$warm-white: #faf8f5;
+$cream: #f0ece2;
+$charcoal: #2c3e50;
+$text-muted: #6c757d;
+$border-light: #e8e4de;
+
+// Typography
+$font-family-sans-serif: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$headings-font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+$font-size-base: 1.02rem;
+$headings-font-weight: 700;
+$line-height-base: 1.75;
+
+// Theme color overrides
+$body-bg: $warm-white;
+$body-color: $charcoal;
+$link-color: $navy-mid;
+$link-hover-color: $gold;
+
+// DARK MODE
+$dark-bg: #0d1117;
+$dark-surface: #161b22;
+$dark-border: #30363d;
+$dark-text: #e6edf3;
+$dark-text-muted: #8b949e;
+
+/*-- scss:rules --*/
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+
+// ========================================
+// NAVBAR
+// ========================================
+.navbar {
+  background: linear-gradient(135deg, $navy 0%, $navy-light 100%) !important;
+  box-shadow: 0 2px 20px rgba(26, 26, 46, 0.15);
+  padding: 0.9rem 0;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid $gold;
+
+  .navbar-brand {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: $gold !important;
+    letter-spacing: 0.04em;
+  }
+
+  .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    font-size: 0.92rem;
+    padding: 0.4rem 0.9rem !important;
+    border-radius: 4px;
+    transition: all 0.25s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: $gold;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    &:hover {
+      color: $gold !important;
+
+      &::after {
+        width: 60%;
+      }
+    }
+
+    &.active {
+      color: $gold !important;
+    }
+  }
+
+  .navbar-toggler {
+    border-color: rgba(201, 169, 110, 0.5);
+  }
+}
+
+// Search styling in navbar
+.navbar .aa-Autocomplete .aa-Input {
+  border-radius: 20px;
+  border: 1px solid rgba(201, 169, 110, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.85rem;
+}
+
+// ========================================
+// LANDING / ABOUT TEMPLATES
+// ========================================
+.about-entity {
+  .about-image {
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(26, 26, 46, 0.12);
+    border: 3px solid $gold-light;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(26, 26, 46, 0.18);
+    }
+  }
+}
+
+.about-link {
+  background: linear-gradient(135deg, $navy 0%, $navy-light 100%) !important;
+  color: $gold-light !important;
+  border: 1px solid $gold !important;
+  border-radius: 8px !important;
+  padding: 0.55rem 1.4rem !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.03em !important;
+  transition: all 0.3s ease !important;
+
+  &:hover {
+    background: $gold !important;
+    color: $navy !important;
+    border-color: $gold !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 169, 110, 0.35);
+  }
+}
+
+// ========================================
+// HEADINGS & CONTENT
+// ========================================
+#quarto-content {
+  h1, h2, h3, h4, h5, h6 {
+    color: $navy;
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: 1.65rem;
+    font-weight: 700;
+    padding-bottom: 0.4em;
+    border-bottom: 2px solid $gold-muted;
+    margin-top: 2em;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1em;
+      background: $gold;
+      margin-right: 0.6em;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
+  }
+
+  h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: $navy-mid;
+  }
+
+  a {
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      color: $gold;
+      border-bottom-color: $gold;
+    }
+  }
+}
+
+// ========================================
+// TITLE BLOCK BANNER (blog posts)
+// ========================================
+.quarto-title-banner {
+  background: linear-gradient(135deg, $navy 0%, $navy-light 50%, $navy-mid 100%) !important;
+  padding: 2.5rem 0 !important;
+  border-bottom: 3px solid $gold;
+
+  .quarto-title .title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  .quarto-title-meta {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+
+    .quarto-title-meta-heading {
+      color: $gold-light;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  .quarto-categories .quarto-category {
+    background: rgba(201, 169, 110, 0.2);
+    color: $gold-light;
+    border: 1px solid rgba(201, 169, 110, 0.5);
+    border-radius: 20px;
+    padding: 0.25rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: $gold;
+      color: $navy;
+    }
+  }
+}
+
+// ========================================
+// BLOG GRID CARDS
+// ========================================
+.quarto-grid-item {
+  border: 1px solid $border-light !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: white;
+  box-shadow: 0 2px 8px rgba(26, 26, 46, 0.04);
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(26, 26, 46, 0.1);
+    border-color: $gold-light !important;
+
+    .card-img-top {
+      transform: scale(1.05);
+    }
+  }
+
+  .card-img-top {
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card-body {
+    padding: 1.3rem;
+  }
+
+  .card-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: $navy;
+    line-height: 1.4;
+  }
+
+  .card-text {
+    color: $text-muted;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .listing-categories .listing-category {
+    background: $gold-muted !important;
+    color: $navy !important;
+    border-radius: 20px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid $gold-light;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: $gold !important;
+      color: white !important;
+    }
+  }
+}
+
+// ========================================
+// TABLE OF CONTENTS
+// ========================================
+#TOC {
+  border-left: 3px solid $gold-muted;
+  padding-left: 1rem;
+  font-size: 0.88rem;
+
+  .active {
+    border-left: 3px solid $gold;
+    margin-left: -1rem;
+    padding-left: calc(1rem - 3px);
+    font-weight: 600;
+    color: $navy;
+  }
+
+  a {
+    color: $text-muted;
+    border-bottom: none;
+
+    &:hover {
+      color: $navy;
+    }
+  }
+}
+
+// ========================================
+// FOOTER
+// ========================================
+.nav-footer {
+  background: linear-gradient(135deg, $navy 0%, $navy-light 100%) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  border-top: 2px solid $gold !important;
+  padding: 1.5rem 0;
+  font-size: 0.85rem;
+
+  a {
+    color: $gold-light !important;
+    border-bottom: none !important;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $gold !important;
+    }
+  }
+
+  .nav-footer-center {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    justify-content: center;
+
+    .bi {
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+// ========================================
+// CODE BLOCKS
+// ========================================
+pre.sourceCode {
+  border-radius: 10px;
+  border: 1px solid $border-light;
+  background: #faf9f7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+div.sourceCode {
+  border-radius: 10px;
+  margin: 1.5em 0;
+}
+
+code {
+  color: $navy-mid;
+  background: $cream;
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.88em;
+}
+
+// Copy button
+.code-copy-button {
+  border-radius: 6px !important;
+
+  &:hover {
+    background: $gold-muted !important;
+  }
+}
+
+// ========================================
+// CATEGORY SIDEBAR
+// ========================================
+.quarto-listing-category {
+  .category {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid $border-light;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+
+    &:hover, &.active {
+      color: $navy;
+      font-weight: 600;
+      padding-left: 0.5rem;
+      border-bottom-color: $gold;
+    }
+  }
+
+  .category-header {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    color: $navy;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+// ========================================
+// LISTING FILTER/SORT UI
+// ========================================
+.quarto-listing-filter .form-control,
+.quarto-listing-sort .form-select {
+  border-radius: 8px;
+  border: 1px solid $border-light;
+  font-size: 0.9rem;
+
+  &:focus {
+    border-color: $gold;
+    box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+  }
+}
+
+// ========================================
+// SMOOTH SCROLL
+// ========================================
+html {
+  scroll-behavior: smooth;
+}
+
+// ========================================
+// SELECTION COLOR
+// ========================================
+::selection {
+  background: $gold-light;
+  color: $navy;
+}
+
+// ========================================
+// BLOCKQUOTES
+// ========================================
+blockquote {
+  border-left: 4px solid $gold;
+  background: $cream;
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.5em 0;
+  font-style: italic;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ========================================
+// TABLES
+// ========================================
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+
+  thead {
+    background: $navy;
+    color: white;
+
+    th {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 600;
+      border: none;
+      padding: 0.8rem 1rem;
+    }
+  }
+
+  tbody tr {
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: $gold-muted;
+    }
+  }
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@media (max-width: 768px) {
+  .quarto-grid-item .card-img-top {
+    height: 180px;
+  }
+
+  .quarto-title-banner .quarto-title .title {
+    font-size: 1.8rem;
+  }
+
+  #quarto-content h2::before {
+    display: none;
+  }
+}
+
+// ========================================
+// DARK MODE OVERRIDES
+// ========================================
+.quarto-dark {
+  .navbar {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%) !important;
+    border-bottom-color: $gold;
+  }
+
+  #quarto-content {
+    h1, h2, h3, h4, h5, h6 {
+      color: $dark-text;
+    }
+
+    h2 {
+      border-bottom-color: $dark-border;
+    }
+
+    a:hover {
+      color: $gold;
+    }
+  }
+
+  .quarto-grid-item {
+    background: $dark-surface;
+    border-color: $dark-border !important;
+
+    .card-title { color: $dark-text; }
+    .card-text { color: $dark-text-muted; }
+
+    &:hover {
+      border-color: $gold !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  pre.sourceCode {
+    background: $dark-surface;
+    border-color: $dark-border;
+  }
+
+  code {
+    background: $dark-surface;
+    color: $gold-light;
+  }
+
+  blockquote {
+    background: $dark-surface;
+    border-left-color: $gold;
+  }
+
+  .nav-footer {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%) !important;
+  }
+
+  #TOC {
+    border-left-color: $dark-border;
+
+    a { color: $dark-text-muted; }
+    .active { color: $gold; border-left-color: $gold; }
+  }
+}
