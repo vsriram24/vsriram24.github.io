@@ -6,3 +6,16 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+# Comments (blog posts only)
+comments:
+  giscus:
+    repo: vsriram24/vsriram24.github.io
+    repo-id: "PLACEHOLDER"
+    category: "Blog Comments"
+    category-id: "PLACEHOLDER"
+    mapping: pathname
+    reactions-enabled: true
+    loading: lazy
+    input-position: top
+    theme: light

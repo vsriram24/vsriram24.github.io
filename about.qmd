@@ -3,13 +3,11 @@ title: "About Me"
 about:
   template: solana
   image: aboutMe_zola.JPG
+  image-width: 20em
   links:
     - icon: envelope-fill
       text: Email
       href: "mailto:vivek.sriram@gmail.com"
-    - icon: brightness-alt-high-fill
-      text: Bluesky
-      href: https://bsky.app/profile/vsriram24.bsky.social
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/vivek-sriram/
@@ -19,13 +17,14 @@ about:
     - icon: mortarboard-fill
       text: Google Scholar
       href: https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en
+toc: false
 ---
 
 I'm a Senior Health AI Scientist working at the intersection of generative AI, agentic systems, and multimodal biomedical data. I build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.
 
 I currently work with the Enterprise AI organization at [Humana](https://www.humana.com), where I develop responsible generative AI and agentic architectures for large-scale healthcare workflows. Previously, I served as a Machine Learning Scientist in the [Chief Data Office](https://ocdo.fredhutch.org) at the [Fred Hutch Cancer Center](#0) in Seattle, WA, where I led the development and deployment of institution-wide clinical NLP and machine learning systems for automated, longitudinal phenotyping and cohort identification from large-scale EHR data.
 
-Before industry, I completed my PhD and postdoctoral training in [Biomedical Informatics and Computational Genomics](https://www.med.upenn.edu/gcb/) at the University of Pennsylvania [Perelman School of Medicine](#0), where I worked with Dr. [Dokyoon Kim](#0)’s [Integrative ’Omics and Biomedical Informatics Lab](#0). My [dissertation](https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d) focused on the development of graph-based machine learning methods to identify genetic contributors to disease comorbidities from large-scale, multimodal biomedical data. I also hold a Master’s degree in Statistics and Data Science from the [Wharton School of Business](#0), as well as undergraduate degrees in Statistics and Computer Science and a minor in Computational Biology from [Duke University](#0).
+Before industry, I completed my PhD and postdoctoral training in [Biomedical Informatics and Computational Genomics](https://www.med.upenn.edu/gcb/) at the University of Pennsylvania [Perelman School of Medicine](#0), where I worked with Dr. [Dokyoon Kim](#0)'s [Integrative 'Omics and Biomedical Informatics Lab](#0). My [dissertation](https://mediasite.med.upenn.edu/mediasite/Play/d78f6d5d76bf4a9c8b673f5c3ba858d61d) focused on the development of graph-based machine learning methods to identify genetic contributors to disease comorbidities from large-scale, multimodal biomedical data. I also hold a Master's degree in Statistics and Data Science from the [Wharton School of Business](#0), as well as undergraduate degrees in Statistics and Computer Science and a minor in Computational Biology from [Duke University](#0).
 
 In addition to my industry work, I serve as a Guest Lecturer in the [Department of Biostatistics, Epidemiology, and Informatics](#0) at the [University of Pennsylvania](#0), and I previously collaborated with the [Health Futures Group](#0) at [Microsoft Research](#0) on applied research at the intersection of biomedical discovery and emerging AI technologies.
 

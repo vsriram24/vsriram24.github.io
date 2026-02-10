@@ -3,13 +3,10 @@ title: "Vivek Sriram, PhD, MA"
 image: vivek_cropped.JPG
 about:
   template: broadside
-  links: 
+  links:
     - icon: envelope-fill
       text: Email
       href: "mailto:vivek.sriram@gmail.com"
-    - icon: brightness-alt-high-fill
-      text: Bluesky
-      href: https://bsky.app/profile/vsriram24.bsky.social
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/vivek-sriram/
@@ -19,20 +16,21 @@ about:
     - icon: mortarboard-fill
       text: Google Scholar
       href: https://scholar.google.com/citations?user=ZN4ZFuUAAAAJ&hl=en
+toc: false
 ---
 
 Welcome to my website! I am a Senior Health AI Scientist based in Seattle, WA. I work at the intersection of generative AI, agentic systems, and multimodal biomedical data to build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.
 
-My general professional skills and interests include:
+### Areas of Focus
 
--   responsible generative AI and agentic systems in healthcare
+-   Responsible generative AI and agentic systems in healthcare
 
--   multimodal and transformer-based machine learning
+-   Multimodal and transformer-based machine learning
 
--   clinical NLP and real-world healthcare data
+-   Clinical NLP and real-world healthcare data
 
--   translational informatics and personalized medicine
+-   Translational informatics and personalized medicine
 
--   evaluation, governance, and human-centered AI system design
+-   Evaluation, governance, and human-centered AI system design
 
-I am always open to speaking, teaching, collaboration, consulting, and outreach opportunities. Feel free to reach out to me with questions or requests at [vivek.sriram\@gmail.com](#0).
+I am always open to speaking, teaching, collaboration, consulting, and outreach opportunities. Feel free to reach out at [vivek.sriram@gmail.com](mailto:vivek.sriram@gmail.com).
