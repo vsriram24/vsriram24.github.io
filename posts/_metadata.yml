@@ -11,9 +11,9 @@ title-block-banner: true
 comments:
   giscus:
     repo: vsriram24/vsriram24.github.io
-    repo-id: "PLACEHOLDER"
-    category: "Blog Comments"
-    category-id: "PLACEHOLDER"
+    repo-id: "R_kgDOGnX_pg"
+    category: "Announcements"
+    category-id: "DIC_kwDOGnX_ps4C2K-_"
     mapping: pathname
     reactions-enabled: true
     loading: lazy
