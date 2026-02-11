@@ -2,7 +2,8 @@
 title: "Vivek Sriram, PhD, MA"
 image: vivek_cropped.JPG
 about:
-  template: broadside
+  template: trestles
+  image-shape: rounded
   links:
     - icon: envelope-fill
       text: Email
@@ -19,7 +20,9 @@ about:
 toc: false
 ---
 
-Welcome to my website! I am a Senior Health AI Scientist based in Seattle, WA. I work at the intersection of generative AI, agentic systems, and multimodal biomedical data to build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.
+## Welcome to my website!
+
+I am a Senior Health AI Scientist based in Seattle, WA. I work at the intersection of generative AI, agentic systems, and multimodal biomedical data to build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.
 
 ### Areas of Focus
 
