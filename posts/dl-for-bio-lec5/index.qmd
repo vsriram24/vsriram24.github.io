@@ -2,8 +2,8 @@
 title: "Graph Neural Networks (GNNs)"
 description: "Deep Learning in Biology - Week 5"
 author: "Vivek Sriram"
-date: "11/24/2025"
-date-modified: "11/24/2025"
+date: "02/23/2026"
+date-modified: "02/23/2026"
 image: sunbathe.jpg
 categories:
   - Overviews

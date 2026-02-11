@@ -1,68 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://viveksriram.com/index.html</loc>
-    <lastmod>2024-05-15T04:11:41.725Z</lastmod>
-  </url>
-  <url>
-    <loc>https://viveksriram.com/about.html</loc>
-    <lastmod>2024-05-15T04:07:37.516Z</lastmod>
-  </url>
-  <url>
-    <loc>https://viveksriram.com/blog.html</loc>
-    <lastmod>2024-05-15T04:22:17.135Z</lastmod>
-  </url>
-  <url>
-    <loc>https://viveksriram.com/publications.html</loc>
-    <lastmod>2024-05-14T23:29:20.368Z</lastmod>
-  </url>
-  <url>
     <loc>https://vsriram24.github.io/blog.html</loc>
-    <lastmod>2025-12-31T01:31:59.822Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/index.html</loc>
-    <lastmod>2026-02-10T22:00:54.772Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/240514_hello-world/index.html</loc>
-    <lastmod>2024-05-20T18:49:23.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/about.html</loc>
-    <lastmod>2026-02-10T21:56:05.825Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/240515_professional-journey/index.html</loc>
-    <lastmod>2024-05-22T00:11:55.932Z</lastmod>
+    <lastmod>2026-02-10T22:57:55.404Z</lastmod>
   </url>
   <url>
     <loc>https://vsriram24.github.io/publications.html</loc>
     <lastmod>2026-02-09T01:30:28.648Z</lastmod>
   </url>
   <url>
-    <loc>https://vsriram24.github.io/posts/sasc-workshop2/index.html</loc>
-    <lastmod>2025-12-31T01:32:03.469Z</lastmod>
+    <loc>https://vsriram24.github.io/conferences.html</loc>
+    <lastmod>2025-12-31T01:31:59.822Z</lastmod>
   </url>
   <url>
-    <loc>https://vsriram24.github.io/posts/terminologies/index.html</loc>
-    <lastmod>2025-12-31T01:32:03.590Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/hello-world/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.552Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/professional-journey/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.962Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/phd-context/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.793Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/phd-papers/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.811Z</lastmod>
+    <loc>https://vsriram24.github.io/posts/eisenhower-matrix/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.503Z</lastmod>
   </url>
   <url>
     <loc>https://vsriram24.github.io/posts/phd-takeaways/index.html</loc>
@@ -73,111 +25,131 @@
     <lastmod>2025-12-31T01:32:01.592Z</lastmod>
   </url>
   <url>
-    <loc>https://vsriram24.github.io/teaching.html</loc>
-    <lastmod>2026-02-09T01:32:16.123Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/conferences.html</loc>
-    <lastmod>2025-12-31T01:31:59.822Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/podcasts/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.867Z</lastmod>
+    <loc>https://vsriram24.github.io/posts/phd-context/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.793Z</lastmod>
   </url>
   <url>
     <loc>https://vsriram24.github.io/posts/cascadia-conf-24/index.html</loc>
     <lastmod>2025-12-31T01:32:01.277Z</lastmod>
   </url>
   <url>
-    <loc>https://vsriram24.github.io/posts/pytorch-tutorial/index.html</loc>
-    <lastmod>2025-12-31T01:32:02.443Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/obliteride-24/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.777Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/multiomics-fa/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.711Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/nlp-oncology-overview/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.762Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/posit-conf-24/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.902Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/cnn-overview/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.322Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/newsletters/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.762Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/work-life-harmony/index.html</loc>
-    <lastmod>2025-12-31T01:32:03.596Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/lhs/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.605Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/data-democratization/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.324Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/stanford_health_ai_conf_24/index.html</loc>
-    <lastmod>2025-12-31T01:32:03.546Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/gxs-paper/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.519Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/msr-scireports/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.634Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/eisenhower-matrix/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.503Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/infrastructure-as-code/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.577Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/python-venv/index.html</loc>
-    <lastmod>2025-12-31T01:32:02.005Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vsriram24.github.io/posts/sloan-precision-ai-conf/index.html</loc>
-    <lastmod>2025-12-31T01:32:03.470Z</lastmod>
+    <loc>https://vsriram24.github.io/posts/dl-for-bio-lec4/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.465Z</lastmod>
   </url>
   <url>
     <loc>https://vsriram24.github.io/posts/stanford-aimi-25/index.html</loc>
     <lastmod>2025-12-31T01:32:03.501Z</lastmod>
   </url>
   <url>
+    <loc>https://vsriram24.github.io/posts/professional-journey/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.962Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/hello-world/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.552Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/multiomics-fa/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.711Z</lastmod>
+  </url>
+  <url>
     <loc>https://vsriram24.github.io/posts/dl-for-bio-lec1/index.html</loc>
     <lastmod>2025-12-31T01:32:01.347Z</lastmod>
   </url>
   <url>
-    <loc>https://vsriram24.github.io/posts/dl-for-bio-lec2/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.389Z</lastmod>
+    <loc>https://vsriram24.github.io/posts/newsletters/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/sasc-workshop2/index.html</loc>
+    <lastmod>2025-12-31T01:32:03.469Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/terminologies/index.html</loc>
+    <lastmod>2025-12-31T01:32:03.590Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/msr-scireports/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.634Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/posit-conf-24/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.902Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/teaching.html</loc>
+    <lastmod>2026-02-09T01:32:16.123Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/gxs-paper/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.519Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/stanford_health_ai_conf_24/index.html</loc>
+    <lastmod>2025-12-31T01:32:03.546Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/cnn-overview/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.322Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/infrastructure-as-code/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.577Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/pytorch-tutorial/index.html</loc>
+    <lastmod>2025-12-31T01:32:02.443Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/sloan-precision-ai-conf/index.html</loc>
+    <lastmod>2025-12-31T01:32:03.470Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/work-life-harmony/index.html</loc>
+    <lastmod>2025-12-31T01:32:03.596Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/data-democratization/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.324Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/podcasts/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.867Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/python-venv/index.html</loc>
+    <lastmod>2025-12-31T01:32:02.005Z</lastmod>
   </url>
   <url>
     <loc>https://vsriram24.github.io/posts/dl-for-bio-lec3/index.html</loc>
     <lastmod>2025-12-31T01:32:01.439Z</lastmod>
   </url>
   <url>
-    <loc>https://vsriram24.github.io/posts/CopyOfdl-for-bio-lec3/index.html</loc>
-    <lastmod>2025-11-14T05:07:05.887Z</lastmod>
+    <loc>https://vsriram24.github.io/posts/dl-for-bio-lec2/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.389Z</lastmod>
   </url>
   <url>
-    <loc>https://vsriram24.github.io/posts/dl-for-bio-lec4/index.html</loc>
-    <lastmod>2025-12-31T01:32:01.465Z</lastmod>
+    <loc>https://vsriram24.github.io/posts/lhs/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.605Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/nlp-oncology-overview/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/obliteride-24/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.777Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/posts/phd-papers/index.html</loc>
+    <lastmod>2025-12-31T01:32:01.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/index.html</loc>
+    <lastmod>2026-02-10T23:21:12.677Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vsriram24.github.io/about.html</loc>
+    <lastmod>2026-02-10T23:21:11.666Z</lastmod>
   </url>
 </urlset>

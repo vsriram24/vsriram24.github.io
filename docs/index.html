@@ -50,7 +50,6 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -76,7 +75,6 @@ gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
 </script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -117,7 +115,7 @@ gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
 <span class="menu-text">Publications and Peer Review</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="./blog.xml"> <i class="bi bi-rss" role="img">
+    <a class="nav-link" href="./blog.xml"> <i class="bi bi-rss" role="img" aria-label="RSS">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -145,27 +143,25 @@ gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
   </div>
 </header><main class="content" id="quarto-document-content">
 <p>Welcome to my website! I am a Senior Health AI Scientist based in Seattle, WA. I work at the intersection of generative AI, agentic systems, and multimodal biomedical data to build reliable, interpretable, and production-grade AI systems for real-world healthcare impact.</p>
-<p>My general professional skills and interests include:</p>
+<section id="areas-of-focus" class="level3">
+<h3 data-anchor-id="areas-of-focus">Areas of Focus</h3>
 <ul>
-<li><p>responsible generative AI and agentic systems in healthcare</p></li>
-<li><p>multimodal and transformer-based machine learning</p></li>
-<li><p>clinical NLP and real-world healthcare data</p></li>
-<li><p>translational informatics and personalized medicine</p></li>
-<li><p>evaluation, governance, and human-centered AI system design</p></li>
+<li><p>Responsible generative AI and agentic systems in healthcare</p></li>
+<li><p>Multimodal and transformer-based machine learning</p></li>
+<li><p>Clinical NLP and real-world healthcare data</p></li>
+<li><p>Translational informatics and personalized medicine</p></li>
+<li><p>Evaluation, governance, and human-centered AI system design</p></li>
 </ul>
-<p>I am always open to speaking, teaching, collaboration, consulting, and outreach opportunities. Feel free to reach out to me with questions or requests at <a href="#0">vivek.sriram@gmail.com</a>.</p>
+<p>I am always open to speaking, teaching, collaboration, consulting, and outreach opportunities. Feel free to reach out at <a href="mailto:vivek.sriram@gmail.com">vivek.sriram@gmail.com</a>.</p>
 
 
+</section>
 </main></div>
   </div>
   <div class="about-links">
   <a href="mailto:vivek.sriram@gmail.com" class="about-link" rel="" target="">
     <i class="bi bi-envelope-fill"></i>
      <span class="about-link-text">Email</span>
-  </a>
-  <a href="https://bsky.app/profile/vsriram24.bsky.social" class="about-link" rel="" target="">
-    <i class="bi bi-brightness-alt-high-fill"></i>
-     <span class="about-link-text">Bluesky</span>
   </a>
   <a href="https://www.linkedin.com/in/vivek-sriram/" class="about-link" rel="" target="">
     <i class="bi bi-linkedin"></i>
@@ -281,6 +277,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -596,19 +597,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Powered by <a href="https://quarto.org">Quarto</a></p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 

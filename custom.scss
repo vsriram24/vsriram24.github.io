@@ -1,0 +1,91 @@
+/*-- scss:defaults --*/
+
+// Color palette - original sage green scheme
+$sage-green: #99bb8a;
+$sage-dark: #7a9c6b;
+$sage-muted: #e8f0e6;
+$text-secondary: #636e72;
+$border-subtle: #dfe6df;
+
+/*-- scss:rules --*/
+
+// ---- NAVBAR HOVER ----
+.navbar .navbar-nav .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+// ---- REMOVE OVAL FROM ABOUT IMAGES ----
+.about-entity .about-image {
+  border-radius: 0 !important;
+}
+
+// ---- SOCIAL LINK BUTTONS (homepage only, not about page) ----
+.quarto-about-broadside .about-link {
+  background-color: $sage-green !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 1.2rem !important;
+  transition: all 0.2s ease !important;
+  font-weight: 500 !important;
+
+  &:hover {
+    background-color: $sage-dark !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(107, 143, 113, 0.3);
+  }
+}
+
+// ---- TITLE BLOCK BANNER (blog posts + blog listing) ----
+.quarto-title-banner {
+  background-color: $sage-green !important;
+
+  .quarto-categories {
+    .quarto-category {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// ---- TABLE OF CONTENTS ----
+#TOC {
+  border-left: 2px solid $sage-muted;
+
+  a {
+    color: $text-secondary;
+    font-size: 0.88rem;
+
+    &:hover, &.active {
+      color: $sage-dark;
+    }
+  }
+}
+
+// ---- CODE BLOCKS ----
+pre.sourceCode {
+  border-radius: 8px;
+  border: 1px solid $border-subtle;
+}
+
+div.sourceCode {
+  border-radius: 8px;
+}
+
+// ---- CATEGORY SIDEBAR on blog ----
+.quarto-listing-category {
+  .category {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid $sage-muted;
+    transition: color 0.2s ease;
+
+    &:hover, &.active {
+      color: $sage-dark;
+    }
+  }
+}
