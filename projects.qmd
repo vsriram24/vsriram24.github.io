@@ -8,7 +8,7 @@ toc: false
 
 ::: {.columns}
 ::: {.column width="45%"}
-[![](posts/pnw-tree-id/images/hero-screenshot.png){fig-alt="Screenshot of the PNW Tree Identifier web app"}](https://viveksrm-pnw-tree-id.hf.space)
+[![](images/pnw-tree-id-hero.png){fig-alt="Screenshot of the PNW Tree Identifier web app"}](https://viveksrm-pnw-tree-id.hf.space)
 :::
 
 ::: {.column width="5%"}
