@@ -2,8 +2,6 @@ const kProgressiveAttr = "data-src";
 let categoriesLoaded = false;
 
 window.quartoListingCategory = (category) => {
-  // category is URI encoded in EJS template for UTF-8 support
-  category = decodeURIComponent(atob(category));
   if (categoriesLoaded) {
     activateCategory(category);
     setCategoryHash(category);
@@ -62,10 +60,7 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
   );
 
   for (const categoryEl of categoryEls) {
-    // category needs to support non ASCII characters
-    const category = decodeURIComponent(
-      atob(categoryEl.getAttribute("data-category"))
-    );
+    const category = categoryEl.getAttribute("data-category");
     categoryEl.onclick = () => {
       activateCategory(category);
       setCategoryHash(category);
@@ -215,9 +210,7 @@ function activateCategory(category) {
 
   // Activate this category
   const categoryEl = window.document.querySelector(
-    `.quarto-listing-category .category[data-category='${btoa(
-      encodeURIComponent(category)
-    )}']`
+    `.quarto-listing-category .category[data-category='${category}']`
   );
   if (categoryEl) {
     categoryEl.classList.add("active");
@@ -240,9 +233,7 @@ function filterListingCategory(category) {
         list.filter(function (item) {
           const itemValues = item.values();
           if (itemValues.categories !== null) {
-            const categories = decodeURIComponent(
-              atob(itemValues.categories)
-            ).split(",");
+            const categories = itemValues.categories.split(",");
             return categories.includes(category);
           } else {
             return false;

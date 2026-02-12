@@ -2,6 +2,8 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/pnw-tree-id/index.html",
+      "/posts/dl-for-bio-lec5/index.html",
       "/posts/dl-for-bio-lec4/index.html",
       "/posts/dl-for-bio-lec3/index.html",
       "/posts/dl-for-bio-lec2/index.html",
@@ -20,6 +22,7 @@
       "/posts/newsletters/index.html",
       "/posts/cnn-overview/index.html",
       "/posts/posit-conf-24/index.html",
+      "/posts/pytorch-brca/index.html",
       "/posts/nlp-oncology-overview/index.html",
       "/posts/multiomics-fa/index.html",
       "/posts/obliteride-24/index.html",
