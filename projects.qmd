@@ -1,0 +1,26 @@
+---
+title: "Projects"
+title-block-banner: true
+toc: false
+---
+
+### PNW Tree Identifier
+
+::: {.columns}
+::: {.column width="45%"}
+[![](posts/pnw-tree-id/images/hero-screenshot.png){fig-alt="Screenshot of the PNW Tree Identifier web app"}](https://viveksrm-pnw-tree-id.hf.space)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="50%"}
+A deep learning web app that identifies 40 tree species native to the Pacific Northwest from a single photo.
+
+Built with **EfficientNetV2-S** and **transfer learning**, trained on 15,000+ research-grade observations from [iNaturalist](https://www.inaturalist.org/). Features drag-and-drop upload, top-5 predictions with confidence scores, and a forest-themed interface.
+
+**Tech stack:** PyTorch, Flask, Hugging Face Spaces
+
+[Try it live](https://viveksrm-pnw-tree-id.hf.space){.btn .btn-success .btn-sm} &ensp; [GitHub](https://github.com/vsriram24/pnw-tree-id){.btn .btn-outline-secondary .btn-sm}
+:::
+:::

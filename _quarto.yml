@@ -21,6 +21,7 @@ website:
     right:
       - about.qmd
       - blog.qmd
+      - projects.qmd
       - teaching.qmd
       - conferences.qmd
       - publications.qmd
