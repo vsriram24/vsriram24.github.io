@@ -4,7 +4,7 @@ description: "Deep Learning in Biology - Week 5"
 author: "Vivek Sriram"
 date: "02/23/2026"
 date-modified: "02/23/2026"
-image: sunbathe.jpg
+image: zola_sniff.jpg
 categories:
   - Overviews
 draft: true
@@ -12,7 +12,9 @@ draft: true
 
 Modern biological systems are inherently relational: proteins interact with one another, genes regulate complex networks of downstream targets, diseases co-occur across shared molecular mechanisms, and cells communicate continuously within tissue microenvironments. Traditional deep learning models, however, are typically designed for data that live in Euclidean spaces, such as sequences (text, genomes) or grids (images). Biological data routinely violate these assumptions.
 
-**Graph Neural Networks (GNNs)** provide a powerful framework for modeling interactions, dependencies, and structure in such complex systems. By operating directly on graphs, GNNs allow us to reason about relationships rather than isolated observations. In this week's lecture, we will explore the foundations of graph-structured data, the challenges inherent to learning from graphs, and the architectural components that make GNNs effective across biology and medicine.
+This week in my [Deep Learning in Biology](https://bios740.github.io/assets/slides/C5.pdf) overview series, we dive into a key solution to this challenge: **Graph Neural Networks (GNNs)**. GNNs provide a powerful framework for modeling interactions, dependencies, and structure in such complex systems. By operating directly on graphs, GNNs allow us to reason about relationships rather than isolated observations. In this post, we will explore the foundations of graph-structured data, the challenges inherent to learning from graphs, and the architectural components that make GNNs effective across biology and medicine.
+
+![Humpbacks off the Maui coast](images/whale.jpg){width="530"}
 
 ## **Understanding Graph-Structured Data**
 
@@ -23,6 +25,8 @@ Biological systems are rarely composed of independent entities. Instead, interco
 -   **Edges**, which represent relationships or interactions between entities, such as protein–protein interactions, gene regulation, cell–cell communication, chemical binding, or patient similarity.
 
 By explicitly modeling these relationships, graphs enable us to uncover structure and dependencies that are difficult to capture with grid-based models. This makes graph-based representations particularly well suited for biological and biomedical data.
+
+![Example gene regulatory network - Wikimedia Commons](images/Gene_regulatory_networks.jpg){width="572"}
 
 ## **Handling Challenges in Graph Learning**
 
@@ -58,7 +62,7 @@ These approaches better reflect the non-static nature of biological data.
 
 Biological graphs are almost never complete. Sparsity and missingness can significantly degrade model performance. Several techniques can help GNNs learn meaningful representations even when data are incomplete:
 
--   **Graph Autoencoders (GAEs)** learn latent node embeddings by reconstructing the adjacency matrix, effectively predicting missing edges.
+-   **Graph Autoencoders (GAEs)** (see the *Graph Representation Learning* section below) learn latent node embeddings by reconstructing the adjacency matrix, effectively predicting missing edges.
 
 -   **Self-supervised learning** leverages unlabeled data by creating proxy tasks such as masked node prediction or contrastive learning, reducing reliance on curated labels.
 

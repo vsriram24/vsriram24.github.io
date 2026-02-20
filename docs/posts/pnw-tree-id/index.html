@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Vivek Sriram">
+<meta name="dcterms.date" content="2026-02-20">
+<meta name="description" content="An adventure in AI-assisted coding, transfer learning, and web app development">
+
+<title>Building a Pacific Northwest Tree Identifier with Deep Learning (and Claude Code) – Home</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../vivek_cropped.JPG" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-4174EVHDM6"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
+</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Home</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">[VS]Codes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching and Mentorship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../conferences.html"> 
+<span class="menu-text">Presentations and Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html"> 
+<span class="menu-text">Publications and Peer Review</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Building a Pacific Northwest Tree Identifier with Deep Learning (and Claude Code)</h1>
+                  <div>
+        <div class="description">
+          An adventure in AI-assisted coding, transfer learning, and web app development
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Miscellaneous</div>
+                <div class="quarto-category">Personal</div>
+                <div class="quarto-category">Overviews</div>
+                <div class="quarto-category">Tutorials</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Vivek Sriram </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 20, 2026</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">February 20, 2026</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#go-hug-a-tree" id="toc-go-hug-a-tree" class="nav-link active" data-scroll-target="#go-hug-a-tree">Go hug a tree!</a></li>
+  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea">The idea</a></li>
+  <li><a href="#working-with-claude-code" id="toc-working-with-claude-code" class="nav-link" data-scroll-target="#working-with-claude-code">Working with Claude Code</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a>
+  <ul class="collapse">
+  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a></li>
+  </ul></li>
+  <li><a href="#modeling-approach" id="toc-modeling-approach" class="nav-link" data-scroll-target="#modeling-approach">Modeling approach</a>
+  <ul class="collapse">
+  <li><a href="#efficientnetv2" id="toc-efficientnetv2" class="nav-link" data-scroll-target="#efficientnetv2">EfficientNetV2</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture">Architecture</a></li>
+  <li><a href="#two-phase-training" id="toc-two-phase-training" class="nav-link" data-scroll-target="#two-phase-training">Two-Phase Training</a></li>
+  <li><a href="#training-tricks" id="toc-training-tricks" class="nav-link" data-scroll-target="#training-tricks">Training Tricks</a></li>
+  <li><a href="#data-augmentation" id="toc-data-augmentation" class="nav-link" data-scroll-target="#data-augmentation">Data Augmentation</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">Deployment</a></li>
+  <li><a href="#my-biggest-takeaways" id="toc-my-biggest-takeaways" class="nav-link" data-scroll-target="#my-biggest-takeaways">My biggest takeaways</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="go-hug-a-tree" class="level2">
+<h2 class="anchored" data-anchor-id="go-hug-a-tree">Go hug a tree!</h2>
+<p>My wife and I are true tree lovers. Indeed, a major reason for our move out to Washingon State was our love for the outdoors! Throughout our time living in the Pacific Northwest, my wife is the one who stops to admire the bark patterns on a Pacific Madrone, wonders aloud how many Douglas Firs we’ll see at the start of each trail, and reminds me to plan for our annual fall “larch march,” when the Western Larch turns gold while all the other conifers stay green.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="zola_larch.JPEG" class="img-fluid figure-img" width="606"></p>
+<figcaption>Me and my pup during our fall 2024 larch march</figcaption>
+</figure>
+</div>
+<p>As we’ve gone on more hikes over the years, she’s developed a keen interest in determining the kinds of trees we encounter together. We’ve used the <a href="https://www.inaturalist.org/?utm_source=google_cpc&amp;utm_medium=ad_grant&amp;utm_campaign=cbc_ggrant_Brand_Esp_Max_Clicks&amp;gad_source=1&amp;gad_campaignid=23370780638&amp;gbraid=0AAAABAxkD6uVqgjHxQQKisyR4SEldBurH&amp;gclid=CjwKCAiA-sXMBhAOEiwAGGw6LMn6RbsOqdpQCq2_MUySLyJfcIXDCYdt_0O9aj4dLm3SSH8pCf8GlxoCtOcQAvD_BwE">iNaturalist app</a>, Apple photo search, and Google photo search to help with identification. She even purchased a pocket tree identifier guide to help her identify trees from leaf patterns. As my career has progressed, I’ve also talked to her about some of my past work in computer vision, and how companies like Apple and Google have used deep learning approaches to classify images for years.</p>
+<p>One day, she made a request to me: could I build her a personal app to classify PNW trees from her photos? This request happened <strong>over a year ago</strong>, and it’s been in my to-do list ever since. I had a clear idea of the data I wanted to use and modeling approaches I wanted to try, but getting past the ideation hurdle to direct implementation remained a significant challenge. I just wasn’t able to find the time or resources to figure out how to scrape the data I needed, how to practically get model training to work with my CPU, and how to turn my output into something that was nice to look at and that she would actually use.</p>
+<p>Enter… surgery. I had a health concern toward the end of last year that required operation and mandated two weeks of recovery - no talking, no eating solid food, no strenuous physical activity. Just me and my thoughts! I’d also been hearing over the past several months from my friends in the tech world about the abilities of <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>, and I’d been looking for the opportunity to take it on a serious test drive. This was the perfect time for me to get the app I’d promised to my wife off the ground!</p>
+<p>The result: <strong>PNW Tree Identifier</strong>, a deep learning web app that classifies 40 tree species native to Oregon, Washington, and British Columbia from a single photo. In this blog post, I’ll give an overview of my process, my results, and how everything came together.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hero-screenshot.png" class="img-fluid figure-img" alt="Screenshot of the PNW Tree Identifier web app showing the forest-themed interface with a hero section, upload area, and species identification results."></p>
+<figcaption>The PNW Tree Identifier web app — upload a tree photo, get species predictions with probability scores.</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-idea" class="level2">
+<h2 class="anchored" data-anchor-id="the-idea">The idea</h2>
+<p>I intentionally tried to keep the scope of my project as narrow as possible: 40 species that are common, native to the PNW, and identifiable from photos. This set ended up including 22 conifers (Douglas Fir, Western Red Cedar, Sitka Spruce, various true firs and pines) and 18 broadleaf trees (Big Leaf Maple, Red Alder, Pacific Madrone, Oregon White Oak, and more).</p>
+<p>My plan was as follows:</p>
+<ol type="1">
+<li>Source training data from iNaturalist’s community-verified observations</li>
+<li>Train a deep learning-based image classifier using transfer learning</li>
+<li>Wrap my trained model in a simple, deployable web app</li>
+</ol>
+<p>I didn’t need to use any of the latest or greatest models, especially because I would be limited to the compute on my laptop. My real goals were to set up a satisfying loop from raw data to a working product, and to familiarize myself with building code with AI assistance.</p>
+</section>
+<section id="working-with-claude-code" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-claude-code">Working with Claude Code</h2>
+<p>I used Claude Code as my primary development partner throughout this project. I had an idea of the data that I wanted to use, but I also had knew it would be a big lift for me to figure out the process of web scraping. I also had ideas for my modeling approach, but I wasn’t sure how to figure out what I could feasibly run using just my local computing environment. Lastly, the only web app development or deployment experience I had was all in R Shiny / Quarto websites. I had no idea how to get my generated model off the ground.</p>
+<p>Rather than treating Claude like an autocomplete tool while I wrote my code, I decided to use it more like a natural language assistant. I would start by describing what I wanted at a high level and then iterate on the generated code until I was happy with the output.</p>
+<p>Here are some tips that worked well for my process:</p>
+<ul>
+<li><strong>Scaffolding the project structure.</strong> The very first thing I did was describe my current overall plan and the full data pipeline that I wanted. I didn’t bother with any implementation details… I just wanted to nail down the organization. Based on my input, Claude Code was able to set up the full directory structure, config files, and script entry points for my project.</li>
+<li><strong>Using Claude Code to facilitate data ingestion.</strong> I asked Claude Code to help me brainstorm open-source datasets that would be useful for my purposes. After settling on my initial choice of iNaturalist, Claude Code was able to generated iNaturalist API integration, image validation, deduplication, and stratified splitting in a single pass. Almost everything here worked on the first try!</li>
+<li><strong>Detailing my desired training loop.</strong> I described the two-phase transfer learning approach I had researched and used Claude Code to explore different model options. The descriptions that Claude Code provided helped me settle on EfficientNet as my model family of choice. From there, Claude Code implemented the full trainer, including differential learning rates, cosine annealing, early stopping, checkpointing, all with proper PyTorch idioms.</li>
+<li><strong>Iterating on web app deployment and styling.</strong> I had no clue where to get started with this part of the project - I just knew I wanted a clean user interface so that my wife could use that instead of having to learn how to work from the command line! Claude Code helped me develop a very basic <a href="https://flask.palletsprojects.com/en/stable/">Flask</a> app that included a drag-and-drop UI. From there, I was able to refine my app through conversation, adding forest-themed CSS and templates for documentation and explanations. It was easy for me to manually write out all of the background information that I wanted to include. With respect to deployment, I knew that I didn’t want to pay for a separate domain for the project. Claude Code first helped me deploy my app using the free tier on <a href="https://render.com">Render</a>. When the available compute wasn’t enough, Claude Code helped me easily pivot my site to a platform on <a href="https://huggingface.co/spaces">Hugging Face Spaces</a>.</li>
+<li><strong>Debugging.</strong> When things broke and I couldn’t figure out what the generated errors meant (a NumPy 2.x incompatibility, macOS port conflicts, truncated image handling), describing my issue to Claude Code always got me to a fix way faster than I would have gotten there by myself!</li>
+</ul>
+<p>Where I still needed to steer:</p>
+<ul>
+<li><strong>Architectural decisions.</strong> Claude Code helped me a lot with research and implementation for my open questions, but choosing <em>what</em> to build (e.g.&nbsp;data options, training strategy, model choice) and <em>why</em> was still all on me. I found the tool useful as a sanity check for a lot of my thinking, and I appreciated the alternatives that it would offer through its comprehensive web search.</li>
+<li><strong>Voice and tone.</strong> I’m a strong proponent against the <a href="https://www.newyorker.com/culture/infinite-scroll/ai-is-homogenizing-our-thoughts">“averaging” of tone/writing that comes from AI-generated text</a>. I see language model generators as a good way to brainstorm, but as a significant detractor of personal voice. So, I let Claude Code come up with a baseline template for my documentation, then wrote the content myself, making sure to adjust technical detail as I saw fit and keeping my voice throughout the process. I wanted all of the information on my website to be clear, comprehensive, and <strong>human</strong>.</li>
+<li><strong>Validation.</strong> At every step of code generation from Claude Code, I validated that the output aligned with the behavior I wanted to see. I also conducted manual checks during the training loop to make sure my model training was proceeding as expected.</li>
+</ul>
+<p>Here’s how I would summarize my overall experience with Claude Code:</p>
+<ul>
+<li><p>a huge reducer of the activation energy needed to get things started! Especially with concepts like web scraping and app deployment that I know would have taken me too much time to iterate on by myself</p></li>
+<li><p>super-powered access to documentation for all of the tools I knew (and didn’t yet know) about</p></li>
+<li><p>the lowest effort debugger I’ve ever worked with!</p></li>
+</ul>
+</section>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The data</h2>
+<p>Every training image comes from <a href="https://www.inaturalist.org/">iNaturalist</a>, a citizen science platform where people photograph organisms and the community verifies the identifications. I used only <strong>research-grade</strong> observations (images confirmed by multiple independent identifiers).</p>
+<p>For each of the 40 species, my pipeline queried the iNaturalist API with:</p>
+<ul>
+<li>The species’ <strong>taxon ID</strong> (e.g., Douglas Fir = 48256)</li>
+<li><strong>Place IDs</strong> for Oregon, Washington, and British Columbia</li>
+<li><strong>Quality grade</strong> set to <code>research</code> only</li>
+</ul>
+<p>This search produced around <strong>400 images per species</strong> (~15,500 total), representing a natural distribution of lighting conditions, seasons, camera angles, and photographic quality.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-data-pipeline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-data-pipeline">flowchart LR
+    A["iNaturalist API&lt;br/&gt;(v1/observations)"] --&gt; B["~400 photos&lt;br/&gt;per species"]
+    B --&gt; C["Validate &amp;&lt;br/&gt;clean images"]
+    C --&gt; D["Resize to&lt;br/&gt;384px"]
+    D --&gt; E["SHA256&lt;br/&gt;deduplicate"]
+    E --&gt; F["Stratified split&lt;br/&gt;70 / 15 / 15"]
+    F --&gt; G["10,800 train"]
+    F --&gt; H["2,300 val"]
+    F --&gt; I["2,300 test"]
+
+    style A fill:#2d5016,color:#fff
+    style G fill:#4a7c28,color:#fff
+    style H fill:#6b8e3a,color:#fff
+    style I fill:#6b8e3a,color:#fff
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Data collection and preprocessing pipeline.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="preprocessing" class="level3">
+<h3 class="anchored" data-anchor-id="preprocessing">Preprocessing</h3>
+<p>Before training, images went through the following quality checks:</p>
+<ul>
+<li><strong>Validation</strong> — corrupt or un-openable files are discarded</li>
+<li><strong>Resizing</strong> — longest edge scaled to 384px (aspect ratio preserved)</li>
+<li><strong>Deduplication</strong> — SHA256 hashing catches exact duplicates across observations</li>
+<li><strong>RGB conversion</strong> — standardized to 3-channel JPEG at quality 95</li>
+<li><strong>Stratified splitting</strong> — 70/15/15 train/val/test with class proportions maintained</li>
+</ul>
+</section>
+</section>
+<section id="modeling-approach" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-approach">Modeling approach</h2>
+<section id="efficientnetv2" class="level3">
+<h3 class="anchored" data-anchor-id="efficientnetv2">EfficientNetV2</h3>
+<p><a href="https://arxiv.org/abs/2104.00298">EfficientNetV2</a> is a family of image classifiers designed by Google using neural architecture search. The “S” (small) variant has 21.5 million parameters, making these models powerful enough for fine-grained species classification, but also small enough to run inference on a laptop.</p>
+<p>The key idea behind my modeling approach was <strong>transfer learning</strong>: we start with a model pretrained on <a href="https://www.image-net.org">ImageNet</a> (a database of 1.28 million images, 1000 classes), then adapt it for our specific task.</p>
+<p>The backbone can already extract visual features like textures, edges, and shapes - we just need to train the final layers of the model in terms of how different kinds of trees look different from one another.</p>
+</section>
+<section id="architecture" class="level3">
+<h3 class="anchored" data-anchor-id="architecture">Architecture</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-architecture" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-architecture">flowchart TB
+    A["Input Image&lt;br/&gt;384 × 384 × 3"] --&gt; B
+
+    subgraph B["EfficientNetV2-S Backbone"]
+        direction TB
+        B1["Fused-MBConv + MBConv blocks&lt;br/&gt;21.5M params · ImageNet pretrained"]
+    end
+
+    B --&gt; C["Feature Vector (1280-dim)"]
+    C --&gt; D
+
+    subgraph D["Custom Classifier Head"]
+        direction TB
+        D1["Dropout(0.3)"] --&gt; D2["Linear(1280 → 512)"]
+        D2 --&gt; D3["ReLU + BatchNorm"]
+        D3 --&gt; D4["Dropout(0.15)"]
+        D4 --&gt; D5["Linear(512 → 40)"]
+    end
+
+    D --&gt; E["Softmax → Species Probabilities"]
+
+    style B fill:#2d5016,color:#fff
+    style B1 fill:#2d5016,color:#fff
+    style D fill:#6b4226,color:#fff
+    style D1 fill:#6b4226,color:#fff
+    style D2 fill:#6b4226,color:#fff
+    style D3 fill:#6b4226,color:#fff
+    style D4 fill:#6b4226,color:#fff
+    style D5 fill:#6b4226,color:#fff
+    style E fill:#4a7c28,color:#fff
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Model architecture: EfficientNetV2-S backbone with a custom classification head.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Our backbone extracts a 1,280-dimensional feature vector from each image. Our custom classifier head then maps these features to 40 output classes through a small network, using dropout for regularization and batch normalization for training stability.</p>
+</section>
+<section id="two-phase-training" class="level3">
+<h3 class="anchored" data-anchor-id="two-phase-training">Two-Phase Training</h3>
+<p>Training happens in two phases, each with a different strategy:</p>
+<p><strong>Phase 1 — Warm up the head (5 epochs).</strong> The backbone is frozen. Only the new classifier head trains at a learning rate of <code>1e-3</code>. This quickly teaches the head to map ImageNet features to our 40 species without disturbing any pretrained representations.</p>
+<p><strong>Phase 2 — Fine-tune everything (up to 30 epochs).</strong> The entire network unfreezes and trains with <strong>differential learning rates</strong>: <code>1e-5</code> for the backbone (gentle nudges) and <code>1e-4</code> for the head (10× more aggressive). This lets the backbone subtly adapt its feature extraction for tree-specific patterns (e.g.&nbsp;bark textures, needle arrangements, leaf shapes) while the head continues refining.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-training" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-training-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-training">flowchart LR
+    subgraph P1["Phase 1: Head Only"]
+        direction TB
+        P1a["Backbone: FROZEN ❄️"]
+        P1b["Head LR: 1e-3"]
+        P1c["5 epochs"]
+    end
+
+    P1 --&gt; P2
+
+    subgraph P2["Phase 2: Fine-Tune All"]
+        direction TB
+        P2a["Backbone LR: 1e-5"]
+        P2b["Head LR: 1e-4"]
+        P2c["Up to 30 epochs"]
+        P2d["Early stopping · patience 7"]
+    end
+
+    style P1 fill:#4a7c28,color:#fff
+    style P1a fill:#4a7c28,color:#fff
+    style P1b fill:#4a7c28,color:#fff
+    style P1c fill:#4a7c28,color:#fff
+
+    style P2 fill:#2d5016,color:#fff
+    style P2a fill:#2d5016,color:#fff
+    style P2b fill:#2d5016,color:#fff
+    style P2c fill:#2d5016,color:#fff
+    style P2d fill:#2d5016,color:#fff
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-training-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Two-phase training strategy with differential learning rates.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="training-tricks" class="level3">
+<h3 class="anchored" data-anchor-id="training-tricks">Training Tricks</h3>
+<p>Here are a few techniques that helped with my model training:</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Technique</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Label smoothing (0.1)</strong></td>
+<td>Softens targets from “100% Douglas Fir” to “90% Douglas Fir, 0.26% each other,” preventing overconfidence</td>
+</tr>
+<tr class="even">
+<td><strong>“Cosine Annealing” Learning Rate</strong></td>
+<td>Learning rate follows a smooth cosine decay toward zero so that we can settle into a local loss minimum</td>
+</tr>
+<tr class="odd">
+<td><strong>Early stopping</strong></td>
+<td>Training is halted if the validation loss plateaus for 7 epochs. This helps prevent overfitting</td>
+</tr>
+<tr class="even">
+<td><strong>AdamW</strong></td>
+<td>We used an Adam optimizer with decoupled weight decay (0.01) for better generalization</td>
+</tr>
+<tr class="odd">
+<td><strong>Data augmentation</strong></td>
+<td>Random crops, flips, color jitter, rotation, and erasing helped create more data for training</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-augmentation" class="level3">
+<h3 class="anchored" data-anchor-id="data-augmentation">Data Augmentation</h3>
+<p>During training, each image is randomly transformed on-the-fly:</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Transform</th>
+<th>Parameters</th>
+<th>Simulates</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Random Resize Crop</td>
+<td>384px, scale 0.6–1.0</td>
+<td>Different distances and framings</td>
+</tr>
+<tr class="even">
+<td>Horizontal Flip</td>
+<td>p = 0.5</td>
+<td>Trees look the same mirrored</td>
+</tr>
+<tr class="odd">
+<td>Color Jitter</td>
+<td>Brightness/Contrast/Saturation ±0.3</td>
+<td>Varying sunlight and seasons</td>
+</tr>
+<tr class="even">
+<td>Rotation</td>
+<td>±15°</td>
+<td>Tilted camera angles</td>
+</tr>
+<tr class="odd">
+<td>Random Erasing</td>
+<td>p = 0.2, 2–15% of image</td>
+<td>Occlusion by branches, signs, etc.</td>
+</tr>
+</tbody>
+</table>
+<p>At inference time, we turned augmentation off. Input images were deterministically resized to 422px then center-cropped to 384px.</p>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Here are the final results from training my model for 30 epochs:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Validation Accuracy</strong></td>
+<td>75.9%</td>
+</tr>
+<tr class="even">
+<td><strong>Test Top-1 Accuracy</strong></td>
+<td>73.9%</td>
+</tr>
+<tr class="odd">
+<td><strong>Test Top-5 Accuracy</strong></td>
+<td>94.9%</td>
+</tr>
+</tbody>
+</table>
+<p>I felt like this was pretty decent performance for the size of my training dataset and the architecture I used! I could spend more time messing around with my data and my model to make this outcome better, but for a deep learning model that I ran using only my CPU, I was quite happy with this output. The whole training process took about 2.5 days.</p>
+<p>Here’s the confusion matrix on the held-out test set (2,325 images, never seen during training):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/confusion_matrix.png" class="img-fluid figure-img" alt="A 40x40 confusion matrix heatmap showing model predictions vs true labels. A strong diagonal pattern indicates high accuracy, with a few off-diagonal spots showing confusion between similar species like the spruces and true firs."></p>
+<figcaption>Confusion matrix across all 40 species. The strong diagonal indicates the model is getting most species right, with occasional confusion between visually similar species.</figcaption>
+</figure>
+</div>
+<p>The diagonal of our output ended up pretty solid! Our model seems to be correctly identifying most of the species in our dataset. We note a few off-diagonal spots - these tend to be between visually similar species (e.g., different species of spruce, different types of firs).</p>
+<p>We can take a look at a few example images to see how the app works. Let’s start with a Pacific Madrone:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/results-screenshot-pm.png" class="img-fluid figure-img" alt="Screenshot showing prediction results: Douglas Fir at 78.4% confidence, followed by Engelmann Spruce at 5.5%, Mountain Hemlock at 2.7%, and other species at lower confidence levels."></p>
+<figcaption>Prediction results for a Pacific Madrone photo</figcaption>
+</figure>
+</div>
+<p>Easy to classify! Now let’s look at an Engelmann Spruce:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/results-screenshot-eg1.png" class="img-fluid figure-img" alt="Screenshot showing prediction results: Douglas Fir at 78.4% confidence, followed by Engelmann Spruce at 5.5%, Mountain Hemlock at 2.7%, and other species at lower confidence levels."></p>
+<figcaption>Prediction results for an Engelmann Spruce photo.</figcaption>
+</figure>
+</div>
+<p>We see that our classifier had trouble with this, and incorrectly classified it as a Noble Fir. We do note though that the Engelmann Spruce is the second prediction from our model. This is a great example of where our model fails.</p>
+<p>Let’s try one more Engelmann Spruce and see how things look:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/results-screenshot-eg2.png" class="img-fluid figure-img" alt="Screenshot showing prediction results: Douglas Fir at 78.4% confidence, followed by Engelmann Spruce at 5.5%, Mountain Hemlock at 2.7%, and other species at lower confidence levels."></p>
+<figcaption>Prediction results for another Engelmann Spruce photo.</figcaption>
+</figure>
+</div>
+<p>Alright, this one works! My takeaway is that it may help to provide the app with multiple pictures of a tree from different perspectives as well as of different parts, then take the consensus of the results. It would be a fun exercise to provide more data to the model to see which types of pictures it struggles with the most.</p>
+</section>
+<section id="deployment" class="level2">
+<h2 class="anchored" data-anchor-id="deployment">Deployment</h2>
+<p>Our model is served through a Flask web app with a Claude Code-designed forest-themed interface:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/home-screenshot.png" class="img-fluid figure-img" alt="Screenshot of the PNW Tree Identifier home page showing the green forest-themed header, image upload area, and three-step 'How It Works' pipeline cards."></p>
+<figcaption>The home page with “How It Works” explainer cards, and species overview.</figcaption>
+</figure>
+</div>
+<p>Features of our app include:</p>
+<ul>
+<li><strong>Drag-and-drop upload</strong> with image preview</li>
+<li><strong>Top-5 predictions</strong> with animated confidence bars</li>
+<li>An <strong>About page</strong> explaining the data pipeline, model architecture, and training methodology in detail</li>
+<li><strong>Accessibility</strong>: skip links, ARIA labels, keyboard navigation, reduced-motion support, and high-contrast media queries</li>
+<li><strong>Forest theme</strong>: green gradient hero, SVG tree icons, serif headings for a “field guide” feel, bark-brown accents</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/about-screenshot.png" class="img-fluid figure-img" alt="Screenshot of the About page showing detailed explanations of the data sourcing from iNaturalist, an architecture diagram of the neural network, and side-by-side cards explaining the two training phases."></p>
+<figcaption>The About page with data methodology, interactive architecture diagram, and training phase cards.</figcaption>
+</figure>
+</div>
+</section>
+<section id="my-biggest-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="my-biggest-takeaways">My biggest takeaways</h2>
+<p><strong>Claude Code can significantly reduce the energy needed to get full-stack projects off the ground.</strong> It handled everything from PyTorch training loops to CSS animations to iNaturalist API pagination. I still made all the architectural decisions and validated all of my output, but my development speed was noticeably faster than it had been for the past year.</p>
+<p><strong>iNaturalist and other open-source data repositories are incredible resources.</strong> Having worked with siloed health data for close to a decade now, it’s hard to overstate how much of a difference data accessibility can make. In the field of machine learning, garbage in = garbage out. Access to free, labeled, research-grade images made it so much easier for me to build my model effectively. The community that powers iNaturalist deserves all of the credit.</p>
+<p><strong>Transfer learning is very effective.</strong> Going from ImageNet features to a decent 40-class tree classifier with only about 400 images per species is a huge feat, and EfficientNetV2’s pretrained backbone does most of the heavy lifting.</p>
+</section>
+<section id="try-it-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try it yourself</h2>
+<p>I’ve made my project completely open source, so feel free to try it out locally using the following steps! My README on GitHub also offers comprehensive instructions and detailed explanations of all components.</p>
+<ul>
+<li><strong>GitHub:</strong> <a href="https://github.com/vsriram24/pnw-tree-id">github.com/vsriram24/pnw-tree-id</a></li>
+<li><strong>Quickstart:</strong> Clone, install dependencies, train (or bring your own checkpoint), and run the Flask app locally</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/vsriram24/pnw-tree-id.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> pnw-tree-id</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv venv <span class="kw">&amp;&amp;</span> <span class="bu">source</span> venv/bin/activate</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/download_dataset.py</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/prepare_dataset.py</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/train.py</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> webapp/app.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This concludes my overview of my first project with Claude Code! You may be curious what my wife’s feedback was on the website…</p>
+<p>“Very cool… but can you make this a mobile app? When am I going to use a website in the woods??”</p>
+<p>With that, I look forward to covering my <strong>PNW Tree ID Mobile App adventures</strong> down the road… and with Claude Code, I know it won’t take me another year!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/vsriram24\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="vsriram24/vsriram24.github.io" data-repo-id="R_kgDOGnX_pg" data-category="Announcements" data-category-id="DIC_kwDOGnX_ps4C2K-_" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="light">
+</div> <!-- /content -->
+
+
+
+
+</body></html>
