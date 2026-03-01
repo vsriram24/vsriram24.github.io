@@ -18,7 +18,7 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "PNW Tree Identifier\n\n\n\n\n\n\nA deep learning web app that identifies 40 tree species native to the Pacific Northwest from a single photo.\nBuilt with EfficientNetV2-S and transfer learning, trained on 15,000+ research-grade observations from iNaturalist. Features drag-and-drop upload, top-5 predictions with confidence scores, and a forest-themed interface.\nTech stack: PyTorch, Flask, Hugging Face Spaces\nTry it live   GitHub"
+    "text": "ML Visualizer\n\n\n\n\n\n\nAn interactive web app for exploring 20+ ML and AI algorithms through animated, hands-on visualizations — from supervised learning basics to generative AI and autonomous agents.\nCovers ML Fundamentals, Predictive Algorithms, Deep Learning (CNNs, RNNs, Transformers), Generative AI (GANs, VAEs, Diffusion, LLMs), and GenAI Applications.\nTech stack: React, Vite, D3, Tailwind CSS\nTry it live   GitHub\n\n\n\n\n\nPNW Tree Identifier\n\n\n\n\n\n\nA deep learning web app that identifies 40 tree species native to the Pacific Northwest from a single photo.\nBuilt with EfficientNetV2-S and transfer learning, trained on 15,000+ research-grade observations from iNaturalist. Features drag-and-drop upload, top-5 predictions with confidence scores, and a forest-themed interface.\nTech stack: PyTorch, Flask, Hugging Face Spaces\nTry it live   GitHub"
   },
   {
     "objectID": "posts/phd-papers/index.html",

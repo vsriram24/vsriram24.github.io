@@ -4,6 +4,29 @@ title-block-banner: true
 toc: false
 ---
 
+### ML Visualizer
+
+::: {.columns}
+::: {.column width="45%"}
+[![](images/ml-vis-hero.png){fig-alt="Screenshot of the ML Visualizer web app"}](https://viveksriram.com/ml-visualizer)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="50%"}
+An interactive web app for exploring 20+ ML and AI algorithms through animated, hands-on visualizations — from supervised learning basics to generative AI and autonomous agents.
+
+Covers **ML Fundamentals**, **Predictive Algorithms**, **Deep Learning** (CNNs, RNNs, Transformers), **Generative AI** (GANs, VAEs, Diffusion, LLMs), and **GenAI Applications**.
+
+**Tech stack:** React, Vite, D3, Tailwind CSS
+
+[Try it live](https://viveksriram.com/ml-visualizer){.btn .btn-success .btn-sm} &ensp; [GitHub](https://github.com/vsriram24/ml-visualizer){.btn .btn-outline-secondary .btn-sm}
+:::
+:::
+
+---
+
 ### PNW Tree Identifier
 
 ::: {.columns}
