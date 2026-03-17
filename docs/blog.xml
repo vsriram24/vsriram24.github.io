@@ -10,7 +10,110 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram - Senior Health AI Scientist | Personal website and blog</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Fri, 20 Feb 2026 08:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 17 Mar 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Fred Hutch Reflections</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/hutch-wrapup/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Two years ago, when I joined the <a href="https://www.fredhutch.org/en.html?gad_source=1&amp;gad_campaignid=18533291037">Fred Hutch Cancer Center</a>‘s <a href="https://ocdo.fredhutch.org">Chief Data Office</a> (officialy known as the ’Office of the Chief Data Officer’ or ‘OCDO’), I had just finished my <a href="https://www.med.upenn.edu/gcb/">PhD in Biomedical Informatics</a> at the University of Pennsylvania and was stepping into my first full-time role outside of academia. I was hired as a Clinical Data Scientist with the OCDO’s <a href="https://ocdo.fredhutch.org/dss.html">Translational Data Science</a> (TDS) team. My focus was to help support the Fred Hutch clinical data ecosystem for translational research via clinical natural language processing (NLP), and to promote the use of textual information in the EHR as well as other real-world data for observational studies. From the get-go, I was tremendously excited by the opportunity to work with real-world oncology data and to build systems that could meaningfully impact patient care.</p>
+<p><img src="https://vsriram24.github.io/posts/hutch-wrapup/badge.jpeg" class="img-fluid" width="517"></p>
+<p>What drew me the most to Fred Hutch was the institution’s combination of rigorous science and clinical proximity. As a member of the TDS team, I appreciated that I could work in the space between basic research and clinical practice, helping to translate research output from the bench into practical use cases for the bedside. Similarly, I appreciated my department’s focus on the practical applications of tooling - as the Chief Data Office for the entire institution, we had to devote our time to the types of tooling that researchers and clinicians would <em>actually</em> use. Our goals were to always center on trustworthiness and data safety, emphasize clinical utility and impact, and avoid tooling overcomplexity. Indeed, a major mantra of our department was “building pits of success” - in other words, making the “right thing to do” with clinical data the easy thing to do!</p>
+<p>Throughout my time at the Hutch, I grew a tremendous amount as a biomedical data scientist and health machine learning researcher. This chapter of my career was about going beyond conceptual academic publications, and learning how to:</p>
+<ul>
+<li><p>translate research into practical, production-ready systems</p></li>
+<li><p>navigate complicated, untidy clinical data</p></li>
+<li><p>collaborate across deeply interdisciplinary teams</p></li>
+</ul>
+<p>As I’ve transitioned to my next role, I’ve been reflecting on the work at Fred Hutch that shaped me most, as well as the lessons I’ll carry forward.</p>
+<section id="my-key-projects" class="level2">
+<h2 class="anchored" data-anchor-id="my-key-projects">My Key Projects</h2>
+<section id="nlp-for-oncology-phenotyping" class="level3">
+<h3 class="anchored" data-anchor-id="nlp-for-oncology-phenotyping">1. NLP for Oncology Phenotyping</h3>
+<p>The longest-term project on which I worked during my tenure at the Hutch was the development of a NLP pipeline to identify a rare oncologic phenotype from unstructured clinical notes.</p>
+<p><strong>The challenge:</strong><br>
+The phenotype in which our collaborating research team was interested had no reliable structured representation in the EHR. Instead, the signal was highly context-dependent and often buried in long narrative documentation. In order to estimate the prevalence of the symptom in the Fred Hutch patient population, we needed a robust NLP solution.</p>
+<p><strong>My contribution:</strong><br>
+I designed and implemented complementary NLP modeling approaches that combined common linguistic patterns in a rule-based classifier with named entity recognition (NER) and relation extraction (RE) pipelines to capture fine-grained context from training data in a neural network-based classifier. In addition to the modeling, I built out the data generation and labeling pipeline for the project and developed a full set of annotation guidelines for gold standard corpus development in close collaboration with our clinical research stakeholders. Our final best-performing model was packaged as a Dockerized module, making it portable and reusable on future clinical data. My clinician-in-the-loop annotation workflow for data generation and my reproducible, end-to-end NLP pipeline for oncology phenotyping now both serve as a foundation for future automated phenotyping offerings at the Hutch.</p>
+<p><strong>What I learned:</strong><br>
+In healthcare AI, model performance is inseparable from task definition. Instead of deriving improvements from model archiecture, the biggest gains in my project’s outcomes came from refining annotation criteria, clarifying edge cases, and ensuring that our data generation process was trustworthy from the start.</p>
+</section>
+<section id="bespoke-clinical-data-extraction-and-cohort-development" class="level3">
+<h3 class="anchored" data-anchor-id="bespoke-clinical-data-extraction-and-cohort-development">2. Bespoke Clinical Data Extraction and Cohort Development</h3>
+<p>Another major component of my role involved collaborating with researchers and clinicians to develop patient cohorts for research studies and clinical trial enrollment.</p>
+<p><strong>The challenge:</strong><br>
+Researchers often knew the clinical phenomenon they wanted to study, but translating that information into computable cohort definitions required deep navigation and understanding of the clinical data ecosystem.</p>
+<p><strong>My contribution:<br>
+</strong>I worked directly with clinical stakeholders to clarify research goals and definitions, translating biological and clinical requirements into structured and NLP-based queries. I also helped navigate data access constraints and standards, advising on feasibility based on available structured and unstructured data. Across data requests, my work was an exercise in not only coding but also communication. I had to understand both the medical context behind the request as well as the realities of the underlying data infrastructure. I also had to be able to translate my approach and findings in a manner that was interpretable to both technical and non-technical audiences. Ultimately, my work enabled cohort identification for observational studies and trial recruitment, strengthened trust between clinical stakeholders and the Fred Hutch Chief Data Office, and helped establish clear pathways and standards for future data access requests.</p>
+<p><strong>What I learned:</strong><br>
+Technical skill (i.e.&nbsp;the ability to code) is necessary but insufficient when working with healthcare data. Impact in the field comes from bridging data literacy with clinical domain expertise.</p>
+</section>
+<section id="clinical-data-documentation-and-harmonization" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-data-documentation-and-harmonization">3. Clinical Data Documentation and Harmonization</h3>
+<p>As the clinical data ecosystem at Fred Hutch expanded, documentation and harmonization of our data became increasingly important.</p>
+<p><strong>The challenge:</strong><br>
+Clinical data are fragmented, inconsistently coded, and deeply contextual. Without shared documentation and standardized mappings, downstream analyses can easily become brittle and non-reproducible.</p>
+<p><strong>My contribution:<br>
+</strong>My first task upon joining the team was to help contribute to a preliminary “clinical data guidebook” that could document available datasets, variable definitions, and known caveats. Near the end of my tenure at the Hutch, I also contributed to early-stage data harmonization efforts related to aligning structured drug exposure data with standard clinical vocabularies, supporting exploratory analysis to assess missingness, distribution shifts, and coding inconsistencies.</p>
+<p><strong>What I learned:</strong><br>
+The right data modeling and governance will have more long-term impact than any single predictive model. Investing in the structure of your data systems upfront enables reproducible and replicable downstream analyses and drastically amplifies the utility of the data in the long term.</p>
+</section>
+<section id="clinical-decision-support-and-data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-decision-support-and-data-visualization">4. Clinical Decision Support and Data Visualization</h3>
+<p>Throughout my time at Fred Hutch, I was also involved in projects related to applied clinical decision support and visualization tooling.</p>
+<p><strong>The challenge:</strong><br>
+Models and analytics make an impact only if they are accessible and easily interpretable. Clinicians and researchers need intuitive interfaces to be able to understand the data with which they are working.</p>
+<p><strong>My contribution:</strong></p>
+<p>I built two R Shiny web applications: one to assist with the calculation of mortality risk for a specific patient subpopulation, and the other for the interactive visualization of population-wide cancer incidence and outcomes. My code emphasized reproducibility, documentation, and maintainability, with a focus on modular codebases and tech stacks to allow future extensability. My work helped create tooling that could be iterated on by other team members, reduced friction between modeling outputs and end-user interaction and accessibility, and helped move projects closer to production-grade standards.</p>
+<p><strong>What I learned:</strong><br>
+Building for maintainability and ease of use are paramount when designing tools for clinical and research workflows.</p>
+</section>
+</section>
+<section id="lessons-learned" class="level2">
+<h2 class="anchored" data-anchor-id="lessons-learned">Lessons Learned</h2>
+<section id="deployability-and-utility-are-just-as-important-as-accuracy-in-health-ml" class="level3">
+<h3 class="anchored" data-anchor-id="deployability-and-utility-are-just-as-important-as-accuracy-in-health-ml">1. Deployability and utility are just as important as accuracy in health ML</h3>
+<p>When I started at the Hutch, I imagined that the focus of my work would be on using advanced model architectures to achieve the best benchmarks. Over time, I realized the harder questions in health AI were related more to the data themselves and the practicality of deployment. In particular:</p>
+<ul>
+<li><p>How do we determine that we have the <em>right</em> data for the question at hand?</p></li>
+<li><p>What types of errors in model behavior are acceptable, and which are not?</p></li>
+<li><p>When is a model “good enough” for clinical use?</p></li>
+</ul>
+<p>Fred Hutch taught me to think beyond common metrics like AUC, and to never forget about clinical utility, reliability, and trust.</p>
+</section>
+<section id="interdisciplinary-collaboration-in-biomedicine-goes-beyond-understanding-the-biology" class="level3">
+<h3 class="anchored" data-anchor-id="interdisciplinary-collaboration-in-biomedicine-goes-beyond-understanding-the-biology">2. Interdisciplinary collaboration in biomedicine goes beyond “understanding the biology”</h3>
+<p>Working alongside oncologists, clinical trial managers, and research coordinators fundamentally reshaped how I approach health data problems. In the past, my comprehension of biomedical concepts was enough to guide my collaboration with clinical stakeholders. At the Hutch, these collaborations had to extend beyond my understanding of the life sciences. Progress in my work depended on clear communication, alignment of expectations, and the translation from clinical to technical perspectives. I became more intentional about stakeholder alignment and more comfortable operating in ambiguity.</p>
+</section>
+<section id="clinical-data-capture-is-inherently-messy" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-data-capture-is-inherently-messy">3. Clinical data capture is inherently messy</h3>
+<p>During my PhD, the datasets I worked with were often curated before my analysis. In real-world oncology data, in spite of the fact that data are ingested into full-scale electronic health records, mess is part of the signal. Missingness patterns, documentation variability, and coding heterogeneity are an expectation rather than an exception in typical workflows. Learning to work with that complexity changed how I think about clinical data modeling and access, and it deepened my appreciation for robust data governance and thoughtful guardrails.</p>
+</section>
+<section id="democratizing-access-to-data-is-a-must" class="level3">
+<h3 class="anchored" data-anchor-id="democratizing-access-to-data-is-a-must">4. Democratizing access to data is a must</h3>
+<p>One of the most important themes I’ll carry forward is the importance of bringing data to users. Clinical data should not live behind opaque pipelines or require advanced technical expertise to interpret. The more we can make data accessible, interpretable, and responsibly governed, the more impact it can have. Approachable tooling builds trust, and in turn, trust enables broader adoption and impact.</p>
+</section>
+</section>
+<section id="looking-forward" class="level2">
+<h2 class="anchored" data-anchor-id="looking-forward">Looking forward</h2>
+<p>Last month, I joined the Enterprise AI team at <a href="https://www.humana.com">Humana</a> as a Senior Data Scientist. This move has very much felt like a natural next step in my career. At Fred Hutch, I learned how to build clinically grounded data models and navigate real-world healthcare data. At Humana, I’ll be working on responsible, production-grade generative AI and agentic systems for healthcare workflows at scale.</p>
+<p>I’m tremendously grateful to the mentors, collaborators, and teammates who made my time at Fred Hutch so formative! This was without question the best possible first role for me coming out of academia, and it deeply shaped how I think about science and impact as well as my long-term career. I’m excited to bring the lessons I learned at the Hutch to Humana, and to deepen my work in generative AI, multimodal systems, and reliability in healthcare AI - all areas where rigor and real-world constraints intersect in meaningful ways.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Personal</category>
+  <category>Miscellaneous</category>
+  <guid>https://vsriram24.github.io/posts/hutch-wrapup/</guid>
+  <pubDate>Tue, 17 Mar 2026 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/hutch-wrapup/zolaKnows.jpeg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Building a Pacific Northwest Tree Identifier with Deep Learning (and Claude Code)</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -3056,133 +3159,6 @@ Ultimately, responsible AI in healthcare demands equity, transparency, collabora
   <guid>https://vsriram24.github.io/posts/posit-conf-24/</guid>
   <pubDate>Mon, 02 Sep 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/posit-conf-24/pensiveZola.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>An intro to NLP for oncology</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/nlp-oncology-overview/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>In this week’s blog, I will be summarizing Yim et al’s 2016 review paper from <em>JAMA Oncology</em>, titled “Natural Language Processing in Oncology: A Review.” This paper was written by researchers at the University of Washington Medical Center, including individuals from the Departments of Biomedical and Health Informatics, the Department of Linguistics, the Division of Oncology at the Department of Medicine, and the Department of Radiology. You can read the abstract for this paper <a href="https://pubmed.ncbi.nlm.nih.gov/27124593/">here</a>.</p>
-<p>The full text of this manuscript is unfortunately not publicly available (you or your institution must have access to <em>JAMA Oncology</em> to read the full text), so I hope that this summary provides those without access to this journal some insight into some exciting content. Furthermore, given that this paper is from 2016, it does not include many of the recent advances in the past 8 years related to transformer / large language models that have become more relevant in NLP applications. Nevertheless, I found this paper to be an excellent summary of how to frame the workflow for tackling NLP research questions, particularly in terms of the collaborations needed among oncologists and informaticians. Much of the content covered remains as relevant today as it did 8 years ago, and I look forward to using my takeaways from this material in <a href="https://hutchdatascience.org/tr-analytics/">my own work at the Fred Hutch Cancer Center</a>.</p>
-<p>With context out of the way, let’s get started!</p>
-<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/paperAbstract.png" class="img-fluid"></p>
-<hr>
-<section id="oncology-focused-nlp" class="level2">
-<h2 class="anchored" data-anchor-id="oncology-focused-nlp">Oncology-focused NLP</h2>
-<p><strong>Natural Language Processing</strong> (NLP) refers to any computer-based algorithm that can handle, augment, and transform natural language so that it can be represented for computation.</p>
-<p>NLP is particularly attractive for clinical research applications for the following reasons. One can:</p>
-<ol type="1">
-<li>define new variables that are not readily available in electronic health records as stored values</li>
-<li>automate the process of reviewing clinical notes for patient diagnosis instead of requiring a resource-intensive manual review process.</li>
-<li>expedite biomedical discovery by empowering clinicians with the ability to analyze outcomes in the context of big data</li>
-</ol>
-<p>With respect to the field of oncology, NLP applications typically have the following objectives:</p>
-<ol type="1">
-<li><strong>Case identification:</strong> determine which patients may have a case of the disease of interest
-<ul>
-<li>Here, we process the free text from clinical notes to augment the diagnosis codes that correspond to a patient’s labeled set of diseases or symptoms</li>
-</ul></li>
-<li><strong>Staging:</strong> determine the stage of a patient’s cancer progress
-<ul>
-<li>Here, we process the free text from clinical notes to determine the stage of a patient’s cancer progression. This objective is more challenging than case identification because it is highly context-specific depending on the type of cancer.</li>
-</ul></li>
-<li><strong>Outcome determination:</strong> determine the patient’s ultimate outcome (cancer advancement vs.&nbsp;remission vs.&nbsp;death)
-<ul>
-<li>Here, we process the free text from clinical notes to determine the patient’s ultimate outcome (advancement vs.&nbsp;remission vs.&nbsp;death). This objective is the most challenging of the three because it essentially requires us to perform cancer staging with respect to time.</li>
-</ul></li>
-</ol>
-</section>
-<section id="the-role-of-the-oncologist" class="level2">
-<h2 class="anchored" data-anchor-id="the-role-of-the-oncologist">The role of the oncologist</h2>
-<p>As with many objectives in the domain of biomedical informatics, developing NLP systems for oncology applications requires significant involvement from a domain expert.</p>
-<p>An oncologist can contribute to the development of an NLP system in the following ways:</p>
-<ul>
-<li><strong>Project conception:</strong> using their domain expertise, an oncologist can devise practical and impactful applications of NLP</li>
-<li><strong>Corpus annotation:</strong> an oncologist can assist with annotation of training data by providing the “correct answers” for a body of text based upon a set of annotation guidelines.</li>
-<li><strong>System evaluation and error analysis:</strong> based on measures such as precision and recall, an oncologist can manually review true and false positives and negatives in the test data to help determine the strengths and weaknesses of the system</li>
-</ul>
-</section>
-<section id="nlp-tasks-and-strategies-for-oncology" class="level2">
-<h2 class="anchored" data-anchor-id="nlp-tasks-and-strategies-for-oncology">NLP tasks and strategies for oncology</h2>
-<p>Within the context of oncology, NLP is typically used for <strong>Information Extraction</strong> (IE). IE refers to the transformation of unstructured data into a structured form. IE encompasses multiple subtasks, including <strong>Named Entity Recognition</strong> (NER), <strong>Relation Extraction</strong> (RE), <strong>Text Classification</strong>, and <strong>Template Extraction</strong>.</p>
-<ul>
-<li>NER involves grouping words in a text and assigning them to a pre-defined “concept</li>
-<li>RE involves the assignment of relationships between entities</li>
-<li>Text Classification assigns categorical label for a body of text</li>
-<li>Template Extraction collects a set of related entities, relations, and labels to define a form for structured data.</li>
-</ul>
-<p>You can refer to figure 1 from the paper to see an example of clinical information extraction.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/nlp_fig1.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 1 from the manuscript - an example of free-text processing, IE, and text classification</figcaption>
-</figure>
-</div>
-<p>Strategies to tackle the above sub-tasks can be grouped into the following three buckets: rule-based, statistical, and hybrid approaches.</p>
-<ul>
-<li><strong>Rule-based</strong> approaches involve heuristic algorithms designed by domain specialists. They can be as simple as individual keyword look-ups or can be defined by complex conditional logic. When the defined rules are simple, rule-based approaches can significantly improve the interpretability of a model. However, if the rules are more complicated, the established model will lose interpretability and become harder to replicate or update.</li>
-<li><strong>Statistical</strong> (a.k.a machine learning) systems are algorithms designed to statistically maximize the probability of finding the correct answer based on the distribution of the training data. Such models are less prone to overfitting compared to rule-based approaches, and they can be easily adapted to new data. However, these models require an extensive amount of unbiased, representative training data to work accurately.</li>
-<li><strong>Hybrid</strong> approaches work to minimize the disadvantages of rule-based and statistical algorithms by combining these two methods.</li>
-</ul>
-</section>
-<section id="resources-needed-for-clinical-nlp" class="level2">
-<h2 class="anchored" data-anchor-id="resources-needed-for-clinical-nlp">Resources needed for clinical NLP</h2>
-<p>Creating an NLP system requires the use of three common related NLP resources: extraction tools, ontologies, and corpora.</p>
-<ul>
-<li><p><strong>Extraction tools</strong> refer to developed subsystems that can be used on new datasets with little to no modifications. Typical clinical NLP pipelines can involve the following tasks:</p>
-<ol type="1">
-<li>Section Identification: identifying sections is particularly useful for clinical notes, where different sections will contain different types of content</li>
-<li>Medical NER: this is a more specialized version of general English NER, taking into account acronyms, abbreviations, and synonyms that are common in medical text. Generally, out-of-the-box NER systems are usually insufficient, requiring the application of in-house rule-based and statistical NER systems. Two freely available development tools include MetaMap and the Mayo Clinical Text Analysis and Knowledge Extraction System</li>
-<li>Negation detection: this helps distinguish the phrase “patient has fever” from “patient has no signs of fever.” This can be a complicated task depending on the language used in the notes.</li>
-</ol>
-<ul>
-<li>Other common tasks in NLP pipelines include: coreference resolution, temporal classification, medication information extraction, family history extraction, assertion detection, and polarity detection. You can see some examples of these tasks in Figure 4 from the paper:</li>
-</ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://vsriram24.github.io/posts/nlp-oncology-overview/nlp_fig4.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 4 from the manuscript - examples of common tasks in NLP pipelines</figcaption>
-</figure>
-</div>
-<ul>
-<li><p><strong>Ontologies</strong> refer to knowledge bases that reference how various concepts are related to one another. The most basic form of an ontology could be a medical dictionary. A more complicated form of an ontology might involve a knowledge graph of concepts and their relationships.</p></li>
-<li><p><strong>Corpora</strong> are collections of (sometimes annotated) clinical text that can be used to train or test an NLP system. Some examples of publicly available de-identified medical corpora including the i2b2 challenge sets, the Conference and Laboratories of the Evaluation Forum datasets, the MIMIC-II corpus, the MIPACQ corpus, and <a href="http://MTSamples.com">MTSamples.com</a>.</p></li>
-</ul>
-</section>
-<section id="challenges-in-designing-an-nlp-system" class="level2">
-<h2 class="anchored" data-anchor-id="challenges-in-designing-an-nlp-system">Challenges in designing an NLP system</h2>
-<p>We can create a desired NLP system by framing our desired objective (case identification, staging, or outcome prediction) as a series of NLP operations. For instance, a basic case identification task may involve NER followed by negation detection. On the other hand, an outcome prediction task may involve a simple NER task or a more complicated algorithm that identifies tumor sizes and associated dates before performing logic operations to deduce that a change took place.</p>
-<p>Ultimately, the final success of an NLP system will depend on two key points:</p>
-<ol type="1">
-<li><strong>how do you frame the problem at hand?</strong></li>
-<li><strong>how effective are the individual components of your pipeline?</strong></li>
-</ol>
-<p>Multiple challenges can affect the efficacy of your model. Firstly, creation of an NLP system requires careful planning and investment to develop an annotated text corpus for system training and testing. Model performance can also be highly variable depending on the task at hand – new larger, heterogeneous test data can challenge the accuracy of your system. Multiple iterations of software development are usually needed before you can arrive at a robust NLP product. Lastly, the data science mantra of “garbage in, garbage out” continues to ring true – the tools that you develop will only be as good the quality of the data that train the systems.</p>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>This concludes my overview of “Natural Language Processing in Oncology: A Review.” I look forward to covering more such papers in the future as I progress with my work in clinical NLP at the Hutch.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><a href="https://pubmed.ncbi.nlm.nih.gov/27124593/">“Natural Language Processing in Oncology: A Review”</a></li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>Overviews</category>
-  <guid>https://vsriram24.github.io/posts/nlp-oncology-overview/</guid>
-  <pubDate>Mon, 19 Aug 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/nlp-oncology-overview/minnesota.jpeg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
