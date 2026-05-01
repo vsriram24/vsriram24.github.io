@@ -2,12 +2,12 @@
 title: "Graph Neural Networks (GNNs)"
 description: "Deep Learning in Biology - Week 5"
 author: "Vivek Sriram"
-date: "02/23/2026"
-date-modified: "02/23/2026"
+date: "04/30/2026"
+date-modified: "04/30/2026"
 image: zola_sniff.jpg
 categories:
   - Overviews
-draft: true
+draft: false
 ---
 
 Modern biological systems are inherently relational: proteins interact with one another, genes regulate complex networks of downstream targets, diseases co-occur across shared molecular mechanisms, and cells communicate continuously within tissue microenvironments. Traditional deep learning models, however, are typically designed for data that live in Euclidean spaces, such as sequences (text, genomes) or grids (images). Biological data routinely violate these assumptions.

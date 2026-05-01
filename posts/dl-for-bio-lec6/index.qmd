@@ -2,8 +2,8 @@
 title: "Generative Adversarial Networks (GANs)"
 description: "Deep Learning in Biology - Week 6"
 author: "Vivek Sriram"
-date: "02/23/2026"
-date-modified: "02/23/2026"
+date: "02/23/2024"
+date-modified: "02/23/2024"
 image: big_nose.jpg
 categories:
   - Overviews
@@ -36,7 +36,7 @@ Before GANs, a variety of explicit density generative models were used to estima
 
 **Variational Autoencoders (VAEs)** address this issue by making the latent space smooth and continuous. The encoder outputs a probability distribution (e.g. Gaussian) rather than a single point, and the decoder samples from it. VAEs are principled and interpretable, but they also tend to produce blurry outputs. Optimizing the [Evidence Lower Bound (ELBO)](https://en.wikipedia.org/wiki/Evidence_lower_bound) doesn't directly optimize perceptual quality.
 
-![The Variational Autoencoder Schema. Input is encoded into a potential distribution of values in the latent space. ](images/VAE_Basic.png)
+![The Variational Autoencoder Schema. Input is encoded into a potential distribution of values in the latent space.](images/VAE_Basic.png)
 
 [**PixelRNN**](https://openaccess.thecvf.com/content/CVPR2024/papers/So_PixelRNN_In-pixel_Recurrent_Neural_Networks_for_End-to-end-optimized_Perception_with_Neural_CVPR_2024_paper.pdf) generate images one pixel at a time, each conditioned on all previous pixels. This allows exact likelihood estimation and sharper outputs than VAEs. However, just like with general RNNs, sequential generation is slow. [**PixelCNN**](https://arxiv.org/pdf/1606.05328) improves on this limitation with convolutional parallelism.
 
@@ -50,7 +50,7 @@ A GAN consists of two neural networks trained simultaneously in a minimax game:
 
 -   The Discriminator (D) receives either a real sample from the training data or a fake one from the generator, and tries to classify which is which.
 
-![The GAN Framework. Citation: https://www.capicua.com/blog/types-of-generative-ai](images/676d788f857fb3ba5d7855fb_Generative Adversarial Networks.webp)
+![The GAN Framework. Citation: https://www.capicua.com/blog/types-of-generative-ai](images/676d788f857fb3ba5d7855fb_Generative%20Adversarial%20Networks.webp)
 
 Training alternates between the two networks. The discriminator trains for a step while the generator is frozen, learning to distinguish real from fake. Then, the generator trains while the discriminator is frozen, updating to better fool it.
 
