@@ -10,7 +10,147 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram - Senior Health AI Scientist | Personal website and blog</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Thu, 30 Apr 2026 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 15 Jun 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Generative Adversarial Networks (GANs)</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/dl-for-bio-lec6/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Generative modeling sits at the heart of a fundamental challenge in machine learning: how do you learn to produce new data when you can’t directly access or estimate the underlying distribution? Early approaches like Variational Autoencoders (VAEs) made this process tractable through explicit probability modeling, but paid a cost in sample quality and generation speed. <strong>Generative Adversarial Networks (GANs)</strong>, <a href="https://arxiv.org/abs/1406.2661">introduced</a> by <a href="https://scholar.google.com/citations?user=iYN86KEAAAAJ&amp;hl=en">Ian Goodfellow</a> in 2014, took a different route: skip the explicit distribution entirely, and instead train two networks against each other until one learns to generate samples indistinguishable from real data.</p>
+<p>This week in my <a href="https://bios740.github.io/assets/slides/C6.pdf">Deep Learning in Biology</a> overview series, we dig into how GANs work, why they’re difficult to train, and the architectural innovations that have made them one of the most widely used frameworks for image generation and beyond.</p>
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec6/images/IMG_5495.jpg" class="img-fluid" width="555"></p>
+<section id="discriminative-vs.-generative" class="level2">
+<h2 class="anchored" data-anchor-id="discriminative-vs.-generative">Discriminative vs.&nbsp;Generative</h2>
+<p>Most machine learning models are “<strong>discriminative</strong>” - they learn to classify or distinguish between inputs. The goal of a generative model, on the other hand, is to learn the underlying structure of the data well enough that it can produce new samples that resemble it.</p>
+<p>Generative models can be divided into two categories:</p>
+<ul>
+<li><p><strong>Explicit density</strong> models (like VAEs and PixelCNN, see below) directly estimate the probability distribution of the data</p></li>
+<li><p><strong>Implicit density</strong> models (including GANs) skip that step and learn to sample from the true data distribution without explicitly estimating it. This process avoids some of the more complicated math, but introduces other challenges…</p></li>
+</ul>
+</section>
+<section id="the-model-landscape-before-gans" class="level2">
+<h2 class="anchored" data-anchor-id="the-model-landscape-before-gans">The model landscape before GANs</h2>
+<p>Before GANs, a variety of explicit density generative models were used to estimate input data distributions.</p>
+<p><strong>Autoencoders</strong> compress data into a compact latent representation and then attempt to reconstruct the original data. They’re useful for feature learning but weak as generative models: the generated latent space can be incredibly fragmented, so random points from the space often decode to noise.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec6/images/Autoencoder_schema-02.png" class="img-fluid figure-img" width="533"></p>
+<figcaption>The Autoencoder Schema</figcaption>
+</figure>
+</div>
+<p><strong>Variational Autoencoders (VAEs)</strong> address this issue by making the latent space smooth and continuous. The encoder outputs a probability distribution (e.g.&nbsp;Gaussian) rather than a single point, and the decoder samples from it. VAEs are principled and interpretable, but they also tend to produce blurry outputs. Optimizing the <a href="https://en.wikipedia.org/wiki/Evidence_lower_bound">Evidence Lower Bound (ELBO)</a> doesn’t directly optimize perceptual quality.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec6/images/VAE_Basic.png" class="img-fluid figure-img"></p>
+<figcaption>The Variational Autoencoder Schema. Input is encoded into a potential distribution of values in the latent space.</figcaption>
+</figure>
+</div>
+<p><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/So_PixelRNN_In-pixel_Recurrent_Neural_Networks_for_End-to-end-optimized_Perception_with_Neural_CVPR_2024_paper.pdf"><strong>PixelRNN</strong></a> generate images one pixel at a time, each conditioned on all previous pixels. This allows exact likelihood estimation and sharper outputs than VAEs. However, just like with general RNNs, sequential generation is slow. <a href="https://arxiv.org/pdf/1606.05328"><strong>PixelCNN</strong></a> improves on this limitation with convolutional parallelism.</p>
+<p>GANs take a different approach by dropping explicit density estimation entirely.</p>
+</section>
+<section id="how-gans-work" class="level2">
+<h2 class="anchored" data-anchor-id="how-gans-work">How GANs Work</h2>
+<p>A GAN consists of two neural networks trained simultaneously in a minimax game:</p>
+<ul>
+<li><p>The Generator (G) takes random noise as input and transforms it into a synthetic sample. Its goal is to fool the discriminator.</p></li>
+<li><p>The Discriminator (D) receives either a real sample from the training data or a fake one from the generator, and tries to classify which is which.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec6/images/676d788f857fb3ba5d7855fb_Generative Adversarial Networks.webp" class="img-fluid figure-img"></p>
+<figcaption>The GAN Framework. Citation: https://www.capicua.com/blog/types-of-generative-ai</figcaption>
+</figure>
+</div>
+<p>Training alternates between the two networks. The discriminator trains for a step while the generator is frozen, learning to distinguish real from fake. Then, the generator trains while the discriminator is frozen, updating to better fool it.</p>
+<p>At convergence, the generator should be able to produce samples realistic enough that the discriminator can do no better than random guessing (i.e., achieve 50% accuracy). In practice, reaching this equilibrium is quite challenging!</p>
+</section>
+<section id="challenges-in-training-gans" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-in-training-gans">Challenges in training GANs</h2>
+<p>The most common obstacle in GAN training is known as <strong>mode collapse</strong>. Rather than capturing the full diversity of the training data, the generator finds a narrow set of outputs that reliably fool the discriminator and keeps producing only those.</p>
+<p>Training instability comes from the adversarial dynamic. If the discriminator gets too strong, its gradients become uninformative for the generator. If the generator dominates, the discriminator can’t provide useful signal. Keeping the two in balance is difficult.</p>
+<p>Other common issues include:</p>
+<ul>
+<li><p><strong>vanishing</strong> and <strong>exploding gradients</strong></p></li>
+<li><p><strong>hyperparameter sensitivity</strong></p></li>
+<li><p><strong>non-convergence</strong> (the two networks oscillate instead of improving)</p></li>
+</ul>
+</section>
+<section id="practical-fixes" class="level2">
+<h2 class="anchored" data-anchor-id="practical-fixes">Practical Fixes</h2>
+<p>In response to these challenges, a variety of solutions have been adopted by the ML community:</p>
+<ul>
+<li><p><strong>Wasserstein Loss (<a href="https://arxiv.org/abs/1701.07875">WGAN</a>)</strong> replaces binary cross-entropy with the <a href="https://en.wikipedia.org/wiki/Earth_mover%27s_distance">Earth Mover’s distance</a>, which gives smoother, more informative gradients. WGAN-GP adds a gradient penalty for further stability.</p></li>
+<li><p><a href="https://arxiv.org/abs/1802.05957"><strong>Spectral Normalization</strong></a> constrains the discriminator’s weight magnitudes to prevent it from overpowering the generator.</p></li>
+<li><p><a href="https://arxiv.org/abs/1706.08500"><strong>Two-Timescale Update Rule (TTUR)</strong></a> uses a lower learning rate for the generator than the discriminator to keep training balanced.</p></li>
+<li><p><strong>Minibatch Discrimination</strong>as has the discriminator compare samples within a batch, encouraging the generator to produce more diverse outputs.</p></li>
+<li><p><strong>Progressive Training</strong> starts training at low resolution (4×4) and gradually adds layers to both networks. This is the key technique behind <a href="https://arxiv.org/abs/1710.10196">Progressive GAN (PGAN)</a>, a model that was able to produce photorealistic 1024×1024 images.</p></li>
+</ul>
+</section>
+<section id="notable-gan-architectures" class="level2">
+<h2 class="anchored" data-anchor-id="notable-gan-architectures">Notable GAN architectures</h2>
+<p><a href="https://arxiv.org/abs/1611.04076"><strong>Least Squares GAN (LSGAN)</strong></a> replaces binary cross-entropy with a least-squares loss, which penalizes overconfident wrong predictions more heavily and provides stronger gradient signals.</p>
+<p><a href="https://arxiv.org/abs/1411.1784"><strong>Conditional GAN (cGAN)</strong></a> feeds additional information - a class label, text description, or image — to both the generator and discriminator. This allows targeted generation: instead of sampling randomly from the learned distribution, you can specify what you want to generate.</p>
+<p><a href="https://github.com/phillipi/pix2pix"><strong>Pix2Pix</strong></a> is a supervised image-to-image translation model built on cGANs. The generator is a U-Net (encoder-decoder with skip connections to preserve fine spatial detail) and the discriminator is a PatchGAN that evaluates local image patches rather than the full image. It’s well suited for tasks like sketch-to-photo or satellite-to-map conversion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec6/images/examples.jpg" class="img-fluid figure-img"></p>
+<figcaption>Image-to-image translation. Citation: https://github.com/phillipi/pix2pix</figcaption>
+</figure>
+</div>
+<p><a href="https://arxiv.org/abs/1703.10593"><strong>CycleGAN</strong></a> handles the case where paired training data isn’t available. It uses two generators and two discriminators, plus a cycle-consistency loss: translating an image from domain A to B and back should recover the original. This constraint is enough to learn meaningful mappings between unpaired domains, such as photos to paintings or summer to winter scenes.</p>
+</section>
+<section id="evaluating-gans" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-gans">Evaluating GANs</h2>
+<p>Evaluating generative models is a challenging task, because unlike discriminative models that come with gold standard labels to compare to, there is often no single correct answer! The following are some examples of commonly used evaluation metrics for GANs:</p>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Inception_score"><strong>Inception Score (IS)</strong></a> measures quality (are outputs clearly classifiable?) and diversity (do they span many classes?) of generated labels. However, it does not directly compare generated labels against real data.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Fréchet_inception_distance"><strong>Fréchet Inception Distance (FID)</strong></a> compares the feature distributions of real and generated images using a pretrained network. Lower FID indicates more realistic and diverse outputs. It’s the standard benchmark for image GANs.</p></li>
+<li><p><strong>Precision</strong> and <strong>Recall</strong> separately measure fidelity (do generated samples look real?) and coverage (do they span the diversity of the training data?). Mode collapse shows up as low recall without necessarily affecting precision.</p></li>
+<li><p><strong>Human evaluation</strong> and <strong>downstream task performance</strong> are also used, depending on the application.</p></li>
+</ul>
+</section>
+<section id="applications-of-gans" class="level2">
+<h2 class="anchored" data-anchor-id="applications-of-gans">Applications of GANs</h2>
+<p>GANs have been applied across a range of domains:</p>
+<ul>
+<li><p><strong>Image synthesis and super-resolution</strong>: Generating high-resolution images from scratch or upscaling low-resolution inputs.</p></li>
+<li><p><strong>Data augmentation</strong>: Producing synthetic training data where labeled examples are scarce.</p></li>
+<li><p><strong>Medical imaging</strong>: Synthesizing missing scan modalities — for example, generating a PET scan from an MRI — to reduce the need for additional imaging.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec6/images/28750336678_9c874869e6_b.jpg" class="img-fluid figure-img"></p>
+<figcaption>Could we use GANs to simulate the intermediate trajectory of cancer treatment?</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Style transfer and domain adaptation</strong>: Translating images between visual domains without paired data.</p></li>
+<li><p><strong>Reinforcement learning</strong>: Simulating possible future states so agents can plan without interacting with the real environment.</p></li>
+</ul>
+</section>
+<section id="open-questions" class="level2">
+<h2 class="anchored" data-anchor-id="open-questions">Open Questions</h2>
+<p>Several theoretical questions about GANs remain open. Whether a GAN can converge to the true data distribution (rather than an approximation), what distance measure is actually being optimized, and how GANs generalize to unseen data are all active areas of research. The <a href="https://en.wikipedia.org/wiki/Manifold_hypothesis">manifold hypothesis</a>, which states that high-dimensional data like images lie on a lower-dimensional surface, provides some intuition for why GANs work. However, a rigorous theoretical account is still developing.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://vsriram24.github.io/posts/dl-for-bio-lec6/images/HyperbolicParaboloid.svg.png" class="img-fluid figure-img" width="482"></p>
+<figcaption>Bringing high-dimensional data down to low-dimensional spaces</figcaption>
+</figure>
+</div>
+<p><strong>Diffusion models</strong> (to be covered in a future post) have recently surpassed GANs on standard image generation benchmarks, with more stable training. Nevertheless, GANs still have advantages in speed and controllability, and the adversarial training framework continues to be influential across the field.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Overviews</category>
+  <guid>https://vsriram24.github.io/posts/dl-for-bio-lec6/</guid>
+  <pubDate>Mon, 15 Jun 2026 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/dl-for-bio-lec6/big_nose.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Graph Neural Networks (GNNs)</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -3059,91 +3199,6 @@ Ultimately, responsible AI in healthcare demands equity, transparency, collabora
   <guid>https://vsriram24.github.io/posts/newsletters/</guid>
   <pubDate>Mon, 16 Sep 2024 07:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/newsletters/autumn.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>An intro to Convolutional Neural Networks</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/cnn-overview/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>In this week’s blog, I will be summarizing the introductory “Convolutional Neural Networks” webpage from Fei-Fei Li’s Stanford CS 231n: “Deep Learning for Computer Vision” course. You can read the original page that I am summarizing <a href="https://cs231n.github.io/convolutional-networks/">here</a>, and you can took a look at Fei-Fei’s full course page <a href="https://cs231n.github.io">here</a>. Note that the original webpage includes about twice as much content as what I have in this post, including a more thorough discussion of real-world examples of neural networks, additional schemas such as parameter sharing, and a few coding examples in <code>numpy</code>. My goal for this post is to offer a “CliffsNotes of a CliffsNotes,” presenting just the basic intuition behind CNNs without any further detail. If you want to learn more, I would highly suggest reading the original webpage that this post summarizes, or additional resources such as <a href="https://arxiv.org/abs/1511.08458">this 2015 arXiv review paper</a> or <a href="https://www.geeksforgeeks.org/introduction-convolution-neural-network/">this GeeksForGeeks walkthrough</a> that includes some code examples. Without further ado, let’s get started!</p>
-<p><img src="https://vsriram24.github.io/posts/cnn-overview/introPage.png" class="img-fluid"></p>
-<hr>
-<p>Convolutional Neural Networks (also known as CNNs or ConvNets) are very similar to standard Neural Networks. They are also made up of neurons that have learnable weights and biases, with each neuron receiving an input, performing a dot product, and leading into an optional non-linearity. The overall network will also express a single differentiable score function, as well as include a loss function for the last fully-connected layer of the network.</p>
-<p>So what is the main difference between CNNs and other NNs? CNNs make the explicit assumption that the inputs are images. This assumption allows us to encode certain properties into the architecture, as well as make the forward function more efficient to implement and reduce the number of parameters in the network.</p>
-<section id="architecture-overview" class="level3">
-<h3 class="anchored" data-anchor-id="architecture-overview">Architecture Overview</h3>
-<p>All neural networks will receive an input (a single vector) and transform it through a series of hidden layers. Each hidden layer is made up of a set of neurons, where each neuron is fully connected to all neurons in the previous layer, and the neurons in a single layer function completely independently from one another (i.e.&nbsp;they share no connections with each other). The last fully-connected layer of the neural network is called the output layer - in classification settings, it represents the class scores.</p>
-<p>When working with images, the full connectivity of a neural network makes it difficult to scale neurons for large inputs - for instance, with an image that is 32x32 pixels and has 3 color channels, each individual neuron would need to have 32*32*3 = 3072 weights. So how do we eliminate the wastefulness of fully connected neural networks?</p>
-<p>CNNs constrain their architecture to match the dimensionality of images as input - in a CNN, neurons are arranged in three dimensions: <strong>width</strong>, <strong>height</strong>, and <strong>depth</strong>. Further, the neurons in a layer of a CNN will only be connected to a small region of the layer before them. Lastly, the final output layer will have dimensionality limited to 1x1xn, where n is the depth of the input layer, because the CNN architecture reduces the full input image into a single vector of class scores.</p>
-<p><img src="https://vsriram24.github.io/posts/cnn-overview/3d.png" class="img-fluid"></p>
-</section>
-<section id="cnn-layers" class="level3">
-<h3 class="anchored" data-anchor-id="cnn-layers">CNN Layers</h3>
-<p>Every layer of a CNN will transform one volume of activations to another through a differentiable function. There are three main types of layers used to build CNN architectures:</p>
-<ul>
-<li><p>Convolutional Layer</p></li>
-<li><p>Pooling Layer</p></li>
-<li><p>Fully-Connected Layer</p></li>
-</ul>
-<p>These layers are stacked together to form a full CNN architecture. CNNs will then transform the original image layer by layer from its original pixel values down to the final class scores.</p>
-<p>A point to note is that some layers contain parameters, while others do not. For instance, the convolutional layers and the fully-connected layers perform transformations that are a function of not only the activations in the input volume, but also the parameters of the neurons. On the other hand, ReLU layers (applying an elementwise activation function such as thresholding at 0 with max[0,x]) or pooling layers will implement a fixed function. Parameters in the convolutional and fully connected layers will be trained via gradient descent to get the class scores predicted by the CNN to match with the labels in the training set of images.</p>
-<p>Let’s now dive deeper into the individual CNN layers and their hyperpameters / connectivities</p>
-<section id="convolutional-conv-layer" class="level4">
-<h4 class="anchored" data-anchor-id="convolutional-conv-layer">Convolutional (CONV) Layer</h4>
-<p>The convolutional layer (CONV) is the core building block of a CNN - these layers perform the most computational heavy lifting. The CONV layer’s parameters include a set of learnable filters - each filter will have a small width and height but will extend through the full depth of the input volume (e.g.&nbsp;5x5x3 for an RGB picture). During the forward pass, we slide (a.k.a. convolve) each filter across the width and height of the input volume, computing dot products between the entries of the filter and the input at any position. As we slide the filter over the input volume, we produce a 2D activation map that gives the responses of that filter at every spatial position. We can think of the activation maps as masks that activate when they see a specific visual feature (e.g an edge or a blotch of color in the first layer; wheel or honeycomb shape in the last layer).</p>
-<p><img src="https://vsriram24.github.io/posts/cnn-overview/depthSlice.png" class="img-fluid"></p>
-<section id="local-connectivity" class="level5">
-<h5 class="anchored" data-anchor-id="local-connectivity">Local Connectivity</h5>
-<p>Convolutional layers also maintain local connectivity within the CNN - each neuron is connected only to a local region of the input volume. The spatial extent of this connectivity is a a hyperparameter known as the <strong>receptive field</strong>. While the connections exist locally along the width and height dimensions, they will extend along the full depth of the input volume.</p>
-</section>
-<section id="spatial-arrangement" class="level5">
-<h5 class="anchored" data-anchor-id="spatial-arrangement">Spatial Arrangement</h5>
-<p>Three different hyperparameters control how many neurons exist in the output volume and how they are arranged - these hyperparameters include depth, stride, and zero-padding.</p>
-<ol type="1">
-<li>Depth: corresponds to the number of filters we would like to use. The more filters we include in our CNN, the more features we may be able to identify.</li>
-<li>Stride: corresponds to how we slide each filter in two-dimensional space. If the stride is 1, then we move the filters one pixel at a time. Changing the stride allows us to spatially manipulate the output volume of a layer.</li>
-<li>Zero-padding: corresponds to padding the input volume with 0’s around the border. Zero padding allows us to control the spatial size of the output volumes - most commonly, zero padding can be used to ensure that the input and output width and height are kept consistent.</li>
-</ol>
-</section>
-</section>
-<section id="pooling-layer" class="level4">
-<h4 class="anchored" data-anchor-id="pooling-layer">Pooling Layer</h4>
-<p>Pooling layers can be found in between successive CONV layers in a CNN. The objective of each pooling layer is to reduce the spatial size of the representation, allowing us to control the number of parameters in the network, reduce required computation, and prevent overfitting to the training data. Each pooling layer operates independently on every depth slice of the input and resizes it spatially using the MAX operation (for instance, taking just the maximum value from a 2x2 square of values). Similar to the CONV layer, pooling occurs over the width and height dimensions, leaving the depth of the input unchanged. Note that it is not a <strong>requirement</strong> to include a pooling layer - many modern architectures have dropped pooling by sticking with CONV layers and manipulating the stride and depth hyperparameters instead.</p>
-</section>
-<section id="fully-connected-fc-layer" class="level4">
-<h4 class="anchored" data-anchor-id="fully-connected-fc-layer">Fully-connected (FC) Layer</h4>
-<p>Neurons in a FC layer have full connections to all activations in the previous layer, just like in neural networks.</p>
-</section>
-</section>
-<section id="cnn-architectures" class="level3">
-<h3 class="anchored" data-anchor-id="cnn-architectures">CNN Architectures</h3>
-<p>The most common form of a CNN architecture will stack a few CONV-ReLu layers, follow them with a pooling layer, and then repeat this pattern until the image has been merged spatially to a smaller size. At some point, one might transition to fully-connected layers from CONV layers. The last FC layer will hold the output (e.g.&nbsp;the class scores).</p>
-<p><img src="https://vsriram24.github.io/posts/cnn-overview/exampleArch.png" class="img-fluid"></p>
-<p>If you’re feeling a bit of fatigue in thinking about NN architectures, then you will be relieved to know that in most cases, you really do not have to worry about how the structure of your network will affect the performance of your model. You really never have to train a CNN from scratch - just download a pretrained model (whatever works best on ImageNet) and finetune it on your data.</p>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>This concludes my overview of the introductory “Convolutional Neural Networks” chapter from Fei-Fei Li’s CS231n course. I look forward to summarizing more such chapters in the future and sharing more examples of code walkthroughs of these topics in the future. Until next time!</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><a href="https://cs231n.github.io/convolutional-networks/" class="uri">https://cs231n.github.io/convolutional-networks/</a></li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>Overviews</category>
-  <guid>https://vsriram24.github.io/posts/cnn-overview/</guid>
-  <pubDate>Mon, 09 Sep 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/cnn-overview/donut.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

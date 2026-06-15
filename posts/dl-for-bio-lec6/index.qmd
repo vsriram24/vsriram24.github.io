@@ -2,12 +2,12 @@
 title: "Generative Adversarial Networks (GANs)"
 description: "Deep Learning in Biology - Week 6"
 author: "Vivek Sriram"
-date: "02/23/2024"
-date-modified: "02/23/2024"
+date: "06/15/2026"
+date-modified: "06/15/2026"
 image: big_nose.jpg
 categories:
   - Overviews
-draft: true
+draft: false
 ---
 
 Generative modeling sits at the heart of a fundamental challenge in machine learning: how do you learn to produce new data when you can't directly access or estimate the underlying distribution? Early approaches like Variational Autoencoders (VAEs) made this process tractable through explicit probability modeling, but paid a cost in sample quality and generation speed. **Generative Adversarial Networks (GANs)**, [introduced](https://arxiv.org/abs/1406.2661) by [Ian Goodfellow](https://scholar.google.com/citations?user=iYN86KEAAAAJ&hl=en) in 2014, took a different route: skip the explicit distribution entirely, and instead train two networks against each other until one learns to generate samples indistinguishable from real data.

@@ -1,2 +1,766 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Vivek Sriram">
+<meta name="dcterms.date" content="2026-06-15">
+<meta name="description" content="Deep Learning in Biology - Week 6">
+
+<title>Generative Adversarial Networks (GANs) – Home</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../vivek_cropped.JPG" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-4174EVHDM6"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4174EVHDM6', { 'anonymize_ip': true});
+</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Home</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">[VS]Codes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching and Mentorship</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../conferences.html"> 
+<span class="menu-text">Presentations and Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html"> 
+<span class="menu-text">Publications and Peer Review</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog.xml"> <i class="bi bi-rss" role="img" aria-label="RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Generative Adversarial Networks (GANs)</h1>
+                  <div>
+        <div class="description">
+          Deep Learning in Biology - Week 6
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Overviews</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Vivek Sriram </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 15, 2026</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">June 15, 2026</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#discriminative-vs.-generative" id="toc-discriminative-vs.-generative" class="nav-link active" data-scroll-target="#discriminative-vs.-generative">Discriminative vs.&nbsp;Generative</a></li>
+  <li><a href="#the-model-landscape-before-gans" id="toc-the-model-landscape-before-gans" class="nav-link" data-scroll-target="#the-model-landscape-before-gans">The model landscape before GANs</a></li>
+  <li><a href="#how-gans-work" id="toc-how-gans-work" class="nav-link" data-scroll-target="#how-gans-work">How GANs Work</a></li>
+  <li><a href="#challenges-in-training-gans" id="toc-challenges-in-training-gans" class="nav-link" data-scroll-target="#challenges-in-training-gans">Challenges in training GANs</a></li>
+  <li><a href="#practical-fixes" id="toc-practical-fixes" class="nav-link" data-scroll-target="#practical-fixes">Practical Fixes</a></li>
+  <li><a href="#notable-gan-architectures" id="toc-notable-gan-architectures" class="nav-link" data-scroll-target="#notable-gan-architectures">Notable GAN architectures</a></li>
+  <li><a href="#evaluating-gans" id="toc-evaluating-gans" class="nav-link" data-scroll-target="#evaluating-gans">Evaluating GANs</a></li>
+  <li><a href="#applications-of-gans" id="toc-applications-of-gans" class="nav-link" data-scroll-target="#applications-of-gans">Applications of GANs</a></li>
+  <li><a href="#open-questions" id="toc-open-questions" class="nav-link" data-scroll-target="#open-questions">Open Questions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Generative modeling sits at the heart of a fundamental challenge in machine learning: how do you learn to produce new data when you can’t directly access or estimate the underlying distribution? Early approaches like Variational Autoencoders (VAEs) made this process tractable through explicit probability modeling, but paid a cost in sample quality and generation speed. <strong>Generative Adversarial Networks (GANs)</strong>, <a href="https://arxiv.org/abs/1406.2661">introduced</a> by <a href="https://scholar.google.com/citations?user=iYN86KEAAAAJ&amp;hl=en">Ian Goodfellow</a> in 2014, took a different route: skip the explicit distribution entirely, and instead train two networks against each other until one learns to generate samples indistinguishable from real data.</p>
+<p>This week in my <a href="https://bios740.github.io/assets/slides/C6.pdf">Deep Learning in Biology</a> overview series, we dig into how GANs work, why they’re difficult to train, and the architectural innovations that have made them one of the most widely used frameworks for image generation and beyond.</p>
+<p><img src="images/IMG_5495.jpg" class="img-fluid" width="555"></p>
+<section id="discriminative-vs.-generative" class="level2">
+<h2 class="anchored" data-anchor-id="discriminative-vs.-generative">Discriminative vs.&nbsp;Generative</h2>
+<p>Most machine learning models are “<strong>discriminative</strong>” - they learn to classify or distinguish between inputs. The goal of a generative model, on the other hand, is to learn the underlying structure of the data well enough that it can produce new samples that resemble it.</p>
+<p>Generative models can be divided into two categories:</p>
+<ul>
+<li><p><strong>Explicit density</strong> models (like VAEs and PixelCNN, see below) directly estimate the probability distribution of the data</p></li>
+<li><p><strong>Implicit density</strong> models (including GANs) skip that step and learn to sample from the true data distribution without explicitly estimating it. This process avoids some of the more complicated math, but introduces other challenges…</p></li>
+</ul>
+</section>
+<section id="the-model-landscape-before-gans" class="level2">
+<h2 class="anchored" data-anchor-id="the-model-landscape-before-gans">The model landscape before GANs</h2>
+<p>Before GANs, a variety of explicit density generative models were used to estimate input data distributions.</p>
+<p><strong>Autoencoders</strong> compress data into a compact latent representation and then attempt to reconstruct the original data. They’re useful for feature learning but weak as generative models: the generated latent space can be incredibly fragmented, so random points from the space often decode to noise.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Autoencoder_schema-02.png" class="img-fluid figure-img" width="533"></p>
+<figcaption>The Autoencoder Schema</figcaption>
+</figure>
+</div>
+<p><strong>Variational Autoencoders (VAEs)</strong> address this issue by making the latent space smooth and continuous. The encoder outputs a probability distribution (e.g.&nbsp;Gaussian) rather than a single point, and the decoder samples from it. VAEs are principled and interpretable, but they also tend to produce blurry outputs. Optimizing the <a href="https://en.wikipedia.org/wiki/Evidence_lower_bound">Evidence Lower Bound (ELBO)</a> doesn’t directly optimize perceptual quality.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/VAE_Basic.png" class="img-fluid figure-img"></p>
+<figcaption>The Variational Autoencoder Schema. Input is encoded into a potential distribution of values in the latent space.</figcaption>
+</figure>
+</div>
+<p><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/So_PixelRNN_In-pixel_Recurrent_Neural_Networks_for_End-to-end-optimized_Perception_with_Neural_CVPR_2024_paper.pdf"><strong>PixelRNN</strong></a> generate images one pixel at a time, each conditioned on all previous pixels. This allows exact likelihood estimation and sharper outputs than VAEs. However, just like with general RNNs, sequential generation is slow. <a href="https://arxiv.org/pdf/1606.05328"><strong>PixelCNN</strong></a> improves on this limitation with convolutional parallelism.</p>
+<p>GANs take a different approach by dropping explicit density estimation entirely.</p>
+</section>
+<section id="how-gans-work" class="level2">
+<h2 class="anchored" data-anchor-id="how-gans-work">How GANs Work</h2>
+<p>A GAN consists of two neural networks trained simultaneously in a minimax game:</p>
+<ul>
+<li><p>The Generator (G) takes random noise as input and transforms it into a synthetic sample. Its goal is to fool the discriminator.</p></li>
+<li><p>The Discriminator (D) receives either a real sample from the training data or a fake one from the generator, and tries to classify which is which.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/676d788f857fb3ba5d7855fb_Generative Adversarial Networks.webp" class="img-fluid figure-img"></p>
+<figcaption>The GAN Framework. Citation: https://www.capicua.com/blog/types-of-generative-ai</figcaption>
+</figure>
+</div>
+<p>Training alternates between the two networks. The discriminator trains for a step while the generator is frozen, learning to distinguish real from fake. Then, the generator trains while the discriminator is frozen, updating to better fool it.</p>
+<p>At convergence, the generator should be able to produce samples realistic enough that the discriminator can do no better than random guessing (i.e., achieve 50% accuracy). In practice, reaching this equilibrium is quite challenging!</p>
+</section>
+<section id="challenges-in-training-gans" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-in-training-gans">Challenges in training GANs</h2>
+<p>The most common obstacle in GAN training is known as <strong>mode collapse</strong>. Rather than capturing the full diversity of the training data, the generator finds a narrow set of outputs that reliably fool the discriminator and keeps producing only those.</p>
+<p>Training instability comes from the adversarial dynamic. If the discriminator gets too strong, its gradients become uninformative for the generator. If the generator dominates, the discriminator can’t provide useful signal. Keeping the two in balance is difficult.</p>
+<p>Other common issues include:</p>
+<ul>
+<li><p><strong>vanishing</strong> and <strong>exploding gradients</strong></p></li>
+<li><p><strong>hyperparameter sensitivity</strong></p></li>
+<li><p><strong>non-convergence</strong> (the two networks oscillate instead of improving)</p></li>
+</ul>
+</section>
+<section id="practical-fixes" class="level2">
+<h2 class="anchored" data-anchor-id="practical-fixes">Practical Fixes</h2>
+<p>In response to these challenges, a variety of solutions have been adopted by the ML community:</p>
+<ul>
+<li><p><strong>Wasserstein Loss (<a href="https://arxiv.org/abs/1701.07875">WGAN</a>)</strong> replaces binary cross-entropy with the <a href="https://en.wikipedia.org/wiki/Earth_mover%27s_distance">Earth Mover’s distance</a>, which gives smoother, more informative gradients. WGAN-GP adds a gradient penalty for further stability.</p></li>
+<li><p><a href="https://arxiv.org/abs/1802.05957"><strong>Spectral Normalization</strong></a> constrains the discriminator’s weight magnitudes to prevent it from overpowering the generator.</p></li>
+<li><p><a href="https://arxiv.org/abs/1706.08500"><strong>Two-Timescale Update Rule (TTUR)</strong></a> uses a lower learning rate for the generator than the discriminator to keep training balanced.</p></li>
+<li><p><strong>Minibatch Discrimination</strong>as has the discriminator compare samples within a batch, encouraging the generator to produce more diverse outputs.</p></li>
+<li><p><strong>Progressive Training</strong> starts training at low resolution (4×4) and gradually adds layers to both networks. This is the key technique behind <a href="https://arxiv.org/abs/1710.10196">Progressive GAN (PGAN)</a>, a model that was able to produce photorealistic 1024×1024 images.</p></li>
+</ul>
+</section>
+<section id="notable-gan-architectures" class="level2">
+<h2 class="anchored" data-anchor-id="notable-gan-architectures">Notable GAN architectures</h2>
+<p><a href="https://arxiv.org/abs/1611.04076"><strong>Least Squares GAN (LSGAN)</strong></a> replaces binary cross-entropy with a least-squares loss, which penalizes overconfident wrong predictions more heavily and provides stronger gradient signals.</p>
+<p><a href="https://arxiv.org/abs/1411.1784"><strong>Conditional GAN (cGAN)</strong></a> feeds additional information - a class label, text description, or image — to both the generator and discriminator. This allows targeted generation: instead of sampling randomly from the learned distribution, you can specify what you want to generate.</p>
+<p><a href="https://github.com/phillipi/pix2pix"><strong>Pix2Pix</strong></a> is a supervised image-to-image translation model built on cGANs. The generator is a U-Net (encoder-decoder with skip connections to preserve fine spatial detail) and the discriminator is a PatchGAN that evaluates local image patches rather than the full image. It’s well suited for tasks like sketch-to-photo or satellite-to-map conversion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/examples.jpg" class="img-fluid figure-img"></p>
+<figcaption>Image-to-image translation. Citation: https://github.com/phillipi/pix2pix</figcaption>
+</figure>
+</div>
+<p><a href="https://arxiv.org/abs/1703.10593"><strong>CycleGAN</strong></a> handles the case where paired training data isn’t available. It uses two generators and two discriminators, plus a cycle-consistency loss: translating an image from domain A to B and back should recover the original. This constraint is enough to learn meaningful mappings between unpaired domains, such as photos to paintings or summer to winter scenes.</p>
+</section>
+<section id="evaluating-gans" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-gans">Evaluating GANs</h2>
+<p>Evaluating generative models is a challenging task, because unlike discriminative models that come with gold standard labels to compare to, there is often no single correct answer! The following are some examples of commonly used evaluation metrics for GANs:</p>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Inception_score"><strong>Inception Score (IS)</strong></a> measures quality (are outputs clearly classifiable?) and diversity (do they span many classes?) of generated labels. However, it does not directly compare generated labels against real data.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Fréchet_inception_distance"><strong>Fréchet Inception Distance (FID)</strong></a> compares the feature distributions of real and generated images using a pretrained network. Lower FID indicates more realistic and diverse outputs. It’s the standard benchmark for image GANs.</p></li>
+<li><p><strong>Precision</strong> and <strong>Recall</strong> separately measure fidelity (do generated samples look real?) and coverage (do they span the diversity of the training data?). Mode collapse shows up as low recall without necessarily affecting precision.</p></li>
+<li><p><strong>Human evaluation</strong> and <strong>downstream task performance</strong> are also used, depending on the application.</p></li>
+</ul>
+</section>
+<section id="applications-of-gans" class="level2">
+<h2 class="anchored" data-anchor-id="applications-of-gans">Applications of GANs</h2>
+<p>GANs have been applied across a range of domains:</p>
+<ul>
+<li><p><strong>Image synthesis and super-resolution</strong>: Generating high-resolution images from scratch or upscaling low-resolution inputs.</p></li>
+<li><p><strong>Data augmentation</strong>: Producing synthetic training data where labeled examples are scarce.</p></li>
+<li><p><strong>Medical imaging</strong>: Synthesizing missing scan modalities — for example, generating a PET scan from an MRI — to reduce the need for additional imaging.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/28750336678_9c874869e6_b.jpg" class="img-fluid figure-img"></p>
+<figcaption>Could we use GANs to simulate the intermediate trajectory of cancer treatment?</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Style transfer and domain adaptation</strong>: Translating images between visual domains without paired data.</p></li>
+<li><p><strong>Reinforcement learning</strong>: Simulating possible future states so agents can plan without interacting with the real environment.</p></li>
+</ul>
+</section>
+<section id="open-questions" class="level2">
+<h2 class="anchored" data-anchor-id="open-questions">Open Questions</h2>
+<p>Several theoretical questions about GANs remain open. Whether a GAN can converge to the true data distribution (rather than an approximation), what distance measure is actually being optimized, and how GANs generalize to unseen data are all active areas of research. The <a href="https://en.wikipedia.org/wiki/Manifold_hypothesis">manifold hypothesis</a>, which states that high-dimensional data like images lie on a lower-dimensional surface, provides some intuition for why GANs work. However, a rigorous theoretical account is still developing.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/HyperbolicParaboloid.svg.png" class="img-fluid figure-img" width="482"></p>
+<figcaption>Bringing high-dimensional data down to low-dimensional spaces</figcaption>
+</figure>
+</div>
+<p><strong>Diffusion models</strong> (to be covered in a future post) have recently surpassed GANs on standard image generation benchmarks, with more stable training. Nevertheless, GANs still have advantages in speed and controllability, and the adversarial training framework continues to be influential across the field.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/vsriram24\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="vsriram24/vsriram24.github.io" data-repo-id="R_kgDOGnX_pg" data-category="Announcements" data-category-id="DIC_kwDOGnX_ps4C2K-_" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="light">
+</div> <!-- /content -->
+
+
+
+
+</body></html>
