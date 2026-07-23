@@ -10,7 +10,48 @@
 <atom:link href="https://vsriram24.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Vivek Sriram - Senior Health AI Scientist | Personal website and blog</description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Mon, 15 Jun 2026 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 23 Jul 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Obliteride 2026</title>
+  <dc:creator>Vivek Sriram</dc:creator>
+  <link>https://vsriram24.github.io/posts/obliteride-26/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Welcome back to another post from [VS]Codes! It’s been an exciting time for me at my new job with Humana, and I’m looking forward to sharing more updates on the projects I’ve been involved in in the near future. In the meantime, I’ve been working on more general health AI content that I hope to be able to share in the coming weeks. Today, however, I’d like to take a brief detour to talk about something that’s become an annual tradition for me.</p>
+<p>This August, I’ll be participating in Fred Hutch Obliteride 2026, cycling 50 miles in support of cancer research at Fred Hutch Cancer Center. This will be my third consecutive year participating in Obliteride, and I’m excited to get back on the bike in support of an organization that played an important role in my career and continues to advance world-class biomedical research.</p>
+<p><strong>You can support my Obliteride fundraiser here:</strong> <a href="https://secure.fredhutch.org/goto/vsriram24" class="uri">https://secure.fredhutch.org/goto/vsriram24</a></p>
+<p><img src="https://vsriram24.github.io/posts/obliteride-26/images/bikingyaviking.PNG" class="img-fluid"></p>
+<section id="progress-at-fred-hutch" class="level2">
+<h2 class="anchored" data-anchor-id="progress-at-fred-hutch">Progress at Fred Hutch</h2>
+<p>Throughout my career, I’ve seen firsthand how advances in AI, large-scale clinical data, and computational methods are transforming our understanding of disease and helping researchers make discoveries that would have been impossible just a few years ago.</p>
+<p>Fred Hutch is home to many of the scientists, clinicians, engineers, and data professionals driving that progress. Their work spans everything from fundamental biological discovery to translational research and clinical care, all with the shared goal of improving the lives of patients.</p>
+<p>I’m especially grateful to my former colleagues in the&nbsp;Office of the Chief Data Officer&nbsp;and the&nbsp;Data Science Lab, whose efforts continue to expand access to high-quality data, build modern research infrastructure, and develop AI-enabled tools that empower scientists across the institution.</p>
+</section>
+<section id="why-public-support-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-public-support-matters">Why Public Support Matters</h2>
+<p>Scientific breakthroughs don’t happen in isolation. They require talented researchers, long-term investment, and the freedom to pursue innovative ideas.</p>
+<p>Today, academic medical centers face increasing financial challenges as research costs rise and funding becomes more constrained. Philanthropic support gives researchers the flexibility to explore unconventional approaches, adopt emerging technologies, and accelerate discoveries that may ultimately change the standard of care for patients around the world.</p>
+<p>That’s exactly why events like Obliteride matter. Every mile ridden and every dollar donated helps support the research taking place at Fred Hutch, bringing us another step closer to better diagnostics and more effective treatments.</p>
+</section>
+<section id="support-my-ride" class="level2">
+<h2 class="anchored" data-anchor-id="support-my-ride">Support My Ride</h2>
+<p>If you’d like to support my ride this year, I’d be incredibly grateful. Every contribution helps advance the lifesaving research happening at Fred Hutch.</p>
+<p><strong>You can support my Obliteride fundraiser here:</strong> <a href="https://secure.fredhutch.org/goto/vsriram24" class="uri">https://secure.fredhutch.org/goto/vsriram24</a></p>
+<p>Thank you to everyone who has supported me over the past three years, whether through donations, encouragement, or simply helping spread the word. I can’t wait to get back on the course and ride for a cause that continues to inspire me.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Miscellaneous</category>
+  <guid>https://vsriram24.github.io/posts/obliteride-26/</guid>
+  <pubDate>Thu, 23 Jul 2026 07:00:00 GMT</pubDate>
+  <media:content url="https://vsriram24.github.io/posts/obliteride-26/zola_curious.JPEG" medium="image"/>
+</item>
 <item>
   <title>Generative Adversarial Networks (GANs)</title>
   <dc:creator>Vivek Sriram</dc:creator>
@@ -3140,65 +3181,6 @@ Ultimately, responsible AI in healthcare demands equity, transparency, collabora
   <guid>https://vsriram24.github.io/posts/work-life-harmony/</guid>
   <pubDate>Mon, 04 Nov 2024 08:00:00 GMT</pubDate>
   <media:content url="https://vsriram24.github.io/posts/work-life-harmony/zola_cat.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>My blog / newsletter recommendations</title>
-  <dc:creator>Vivek Sriram</dc:creator>
-  <link>https://vsriram24.github.io/posts/newsletters/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Welcome back to another edition of <em>[VS]Codes</em>! In this week’s post, I’ll be summarizing a list of the top blogs / newsletters to which I subscribe, including content that covers biotech and health AI, data science and software, and a few miscellaneous topics at the end. Note that all of these newsletters allow for free base subscriptions (with options for paid tiered subscriptions to support the creators if desired). Without further ado, let’s get started!</p>
-<p><img src="https://vsriram24.github.io/posts/newsletters/bear.jpeg" class="img-fluid"></p>
-<hr>
-<p><strong><em>Medical Informatics, Biotechnology, and Health AI</em></strong></p>
-<ol type="1">
-<li><p>“<a href="https://newsletter.smartbrief.com/rest/sign-up/FCE90269-079A-4211-B3E0-85FCEDCFBE17?pageName=TELLMEMORE">AMIA Informatics SmartBrief</a>” by the <a href="https://amia.org">American Medical Informatics Association</a></p>
-<p>“AMIA Informatics SmartBrief” offers a daily snapshot of biomedical informatics with news from a variety of health informatics sources. In particular, I appreciate that subscribers can select the topic categories that most interest them: I am personally subscribed to “Top News,” “Clinical Informatics and Analytics,” “Health Data Science and Artificial Intelligence,” “Population Health,” and “AMIA News”.</p></li>
-<li><p>“<a href="https://decodingbio.substack.com">Decoding Bio</a>” by <a href="https://x.com/ameekapadia">Amee Kapadia</a>, <a href="https://x.com/pablolubroth">Pablo Lubroth</a>, <a href="https://x.com/patricksmalone">Patrick Malone</a>, <a href="https://x.com/morgancheatham">Morgan Cheatham</a>, <a href="https://x.com/KetanYerneni">Ketan Yerneni</a>, and <a href="https://x.com/ZahraKhwaja">Zahra Khwaja</a></p>
-<p>“Decoding Bio” breaks down advancements at the intersection of computation and the life sciences. The authors focus on translating technical developments and trends in the biotech and “tech-bio” spaces into an easy-to-read format. The goal of the newsletter and the larger writing collective is to start conversation around changes in the biotech industry, including the rapid advancement of health AI.</p></li>
-<li><p>“<a href="https://doctorpenguin.substack.com">Doctor Penguin</a>” by <a href="https://scholar.google.com/citations?user=89ANml4AAAAJ&amp;hl=en">Emma Chen</a>, <a href="https://www.linkedin.com/in/shreya-johri/">Shreya Johri,</a> <a href="https://dbmi.hms.harvard.edu/people/pranav-rajpurkar">Pranav Rajpurkar</a>, and <a href="https://www.scripps.edu/faculty/topol/">Eric Topol</a></p>
-<p>The aim of “Doctor Penguin” is to help researchers keep up with the latest research updates in the field of AI and healthcare. Each week includes brief summaries of some of the latest top papers, as well as links to the original publications for subscribers to read.</p></li>
-<li><p>“<a href="https://centuryofbio.com">The Century of Biology</a>” by <a href="https://elliothershberg.com">Elliot Hershberg</a></p>
-<p>Elliot is a current PhD student in the Department of Genetics at Stanford, as well as a biotechnology investor. His blog, “The Century of Biology,” summarizes the latest progress in the field of biotechnology and offers three main topics of content: Data/Research, Companies/Strategy/Analysis, and Philosophy. Elliot’s long term ambition is “to develop a philosophy outlining why it is a moral and aesthetic imperative to pursue biotechnology.” Elliot is currently taking a break from writing his blog to defend his PhD, but there is a trove of content freely available that provides insightful examinations of biotech developments. I very much look forward to his return to writing later this year!</p></li>
-</ol>
-<p><strong><em>Data Science and Software</em></strong></p>
-<ol type="1">
-<li><p>“<a href="https://tidyfirst.substack.com">Software Design: Tidy First?</a>” by <a href="https://en.wikipedia.org/wiki/Kent_Beck">Kent Beck</a></p>
-<p>Kent Beck’s self-proclaimed mission is “to help geeks feel safe in the world.” His blog achieves this goal by covering a variety of topics in programming and software development that encourage a perspective shift in the way that we approach work in the field of tech and beyond.</p></li>
-<li><p>“<a href="https://alphasignal.ai">AlphaSignal</a>” by <a href="https://www.linkedin.com/in/liorsinclair/">Lior Sinclair</a></p>
-<p>AlphaSignal is an AI-driven technical newsletter that helps the scientific community stay up to date with the Machine Learning industry by providing a round-up of publications and breakthroughs identified by its algorithm. Topics covered include relevant AI news, models, research, and repositories;.</p></li>
-<li><p>“<a href="https://presentofcoding.substack.com">The Present of Coding</a>” by <a href="https://github.com/abigailhaddad">Abigail Haddad</a></p>
-<p>Abigail Haddad is a machine learning engineer and data scientist. Her blog focuses on topics in data science, coding, and Large Language Models. I very much appreciated two of most recent posts, “<a href="https://presentofcoding.substack.com/p/how-to-become-a-government-data-scientist">How to Become a Government Data Scientist</a>” and “<a href="https://presentofcoding.substack.com/p/a-developer-is-you">A Developer is You</a>,” both of which have shifted the way that I think about learning and upskilling.</p></li>
-<li><p>“<a href="https://fhdata.substack.com">Monday Morning Data Science (MMDS)</a>” by the <a href="https://hutchdatascience.org">Fred Hutch Data Science Lab (DaSL)</a></p>
-<p>MMDS offers a weekly dose of data news, curated by the Fred Hutch Data Science Lab (a.k.a. my team!). The newsletter covers not only updates from DaSL but also blog posts on data science and statistical content from a variety of other data science content creators.</p></li>
-<li><p>“<a href="https://www.allendowney.com/blog/">Probably Overthinking It</a>” by <a href="https://www.allendowney.com/wp/">Allen Downey</a></p>
-<p>Allen Downey is a Principal Data Scientist at PyMC Labs, professor emeritus at Olin College, and along with other titles, the author of <em>Probably Overthinking It</em>. His blog of the same name tackles a variety of topics with non-intuitive answers from a statistical lens, proving with the power of computational statistics that everything is not as it seems!</p></li>
-<li><p>“<a href="https://buttondown.com/ready4r/archive/">Ready for R</a>” by <a href="https://laderast.github.io">Ted Laderas</a></p>
-<p>Ted is a co-worker of mine at Fred Hutch in charge of developing training material and directing communities of practice for Fred Hutch staff. His newsletter offers a glimpse into his outstanding abilities as an educator, helping readers learn the basics of rstats and the tidyverse. He also posts about new R packages and other resources that help readers upskill in their R knowledge.</p></li>
-</ol>
-<p><strong><em>Miscellaneous</em></strong></p>
-<ol type="1">
-<li><p>“<a href="https://bakadesuyo.com/newsletter/">Barking Up The Wrong Tree</a>” by <a href="https://bakadesuyo.com/about/">Eric Barker</a></p>
-<p>Eric’s weekly newsletter offers “a scientific deep dive that will improve your life.” Following along with much of the content from his <em>The Wall Street Journal</em> bestseller “<a href="https://bakadesuyo.com/barking-up-the-wrong-tree/">Barking Up the Wrong Tree</a>,” Eric’s blog offers actionable tips based on psychology, neuroscience, and expert insight to “make your life more awesome.”</p></li>
-<li><p>“<a href="https://www.thedoctorskitchen.com">The Doctor’s Kitchen</a>” by <a href="https://www.thedoctorskitchen.com/about/the_doctors_kitchen.php">Rupy Aujla</a></p>
-<p>The goal of Rupy’s platform “The Doctor’s Kitchen” is to “teach people how to cook their way to health.” Rupy started the Doctor’s Kitchen as a way of teaching everybody how they can cook their way to health and to showcase the beauty of food and medicinal effects of eating and living well.</p></li>
-<li><p>“<a href="https://andrewknapp.substack.com">How To Be A Dog</a>” by <a href="https://andrewknapp.com">Andrew Knapp</a></p>
-<p>Andrew Knapp is the best-selling author of the <em>Find Momo</em> series, and he is a true artist in his ability to capture the spirit of life and adventure with his dogs and his camera. His blog highlights the lessons that dogs can teach us in our own lives with respect to appreciating the beauty around us and developing a deeper connection and appreciation for each and every day.</p></li>
-</ol>
-<hr>
-<p>This concludes my blog post for today! Now a note for my subscribers… with fall rolling around and work / life picking up, it’s becoming more challenging to keep up with my weekly schedule of creating new content for the blog! So, I’ll be taking a hiatus for the next month to turn my attention to some immediate deliverables, while also developing new content in the background. When I start posting again toward the end of October, I will likely switch to a bi-weekly release schedule to make this whole project more sustainable with respect to my personal schedule! Until we meet again~</p>
-
-
-
- ]]></description>
-  <category>Personal</category>
-  <guid>https://vsriram24.github.io/posts/newsletters/</guid>
-  <pubDate>Mon, 16 Sep 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://vsriram24.github.io/posts/newsletters/autumn.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
