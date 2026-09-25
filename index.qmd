@@ -1,6 +1,6 @@
 ---
 title: "Vivek Sriram, PhD, MA"
-image: vivek_cropped.JPG
+image: vivek_2026_cropped.jpg
 about:
   template: trestles
   image-shape: rounded
